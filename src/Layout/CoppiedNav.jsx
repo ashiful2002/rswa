@@ -25,7 +25,7 @@ const CoppiedNav = () => {
           <div>
             <a href="/">
               <img
-                width={80}
+                width={60}
                 className="rounded ml-2 sm:ml-4"
                 src={logo}
                 alt="ashiful islam"

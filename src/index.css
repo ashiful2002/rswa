@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply capitalize last:bg-green-700 rounded p-2 last:text-white last:hover:bg-green-800 last:hover:text-white;
+  }
+}
