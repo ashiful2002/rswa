@@ -10,7 +10,7 @@ function BsNavbar() {
 
   return (
     <>
-      <Navbar expand="md" className="bg-body-tertiary ">
+      <Navbar expand="md" className="bg-body-tertiary sticky">
         <Container>
           <Navbar.Brand href="/">
             <img src={logo} alt="rswa" width={70} />
