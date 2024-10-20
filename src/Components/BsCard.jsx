@@ -14,7 +14,9 @@ function BsCard() {
             <Card className="" key={item.id}>
               <Card.Body>
                 <Card.Title className="capitalize">{item.title}</Card.Title>
-                <Card.Text>{item.desc}</Card.Text>
+                <Card.Text>
+                  <p>{item.desc}</p>
+                </Card.Text>
                 <Button variant="primary">
                   <Link className="text-white " to={item.title}>
                     {item.btnText}

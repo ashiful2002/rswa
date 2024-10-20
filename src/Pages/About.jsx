@@ -3,7 +3,7 @@ import React from "react";
 const About = () => {
   return (
     <div className="container">
-      <h1 className="text-center text-3xl capitalize bg-neutral-500 rounded text-white">About</h1>
+      <h1 className="text-center text-3xl capitalize bg-neutral-500 rounded text-white">About us page</h1>
       <p className="">
         Rowmari Students Welfare Association, established on September 23, 2009,
         is a dedicated social welfare organization focused on the advancement

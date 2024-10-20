@@ -7,3 +7,17 @@
     @apply capitalize last:bg-green-700 rounded p-2 last:text-white last:hover:bg-green-800 last:hover:text-white;
   }
 }
+
+a,
+p {
+  font-family: "Poppins", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h5 {
+  font-family: "Roboto", sans-serif;
+}
