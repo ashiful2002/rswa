@@ -29,8 +29,8 @@ function BsNavbar() {
         </Container>
       </Navbar>
       <Outlet />
-      <div className="text-center">
-        <p> All Rights Belongs To © RSWA {date}</p>
+      <div className="text-center capitalize">
+        <p> Copyright © {date} <a href="#" className="no-underline">RSWA.</a> All rights reserved{date}</p>
       </div>
     </>
   );
