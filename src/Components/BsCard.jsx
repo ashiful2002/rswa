@@ -1,12 +1,8 @@
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import { CardGroup } from "react-bootstrap";
-import Collapse from "react-bootstrap/Collapse";
+import React, { useState } from "react";
+import { CardGroup, Button, Card, Collapse } from "react-bootstrap";
+import { FaArrowAltCircleDown , FaArrowAltCircleUp} from "react-icons/fa";
 
 import { cardtext } from "../constants";
-import { useState } from "react";
-import { FaArrowAltCircleDown } from "react-icons/fa";
-import { FaArrowAltCircleUp } from "react-icons/fa";
 
 function BsCard() {
   const [open, setOpen] = useState(false);
@@ -14,7 +10,7 @@ function BsCard() {
   const handleBlogClick = () => {
     setOpen(!open);
   };
-  
+
   return (
     <div className="container">
       {cardtext.map((item) => (

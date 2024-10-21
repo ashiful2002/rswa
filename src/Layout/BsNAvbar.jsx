@@ -1,9 +1,10 @@
+import { Outlet } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { FaArrowAltCircleUp } from "react-icons/fa";
 import logo from "../assets/logo.png";
 import { navigation } from "../constants";
-import { Link, Outlet } from "react-router-dom";
 
 function BsNavbar() {
   const date = new Date().getFullYear();
@@ -28,14 +29,18 @@ function BsNavbar() {
         </Container>
       </Navbar>
       <Outlet />
-      <div className="text-center capitalize">
+      <div className="flex justify-around items-center text-center capitalize bg-neutral-700 text-white tracking-widest rounded-sm font-light ">
         <p>
-          
           Copyright © {date}
-          <a href="#" className="no-underline">
+          <a href="#" className=" text-green-400 m-2">
             RSWA
           </a>
-          All Rights Reserved
+          . All Rights Reserved.
+        </p>
+        <p>
+          <a href="#" className="text-white">
+            <FaArrowAltCircleUp />
+          </a>
         </p>
       </div>
     </>
