@@ -20,8 +20,7 @@ function BsNavbar() {
             <Nav className="ms-auto">
               {navigation.map((item) => (
                 <Nav.Link className="btn" key={item.id} href={item.url}>
-                    {item.title}
-                 
+                  {item.title}
                 </Nav.Link>
               ))}
             </Nav>
@@ -30,7 +29,14 @@ function BsNavbar() {
       </Navbar>
       <Outlet />
       <div className="text-center capitalize">
-        <p> Copyright © {date} <a href="#" className="no-underline">RSWA.</a> All rights reserved{date}</p>
+        <p>
+          {" "}
+          Copyright ©{" "}
+          <a href="#" className="no-underline">
+            RSWA.
+          </a>{" "}
+          {date} All rights reserved.
+        </p>
       </div>
     </>
   );
