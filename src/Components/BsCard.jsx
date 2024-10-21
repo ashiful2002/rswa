@@ -1,27 +1,46 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { Link } from "react-router-dom";
 import { CardGroup } from "react-bootstrap";
+import Collapse from "react-bootstrap/Collapse";
 
 import { cardtext } from "../constants";
+import { useState } from "react";
+import { FaArrowAltCircleDown } from "react-icons/fa";
+import { FaArrowAltCircleUp } from "react-icons/fa";
 
 function BsCard() {
+  const [open, setOpen] = useState(false);
+
+  const handleBlogClick = () => {
+    setOpen(!open);
+  };
+  
   return (
     <div className="container">
       {cardtext.map((item) => (
-        <div className="">
+        <div className="" key={item.id}>
           <CardGroup>
-            <Card className="" key={item.id}>
+            <Card className="">
               <Card.Body>
                 <Card.Title className="capitalize">{item.title}</Card.Title>
                 <Card.Text>
                   <p>{item.desc}</p>
                 </Card.Text>
-                <Button variant="primary">
-                  <Link className="text-white " to={item.title}>
-                    {item.btnText}
-                  </Link>
+                <Button
+                  variant="primary"
+                  onClick={handleBlogClick}
+                  aria-controls={item.id}
+                  aria-expanded={open}
+                >
+                  <span className="flex items-center gap-2">
+                    {" "}
+                    {item.btnText}{" "}
+                    {open ? <FaArrowAltCircleUp /> : <FaArrowAltCircleDown />}
+                  </span>
                 </Button>
+                <Collapse in={open}>
+                  <div id={item.id}>{item.fullDesc}</div>
+                </Collapse>
               </Card.Body>
             </Card>
           </CardGroup>
