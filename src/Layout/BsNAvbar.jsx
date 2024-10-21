@@ -30,12 +30,12 @@ function BsNavbar() {
       <Outlet />
       <div className="text-center capitalize">
         <p>
-          {" "}
-          Copyright ©{" "}
+          
+          Copyright © {date}
           <a href="#" className="no-underline">
-            RSWA.
-          </a>{" "}
-          {date} All rights reserved.
+            RSWA
+          </a>
+          All Rights Reserved
         </p>
       </div>
     </>
