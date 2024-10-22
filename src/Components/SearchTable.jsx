@@ -6,11 +6,11 @@ import { bloodGroupData } from "../constants/BloodGropuData";
 const SearchTable = () => {
   const [searchedValue, setsearchBloogG] = useState("");
   return (
-    <div className="container mx-auto overflow-scroll">
+    <div className="containerb h-lvh mx-auto overflow-scroll">
       <h1 className="pageTitle">Blood Group</h1>
       <div>
         <Input.Search
-          placeholder="search by blood group    ( EG : 'A(+)')"
+          placeholder="search by blood group    ( EG : ' A(+) ')"
           onSearch={(value) => {
             setsearchBloogG(value);
           }}
