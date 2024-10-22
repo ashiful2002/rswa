@@ -1,12 +1,14 @@
-import React from 'react'
-import BsCard from '../Components/BsCard'
+import React from "react";
+import BsCard from "../Components/BsCard";
 
 const Blog = () => {
   return (
-    <div>
-       < BsCard />
+    <div className="container">
+      {" "}
+      <h1 className="pageTitle">About</h1>
+      <BsCard />
     </div>
-  )
-}
+  );
+};
 
-export default Blog
+export default Blog;

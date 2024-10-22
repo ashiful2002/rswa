@@ -2,10 +2,10 @@ import { Outlet } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { FaArrowAltCircleUp } from "react-icons/fa";
+import { FaUpLong } from "react-icons/fa6";
 import logo from "../assets/logo.png";
 import { navigation } from "../constants";
-
+import iconTOP from "../assets/go-top-symbolic.svg";
 function BsNavbar() {
   const date = new Date().getFullYear();
 
@@ -29,18 +29,21 @@ function BsNavbar() {
         </Container>
       </Navbar>
       <Outlet />
-      <div className="flex justify-around items-center text-center capitalize bg-neutral-700 text-white tracking-widest rounded-sm font-light ">
+      <div className="flex flex-col  justify-around items-center md:flex-row-reverse text-center capitalize bg-neutral-700 text-white tracking-widest rounded-sm font-light ">
         <p>
+          <a
+            href="#"
+            className="text-white  hover:text-green-400 text-xl "
+          >
+            <FaUpLong className="mt-4" />
+          </a>
+        </p>
+        <p className="text-sm">
           Copyright © {date}
-          <a href="#" className=" text-green-400 m-2">
+          <a href="#" className=" text-green-400 mx-2">
             RSWA
           </a>
           . All Rights Reserved.
-        </p>
-        <p>
-          <a href="#" className="text-white">
-            <FaArrowAltCircleUp />
-          </a>
         </p>
       </div>
     </>
