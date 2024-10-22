@@ -5,13 +5,12 @@ import { bloodGroupData } from "../constants/BloodGropuData";
 
 const SearchTable = () => {
   const [searchedValue, setsearchBloogG] = useState("");
-;
   return (
-    <div>
+    <div className="container mx-auto">
       <h1 className="pageTitle">Blood Group</h1>
       <div>
         <Input.Search
-          placeholder="search by blood group    (EG:'A+')"
+          placeholder="search by blood group    (EG :' A+ ')"
           onSearch={(value) => {
             setsearchBloogG(value);
           }}
@@ -24,21 +23,25 @@ const SearchTable = () => {
           columns={[
             {
               title: "Name",
-              dataIndex: "name",
+              dataIndex: "Name",
             },
             {
               title: "Bloog Group",
-              dataIndex: "BGroup",
+              dataIndex: "Blood_Group",
               filteredValue: [searchedValue],
               onFilter: (value, record) => {
-                return String(record.BGroup)
+                return String(record.Blood_Group)
                   .toLowerCase()
                   .includes(value.toLowerCase());
               },
             },
             {
               title: "Contact",
-              dataIndex: "contact",
+              dataIndex: "Phone_Number",
+            },
+            {
+              title: "Permanent Address",
+              dataIndex: "Permanent_Address ",
             },
           ]}
         ></Table>
