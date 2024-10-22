@@ -10,7 +10,7 @@ function BsNavbar() {
   const date = new Date().getFullYear();
 
   return (
-    <>
+    <div className="h-auto">
       <Navbar sticky="top" expand="md" className="bg-body-tertiary sticky">
         <Container>
           <Navbar.Brand href="/">
@@ -28,6 +28,7 @@ function BsNavbar() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
       <Outlet />
       <div className="flex flex-col  justify-around items-center md:flex-row-reverse text-center capitalize bg-neutral-700 text-white tracking-widest rounded-sm font-light ">
         <p>
@@ -46,7 +47,7 @@ function BsNavbar() {
           . All Rights Reserved.
         </p>
       </div>
-    </>
+    </div>
   );
 }
 
