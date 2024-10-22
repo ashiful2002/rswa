@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { Input, Table } from "antd";
-// const colDetailse = ;
-// const bloodGroupData = ;
+
+import { bloodGroupData } from "../constants/BloodGropuData";
+
 const SearchTable = () => {
   const [searchedValue, setsearchBloogG] = useState("");
-  //   const handleSearch = () => {
-  //     setsearchBloogG(value);
-  //   };
+;
   return (
     <div>
       <h1 className="pageTitle">Blood Group</h1>
@@ -21,32 +20,7 @@ const SearchTable = () => {
           }}
         ></Input.Search>
         <Table
-          dataSource={[
-            {
-              key: "0",
-              name: "Abir",
-              BGroup: "B+",
-              contact: "01759907907",
-            },
-            {
-              key: "1",
-              name: "antor",
-              BGroup: "o-",
-              contact: "01643565607",
-            },
-            {
-              key: "3",
-              name: "Nasim",
-              BGroup: "B+",
-              contact: "",
-            },
-            {
-              key: "4",
-              name: "Utsho",
-              BGroup: "A+",
-              contact: "01992829099",
-            },
-          ]}
+          dataSource={bloodGroupData}
           columns={[
             {
               title: "Name",
