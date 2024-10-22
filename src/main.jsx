@@ -10,6 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import About from "./Pages/About.jsx";
 import Blog from "./Pages/Blog.jsx";
 import ErrorPage from "./Pages/ErrorPage.jsx";
+import Blood from "./Pages/Blood.jsx";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/Blog",
         element: <Blog />,
+      },
+      {
+        path: "/blood",
+        element: <Blood />,
       },
       {
         path: "*",

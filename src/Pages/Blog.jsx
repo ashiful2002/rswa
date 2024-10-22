@@ -5,7 +5,7 @@ const Blog = () => {
   return (
     <div className="container">
       {" "}
-      <h1 className="pageTitle">About</h1>
+      <h1 className="pageTitle">Blog</h1>
       <BsCard />
     </div>
   );
