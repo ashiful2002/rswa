@@ -3,7 +3,7 @@ import SearchTable from '../Components/SearchTable'
 
 const Blood = () => {
   return (
-    <div>
+    <div className='container mx-auto'>
        <SearchTable /> 
     </div>
   )

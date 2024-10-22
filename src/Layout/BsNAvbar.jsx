@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -20,9 +20,13 @@ function BsNavbar() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
               {navigation.map((item) => (
-                <Nav.Link className="btn" key={item.id} href={item.url}>
+              //  <Link to={item.url}> </Link>
+
+                <Nav.Link className="btn" key={item.id}  href={item.url}>
                   {item.title}
                 </Nav.Link>
+                
+                
               ))}
             </Nav>
           </Navbar.Collapse>

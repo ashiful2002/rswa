@@ -32,12 +32,23 @@ const SearchTable = () => {
               onFilter: (value, record) => {
                 return String(record.Blood_Group)
                   .toLowerCase()
+                  .includes(value.toLowerCase()) ||
+                String(record.Name)
+                  .toLowerCase()
                   .includes(value.toLowerCase());
               },
             },
             {
               title: "Contact",
               dataIndex: "Phone_Number",
+            },
+            {
+              title: "SSC Batch",
+              dataIndex: "SSC_Batch",
+            },
+            {
+              title: "Present Address",
+              dataIndex: "Present_Address",
             },
             {
               title: "Permanent Address",
