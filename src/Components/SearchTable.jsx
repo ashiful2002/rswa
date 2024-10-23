@@ -8,8 +8,8 @@ const SearchTable = () => {
   return (
     <div className="container  mx-auto ">
       <h1 className="pageTitle">Blood Group</h1>
-      <div className="overflow-scroll">
-        <Input.Search
+      <div className="overflow-scroll h-[90vh]">
+        <Input.Search className=""
           placeholder="search by blood group    ( EG : ' A(+) ')"
           onSearch={(value) => {
             setsearchBloogG(value);
