@@ -13,20 +13,21 @@ function BsNavbar() {
     <div className="h-auto">
       <Navbar sticky="top" expand="md" className="bg-body-tertiary sticky">
         <Container>
-          <Navbar.Brand href="/">
-            <img src={logo} alt="rswa" width={70} />
+          <Navbar.Brand>
+            <Link to="/">
+              {" "}
+              <img src={logo} alt="rswa" width={70} />{" "}
+            </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
               {navigation.map((item) => (
-              //  <Link to={item.url}> </Link>
+                //  <Link to={item.url}> </Link>
 
-                <Nav.Link className="btn" key={item.id}  href={item.url}>
+                <Nav.Link className="btn" key={item.id} href={item.url}>
                   {item.title}
                 </Nav.Link>
-                
-                
               ))}
             </Nav>
           </Navbar.Collapse>
@@ -36,10 +37,7 @@ function BsNavbar() {
       <Outlet />
       <div className="flex flex-col  justify-around items-center md:flex-row-reverse text-center capitalize bg-neutral-700 text-white tracking-widest rounded-sm font-light ">
         <p>
-          <a
-            href="#"
-            className="text-white  hover:text-green-400 text-xl "
-          >
+          <a href="#" className="text-white  hover:text-green-400 text-xl ">
             <FaUpLong className="mt-4" />
           </a>
         </p>
