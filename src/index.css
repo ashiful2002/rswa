@@ -12,6 +12,9 @@
   .allCenter {
     @apply flex items-center justify-center;
   }
+  .hoverEffect {
+    @apply hover:bg-green-500;
+  }
 }
 
 a,

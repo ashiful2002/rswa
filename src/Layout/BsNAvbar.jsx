@@ -6,8 +6,8 @@ import { FaUpLong } from "react-icons/fa6";
 import logo from "../assets/logo.png";
 import { navigation } from "../constants";
 import iconTOP from "../assets/go-top-symbolic.svg";
+import Footer from "./Footer";
 function BsNavbar() {
-  const date = new Date().getFullYear();
 
   return (
     <div className="h-auto">
@@ -35,20 +35,7 @@ function BsNavbar() {
       </Navbar>
 
       <Outlet />
-      <div className="flex flex-col  justify-around items-center md:flex-row-reverse text-center capitalize bg-neutral-700 text-white tracking-widest rounded-sm font-light ">
-        <p>
-          <a href="#" className="text-white  hover:text-green-400 text-xl ">
-            <FaUpLong className="mt-4" />
-          </a>
-        </p>
-        <p className="text-sm">
-          Copyright © {date}
-          <a href="#" className=" text-green-400 mx-2">
-            RSWA
-          </a>
-          . All Rights Reserved.
-        </p>
-      </div>
+      <Footer />
     </div>
   );
 }

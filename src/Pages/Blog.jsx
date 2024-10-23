@@ -1,10 +1,11 @@
 import React from "react";
 import BsCard from "../Components/BsCard";
+import ACollapse from "../Components/ACollapse";
 
 const Blog = () => {
   return (
-    <div className="container">
-      {" "}
+    <div className="container mx-auto h-screen">
+     
       <h1 className="pageTitle">Blog</h1>
       <BsCard />
     </div>
