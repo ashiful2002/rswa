@@ -8,7 +8,7 @@ const SearchTable = () => {
   return (
     <div className="container  mx-auto ">
       <h1 className="pageTitle">Blood Group</h1>
-      <div className=" h-[90vh]">
+      <div className=" ">
         <Input.Search
           className=""
           placeholder="search by blood group    ( EG : ' A(+) ')"
@@ -19,7 +19,7 @@ const SearchTable = () => {
             setsearchBloogG(e.target.value);
           }}
         ></Input.Search>
-        <div className="overflow-scroll">
+        <div className="overflow-scroll h-[90vh]">
           <Table
             dataSource={bloodGroupData}
             columns={[
