@@ -1,6 +1,3 @@
-import Slider4 from "../assets/Slider4.jpg";
-import Slider2 from "../assets/Slider2.jpg";
-import Slider3 from "../assets/Slider3.jpg";
 
 export const navigation = [
   {
@@ -114,20 +111,4 @@ export const cardtext = [
   },
 ];
 
-export const sliderImage = [
-  {
-    id: "0",
-    image: `../assets/Slider4.jpg`,
-    text: "First Carousel desc",
-  },
-  {
-    id: "1",
-    image: `../assets/Slider2.jpg`,
-    text: "Second  desc",
-  },
-  {
-    id: "2",
-    image: `../assets/Slider3.jpg`,
-    text: " Carousel desc for  third",
-  },
-];
+
