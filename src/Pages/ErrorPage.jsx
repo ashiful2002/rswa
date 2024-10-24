@@ -2,7 +2,7 @@ import React from "react";
 
 const ErrorPage = () => {
   return (
-    <div className="container mx-auto h-[80vh] allCenter">
+    <div className="allCenter container mx-auto h-[80vh]">
       <h1>
         404- Page Not Found. <span className="text-sm"></span>
       </h1>

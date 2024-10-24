@@ -6,33 +6,39 @@ import { CiLocationOn } from "react-icons/ci";
 const QuickContact = () => {
   return (
     <>
-      <div className="flex items-center justify-around flex-col text-sm">
-        
-       
-          <div className="flex items-center justify-center ">
+      <div className="flex flex-col items-center justify-around text-sm">
+        <div className="flex items-center justify-center  ">
+          {" "}
+          <p className="mx-2">
+            <CiLocationOn className="text-lg text-green-500" />
+          </p>
+          <a
+            href="https://maps.app.goo.gl/KTsGv78EpHn1HU7A9" 
+            className="mx-2 text-white no-underline "
+          >
             {" "}
-            <p className="mx-2">
-              <CiLocationOn className="text-green-500 text-lg" />
-            </p>{" "}
-            <p>Rowmari,Kurigram</p>
-          </div>
-          <div className="flex items-center justify-center ">
+            <p className="hover:text-green-500">Rowmari,Kurigram</p>
+          </a>{" "}
+        </div>
+        <div className="flex items-center justify-center">
+          {" "}
+          <p className="mx-2">
+            <FaPhone className="text-lg text-green-500" />
+          </p>{" "}
+          <a href="callto:01759907907" className="mx-2 text-white no-underline" target="_blank">
             {" "}
-            <p className="mx-2">
-              <FaPhone className="text-green-500 text-lg" />
-            </p>{" "}
-            <p>+880 1727-475744</p>
-          </div>
-          <div className="flex items-center justify-center">
-            <MdEmail className="text-green-500  text-lg" />{" "}
-            <a
-              className="text-white mx-2"
-              href="mailto:rswaofficial.est2009@gmail.com"
-            >
-              rswaofficial.est2009@gmail.com
-            </a>
-          </div>
-        
+            <p className="hover:text-green-500">+880 1727-475744</p>
+          </a>
+        </div>
+        <div className="flex items-center justify-center">
+          <MdEmail className="text-lg text-green-500" />{" "}
+          <a
+            className="mx-2 text-white"
+            href="mailto:rswaofficial.est2009@gmail.com"
+          >
+           <span className="hover:text-green-500 lowercase"> rswaofficial.est2009@gmail.com</span>
+          </a>
+        </div>
       </div>
     </>
   );

@@ -8,20 +8,18 @@ const App = () => {
   };
   return (
     <div className="container mx-auto h-screen">
-      <div className="allCenter flex flex-col h-screen ">
+      <h1 className="pageTitle">Home Page</h1>
+      <div className="allCenter flex h-screen flex-col">
         <div>
           <Button onClick={handleNavigate}> Go Blood Bank</Button>
         </div>
-        
+
         <div>
-          
-          <p className="text-slate-500 m-4">just started working on this...</p>
+          <p className="m-4 text-slate-500">just started working on this...</p>
         </div>
       </div>
-     
     </div>
   );
 };
 
 export default App;
- 

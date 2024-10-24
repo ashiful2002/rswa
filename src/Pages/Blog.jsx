@@ -4,8 +4,7 @@ import ACollapse from "../Components/ACollapse";
 
 const Blog = () => {
   return (
-    <div className="container mx-auto ">
-     
+    <div className="container mx-auto">
       <h1 className="pageTitle">Blog</h1>
       <BsCard />
     </div>

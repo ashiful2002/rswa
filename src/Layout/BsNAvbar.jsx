@@ -8,7 +8,6 @@ import { navigation } from "../constants";
 import iconTOP from "../assets/go-top-symbolic.svg";
 import Footer from "./Footer";
 function BsNavbar() {
-
   return (
     <div className="h-auto">
       <Navbar sticky="top" expand="md" className="bg-body-tertiary sticky">
