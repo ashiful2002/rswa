@@ -1,5 +1,6 @@
 import React from "react";
 
+import logo from '../assets/logo.png'
 import SocialSection from "./SocialSection";
 import { Divider } from "antd";
 import { FaUpLong } from "react-icons/fa6";
@@ -28,10 +29,12 @@ const Footer = () => {
           <h6 className="font-thin text-sm mb-4 mt-8">Quick Contact</h6>
           <div className="flex justify-between items-center">
             <div className="">
-              <h4>RSWA helpline</h4>
+              {/* <h4>RSWA</h4> */}
+              <div className="allCenter">
+              <img src={logo} width={60} alt="rswa" className="mb-2" />
+              </div>
               <p className="text-sm text-justify">
-                please feel free to contact us if you have any suggestion or
-                avdice
+              please feel free to contact us if you have any Query
               </p>
             </div>
             <div>

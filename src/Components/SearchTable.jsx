@@ -1,13 +1,33 @@
 import React, { useState } from "react";
 import { Input, Table } from "antd";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { IoMdArrowRoundForward } from "react-icons/io";
 
 import { bloodGroupData } from "../constants/BloodGropuData";
+import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import { ButtonGroup } from "react-bootstrap";
 
 const SearchTable = () => {
+  const navigate = useNavigate();
   const [searchedValue, setsearchBloogG] = useState("");
   return (
     <div className="container  mx-auto ">
-      <h1 className="pageTitle">Blood Group</h1>
+      <h1 className="pageTitle">RSWA virtual Blood bank</h1>
+      <div className="flex items-center justify-between">
+        <Button
+          className="mb-2"
+          variant="success"
+          onClick={() => navigate("/")}
+        >
+          {" "}
+          <IoMdArrowRoundBack className="font-extrabold" />
+        </Button>
+        <Button className="mb-2 cursor-wait" disabled variant="success">
+          {" "}
+          <IoMdArrowRoundForward className="font-extrabold" />
+        </Button>
+      </div>
       <div className=" ">
         <Input.Search
           className=""
