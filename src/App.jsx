@@ -1,11 +1,6 @@
 import React from "react";
-import NoTransitionExample from "./Components/RswaCarousel.jsx";
-import SearchTable from "./Components/SearchTable";
-import CustomButton from "./Components/CustomButton";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import AntCarousel from "./Components/AntCarousel.jsx";
-import RswaCarousel from '../src/Components/RswaCarousel.jsx'
 const App = () => {
   const navigate = useNavigate();
   const handleNavigate = () => {

@@ -1,6 +1,5 @@
 import React from "react";
 
-
 import SocialSection from "./SocialSection";
 import { Divider } from "antd";
 import { FaUpLong } from "react-icons/fa6";
@@ -25,20 +24,15 @@ const Footer = () => {
             <SocialSection />
           </div>
         </div>
-        <div className="">
+        <div className="mx-1">
           <h6 className="font-thin text-sm mb-4 mt-8">Quick Contact</h6>
-          <div className="flex justify-around items-center">
+          <div className="flex justify-between items-center">
             <div className="">
-              {/* <iframe
-just commented for add to git
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d142900.14060944278!2d89.74343069370751!3d25.580170515623735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39fd4d68f59bde91%3A0x7d341ddcc8cfec74!2z4Kaw4KeM4Kau4Ka-4Kaw4KeAIOCmieCmquCmnOCnh-CmsuCmvg!5e1!3m2!1sbn!2sbd!4v1729715979451!5m2!1sbn!2sbd"
-                width="600"
-                height="450"
-                
-                allowfullscreen="false"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe> */}
+              <h4>RSWA helpline</h4>
+              <p className="text-sm text-justify">
+                please feel free to contact us if you have any suggestion or
+                avdice
+              </p>
             </div>
             <div>
               <QuickContact />
