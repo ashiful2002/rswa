@@ -76,7 +76,7 @@ const SearchTable = () => {
               },
               {
                 title: "Permanent Address",
-                dataIndex: "Permanent_Address ",
+                dataIndex: "Permanent_Address",
               },
             ]}
           ></Table>
