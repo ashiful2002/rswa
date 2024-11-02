@@ -25,7 +25,7 @@ const QuickContact = () => {
           <p className="mx-2">
             <FaPhone className="text-lg text-green-500" />
           </p>{" "}
-          <a href="callto:01759907907" className="mx-2 text-white no-underline" target="_blank">
+          <a href="tel:01759907907" className="mx-2 text-white no-underline" target="_blank">
             {" "}
             <p className="hover:text-green-500">+880 1727-475744</p>
           </a>
