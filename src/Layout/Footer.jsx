@@ -5,8 +5,6 @@ import SocialSection from "./SocialSection";
 import { Divider } from "antd";
 import { FaUpLong } from "react-icons/fa6";
 import QuickContact from "./QuickContact";
-import OtherLinks from "./OtherLinks";
-import { IoMdArrowRoundBack } from "react-icons/io";
 import { Button } from "react-bootstrap";
 
 const Footer = () => {
