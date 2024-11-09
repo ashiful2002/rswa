@@ -1,4 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
+import logo3 from '../assets/logo3.jpg'
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -15,7 +16,7 @@ function BsNavbar() {
           <Navbar.Brand>
             <Link to="/">
               {" "}
-              <img src={logo} alt="rswa" width={70} />{" "}
+              <img src={logo3} alt="rswa" width={70} />{" "}
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

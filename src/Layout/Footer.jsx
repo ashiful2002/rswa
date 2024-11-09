@@ -21,13 +21,16 @@ const Footer = () => {
           </p>
         </div>
         <div className="">
-          <h6 className="mb-4 text-sm font-thin">social midea links</h6>
-          <div className="flex items-center justify-center gap-3">
+          <h5 className="h6 mb-4 text-sm font-thin">social midea links</h5>
+          <div className="flex flex-col items-center justify-center gap-3">
             <SocialSection />
           </div>
         </div>
         <div className="mx-1">
-          <h6 className="mb-4 mt-8 text-sm font-thin">Quick Contact</h6>
+          <div className="mb-6 mt-8">
+            <h6 className="h6 text-sm font-thin">Quick Contact</h6>
+          </div>
+
           <Button
             className="mb-2"
             variant="success"
