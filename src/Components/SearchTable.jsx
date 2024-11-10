@@ -12,7 +12,7 @@ const SearchTable = () => {
   const navigate = useNavigate();
   const [searchedValue, setsearchBloogG] = useState("");
   return (
-    <div className="container  mx-auto ">
+    <div className="container mx-auto">
       <h1 className="pageTitle">RSWA virtual Blood bank</h1>
       <div className="flex items-center justify-between">
         <Button
@@ -23,9 +23,14 @@ const SearchTable = () => {
           {" "}
           <IoMdArrowRoundBack className="font-extrabold" />
         </Button>
-        <Button className="mb-2 cursor-wait" disabled variant="success">
-          {" "}
-          <IoMdArrowRoundForward className="font-extrabold" />
+        <Button
+          className="mb-2"
+          onClick={() => navigate("/addBloodGroupInfo")}
+          
+          variant="success"
+        >
+          {" "} 
+          <IoMdArrowRoundForward className="font-extrabold" /> 
         </Button>
       </div>
       <div className=" ">
@@ -39,7 +44,7 @@ const SearchTable = () => {
             setsearchBloogG(e.target.value);
           }}
         ></Input.Search>
-        <div className="overflow-scroll h-[90vh]">
+        <div className="h-[90vh] overflow-scroll">
           <Table
             dataSource={bloodGroupData}
             columns={[
