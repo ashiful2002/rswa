@@ -13,7 +13,7 @@ const GFormBloog = () => {
         <h4 className="pageTitle">
           fill up the google form to add your blood group data on this website
         </h4>
-        <div className="-ml-[26rem]">
+        <div className="me-25">
           <Button
             className="mb-2"
             variant="success" 
@@ -24,10 +24,10 @@ const GFormBloog = () => {
           </Button>
           
         </div>
-        <div className="">
+        <div className="mx-auto">
           <iframe
             src="https://docs.google.com/forms/d/e/1FAIpQLScCtiPyJAxwaWJl3xZEvLhqFq2nWhrkVLLuix6X6NdhLL8efQ/viewform?vc=0&c=0&w=1&flr=0&gxid=-8203364"
-            width="450"
+            width="400"
             height="1100"
             frameborder="0"
             marginheight="0"
@@ -36,6 +36,7 @@ const GFormBloog = () => {
           >
             Loading…
           </iframe>
+          <p className="text-sm text-muted ">Your data will be added on website as soon as possible...</p>
         </div>
       </div>
     </div>

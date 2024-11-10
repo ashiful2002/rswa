@@ -15,7 +15,9 @@ const Blood = () => {
         <SearchTable />
       </div>
 
-      <Button onClick={handleNavigate}>Add Your Data</Button>
+     <div className="text-center">
+     <Button onClick={handleNavigate}>Add Your Data</Button>
+     </div>
       {/* add google form */}
     </div>
   );
