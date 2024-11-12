@@ -25,7 +25,7 @@ const SearchTable = () => {
         </Button>
         <Button
           className="mb-2"
-          onClick={() => navigate("/addBloodGroupInfo")}
+          onClick={() => navigate("/bgForm")}
           
           variant="success"
         >

@@ -12,6 +12,7 @@ import Blog from "./Pages/Blog.jsx";
 import ErrorPage from "./Pages/ErrorPage.jsx";
 import Blood from "./Pages/Blood.jsx";
 import GFormBloog from "./Pages/Components/GFormBloog.jsx";
+import OtherLinks from "./Pages/OtherLinks.jsx";
 
 const router = createBrowserRouter([
   {
@@ -39,8 +40,13 @@ const router = createBrowserRouter([
         element: <Blood />,
       },
       {
-        path: "/addBloodGroupInfo",
+        path: "/bgForm",
         element: <GFormBloog />,
+      },
+      {
+        path: "/otherLinks",
+        element: <OtherLinks />,
+
       },
       {
         path: "*",

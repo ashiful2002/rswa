@@ -23,12 +23,7 @@ const SocialSection = () => {
         </a>{" "}
         <span className="ml-2 text-sm lowercase">group</span>
       </div>
-      <div className="flex items-center justify-center rounded-full px-2 py-1 hover:bg-green-500">
-        <a href="https://www.instagram.com/RSWA/" target="_blank">
-          <FaInstagram className="text-xl text-white" />
-        </a>{" "}
-        <span className="ml-2 text-sm lowercase">instagram</span>
-      </div>
+
       <div className="flex items-center justify-center rounded-full px-2 py-1 hover:bg-green-500">
         <a href=" https://wa.me/+8801727475744" target="_blank">
           <FaWhatsapp className="text-xl text-white" />

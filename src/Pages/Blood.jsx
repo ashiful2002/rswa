@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Blood = () => {
   const navigate = useNavigate()
   const handleNavigate=()=>{
-    navigate("/addBloodGroupInfo")
+    navigate("/bgForm")
   }
   return (
     <div className="container mx-auto">
@@ -15,7 +15,7 @@ const Blood = () => {
         <SearchTable />
       </div>
 
-     <div className="text-center">
+     <div className="text-center my-4">
      <Button onClick={handleNavigate}>Add Your Data</Button>
      </div>
       {/* add google form */}

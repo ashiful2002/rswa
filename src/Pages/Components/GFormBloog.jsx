@@ -4,7 +4,7 @@ import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
 const GFormBloog = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const showModal = () => {};
   return (
@@ -16,13 +16,11 @@ const GFormBloog = () => {
         <div className="me-25">
           <Button
             className="mb-2"
-            variant="success" 
+            variant="success"
             onClick={() => navigate("/blood")}
           >
-             
             <IoMdArrowRoundBack className="font-extrabold" />
           </Button>
-          
         </div>
         <div className="mx-auto">
           <iframe
@@ -36,7 +34,9 @@ const GFormBloog = () => {
           >
             Loading…
           </iframe>
-          <p className="text-sm text-muted ">Your data will be added on website as soon as possible...</p>
+          <p className="text-muted text-sm">
+            Your data will be added on website as soon as possible...
+          </p>
         </div>
       </div>
     </div>
