@@ -1,18 +1,18 @@
 import React from "react";
+import FormfacadeEmbed from "@formfacade/embed-react";
 import { Button } from "react-bootstrap";
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import FormFace from "./FormFace";
 
-const GFormBloog = () => {
+const FormFace = () => {
   const navigate = useNavigate();
 
-  const showModal = () => {};
   return (
     <div className="container mx-auto">
       <div className="my-4 flex flex-col items-center justify-center">
-        <h4 className="pageTitle">
-          fill up the google form to add your blood group data on this website
+        <h4 className="pageTitle ">
+          {/* fill up the google form to add your blood group data on this website */}
+          or This is the another smart way
         </h4>
         <div className="me-25">
           <Button
@@ -24,26 +24,17 @@ const GFormBloog = () => {
           </Button>
         </div>
         <div className="mx-auto">
-          <iframe
-            src="https://docs.google.com/forms/d/e/1FAIpQLScCtiPyJAxwaWJl3xZEvLhqFq2nWhrkVLLuix6X6NdhLL8efQ/viewform?vc=0&c=0&w=1&flr=0&gxid=-8203364"
-            width="400"
-            height="1100"
-            frameborder="0"
-            marginheight="0"
-            marginwidth="0"
-            onSubmit={showModal}
-          >
-            Loading…
-          </iframe>
+          <FormfacadeEmbed
+            formFacadeURL="https://formfacade.com/include/109576207896430626334/form/1FAIpQLSe_55eUyLy2Se88Z-o10x18xtgXqBu7sWn7gOcluktk8qME8Q/classic.js/?div=ff-compose"
+            onSubmitForm={() => console.log("Form submitted")}
+          />
           <p className="text-muted text-sm">
             Your data will be added on website as soon as possible...
           </p>
         </div>
       </div>
-
-      < FormFace/>
     </div>
   );
 };
 
-export default GFormBloog;
+export default FormFace;

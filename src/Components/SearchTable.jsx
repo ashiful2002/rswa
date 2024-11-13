@@ -53,7 +53,7 @@ const SearchTable = () => {
                 dataIndex: "Name",
               },
               {
-                title: "Bloog Group",
+                title: "Blood Group",
                 dataIndex: "Blood_Group",
                 filteredValue: [searchedValue],
                 onFilter: (value, record) => {

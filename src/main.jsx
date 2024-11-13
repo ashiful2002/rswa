@@ -13,6 +13,7 @@ import ErrorPage from "./Pages/ErrorPage.jsx";
 import Blood from "./Pages/Blood.jsx";
 import GFormBloog from "./Pages/Components/GFormBloog.jsx";
 import OtherLinks from "./Pages/OtherLinks.jsx";
+import FormFace from "./Pages/Components/FormFace.jsx";
 
 const router = createBrowserRouter([
   {

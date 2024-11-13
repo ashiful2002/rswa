@@ -16,7 +16,7 @@ const QuiCont = () => {
             <div className="allCenter">
               <img src={logo} width={60} alt="RSWA" className="mb-2" />
             </div>
-            <p className="text-sm">
+            <p className="text-sm w-60">
               If you have any Query please feel free to contact us.
             </p>
           </div>
