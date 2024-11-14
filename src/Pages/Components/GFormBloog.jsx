@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import FormFace from "./FormFace";
+import PageTitle from "../../Components/PageTitle";
 
 const GFormBloog = () => {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ const GFormBloog = () => {
   const showModal = () => {};
   return (
     <div className="container mx-auto">
+       < PageTitle title = "RSWA | Form "/>
       <div className="my-4 flex flex-col items-center justify-center">
         <h4 className="pageTitle">
           fill up the google form to add your blood group data on this website

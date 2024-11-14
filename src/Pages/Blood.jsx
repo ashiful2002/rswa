@@ -3,6 +3,7 @@ import SearchTable from "../Components/SearchTable";
 import { Button } from "react-bootstrap";
 import { Divider } from "antd";
 import { useNavigate } from "react-router-dom";
+import PageTitle from "../Components/PageTitle";
 
 const Blood = () => {
   const navigate = useNavigate()
@@ -10,6 +11,9 @@ const Blood = () => {
     navigate("/bgForm")
   }
   return (
+    <>
+     < PageTitle title = "RSWA | Blood"/>
+   
     <div className="container mx-auto">
       <div>
         <SearchTable />
@@ -20,6 +24,7 @@ const Blood = () => {
      </div>
       {/* add google form */}
     </div>
+    </>
   );
 };
 

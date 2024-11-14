@@ -1,12 +1,16 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import PageTitle from "./Components/PageTitle";
 const App = () => {
   const navigate = useNavigate();
   const handleNavigate = () => {
     navigate("/blood");
   };
   return (
+    <>
+   < PageTitle title = "RSWA | home"/>
+   
     <div className="container mx-auto h-screen">
       <h1 className="pageTitle">Home Page</h1>
       <div className="allCenter flex h-screen flex-col">
@@ -19,6 +23,7 @@ const App = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
