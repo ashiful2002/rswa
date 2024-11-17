@@ -1,16 +1,15 @@
-import React from 'react'
-import { Helmet } from 'react-helmet'
+import React from "react";
+import { Helmet } from "react-helmet";
 
-const PageTitle = ({title}) => {
+const PageTitle = ({ title, heading }) => {
   return (
     <>
-       <Helmet>
-               
-                <title>{title}</title>
-               
-            </Helmet>
+      <Helmet>
+        <title>{title} - RSWA</title>
+      </Helmet>
+      <h1 className="pageTitle">{heading}</h1>
     </>
-  )
-}
+  );
+};
 
-export default PageTitle
+export default PageTitle;

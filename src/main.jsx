@@ -14,6 +14,8 @@ import Blood from "./Pages/Blood.jsx";
 import GFormBloog from "./Pages/Components/GFormBloog.jsx";
 import OtherLinks from "./Pages/OtherLinks.jsx";
 import FormFace from "./Pages/Components/FormFace.jsx";
+import BgForm1 from "./Components/Form/BgForm1.jsx";
+import Donate from "./Pages/Donate.jsx";
 
 const router = createBrowserRouter([
   {
@@ -45,8 +47,17 @@ const router = createBrowserRouter([
         element: <GFormBloog />,
       },
       {
+        path: "/donate",
+        element: <Donate />,
+      },
+      {
         path: "/otherLinks",
         element: <OtherLinks />,
+
+      },
+      {
+        path: "/bgForm1",
+        element: <BgForm1 />,
 
       },
       {

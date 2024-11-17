@@ -12,9 +12,10 @@ const Blood = () => {
   }
   return (
     <>
-     < PageTitle title = "RSWA | Blood"/>
+    
    
     <div className="container mx-auto">
+    < PageTitle title = "Blood" heading="RSWA virtual Blood bank"/>
       <div>
         <SearchTable />
       </div>

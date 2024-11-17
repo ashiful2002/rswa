@@ -13,8 +13,8 @@ const SearchTable = () => {
   const [searchedValue, setsearchBloogG] = useState("");
   return (
     <div className="container mx-auto">
-      <h1 className="pageTitle">RSWA virtual Blood bank</h1>
-      <div className="flex items-center justify-between">
+      
+      {/* <div className="flex items-center justify-between">
         <Button
           className="mb-2"
           variant="success"
@@ -32,7 +32,7 @@ const SearchTable = () => {
           {" "} 
           <IoMdArrowRoundForward className="font-extrabold" /> 
         </Button>
-      </div>
+      </div> */}
       <div className=" ">
         <Input.Search
           className=""

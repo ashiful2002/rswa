@@ -5,13 +5,11 @@ import PageTitle from "../Components/PageTitle";
 const About = () => {
   return (
     <>
-      < PageTitle title="RSWA | About"/>
-   
-    <div className="container mx-auto">
-      <h1 className="pageTitle">About</h1>
-      <p>{aboutEnglish}</p>
-      <p>{aboutBangla}</p>
-    </div>
+      <div className="container mx-auto">
+        <PageTitle title="About" heading="about" />
+        <p>{aboutEnglish}</p>
+        <p>{aboutBangla}</p>
+      </div>
     </>
   );
 };

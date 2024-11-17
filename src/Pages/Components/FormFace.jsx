@@ -3,6 +3,7 @@ import FormfacadeEmbed from "@formfacade/embed-react";
 import { Button } from "react-bootstrap";
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import PageTitle from "../../Components/PageTitle";
 
 const FormFace = () => {
   const navigate = useNavigate();
@@ -12,8 +13,9 @@ const FormFace = () => {
       <div className="my-4 flex flex-col items-center justify-center">
         <h4 className="pageTitle ">
           {/* fill up the google form to add your blood group data on this website */}
-          or This is the another smart way
+          
         </h4>
+        < PageTitle title="Form" heading ="or"/>
         <div className="me-25">
           <Button
             className="mb-2"

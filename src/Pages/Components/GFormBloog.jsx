@@ -11,11 +11,12 @@ const GFormBloog = () => {
   const showModal = () => {};
   return (
     <div className="container mx-auto">
-       < PageTitle title = "RSWA | Form "/>
+      <PageTitle
+        title="Form"
+        heading="Blood Group Form "
+      />
       <div className="my-4 flex flex-col items-center justify-center">
-        <h4 className="pageTitle">
-          fill up the google form to add your blood group data on this website
-        </h4>
+        
         <div className="me-25">
           <Button
             className="mb-2"
@@ -26,6 +27,7 @@ const GFormBloog = () => {
           </Button>
         </div>
         <div className="mx-auto">
+        <p className="bg-blue-400 rounded text-white p-2 capitalize">Fill the google form to add <span className="font-semibold text-red-500 bg-yellow-300 rounded px-2 uppercase">your</span>  blood group data on this website</p>
           <iframe
             src="https://docs.google.com/forms/d/e/1FAIpQLScCtiPyJAxwaWJl3xZEvLhqFq2nWhrkVLLuix6X6NdhLL8efQ/viewform?vc=0&c=0&w=1&flr=0&gxid=-8203364"
             width="400"
@@ -43,7 +45,7 @@ const GFormBloog = () => {
         </div>
       </div>
 
-      < FormFace/>
+      <FormFace />
     </div>
   );
 };

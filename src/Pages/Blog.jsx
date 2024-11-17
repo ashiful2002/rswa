@@ -6,10 +6,10 @@ import PageTitle from "../Components/PageTitle";
 const Blog = () => {
   return (
     <>
-     < PageTitle title="RSWA | Blog"/>
+    
    
     <div className="container mx-auto">
-      <h1 className="pageTitle">Blog</h1>
+    <PageTitle title="Blog" heading="blog" />
       <BsCard />
     </div>
     </>

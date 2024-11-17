@@ -9,10 +9,10 @@ const App = () => {
   };
   return (
     <>
-   < PageTitle title = "RSWA | home"/>
+   
    
     <div className="container mx-auto h-screen">
-      <h1 className="pageTitle">Home Page</h1>
+    < PageTitle title = "Home" heading="home page"/>
       <div className="allCenter flex h-screen flex-col">
         <div>
           <Button onClick={handleNavigate}> Go Blood Bank</Button>

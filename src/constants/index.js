@@ -1,4 +1,3 @@
-
 export const navigation = [
   {
     id: "1",
@@ -109,4 +108,43 @@ export const cardtext = [
     btnText: "read more",
     btnLink: "/",
   },
+];
+
+export const busData = [
+  {
+    id: "1",
+    Name: "rifat",
+    Counter: "mohakhali",
+    Phone_Number: "01***********",
+  },
+  {
+    id: "2",
+    Name: "rifat",
+    Counter: "uttara",
+    Phone_Number: "01***********",
+  },
+  {
+    id: "1",
+    Name: "rifat",
+    Counter: "rowmari",
+    Phone_Number: "01***********",
+  },
+  {
+    id: "2",
+    Name: "poly",
+    Counter: "uttara",
+    Phone_Number: "01***********",
+  },
+  {
+    id: "1",
+    Name: "poly",
+    Counter: "mohakhali",
+    Phone_Number: "01***********",
+  },
+  {
+    id: "1",
+    Name: "poly",
+    Counter: "rowmari",
+    Phone_Number: "01***********",
+  }
 ];
