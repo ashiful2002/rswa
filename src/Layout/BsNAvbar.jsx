@@ -16,7 +16,7 @@ function BsNavbar() {
           <Navbar.Brand>
             <Link to="/">
               {" "}
-              <img src={logo3} alt="rswa" width={70} />{" "}
+              <img src={logo} alt="rswa" width={70} />{" "}
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

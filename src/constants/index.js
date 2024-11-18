@@ -132,25 +132,25 @@ export const rifatInfo = [
 ]
 export const polyInfo = [
   {
-    "id": "4",
+    "id": "1",
     "name": "poly",
     "counter": "mohakhali",
     "phoneNumber": "01958-155311"
 },
 {
-    "id": "5",
+    "id": "2",
     "name": "poly ",
     "counter": "uttara",
     "phoneNumber": "01958-155312"
 },
 {
-    "id": "6",
+    "id": "3",
     "name": "poly",
     "counter": "rowmari thana more",
     "phoneNumber": "01741-000137"
 },
 {
-    "id": "7",
+    "id": "4",
     "name": "poly",
     "counter": "rowmari upazila",
     "phoneNumber": "01958-155313"
@@ -158,13 +158,13 @@ export const polyInfo = [
 ]
 export const siamInfo = [
   {
-    "id": "8",
+    "id": "1",
     "name": "siam",
     "counter": "mohakhali",
     "phoneNumber": "01916-23412"
 },
 {
-    "id": "9",
+    "id": "2",
     "name": "siam",
     "counter": "rowmari",
     "phoneNumber": "01757-561493"

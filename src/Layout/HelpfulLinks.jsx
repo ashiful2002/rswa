@@ -23,7 +23,7 @@ const HelpfulLinks = () => {
           <p>0123456789</p>
         </div>
         <p>
-            <Link to="/otherLinks" className="mx-2 text-green-500" pl>other importent numbers</Link>
+            <Link to="/otherLinks" className="mx-2 text-green-500">other importent numbers</Link>
         
            
         </p>

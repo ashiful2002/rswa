@@ -4,12 +4,16 @@ import { polyInfo, rifatInfo, siamInfo } from "../../constants";
 import { Table } from "antd";
 const IndivisualBus = () => {
   return (
-    <>
-      <div className="md:flex items-center justify-around">
-        <div >
-          <h4 className="h4 pageTitle text-white">Rifat info</h4>
-          <Table
-            className="capitalize"
+    <div>
+      {" "}
+      <div>
+        <h1 className="h1 pageTitle text-white">indivisualy bus information</h1>
+      </div>
+      <div className="mt-4 justify-around md:flex">
+        <div className="">
+          <h4 className="h4 pageTitle text-white">Rifat paribahan</h4>
+          <Table 
+            className="capitalize "
             dataSource={rifatInfo}
             columns={[
               {
@@ -29,7 +33,7 @@ const IndivisualBus = () => {
           ></Table>
         </div>
         <div>
-          <h4 className="h4 pageTitle text-white">poly info</h4>
+          <h4 className="h4 pageTitle text-white">poly paribahan</h4>
           <Table
             className="capitalize"
             dataSource={polyInfo}
@@ -50,7 +54,7 @@ const IndivisualBus = () => {
           ></Table>
         </div>
         <div>
-          <h4 className="h4 pageTitle text-white">siam info</h4>
+          <h4 className="h4 pageTitle text-white">siam enterprise</h4>
           <Table
             className="capitalize"
             dataSource={siamInfo}
@@ -71,7 +75,7 @@ const IndivisualBus = () => {
           ></Table>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
