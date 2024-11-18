@@ -4,6 +4,7 @@ import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import FormFace from "./FormFace";
 import PageTitle from "../../Components/PageTitle";
+import BgForm1 from "../../Components/Form/BgForm1";
 
 const GFormBloog = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const GFormBloog = () => {
         title="Form"
         heading="Blood Group Form "
       />
-      <div className="my-4 flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center">
         
         <div className="me-25">
           <Button
@@ -27,10 +28,10 @@ const GFormBloog = () => {
           </Button>
         </div>
         <div className="mx-auto">
-        <p className="bg-blue-400 rounded text-white p-2 capitalize">Fill the google form to add <span className="font-semibold text-red-500 bg-yellow-300 rounded px-2 uppercase">your</span>  blood group data on this website</p>
+        <p className="bg-blue-400 rounded text-white p-2 capitalize">Fill the google form to add your<span className="font-semibold text-red-500 bg-yellow-300 rounded mx-2 px-2 uppercase">blood group data</span> on this website</p>
           <iframe
             src="https://docs.google.com/forms/d/e/1FAIpQLScCtiPyJAxwaWJl3xZEvLhqFq2nWhrkVLLuix6X6NdhLL8efQ/viewform?vc=0&c=0&w=1&flr=0&gxid=-8203364"
-            width="400"
+            width="360"
             height="1100"
             frameborder="0"
             marginheight="0"
@@ -43,9 +44,10 @@ const GFormBloog = () => {
             Your data will be added on website as soon as possible...
           </p>
         </div>
-      </div>
+      </div> */
 
-      <FormFace />
+       <FormFace />
+      {/* < BgForm1/> */}
     </div>
   );
 };

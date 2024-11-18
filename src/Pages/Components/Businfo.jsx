@@ -5,7 +5,7 @@ const Businfo = () => {
   return (
     <>
       <div>
-        <h6 className="h6 pageTitle text-white">common buses numbers of rowmary</h6>
+        <h5 className="h5 pageTitle text-white mt-4">common buses numbers of rowmary</h5>
 
         <Table
           className="capitalize"

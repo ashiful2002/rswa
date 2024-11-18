@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import { Button } from "react-bootstrap";
 import PageTitle from "../PageTitle";
-
+import { bloodGroupData } from "../../constants/BloodGropuData";
 const BgForm1 = () => {
+  const [data, setData] = useState(bloodGroupData);
+
+  // console.log(data);
+
+  // handeleNewTodo =(newData)=>{
+  // setData([...data,newData])
+  // }
+
+  const [newData, setNewData] = useState();
+  console.log(newData);
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -11,14 +22,14 @@ const BgForm1 = () => {
       password: "",
     },
     onSubmit: (values, { resetForm }) => {
-      setNewData(values);
+      setData([...data, values]);
       resetForm({ values: "" });
     },
   });
 
   return (
     <div className="container mx-auto">
-      <PageTitle title="Form"  />
+      <PageTitle title="Form" />
 
       <form
         onSubmit={formik.handleSubmit}

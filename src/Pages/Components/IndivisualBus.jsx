@@ -9,10 +9,10 @@ const IndivisualBus = () => {
       <div>
         <h1 className="h1 pageTitle text-white">indivisualy bus information</h1>
       </div>
-      <div className="mt-4 justify-around md:flex">
+      <div className="mt-4 md:flex justify-between">
         <div className="">
           <h4 className="h4 pageTitle text-white">Rifat paribahan</h4>
-          <Table 
+          <Table pagination={false}
             className="capitalize "
             dataSource={rifatInfo}
             columns={[
@@ -34,7 +34,7 @@ const IndivisualBus = () => {
         </div>
         <div>
           <h4 className="h4 pageTitle text-white">poly paribahan</h4>
-          <Table
+          <Table pagination={false}
             className="capitalize"
             dataSource={polyInfo}
             columns={[
@@ -55,7 +55,7 @@ const IndivisualBus = () => {
         </div>
         <div>
           <h4 className="h4 pageTitle text-white">siam enterprise</h4>
-          <Table
+          <Table pagination={false}
             className="capitalize"
             dataSource={siamInfo}
             columns={[
