@@ -1,6 +1,7 @@
 import React from 'react'
 import PageTitle from '../Components/PageTitle'
 import Businfo from './Components/Businfo';
+import IndivisualBus from './Components/IndivisualBus';
 
 const OtherLinks = () => {
   return (
@@ -8,6 +9,9 @@ const OtherLinks = () => {
       < PageTitle title="Numbers" heading="other importent numbers"/>
       < Businfo/>
       <p className='text-green-500 text-center'>just an example</p>
+      <div>
+        <div>< IndivisualBus/></div>
+      </div>
       <div>
 
         <p>Bus:123434</p>

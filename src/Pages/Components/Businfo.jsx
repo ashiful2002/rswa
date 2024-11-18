@@ -12,6 +12,10 @@ const Businfo = () => {
           dataSource={busData}
           columns={[
             {
+              title: "S. N.",
+              dataIndex: "id",
+            },
+            {
               title: "Name",
               dataIndex: "name",
             },
@@ -25,6 +29,9 @@ const Businfo = () => {
             },
           ]}
         ></Table>
+        <div>
+           
+        </div>
       </div>
     </>
   );

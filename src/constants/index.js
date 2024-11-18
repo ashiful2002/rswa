@@ -110,6 +110,66 @@ export const cardtext = [
   },
 ];
 
+export const rifatInfo = [
+  {
+    "id": "1",
+    "name": "Rifat",
+    "counter": "mohakhali",
+    "phoneNumber": "01733-732052"
+},
+{
+    "id": "2",
+    "name": "Rifat",
+    "counter": "uttara",
+    "phoneNumber": "01711-061898"
+},
+{
+    "id": "3",
+    "name": "Rifat",
+    "counter": "rowmari",
+    "phoneNumber": "01720-363319"
+},
+]
+export const polyInfo = [
+  {
+    "id": "4",
+    "name": "poly",
+    "counter": "mohakhali",
+    "phoneNumber": "01958-155311"
+},
+{
+    "id": "5",
+    "name": "poly ",
+    "counter": "uttara",
+    "phoneNumber": "01958-155312"
+},
+{
+    "id": "6",
+    "name": "poly",
+    "counter": "rowmari thana more",
+    "phoneNumber": "01741-000137"
+},
+{
+    "id": "7",
+    "name": "poly",
+    "counter": "rowmari upazila",
+    "phoneNumber": "01958-155313"
+},
+]
+export const siamInfo = [
+  {
+    "id": "8",
+    "name": "siam",
+    "counter": "mohakhali",
+    "phoneNumber": "01916-23412"
+},
+{
+    "id": "9",
+    "name": "siam",
+    "counter": "rowmari",
+    "phoneNumber": "01757-561493"
+},
+]
 export const busData =[
   {
       "id": "1",
