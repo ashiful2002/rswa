@@ -12,10 +12,7 @@ const Businfo = () => {
           className="capitalize"
           dataSource={busData} 
           columns={[
-            {
-              title: "S. N.",
-              dataIndex: "id",
-            },
+            
             {
               title: "Name",
               dataIndex: "name",
