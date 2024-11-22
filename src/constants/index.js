@@ -324,3 +324,38 @@ export const busData = [
     phoneNumber: "01764-269773",
   },
 ];
+
+export const bgFormData = [
+  {
+    value: "A+",
+    name: "A+ (ve)",
+  },
+  {
+    value: "A-",
+    name: "A- (ve)",
+  },
+  {
+    value: "B+",
+    name: "B+ (ve)",
+  },
+  {
+    value: "B-",
+    name: "B- (ve)",
+  },
+  {
+    value: "O+",
+    name: "O+ (ve)",
+  },
+  {
+    value: "O-",
+    name: "O- (ve)",
+  },
+  {
+    value: "AB+",
+    name: "AB+ (ve)",
+  },
+  {
+    value: "AB-",
+    name: "AB- (ve)",
+  },
+];
