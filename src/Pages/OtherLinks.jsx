@@ -8,8 +8,10 @@ import BsBusInfo from "./Components/BsBusInfo";
 const OtherLinks = () => {
   return (
     <div className="container mx-auto">
-      <PageTitle title="Numbers" heading="other importent numbers" />
-      <div>
+      <PageTitle title="Numbers" heading="bus numbers" />
+
+      <div className="mt-4">
+        {/* <h2 className="h4 text-white pageTitle bg-red-600">bus numebrs</h2> */}
         <BsBusInfo />
         <Businfo/>
         <div className="text-center">
@@ -61,7 +63,7 @@ const OtherLinks = () => {
         < BsBusInfo/>
         </div>{" "} */}
       <div>
-        <p>Bus:123434</p>
+       < PageTitle title="" heading="other numbers"/>
         <p>Ambulence:123434</p>
         <p>Nouka:123434</p>
         <p>Ferry:123434</p>

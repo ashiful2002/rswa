@@ -1,12 +1,24 @@
 import React from "react";
 import { Table } from "react-bootstrap";
-import {  ayeshaInfo, chattagtamExpInfo, polyInfo, rifatInfo, siamInfo } from "../../constants";
+import {
+  ayeshaInfo,
+  chattagtamExpInfo,
+  polyInfo,
+  rifatInfo,
+  siamInfo,
+} from "../../constants";
+import InfoAsMap from "./InfoAsMap";
 const BsBusInfo = () => {
   return (
-    <div className="md:grid grid-cols-3 gap-3">
+    <div className="grid-cols-3 gap-3 md:grid">
       <div>
         <h2 className="pageTitle bg-sky-400">rifat paribahan</h2>
-        <Table striped bordered hover className="capitalize">
+        <Table
+          striped
+          bordered
+          hover
+          className="capitalize shadow shadow-sky-400"
+        >
           <thead>
             <tr>
               <th>Counter</th>
@@ -14,14 +26,7 @@ const BsBusInfo = () => {
             </tr>
           </thead>
           {rifatInfo.map((item, index) => (
-            <>
-              <tbody key={index}>
-                <tr>
-                  <td>{item.counter}</td>
-                  <td>{item.phoneNumber}</td>
-                </tr>
-              </tbody>
-            </>
+            <InfoAsMap item={item} index={index} />
           ))}
         </Table>
       </div>
@@ -36,12 +41,7 @@ const BsBusInfo = () => {
           </thead>
           {polyInfo.map((item, index) => (
             <>
-              <tbody key={index}>
-                <tr>
-                  <td>{item.counter}</td>
-                  <td>{item.phoneNumber}</td>
-                </tr>
-              </tbody>
+              <InfoAsMap item={item} index={index} />
             </>
           ))}
         </Table>
@@ -57,12 +57,7 @@ const BsBusInfo = () => {
           </thead>
           {siamInfo.map((item, index) => (
             <>
-              <tbody key={index}>
-                <tr>
-                  <td>{item.counter}</td>
-                  <td>{item.phoneNumber}</td>
-                </tr>
-              </tbody>
+              <InfoAsMap item={item} index={index} />
             </>
           ))}
         </Table>
@@ -78,18 +73,15 @@ const BsBusInfo = () => {
           </thead>
           {chattagtamExpInfo.map((item, index) => (
             <>
-              <tbody key={index}>
-                <tr>
-                  <td>{item.counter}</td>
-                  <td>{item.phoneNumber}</td>
-                </tr>
-              </tbody>
+              <InfoAsMap item={item} index={index} />
             </>
           ))}
         </Table>
       </div>
       <div id="ayeshainfo">
-        <h2 className="pageTitle bg-yellow-500">ayesha paribahan</h2>
+        <h2 className="pageTitle bg-gradient-to-r from-sky-500 to-orange-500">
+          ayesha paribahan
+        </h2>
         <Table striped bordered hover className="capitalize">
           <thead>
             <tr>
@@ -99,12 +91,7 @@ const BsBusInfo = () => {
           </thead>
           {ayeshaInfo.map((item, index) => (
             <>
-              <tbody key={index}>
-                <tr>
-                  <td>{item.counter}</td>
-                  <td>{item.phoneNumber}</td>
-                </tr>
-              </tbody>
+              <InfoAsMap item={item} index={index} />
             </>
           ))}
         </Table>
@@ -120,12 +107,7 @@ const BsBusInfo = () => {
           </thead>
           {ayeshaInfo.map((item, index) => (
             <>
-              <tbody key={index}>
-                <tr>
-                  <td>{item.counter}</td>
-                  <td>{item.phoneNumber}</td>
-                </tr>
-              </tbody>
+              <InfoAsMap item={item} index={index} />
             </>
           ))}
         </Table>

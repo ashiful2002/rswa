@@ -14,26 +14,33 @@ import HelpfulLinks from "./HelpfulLinks";
 
 const Footer = () => {
   return (
-    <div className="rounded-sm bg-neutral-700 text-center font-light capitalize tracking-widest text-white">
-      <div className=" flex flex-col sm:items-start justify-around  m-3 md:flex-row-reverse">
+    <div className="rounded-sm bg-neutral-800 text-center font-light capitalize tracking-widest text-white">
+      <div className=" flex flex-col sm:items-start justify-around  my-3 md:flex-row">
         <div className="">
-          <ArrowCom />
+          <QuiCont />
         </div>
-        <div className="">
-          <Social />
+        <div className="flex pt-5 justify-between mb-4">
+          <div className="">
+            <QuickContact />{" "}
+          </div>
+
+          <div className="">
+            <Social />
+          </div>
         </div>
         <div className="">
           <HelpfulLinks />
         </div>
-        <div className="">
-          <QuiCont />
-        </div>
+
         <div>
           <Divider />
         </div>
       </div>
       <div className="">
         <Copyright />
+      </div>
+      <div className="">
+        <ArrowCom />
       </div>
     </div>
   );

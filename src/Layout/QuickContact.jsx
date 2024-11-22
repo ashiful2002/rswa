@@ -3,49 +3,61 @@ import { FaPhone } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { CiLocationOn } from "react-icons/ci";
 
-const QuickContact = () => {
+const QuickContact = () => { 
   return (
-    <>
-      <div className="flex flex-col items-start justify-around  text-sm">
-        <div className="flex items-satrt justify-between  ">
-        <a
-            href="https://maps.app.goo.gl/KTsGv78EpHn1HU7A9" target="_blank"
-            className="mx-2 text-white no-underline flex items-start justify-around"
-          >
-          <p className="mx-2">
-            <CiLocationOn className="text-lg text-green-500" />
-          </p>
-          
-          
-            <p className="hover:text-green-500">Rowmari,Kurigram</p>
-          </a>{" "}
-        </div>
+    <div className="">
+      <h5 className="h6 mb-4 text-sm font-thin">Quick contact</h5>
 
+      <div >
+        <div className="flex flex-col items-start justify-around  text-sm">
+          <div className="items-satrt flex justify-between">
+            <a
+              href="https://maps.app.goo.gl/KTsGv78EpHn1HU7A9"
+              target="_blank"
+              className="mx-2 flex items-start justify-around text-white no-underline"
+            >
+              <p className="mx-2">
+                <CiLocationOn className="text-lg text-green-500" />
+              </p>
 
-        <div className="flex items-satrt justify-center">
-          {" "}
-          <a href="tel:01727-475744" className="mx-2 text-white no-underline flex items-start justify-around" target="_blank">
-          <p className="mx-2">
-            <FaPhone className="text-lg text-green-500" />
-          </p>
-        
-            <p className="hover:text-green-500">+880 1727-475744</p>
-          </a>
-        </div>
+              <p className="hover:text-green-500">Rowmari,Kurigram</p>
+            </a>{" "}
+          </div>
 
+          <div className="items-satrt flex justify-center">
+            {" "}
+            <a
+              href="tel:01727-475744"
+              className="mx-2 flex items-start justify-around text-white no-underline"
+              target="_blank"
+            >
+              <p className="mx-2">
+                <FaPhone className="text-lg text-green-500" />
+              </p>
 
-        <div className="flex items-satrt justify-center">
-        <a
-            className="mx-2 text-white no-underline flex items-start justify-around"
-            href="mailto:rswaofficial.est2009@gmail.com"
-          >
-         <p className="mx-2"> <MdEmail className="text-lg text-green-500" />{" "}</p>
-          
-           <span className="hover:text-green-500 lowercase"> rswaofficial.est2009@gmail.com</span>
-          </a>
+              <p className="hover:text-green-500">+880 1727-475744</p>
+            </a>
+          </div>
+
+          <div className="items-satrt flex justify-center">
+            <a
+              className="mx-2 flex items-start justify-around text-white no-underline"
+              href="mailto:rswaofficial.est2009@gmail.com"
+            >
+              <p className="mx-2">
+                {" "}
+                <MdEmail className="text-lg text-green-500" />{" "}
+              </p>
+
+              <span className="lowercase hover:text-green-500">
+                {" "}
+                rswaofficial.est2009@gmail.com
+              </span>
+            </a>
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
