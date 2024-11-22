@@ -112,201 +112,215 @@ export const cardtext = [
 
 export const rifatInfo = [
   {
-    "id": "1",
-    "name": "Rifat",
-    "counter": "mohakhali",
-    "phoneNumber": "01733-732052"
-},
-{
-    "id": "2",
-    "name": "Rifat",
-    "counter": "uttara",
-    "phoneNumber": "01711-061898"
-},
-{
-    "id": "3",
-    "name": "Rifat",
-    "counter": "rowmari",
-    "phoneNumber": "01720-363319"
-},
-]
+    id: "1",
+    counter: "mohakhali",
+    phoneNumber: "01733-732052",
+  },
+  {
+    id: "2",
+    counter: "uttara",
+    phoneNumber: "01711-061898",
+  },
+  {
+    id: "3",
+    counter: "rowmari",
+    phoneNumber: "01720-363319",
+  },
+];
 export const polyInfo = [
   {
-    "id": "1",
-    "name": "poly",
-    "counter": "mohakhali",
-    "phoneNumber": "01958-155311"
-},
-{
-    "id": "2",
-    "name": "poly ",
-    "counter": "uttara",
-    "phoneNumber": "01958-155312"
-},
-{
-    "id": "3",
-    "name": "poly",
-    "counter": "rowmari thana more",
-    "phoneNumber": "01741-000137"
-},
-{
-    "id": "4",
-    "name": "poly",
-    "counter": "rowmari upazila",
-    "phoneNumber": "01958-155313"
-},
-]
+    id: "1",
+    counter: "mohakhali",
+    phoneNumber: "01958-155311",
+  },
+  {
+    id: "2",
+    counter: "uttara",
+    phoneNumber: "01958-155312",
+  },
+  {
+    id: "3",
+    counter: "rowmari thana more",
+    phoneNumber: "01741-000137",
+  },
+  {
+    id: "4",
+    counter: "rowmari upazila",
+    phoneNumber: "01958-155313",
+  },
+];
 export const siamInfo = [
   {
-    "id": "1",
-    "name": "siam",
-    "counter": "mohakhali",
-    "phoneNumber": "01916-23412"
-},
-{
-    "id": "2",
-    "name": "siam",
-    "counter": "rowmari",
-    "phoneNumber": "01757-561493"
-},
-]
-export const busData =[
-  {
-      "id": "1",
-      "name": "Rifat",
-      "counter": "mohakhali",
-      "phoneNumber": "01733-732052"
+    id: "1",
+    counter: "mohakhali",
+    phoneNumber: "01916-23412",
   },
   {
-      "id": "2",
-      "name": "Rifat",
-      "counter": "uttara",
-      "phoneNumber": "01711-061898"
+    id: "2",
+    counter: "rowmari",
+    phoneNumber: "01757-561493",
+  },
+];
+
+export const busDataMap = [
+  {
+    rifat: [
+      {
+        id: "1",
+        counter: "mohakhali",
+        phoneNumber: "01733-732052",
+      },
+      {
+        id: "2",
+        counter: "uttara",
+        phoneNumber: "01711-061898",
+      },
+      {
+        id: "3",
+        counter: "rowmari",
+        phoneNumber: "01720-363319",
+      },
+    ],
+  },
+];
+
+export const busData = [
+  {
+    id: "1",
+    name: "Rifat",
+    counter: "mohakhali",
+    phoneNumber: "01733-732052",
   },
   {
-      "id": "3",
-      "name": "Rifat",
-      "counter": "rowmari",
-      "phoneNumber": "01720-363319"
+    id: "2",
+    name: "Rifat",
+    counter: "uttara",
+    phoneNumber: "01711-061898",
   },
   {
-      "id": "4",
-      "name": "poly",
-      "counter": "mohakhali",
-      "phoneNumber": "01958-155311"
+    id: "3",
+    name: "Rifat",
+    counter: "rowmari",
+    phoneNumber: "01720-363319",
   },
   {
-      "id": "5",
-      "name": "poly ",
-      "counter": "uttara",
-      "phoneNumber": "01958-155312"
+    id: "4",
+    name: "poly",
+    counter: "mohakhali",
+    phoneNumber: "01958-155311",
   },
   {
-      "id": "6",
-      "name": "poly",
-      "counter": "rowmari thana more",
-      "phoneNumber": "01741-000137"
+    id: "5",
+    name: "poly ",
+    counter: "uttara",
+    phoneNumber: "01958-155312",
   },
   {
-      "id": "7",
-      "name": "poly",
-      "counter": "rowmari upazila",
-      "phoneNumber": "01958-155313"
+    id: "6",
+    name: "poly",
+    counter: "rowmari thana more",
+    phoneNumber: "01741-000137",
   },
   {
-      "id": "8",
-      "name": "siam",
-      "counter": "mohakhali",
-      "phoneNumber": "01916-23412"
+    id: "7",
+    name: "poly",
+    counter: "rowmari upazila",
+    phoneNumber: "01958-155313",
   },
   {
-      "id": "9",
-      "name": "siam",
-      "counter": "rowmari",
-      "phoneNumber": "01757-561493"
+    id: "8",
+    name: "siam",
+    counter: "mohakhali",
+    phoneNumber: "01916-23412",
   },
   {
-      "id": "11",
-      "name": "shawon",
-      "counter": "rowmari",
-      "phoneNumber": "01701-967855"
+    id: "9",
+    name: "siam",
+    counter: "rowmari",
+    phoneNumber: "01757-561493",
   },
   {
-      "id": "12",
-      "name": "shawon",
-      "counter": "kucchamara",
-      "phoneNumber": "01926-531612"
+    id: "11",
+    name: "shawon",
+    counter: "rowmari",
+    phoneNumber: "01701-967855",
   },
   {
-      "id": "13",
-      "name": "jony samy ",
-      "counter": "rowmari ",
-      "phoneNumber": "01719-206744"
+    id: "12",
+    name: "shawon",
+    counter: "kucchamara",
+    phoneNumber: "01926-531612",
   },
   {
-      "id": "14",
-      "name": "jony samy ",
-      "counter": "kortimari",
-      "phoneNumber": "01719-033713"
+    id: "13",
+    name: "jony samy ",
+    counter: "rowmari ",
+    phoneNumber: "01719-206744",
   },
   {
-      "id": "15",
-      "name": "jamuna ac",
-      "counter": "supiversor1",
-      "phoneNumber": "01976-705392"
+    id: "14",
+    name: "jony samy ",
+    counter: "kortimari",
+    phoneNumber: "01719-033713",
   },
   {
-      "id": "16",
-      "name": "jamuna ac",
-      "counter": "kortimari",
-      "phoneNumber": "01719-033712"
+    id: "15",
+    name: "jamuna ac",
+    counter: "supiversor1",
+    phoneNumber: "01976-705392",
   },
   {
-      "id": "17",
-      "name": "chattagram express ",
-      "counter": "rowmari ",
-      "phoneNumber": "01***********"
+    id: "16",
+    name: "jamuna ac",
+    counter: "kortimari",
+    phoneNumber: "01719-033712",
   },
   {
-      "id": "18",
-      "name": "chattagram express ",
-      "counter": "chattagram ",
-      "phoneNumber": "01**********"
+    id: "17",
+    name: "chattagram express ",
+    counter: "rowmari ",
+    phoneNumber: "01***********",
   },
   {
-      "id": "19",
-      "name": "ayesha p. ",
-      "counter": "rowmari ",
-      "phoneNumber": "01311-800182"
+    id: "18",
+    name: "chattagram express ",
+    counter: "chattagram ",
+    phoneNumber: "01**********",
   },
   {
-      "id": "20",
-      "name": "ayesha p. ",
-      "counter": "a. k. khan ",
-      "phoneNumber": "01970-900715"
+    id: "19",
+    name: "ayesha p. ",
+    counter: "rowmari ",
+    phoneNumber: "01311-800182",
   },
   {
-      "id": "21",
-      "name": "rowmari travels ",
-      "counter": "rowmari",
-      "phoneNumber": " 01960-138762"
+    id: "20",
+    name: "ayesha p. ",
+    counter: "a. k. khan ",
+    phoneNumber: "01970-900715",
   },
   {
-      "id": "22",
-      "name": "rowmari travels ",
-      "counter": "company ghat ",
-      "phoneNumber": "01960-138 763"
+    id: "21",
+    name: "rowmari travels ",
+    counter: "rowmari",
+    phoneNumber: " 01960-138762",
   },
   {
-      "id": "23",
-      "name": "unity ",
-      "counter": "supiversor1",
-      "phoneNumber": "01764-269772"
+    id: "22",
+    name: "rowmari travels ",
+    counter: "company ghat ",
+    phoneNumber: "01960-138 763",
   },
   {
-      "id": "24",
-      "name": "unity ",
-      "counter": "supiversor2",
-      "phoneNumber": "01764-269773"
-  }
-]
+    id: "23",
+    name: "unity ",
+    counter: "supiversor1",
+    phoneNumber: "01764-269772",
+  },
+  {
+    id: "24",
+    name: "unity ",
+    counter: "supiversor2",
+    phoneNumber: "01764-269773",
+  },
+];

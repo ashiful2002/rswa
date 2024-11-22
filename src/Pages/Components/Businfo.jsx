@@ -1,6 +1,7 @@
 import React from "react";
 import { Table } from "antd";
 import { busData } from "../../constants";
+
 const Businfo = () => {
   return (
     <>
@@ -30,7 +31,7 @@ const Businfo = () => {
           ]}
         ></Table>
         <div>
-           
+          
         </div>
       </div>
     </>

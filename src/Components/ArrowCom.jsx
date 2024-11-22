@@ -5,8 +5,8 @@ const ArrowCom = () => {
   return (
     <>
       <div>
-        <p className="hoverEffect hover:scale-125 hover:rounded-full">
-          <a href="#" className="text-xl text-white hover:text-green-400">
+        <p className=" flex items-center justify-center">
+          <a href="#" className="text-xl text-white hover:text-green-400  hover:scale-125 hover:rounded-full">
             <FaUpLong className="mt-4 text-2xl" />
           </a>
         </p>

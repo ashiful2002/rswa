@@ -279,16 +279,7 @@ export  const bloodGroupData = [
         "Present_Address": "Rowmari",
         "": ""
     },
-    {
-        "Timestamp": "8/23/2024 18:00",
-        "Name": "Limon",
-        "Blood_Group": "O(+)ve",
-        "Phone_Number": "01989688959",
-        "SSC_Batch": "2023",
-        "Permanent_Address": "বেহুলার চর",
-        "Present_Address": "Rowmari",
-        "": ""
-    },
+   
     {
         "Timestamp": "8/23/2024 18:03",
         "Name": "Limon",
@@ -581,7 +572,7 @@ export  const bloodGroupData = [
     },
     {
         "Timestamp": "10/26/2024 19:39",
-        "Name": "Monster Fahim",
+        "Name": "abdullah al Fahim",
         "Blood_Group": "A(+)ve",
         "Phone_Number": "01903628956",
         "SSC_Batch": "2019",

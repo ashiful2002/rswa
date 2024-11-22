@@ -3,6 +3,7 @@ import PageTitle from "../Components/PageTitle";
 import Businfo from "./Components/Businfo";
 import IndivisualBus from "./Components/IndivisualBus";
 import { FaFacebookF } from "react-icons/fa6";
+import BsBusInfo from "./Components/BsBusInfo";
 
 const OtherLinks = () => {
   return (
@@ -33,6 +34,9 @@ const OtherLinks = () => {
           </div>
         </a>
       </div>
+      <div>
+        < BsBusInfo/>
+        </div>{" "}
       <div>
         <p>Bus:123434</p>
         <p>Ambulence:123434</p>

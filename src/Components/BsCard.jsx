@@ -13,7 +13,7 @@ function BsCard() {
 
   return (
     <div className="container">
-      {cardtext.map((item) => (
+      {  cardtext && cardtext.map((item) => (
         <div className="" key={item.id}>
           <CardGroup>
             <Card className="">
