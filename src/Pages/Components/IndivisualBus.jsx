@@ -19,7 +19,7 @@ const IndivisualBus = () => {
             pagination={false}
             className="capitalize"
             dataSource={rifatInfo}
-            columns={[
+            columns={[ 
               {
                 title: "Counter",
                 dataIndex: "counter",

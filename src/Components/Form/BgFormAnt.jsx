@@ -116,7 +116,7 @@ const BgFormAnt = () => {
               অন্যের জীবন বাঁচানোর প্রয়োজনে রক্ত দানে সচেষ্ট হব
             </Checkbox>
           </Form.Item>
-          <Spin
+          <Spin 
             spinning={isLoading}
             size="large"
             tip="Your data has been submited"

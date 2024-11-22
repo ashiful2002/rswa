@@ -10,7 +10,7 @@ const Businfo = () => {
 
         <Table
           className="capitalize"
-          dataSource={busData}
+          dataSource={busData} 
           columns={[
             {
               title: "S. N.",

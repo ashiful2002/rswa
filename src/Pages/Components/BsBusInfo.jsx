@@ -1,11 +1,11 @@
 import React from "react";
 import { Table } from "react-bootstrap";
-import { busDataMap } from "../../constants";
+import {  polyInfo, rifatInfo, siamInfo } from "../../constants";
 const BsBusInfo = () => {
   return (
     <>
-      <>
-        <h2 className="pageTitle">rifat</h2>
+      <div>
+        <h2 className="pageTitle bg-sky-400">rifat paribahan</h2>
         <Table striped bordered hover className="capitalize">
           <thead>
             <tr>
@@ -13,20 +13,60 @@ const BsBusInfo = () => {
               <th>Number</th>
             </tr>
           </thead>
-          {busDataMap[0].rifat.map((item, index) => {
-            return (
-              <>
-                <tbody key={index}>
-                  <tr>
-                    <td>{item.counter}</td>
-                    <td>{item.phoneNumber}</td>
-                  </tr>
-                </tbody>
-              </>
-            );
-          })}
+          {rifatInfo.map((item, index) => (
+            <>
+              <tbody key={index}>
+                <tr>
+                  <td>{item.counter}</td>
+                  <td>{item.phoneNumber}</td>
+                </tr>
+              </tbody>
+            </>
+          ))}
         </Table>
-      </>
+      </div>
+      <div>
+        <h2 className="pageTitle bg-orange-500">poly paribahan</h2>
+        <Table striped bordered hover className="capitalize">
+          <thead>
+            <tr>
+              <th>Counter</th>
+              <th>Number</th>
+            </tr>
+          </thead>
+          {polyInfo.map((item, index) => (
+            <>
+              <tbody key={index}>
+                <tr>
+                  <td>{item.counter}</td>
+                  <td>{item.phoneNumber}</td>
+                </tr>
+              </tbody>
+            </>
+          ))}
+        </Table>
+      </div>
+      <div>
+        <h2 className="pageTitle bg-yellow-500">siam enterprise</h2>
+        <Table striped bordered hover className="capitalize">
+          <thead>
+            <tr>
+              <th>Counter</th>
+              <th>Number</th>
+            </tr>
+          </thead>
+          {siamInfo.map((item, index) => (
+            <>
+              <tbody key={index}>
+                <tr>
+                  <td>{item.counter}</td>
+                  <td>{item.phoneNumber}</td>
+                </tr>
+              </tbody>
+            </>
+          ))}
+        </Table>
+      </div>
     </>
   );
 };
