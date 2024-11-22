@@ -19,7 +19,7 @@ const Footer = () => {
         <div className="">
           <QuiCont />
         </div>
-        <div className="flex pt-5 justify-between mb-4">
+        <div className="flex  flex-col justify-between mb-4">
           <div className="">
             <QuickContact />{" "}
           </div>

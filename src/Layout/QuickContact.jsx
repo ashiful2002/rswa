@@ -6,7 +6,7 @@ import { CiLocationOn } from "react-icons/ci";
 const QuickContact = () => { 
   return (
     <div className="">
-      <h5 className="h6 mb-4 text-sm font-thin">Quick contact</h5>
+      <h5 className="h6 my-4 text-sm font-thin">Quick contact</h5>
 
       <div >
         <div className="flex flex-col items-start justify-around  text-sm">
