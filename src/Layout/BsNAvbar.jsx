@@ -1,12 +1,9 @@
 import { Link, Outlet } from "react-router-dom";
-import logo3 from '../assets/logo3.jpg'
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { FaUpLong } from "react-icons/fa6";
 import logo from "../assets/logo.png";
 import { navigation } from "../constants";
-import iconTOP from "../assets/go-top-symbolic.svg";
 import Footer from "./Footer";
 function BsNavbar() {
   return (

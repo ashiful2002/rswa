@@ -11,22 +11,7 @@ const HelpfulLinks = () => {
         <h6 className="h6 my-4 text-sm font-thin">Helpful Numbers</h6>
       </div>
       <div className="ml-3 flex flex-col items-start justify-center gap-1">
-        <div className="flex" id="number">
-          <p>all servise:</p>
-          <p>
-            <a
-              href="tel:01865872566"
-              className="mx-2 flex items-start justify-around text-white no-underline"
-              target="_blank"
-            >
-              <p className="mx-2">
-                <FaPhone className="text-lg text-green-500" />
-              </p>
-
-              <p className="hover:text-green-500">+880 1865872566</p>
-            </a>
-          </p>
-        </div>
+       
         <div className="flex" id="number">
           <p>Thana :</p>
           <p>
@@ -63,7 +48,7 @@ const HelpfulLinks = () => {
           <p>fire servise :</p>
           <p>
             <a
-              href="tel:000000000"
+              href="tel:01404700760"
               className="mx-2 flex items-start justify-around text-white no-underline"
               target="_blank"
             >
