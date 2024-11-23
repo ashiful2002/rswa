@@ -6,10 +6,10 @@ import { CiLocationOn } from "react-icons/ci";
 const QuickContact = () => { 
   return (
     <div className="">
-      <h5 className="h6 my-4 text-sm font-thin">Quick contact</h5>
+      <h5 className="h6 mt-5 mb-4 text-left text-sm ">Quick contact</h5>
 
       <div >
-        <div className="flex flex-col items-start justify-around  text-sm">
+        <div className="flex -ml-3 flex-col items-start justify-around  text-sm">
           <div className="items-satrt flex justify-between">
             <a
               href="https://maps.app.goo.gl/KTsGv78EpHn1HU7A9"

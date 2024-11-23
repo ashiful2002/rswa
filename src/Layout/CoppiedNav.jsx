@@ -7,7 +7,7 @@ import { ImCross } from "react-icons/im";
 
 import { navigation } from "../constants/index";
 import PrimaryBtn from "../Components/PrimaryButton";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 const CoppiedNav = () => {
   const [toggle, setToggle] = useState(false);
@@ -21,7 +21,7 @@ const CoppiedNav = () => {
   return (
     <>
       <div className="max-w-full bg-green-700">
-        <header className=" mx-auto flex justify-between items-center capitalize bg-green-700 text-white rounded-xl shadow-slate-500">
+        <header className="mb-5 mx-auto flex justify-between items-center capitalize bg-green-700 text-white rounded-xl shadow-slate-500">
           <div>
             <a href="/">
               <img
@@ -44,7 +44,7 @@ const CoppiedNav = () => {
           <nav
             className={`${
               toggle
-                ? "flex  absolute top-20 w-screen flex-col list-none overflow-hidden gap-1 items-center py-4 bg-blue-900"
+                ? "flex  absolute top-20 w-screen flex-col list-none overflow-hidden gap-1 items-center py-4 bg-neutral-800"
                 : "hidden"
             } md:flex md:items-center md:w-auto list-none `}
           >
@@ -52,26 +52,26 @@ const CoppiedNav = () => {
               {" "}
               {navigation.map(({ id, title, url }) => {
                 return (
+                  <>
+                   <Link className="no-underline text-white" onClick={handleMenuIteem} href={url}>{title}
                   <li
-                    className="sm:m-2 cursor-pointer hover:bg-slate-900 p-4 rounded w-full"
-                    onClick={handleMenuIteem}
+                    className="sm:m-2 cursor-pointer  hover:bg-slate-900 p-4 rounded w-full"
+                    
                     key={id}
                   >
-                    <a href={url}>{title}</a>
+                   
                   </li>
+                  </Link>
+                  </>
+                  
                 );
               })}
-              <li
-                onClick={handleMenuIteem}
-                className="sm:m-2 cursor-pointer  p-4 rounded w-full"
-              >
-                <a href="#join_us">
-                  <PrimaryBtn btnText="Join us" />
-                </a>
-              </li>
+              
             </>
           </nav>
+          
         </header>
+        
       </div>
       <Outlet />
     </>

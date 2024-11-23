@@ -5,10 +5,10 @@ const Copyright = () => {
 
   return (
     <>
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-around">
         <p className="text-sm">
           Copyright © {FullYear}
-          <a href="/" className="mx-2 text-green-400">
+          <a href="#" className="mx-2 text-green-400">
             RSWA
           </a>
           . All Rights Reserved.

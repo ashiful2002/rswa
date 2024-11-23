@@ -15,6 +15,18 @@ function BsCard() {
     <div className="container">
       {  cardtext && cardtext.map((item) => (
         <div className="" key={item.id}>
+            {/* <Card>
+              <Card.Body>
+                <Card.Header>
+                  {item.title}
+                </Card.Header>
+                <Button onClick={handleBlogClick} >{
+                  open ? "-" :"+"
+                  }</Button>
+                <Card.Text>{open && item.desc}</Card.Text>
+              </Card.Body>
+            </Card> */}
+
           <CardGroup>
             <Card className="">
               <Card.Body>

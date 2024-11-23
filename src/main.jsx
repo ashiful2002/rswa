@@ -3,8 +3,6 @@ import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Layout from "./Layout/index.jsx";
-import CoppiedNav from "./Layout/CoppiedNav.jsx";
 import BsNavbar from "./Layout/BsNAvbar.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import About from "./Pages/About.jsx";
@@ -13,7 +11,6 @@ import ErrorPage from "./Pages/ErrorPage.jsx";
 import Blood from "./Pages/Blood.jsx";
 import GFormBloog from "./Pages/Components/GFormBloog.jsx";
 import OtherLinks from "./Pages/OtherLinks.jsx";
-import FormFace from "./Pages/Components/FormFace.jsx";
 import BgForm1 from "./Components/Form/BgForm1.jsx";
 import Donate from "./Pages/Donate.jsx";
 
@@ -53,12 +50,10 @@ const router = createBrowserRouter([
       {
         path: "/otherLinks",
         element: <OtherLinks />,
-
       },
       {
         path: "/bgForm1",
         element: <BgForm1 />,
-
       },
       {
         path: "*",
@@ -71,5 +66,5 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <RouterProvider router={router}></RouterProvider>
-  </StrictMode>
+  </StrictMode>,
 );
