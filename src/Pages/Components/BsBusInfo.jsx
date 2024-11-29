@@ -8,11 +8,13 @@ import {
   siamInfo,
 } from "../../constants";
 import InfoAsMap from "./InfoAsMap";
+import PageTitle from "../../Components/PageTitle";
 const BsBusInfo = () => {
   return (
     <div className="grid-cols-3 gap-3 md:grid">
       <div>
-        <h2 className="pageTitle bg-sky-400">rifat paribahan</h2>
+        <PageTitle heading="Rifat paribahan" className="bg-sky-500" />
+
         <Table
           striped
           bordered
@@ -26,12 +28,13 @@ const BsBusInfo = () => {
             </tr>
           </thead>
           {rifatInfo.map((item, index) => (
-            <InfoAsMap item={item} index={index} />
+            <InfoAsMap item={{ ...item, index }} index={index} />
           ))}
         </Table>
       </div>
       <div>
-        <h2 className="pageTitle bg-orange-500">poly paribahan</h2>
+        <PageTitle heading="poly paribahan" className="bg-orange-500" />
+
         <Table striped bordered hover className="capitalize">
           <thead>
             <tr>
@@ -79,9 +82,11 @@ const BsBusInfo = () => {
         </Table>
       </div>
       <div id="ayeshainfo">
-        <h2 className="pageTitle bg-gradient-to-r from-sky-500 to-orange-500">
-          ayesha paribahan
-        </h2>
+        <PageTitle
+          heading=" ayesha paribahan"
+          className="bg-gradient-to-r from-sky-500 to-orange-500"
+        />
+
         <Table striped bordered hover className="capitalize">
           <thead>
             <tr>
@@ -97,7 +102,8 @@ const BsBusInfo = () => {
         </Table>
       </div>
       <div id="jonySami">
-        <h2 className="pageTitle bg-pink-500">jony sami</h2>
+        <PageTitle heading="jony sami" className="bg-pink-500" />
+
         <Table striped bordered hover className="capitalize">
           <thead>
             <tr>

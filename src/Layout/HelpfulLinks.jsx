@@ -79,14 +79,14 @@ const HelpfulLinks = () => {
           </div>
 
           <div className="flex" >
-            <p>
-              <Link to="/otherLinks" className="text-green-500">
+           
+              <Link to="/otherLinks" className="text-green-500 text-[17px]">
                 <p>
                   other importent numbers
                   <FaRegArrowAltCircleRight className="ml-3 inline" />
                 </p>
               </Link>
-            </p>
+            
           </div>
         </div>
       </div>

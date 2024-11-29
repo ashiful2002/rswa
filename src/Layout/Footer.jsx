@@ -1,11 +1,7 @@
 import React from "react";
 
-import logo from "../assets/logo.png";
-import SocialSection from "./SocialSection";
 import { Divider } from "antd";
-import { FaUpLong } from "react-icons/fa6";
 import QuickContact from "./QuickContact";
-import { Button } from "react-bootstrap";
 import Social from "./Social";
 import ArrowCom from "../Components/ArrowCom";
 import QuiCont from "./QuiCont";

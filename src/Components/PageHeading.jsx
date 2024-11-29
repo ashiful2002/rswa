@@ -9,3 +9,4 @@ const PageHeading = ({ heading }) => {
 };
 
 export default PageHeading;
+ 

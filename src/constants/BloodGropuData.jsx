@@ -450,16 +450,7 @@ export  const bloodGroupData = [
         "Present_Address": "Dhaka",
         "": ""
     },
-    {
-        "Timestamp": "6/3/2024 23:44",
-        "Name": "Md. Sohel Rana",
-        "Blood_Group": "AB(+)ve",
-        "Phone_Number": "01717512149",
-        "SSC_Batch": "1998",
-        "Permanent_Address": "গ্রাম+পোস্ট +উপজেলা : রৌমারী, জেলা: কুড়িগ্রাম।",
-        "Present_Address": "Rowmari",
-        "": ""
-    },
+    
     {
         "Timestamp": "8/23/2024 17:01",
         "Name": "Md. Sohel Rana",
@@ -650,16 +641,7 @@ export  const bloodGroupData = [
         "Present_Address": "Dhaka",
         "": ""
     },
-    {
-        "Timestamp": "6/2/2024 23:43",
-        "Name": "Nur Mohammad",
-        "Blood_Group": "AB(+)ve",
-        "Phone_Number": "01918429845",
-        "SSC_Batch": "2003",
-        "Permanent_Address": "Rowmari Bazar",
-        "Present_Address": "Chattogram",
-        "": ""
-    },
+   
     {
         "Timestamp": "8/23/2024 19:29",
         "Name": "Nur uddin Antor",

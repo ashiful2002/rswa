@@ -1,12 +1,14 @@
 import React from "react";
 import { Table } from "antd";
 import { busData } from "../../constants";
+import PageTitle from "../../Components/PageTitle";
 
 const Businfo = () => {
   return (
     <>
       <div>
-        <h5 className="h5 pageTitle text-white mt-4">common buses numbers of rowmary</h5>
+        < PageTitle heading="common buses numbers of rowmari" className="text-[24px] bg-red-600"/>
+       
 
         <Table
           className="capitalize"
