@@ -6,7 +6,7 @@ import Slider from "./Pages/Home/Slider";
 import Committee from "./Pages/Home/Committee";
 
 const App = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   return (
     <>
@@ -17,10 +17,14 @@ const App = () => {
             <h3 className="text-center capitalize text-neutral-600">
               featured images
             </h3>
-            <Slider />
+          <div>
+          <Slider  />
+          </div>
           </div>
 
+          <div>
           < Committee />
+          </div>
           <div>
             <Button onClick={() => navigate("/blood")}> Go Blood Bank</Button>
           </div>

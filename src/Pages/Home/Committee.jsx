@@ -23,6 +23,7 @@ const Committee = () => {
                 <h2 className="h2 capitalize bg-[#cfba2d] text-white inline px-3 rounded-xl">{item.title}</h2>
                 <h5 className="h5 capitalize ">{item.name}</h5>
                 <p className="capitalize etxt-sm">{item.says}</p>
+                
               </div>
             </div>
           ))}

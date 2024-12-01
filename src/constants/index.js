@@ -1,6 +1,7 @@
 import slider4 from "../assets/slider4.jpg";
 import slider2 from "../assets/slider2.jpg";
 import slider3 from "../assets/slider3.jpg";
+import slider1 from "../assets/slider1.jpg";
 
 import President from "../assets/President.jpg";
 import Secreatary from "../assets/Secreatary.jpg";
@@ -61,6 +62,12 @@ export const sliderDetails = [
     id: "2",
     url: slider4,
     title: "বৃক্ষ রোপন কর্মসূচী ২০২৪",
+    desc: "slider 1 desc",
+  },
+  {
+    id: "22",
+    url: slider1,
+    title: "বৃক্ষ রোপন কর্মসূচী  ",
     desc: "slider 1 desc",
   },
 ];
