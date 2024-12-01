@@ -1,4 +1,4 @@
-import sliderOne from "../assets/slider1.jpg";
+import slider4 from "../assets/slider4.jpg";
 import slider2 from "../assets/slider2.jpg";
 import slider3 from "../assets/slider3.jpg";
 
@@ -59,7 +59,7 @@ export const sliderDetails = [
   },
   {
     id: "2",
-    url: sliderOne,
+    url: slider4,
     title: "বৃক্ষ রোপন কর্মসূচী ২০২৪",
     desc: "slider 1 desc",
   },
