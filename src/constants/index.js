@@ -1,3 +1,11 @@
+import slider1 from "../assets/slider1.jpg";
+import slider2 from "../assets/slider2.jpg";
+import slider3 from "../assets/slider3.jpg";
+
+import President from "../assets/President.jpg";
+import Secreatary from "../assets/Secreatary.jpg";
+
+
 export const navigation = [
   {
     id: "1",
@@ -33,6 +41,27 @@ export const navigation = [
     id: "7",
     title: "donate",
     url: "/donate",
+  },
+];
+
+export const sliderDetails = [
+  {
+    id: "0",
+    url: slider3,
+    title: "কৃতি শিক্ষার্থী সংবর্ধনা -২০২৪",
+    desc: "slider 1 desc",
+  },
+  {
+    id: "1",
+    url: slider2,
+    title: "বন্যার্তদের মাঝে ত্রান সাম্পগ্রী বিতরণ ",
+    desc: "slider 1 desc",
+  },
+  {
+    id: "2",
+    url: slider1,
+    title: "বৃক্ষ রোপন কর্মসূচী ২০২৪",
+    desc: "slider 1 desc",
   },
 ];
 export const aboutEnglish = [
@@ -437,5 +466,22 @@ export const bgFormData = [
   {
     value: "AB-",
     name: "AB- (ve)",
+  },
+];
+
+export const executiveCommittee = [
+  {
+    id: "1",
+    url: President,
+    title: "President",
+    name: "Bashir Ahmed bakul",
+    says: "something he want to say about ... recusandae ipsum consequuntur delectus quaerat architecto numquam veniam inventore dolor, laudantium, quae.",
+  },
+  {
+    id: "2",
+    url:Secreatary,
+    title: "secreatary",
+    name: "Mehedi hasan roni",
+    says: "Secreatary's speech  Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis qui enim maxime asperiores neque hic, iste non, quia quibusdam voluptatum minima velit voluptatibus aspernatur quod.",
   },
 ];

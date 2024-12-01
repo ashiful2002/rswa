@@ -28,8 +28,9 @@ const SearchTable = () => {
           <IoMdArrowRoundForward className="font-extrabold" /> 
         </Button>
       </div> */}
-      <div className=" ">
-        <Input.Search
+      <div className="">
+        
+        <Input.Search 
           className=""
           placeholder="search by blood group    ( EG : ' A(+) ')"
           onSearch={(value) => {

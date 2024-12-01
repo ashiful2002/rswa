@@ -13,7 +13,7 @@
     @apply flex items-center justify-center;
   }
   .hoverEffect {
-    @apply hover:bg-green-500;
+    @apply hover:bg-green-500  transition-colors;
   }
 }
 

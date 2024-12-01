@@ -2,30 +2,28 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import PageTitle from "./Components/PageTitle";
-import BgFormAnt from "./Components/Form/BgFormAnt";
-
+import Slider from "./Pages/Home/Slider";
+import Committee from "./Pages/Home/Committee";
 
 const App = () => {
   const navigate = useNavigate();
-  const handleNavigate = () => {
-    navigate("/blood");
-  };
+
   return (
     <>
-      <div className="container mx-auto h-screen">
+      <div className="container mx-auto">
         <PageTitle title="Home" heading="home page" />
-        <div className="allCenter flex h-screen flex-col">
-          <div>
-            <Button onClick={handleNavigate}> Go Blood Bank</Button>
+        <div className="flex flex-col items-center justify-center gap-4">
+          <div className="rounded border p- shadow-sm">
+            <h3 className="text-center capitalize text-neutral-600">
+              featured images
+            </h3>
+            <Slider />
           </div>
 
+          < Committee />
           <div>
-            <p className="m-4 text-slate-500">
-            
-            </p>
+            <Button onClick={() => navigate("/blood")}> Go Blood Bank</Button>
           </div>
-
-         
         </div>
       </div>
     </>
