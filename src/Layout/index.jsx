@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { navigation } from "../constants";
-import { ImCross } from "react-icons/im";
 import { FaBars } from "react-icons/fa";
-import { GiBarStool } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
 
 const Layout = () => {

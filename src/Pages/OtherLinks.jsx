@@ -10,7 +10,6 @@ const OtherLinks = () => {
       <PageTitle title="Numbers" heading="bus numbers" />
 
       <div className="mt-4">
-        {/* <h2 className="h4 text-white pageTitle bg-red-600">bus numebrs</h2> */}
         <BsBusInfo />
         <Businfo />
         

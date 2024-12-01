@@ -1,7 +1,6 @@
 import React from "react";
 
 import { polyInfo, rifatInfo, siamInfo } from "../../constants";
-import { busDataMap } from "../../constants";
 import { Table } from "antd";
 
 const IndivisualBus = () => {
