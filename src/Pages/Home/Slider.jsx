@@ -7,7 +7,7 @@ const Slider = () => {
       <Carousel fade>
       {sliderDetails && sliderDetails.map((item) => (
           <Carousel.Item key={item.id}>
-            <img className="rounded shadow" src={item.url} alt={item.title} />
+            <img className={item.title} src={item.url} alt={item.title} />
             <Carousel.displayName >{item.title}</Carousel.displayName>
           </Carousel.Item>
         ))}
