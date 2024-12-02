@@ -11,6 +11,7 @@ const Slider = () => {
         <Carousel.Item key={item.id}>
           <img  src={item.url} alt={item.title} />
           {/* <Carousel.displayName >{item.title}</Carousel.displayName> */}
+          <Carousel.displayName>{item.title}</Carousel.displayName>
         </Carousel.Item>
       ))}
     </Carousel>
