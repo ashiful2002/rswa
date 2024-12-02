@@ -21,7 +21,7 @@ const OtherLinks = () => {
           >
             <div className="mb-3 mt-5 flex items-center justify-center">
               <p className="text-green-500">
-                {" "}
+                
                 <>join</>
               </p>
               <p className="mx-1">

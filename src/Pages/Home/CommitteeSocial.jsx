@@ -12,7 +12,7 @@ const CommitteeSocial = (props) => {
               rel="noopener noreferrer"
               className="no-underline"
             >
-              <img src={item.icon} width={20} />
+              <img src={item.icon} width={20}  alt={item.id}/>
             </a>
           </div>
         ))}

@@ -9,7 +9,7 @@ const Slider = () => {
     <Carousel fade>
     {sliderDetails && sliderDetails.map((item) => (
         <Carousel.Item key={item.id}>
-          <img  src={item.url} alt={item.title} />
+          <img width="w-full overflow-none" src={item.url} alt={item.title} />
           {/* <Carousel.displayName >{item.title}</Carousel.displayName> */}
           <Carousel.displayName>{item.title}</Carousel.displayName>
         </Carousel.Item>

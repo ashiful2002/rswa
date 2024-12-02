@@ -1,5 +1,3 @@
-
-
 import slider2 from "../assets/slider2.jpg";
 import slider3 from "../assets/slider3.jpg";
 import slider1 from "../assets/slider1.jpg";
@@ -28,6 +26,11 @@ export const navigation = [
     url: "/blood",
   },
   {
+    id: "6",
+    title: "nunmbers",
+    url: "/otherLinks",
+  },
+  {
     id: "4",
     title: "projects",
     url: "/projects",
@@ -37,11 +40,7 @@ export const navigation = [
     title: "blog",
     url: "/blog",
   },
-  {
-    id: "6",
-    title: "nunmbers",
-    url: "/otherLinks",
-  },
+
   {
     id: "7",
     title: "donate",
