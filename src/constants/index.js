@@ -3,7 +3,6 @@
 import slider2 from "../assets/slider2.jpg";
 import slider3 from "../assets/slider3.jpg";
 import slider1 from "../assets/slider1.jpg";
-import slider4 from "../assets/slider4.jpg";
 
 import President from "../assets/president.jpg";
 import Secreatary from "../assets/secreatary.jpg";
@@ -63,12 +62,12 @@ export const sliderDetails = [
     title: "বন্যার্তদের মাঝে ত্রান সাম্পগ্রী বিতরণ ",
     desc: "slider 1 desc",
   },
-  {
-    id: "2",
-    url: slider4,
-    title: "বৃক্ষ রোপন কর্মসূচী ২০২৪",
-    desc: "slider 1 desc",
-  },
+  // {
+  //   id: "2",
+  //   url: slider4,
+  //   title: "বৃক্ষ রোপন কর্মসূচী ২০২৪",
+  //   desc: "slider 1 desc",
+  // },
   {
     id: "22",
     url: slider1,
