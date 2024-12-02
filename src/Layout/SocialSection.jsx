@@ -31,7 +31,7 @@ const SocialSection = () => {
 
       <div className="flex items-center justify-center rounded-full px-2 py-1 hover:bg-green-500">
         <a
-          href=" https://wa.me/+8801727475744"
+          href="https://wa.me/+8801727475744"
           target="_blank"
           className="no-underline"
         >

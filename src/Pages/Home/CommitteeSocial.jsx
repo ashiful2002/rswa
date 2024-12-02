@@ -1,19 +1,22 @@
 import React from "react";
-import { FaFacebook, FaPhone, FaWhatsapp } from "react-icons/fa";
 
-const CommitteeSocial = () => {
+const CommitteeSocial = (props) => {
   return (
     <div>
-      <div className="flex gap-5 text-2xl ">
-        <a href="tel:01759907907" target="_blank" rel="noopener noreferrer">
-          <FaFacebook className="text-green-600"/>
-        </a>
-        <a href="tel:01759907907" target="_blank" rel="noopener noreferrer" >
-          <FaPhone className="text-green-600"/>
-        </a>
-        <a href="tel:01759907907" target="_blank" rel="noopener noreferrer" >
-          <FaWhatsapp className="text-green-600"/>
-        </a>
+      <div className="flex gap-5 text-2xl">
+        {props.social.map((item) => (
+          <div key={item.id}>
+            
+            <a
+              href={item.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="no-underline"
+            >
+             <img src={item.icon} width={20} />
+            </a>
+          </div>
+        ))}
       </div>
     </div>
   );

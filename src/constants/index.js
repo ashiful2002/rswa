@@ -6,6 +6,9 @@ import slider1 from "../assets/slider1.jpg";
 import President from "../assets/President.jpg";
 import Secreatary from "../assets/Secreatary.jpg";
 
+import phone from "../assets/icon/phone.svg";
+import whatsapp from "../assets/icon/whatsapp.svg";
+import facebook from "../assets/icon/facebook.svg";
 
 export const navigation = [
   {
@@ -482,13 +485,47 @@ export const executiveCommittee = [
     url: President,
     title: "President",
     name: "Bashir Ahmed bakul",
-    says: "something he want to say about ... recusandae ipsum consequuntur delectus quaerat architecto numquam veniam inventore dolor, laudantium, quae.",
+    says: " something he want to say about ...  something he want to say about ...  recusandae ipsum consequuntur delectus quaerat architecto numquam veniam inventore dolor, laudantium, quae.",
+    social: [
+      {
+        id: "11",
+        icon: phone,
+        url: "tel:+880 1793997119",
+      },
+      {
+        id: "12",
+        icon: whatsapp,
+        url: "https://wa.me/+8801793997119",
+      },
+      {
+        id: "13",
+        icon: facebook,
+        url: "https://www.facebook.com/",
+      },
+    ],
   },
   {
     id: "2",
-    url:Secreatary,
+    url: Secreatary,
     title: "secreatary",
     name: "Mehedi hasan roni",
-    says: "Secreatary's speech  Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis qui enim maxime asperiores neque hic, iste non, quia quibusdam voluptatum minima velit voluptatibus aspernatur quod.",
+    says: "Secreatary's speech... Secreatary's speech... Secreatary's speech Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis qui enim maxime asperiores neque hic, iste non, quia quibusdam voluptatum minima velit voluptatibus aspernatur quod.",
+    social: [
+      {
+        id: "22",
+        icon: phone,
+        url: "tel:+880 1991499450",
+      },
+      {
+        id: "23",
+        icon: whatsapp,
+        url: "https://wa.me/+8801991499450",
+      },
+      {
+        id: "24",
+        icon: facebook,
+        url: "https://www.facebook.com/rhronihr",
+      },
+    ],
   },
 ];
