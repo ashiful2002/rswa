@@ -9,11 +9,11 @@ const Committee = () => {
       <div className="mt-3">
         <PageTitle
           heading="executive committee (2024-2025 )"
-          className="tracking-tight text-[25px] text-white"
+          className="tracking-tight text-[24px] text-white"
         />
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-4">
           {executiveCommittee.map((item) => (
-            <div key={item.id} className="md:last:text-end">
+            <div key={item.id} className="md:flex flex-col md:last:items-end md:last:text-end ">
               <div className="">
                 <img
                   src={item.url}
@@ -23,13 +23,13 @@ const Committee = () => {
                   height={50}
                 />
               </div>{" "}
-              <div>
+              <div className="">
                 <h2 className="h2 inline rounded-xl bg-[#cfba2d] px-3 capitalize text-white">
                   {item.title}
                 </h2>
                 <h5 className="h5 capitalize">{item.name}</h5>
-                <CommitteeSocial social={item.social} />
-                <p className="etxt-sm capitalize">{item.says}</p>
+               <p> <CommitteeSocial social={item.social} /></p>
+                <p className="text-sm capitalize">{item.says}</p>
               </div>
             </div>
           ))}
