@@ -8,7 +8,7 @@ const Committee = () => {
     <>
       <div className="mt-3">
         <PageTitle
-          heading="executive comittee (2024-2025 )"
+          heading="executive committee (2024-2025 )"
           className="tracking-tight text-[25px] text-white"
         />
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-4">
