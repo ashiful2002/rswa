@@ -1,10 +1,11 @@
 import React from "react";
 import PageTitle from "../../Components/PageTitle";
 import { executiveCommittee } from "../../constants";
+import CommitteeSocial from "./CommitteeSocial";
 
 const Committee = () => {
   return (
-    <div>
+    <>
       <div className="border p-2">
         <PageTitle heading="executive comittee (2024-2025 )" className="text-white tracking-tight"/>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
@@ -22,14 +23,16 @@ const Committee = () => {
               <div>
                 <h2 className="h2 capitalize bg-[#cfba2d] text-white inline px-3 rounded-xl">{item.title}</h2>
                 <h5 className="h5 capitalize ">{item.name}</h5>
+                < CommitteeSocial />
                 <p className="capitalize etxt-sm">{item.says}</p>
                 
               </div>
+            
             </div>
           ))}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
