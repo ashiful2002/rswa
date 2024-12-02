@@ -18,7 +18,7 @@ const Committee = () => {
                 <img
                   src={item.url}
                   alt={item.name}
-                  className="mb-4 ml-4 rounded-full ring ring-green-600"
+                  className="mb-4 rounded-full ring ring-green-600"
                   width={250}
                   height={50}
                 />
