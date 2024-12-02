@@ -4,8 +4,8 @@ import slider2 from "../assets/slider2.jpg";
 import slider3 from "../assets/slider3.jpg";
 import slider1 from "../assets/slider1.jpg";
 
-import President from "../assets/President.jpg";
-import Secreatary from "../assets/Secreatary.jpg";
+import President from "../assets/president.jpg";
+import Secreatary from "../assets/secreatary.jpg";
 
 import phone from "../assets/icon/phone.svg";
 import whatsapp from "../assets/icon/whatsapp.svg";
