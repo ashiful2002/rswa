@@ -1,33 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input, Table } from "antd";
 import { bloodGroupData } from "../constants/BloodGropuData";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const SearchTable = () => {
-  const navigate = useNavigate();
+
   const [searchedValue, setsearchBloogG] = useState("");
+
+  const [users, setUsers] = useState([]);
+
+  const getAllData = async () => {
+    const response = await axios.get("http://localhost:3000/bloodGroupData");
+    console.log(response.data)
+    
+  };
+  useEffect(() => {
+    getAllData();
+  }, []);
+  
   return (
+    <> 
+
+  
     <div className="container mx-auto">
       
-      {/* <div className="flex items-center justify-between">
-        <Button
-          className="mb-2"
-          variant="success"
-          onClick={() => navigate("/")}
-        >
-          {" "}
-          <IoMdArrowRoundBack className="font-extrabold" />
-        </Button>
-        <Button
-          className="mb-2"
-          onClick={() => navigate("/bgForm")}
-          
-          variant="success"
-        >
-          {" "} 
-          <IoMdArrowRoundForward className="font-extrabold" /> 
-        </Button>
-      </div> */}
       <div className="">
         
         <Input.Search 
@@ -84,6 +80,7 @@ const SearchTable = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

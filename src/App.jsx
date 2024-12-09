@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import PageTitle from "./Components/PageTitle";
@@ -6,29 +6,31 @@ import Slider from "./Pages/Home/Slider";
 import Committee from "./Pages/Home/Committee";
 
 const App = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <>
       <div className="container mx-auto">
         <PageTitle title="Home" heading="home page" />
         <div className="flex flex-col items-center justify-center gap-4">
-          <div className="rounded border p- shadow-sm">
+          <div className="p- rounded border shadow-sm">
             <h3 className="text-center capitalize text-neutral-600">
               featured images
             </h3>
-          <div>
-          <Slider  />
+            <div>
+              <Slider />
+            </div>
+           
           </div>
-          </div>
-
+         
           <div>
-          < Committee />
+            <Committee />
           </div>
           <div>
             <Button onClick={() => navigate("/blood")}> Go Blood Bank</Button>
           </div>
         </div>
+        
       </div>
     </>
   );

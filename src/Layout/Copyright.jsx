@@ -13,7 +13,14 @@ const Copyright = () => {
           </a>
           . All Rights Reserved.
         </p>
-        {/* <p className="text-sm">developed by mukto</p> */}
+        <p className="text-sm">
+          <a
+            href="https://ashiful-islam.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >developed by</a>
+          
+        </p>
       </div>
     </>
   );
