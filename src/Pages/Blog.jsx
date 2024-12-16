@@ -8,7 +8,7 @@ const Blog = () => {
     
    
     <div className="container mx-auto">
-    <PageTitle title="Blog" heading="blog" />
+    <PageTitle title="Blog" heading="blog / news" />
       <BsCard />
      
     </div>

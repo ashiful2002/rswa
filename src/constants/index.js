@@ -1,6 +1,7 @@
 import slider2 from "../assets/slider2.jpg";
 import slider3 from "../assets/slider3.jpg";
 import slider1 from "../assets/slider1.jpg";
+import bijoy from "../assets/bijoy.jpg";
 
 import President from "../assets/president.jpg";
 import Secreatary from "../assets/secreatary.jpg";
@@ -61,12 +62,12 @@ export const sliderDetails = [
     title: "বন্যার্তদের মাঝে ত্রান সাম্পগ্রী বিতরণ ",
     desc: "slider 1 desc",
   },
-  // {
-  //   id: "2",
-  //   url: slider4,
-  //   title: "বৃক্ষ রোপন কর্মসূচী ২০২৪",
-  //   desc: "slider 1 desc",
-  // },
+  {
+    id: "2",
+    url: bijoy,
+    title: "বিজয় দিবসে RSWA এর শ্রদ্ধাঞ্জলি",
+    desc: "মহান বিজয় দিবস উপলক্ষ্যে শহীদমিনারে শ্রদ্ধাঞ্জলি প্রদান করে RSWA পরিবার",
+  },
   {
     id: "22",
     url: slider1,
@@ -134,47 +135,22 @@ export const aboutBangla = [
         ঐক্য এবং সম্মিলিত অগ্রগতির একটি উজ্জ্বল উদাহরণ করে তোলা।  `,
   },
 ];
+const Updated_date = new Date().getDate()
 
 export const cardtext = [
   {
     id: "1",
-    title: "Blog-1 Facebook",
-    desc: "Meta Platforms, Inc., doing business as Meta, and formerly named Facebook,",
+    title: "বিজয় দিবসে RSWA এর শ্রদ্ধাঞ্জলি",
+    img:bijoy,
+    desc: "মহান বিজয় দিবসে RSWA পরিবার শ্রদ্ধাভরে স্মরণ করেছে মুক্তিযুদ্ধের বীর শহীদদের। ",
     fullDesc:
-      "Meta Platforms, Inc., doing business as Meta, and formerly named Facebook, Inc., and TheFacebook, Inc., is an American multinational technology conglomerate based in Menlo Park, California. The company owns and operates Facebook, Instagram, Threads, and WhatsApp, among other products and services. Meta ranks among the largest American information technology companies, alongside other Big Five corporations Alphabet (Google), Amazon, Apple, and Microsoft. The company was ranked #31 on the Forbes Global 2000 ranking in 2023. In 2022, Meta was the company with the third-highest expenditure on research and development worldwide, with R&D expenditure amounting to US$35.3 billion. ",
+      "আজ ১৬ ডিসেম্বর। মহান বিজয় দিবস। বাঙালির হাজার বছরের ইতিহাসে সবচেয়ে অহংকার ও বীরত্বের গৌরবময় দিন। পৃথিবীর মানচিত্রে বাংলাদেশ নামে একটি স্বাধীন ভূখন্ডের আত্মপ্রকাশের দিন। রক্তক্ষয়ী মুক্তিযুদ্ধে ৩০ লাখ শহীদ ও ২ লাখ মা-বোনের সম্ভ্রমের বিনিময়ে ১৯৭১ সালের ১৬ ডিসেম্বর অর্জিত হয় মহান বিজয়। পাকিস্তানি বাহিনীর কমান্ডিং অফিসার জেনারেল নিয়াজি তার বাহিনীর সব সদস্য নিয়ে আত্মসমর্পণ করেন এদিন। ১৯৪৭ সালে দ্বিজাতিতত্ত্বের ভিত্ত্বিতে ভারতীয় উপমহাদেশকে ভারত-পাকিস্তান এই দুই অংশে ভাগ করে ব্রিটিশ রাজ। পাকিস্তানের পূর্বাঞ্চলীয় প্রদেশ পূর্ব পাকিস্তান নামে  আত্মপ্রকাশ করে বর্তমান বাংলাদেশ। পাকিস্তান রাষ্ট্রের অধীনে পূর্ব পাকিস্তানের ২৩ বছরের ইতিহাস পশ্চিম পাকিস্তানের হাতে শোষণের ইতিহাস। ১৯৭০-এর ঐতিহাসিক নির্বাচনে বিজয়ী হলেও পশ্চিম পাকিস্তানের শাসকরা বাঙালিদের হাতে ক্ষমতা তুলে দেওয়ার নামে টালবাহানা শুরু করে। বাঙালির নির্বাচিত নেতা বঙ্গবন্ধু শেখ মুজিবুর রহমানের নেতৃত্বে ১৯৭১-এর মার্চে জাতি শুরু করে অসহযোগ আন্দোলন। ২৫ মার্চ রাতে নিরস্ত্র নাগরিকদের ওপর হত্যাযজ্ঞ শুরু করে পাকিস্তানি সামরিক জান্তা। ২৬ মার্চের প্রথম প্রহরে বাংলাদেশের স্বাধীনতা ঘোষণা করে মুক্তিযুদ্ধের ডাক দেন বঙ্গবন্ধু। ১৬ ডিসেম্বর বিকালে ঢাকায় সোহরাওয়ার্দী উদ্যানে বাংলাদেশ-ভারত যৌথবাহিনীর কাছে আত্মসমর্পণ করেন পাকিস্তানি বাহিনীর কমান্ডিং অফিসার জেনারেল এ এ কে নিয়াজি।",
     btnText: "read more",
-    btnLink: "",
+    btnLink: "https://www.facebook.com/share/p/PdtbREXVRXkxNRBt/",
+    showDate:"16 dec, 2024"
   },
-  {
-    id: "2",
-    title: "Blog-2 YouTube",
-    desc: "YouTube is an online video sharing platform owned by Google.",
-    fullDesc:
-      "YouTube is an online video sharing platform owned by Google. YouTube was founded on February 14, 2005, by Steve Chen, Chad Hurley, and Jawed Karim, three former employees of PayPal. Headquartered in San Bruno, California, United States, it is the second-most visited website in the world, after Google Search. In January 2024, YouTube had more than 2.7 billion monthly active users, who collectively watched more than one billion hours of videos every day. As of May 2019, videos were being uploaded to the platform at a rate of more than 500 hours of content per minute, and as of 2021, there were approximately 14 billion videos in total.",
-    btnText: "read more",
-    btnLink: "",
-  },
-  {
-    id: "3",
-    title: "blog 3",
-    desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-    btnText: "read more",
-    btnLink: "/fgd",
-  },
-  {
-    id: "4",
-    title: "blog 4",
-    desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-    btnText: "read more",
-    btnLink: "/",
-  },
-  {
-    id: "5",
-    title: "blog 5",
-    desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-    btnText: "read more",
-    btnLink: "/",
-  },
+ 
+  
 ];
 
 export const rifatInfo = [
