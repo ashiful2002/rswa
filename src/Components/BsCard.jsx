@@ -1,17 +1,9 @@
-import React, { useState } from "react";
-import { CardGroup, Button, Card, Collapse, Accordion } from "react-bootstrap";
-import { FaArrowAltCircleDown, FaArrowAltCircleUp } from "react-icons/fa";
+import React from "react";
 
 import { cardtext } from "../constants";
-import facebook from "../assets/icon/facebook.svg";
 import Share from "./Social/Share";
+import { Accordion } from "react-bootstrap";
 function BsCard() {
-  const [open, setOpen] = useState(false);
-
-  const handleBlogClick = () => {
-    setOpen(!open);
-  };
-
   return (
     <div className="container">
       {cardtext &&
@@ -37,7 +29,11 @@ function BsCard() {
                   <div className="flex flex-col items-center justify-between md:flex-row">
                     <Share className="text-sm" />
                     <span className="px-2 text-sm">
-                      {<p className="text-neutral-500">Last updated: {item.showDate}</p>}
+                      {
+                        <p className="text-neutral-500">
+                          Last updated: {item.showDate}
+                        </p>
+                      }
                     </span>
                   </div>
                 </Accordion.Item>
