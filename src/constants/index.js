@@ -6,9 +6,20 @@ import bijoy from "../assets/bijoy.jpg";
 import President from "../assets/president.jpg";
 import Secreatary from "../assets/secreatary.jpg";
 
+import {
+  FaEnvelope,
+  FaFacebook,
+  FaLocationArrow,
+  FaPhone,
+  FaWhatsapp,
+} from "react-icons/fa";
+
 import phone from "../assets/icon/phone.svg";
 import whatsapp from "../assets/icon/whatsapp.svg";
 import facebook from "../assets/icon/facebook.svg";
+import { CgFacebook } from "react-icons/cg";
+import { CiFacebook } from "react-icons/ci";
+import { FaSquareFacebook } from "react-icons/fa6";
 
 export const navigation = [
   {
@@ -140,16 +151,14 @@ export const cardtext = [
   {
     id: "1",
     title: "বিজয় দিবসে RSWA এর শ্রদ্ধাঞ্জলি",
-    img:bijoy,
+    img: bijoy,
     desc: "মহান বিজয় দিবসে RSWA পরিবার শ্রদ্ধাভরে স্মরণ করেছে মুক্তিযুদ্ধের বীর শহীদদের। ",
     fullDesc:
       "আজ ১৬ ডিসেম্বর। মহান বিজয় দিবস। বাঙালির হাজার বছরের ইতিহাসে সবচেয়ে অহংকার ও বীরত্বের গৌরবময় দিন। পৃথিবীর মানচিত্রে বাংলাদেশ নামে একটি স্বাধীন ভূখন্ডের আত্মপ্রকাশের দিন। রক্তক্ষয়ী মুক্তিযুদ্ধে ৩০ লাখ শহীদ ও ২ লাখ মা-বোনের সম্ভ্রমের বিনিময়ে ১৯৭১ সালের ১৬ ডিসেম্বর অর্জিত হয় মহান বিজয়। পাকিস্তানি বাহিনীর কমান্ডিং অফিসার জেনারেল নিয়াজি তার বাহিনীর সব সদস্য নিয়ে আত্মসমর্পণ করেন এদিন। ১৯৪৭ সালে দ্বিজাতিতত্ত্বের ভিত্ত্বিতে ভারতীয় উপমহাদেশকে ভারত-পাকিস্তান এই দুই অংশে ভাগ করে ব্রিটিশ রাজ। পাকিস্তানের পূর্বাঞ্চলীয় প্রদেশ পূর্ব পাকিস্তান নামে  আত্মপ্রকাশ করে বর্তমান বাংলাদেশ। পাকিস্তান রাষ্ট্রের অধীনে পূর্ব পাকিস্তানের ২৩ বছরের ইতিহাস পশ্চিম পাকিস্তানের হাতে শোষণের ইতিহাস। ১৯৭০-এর ঐতিহাসিক নির্বাচনে বিজয়ী হলেও পশ্চিম পাকিস্তানের শাসকরা বাঙালিদের হাতে ক্ষমতা তুলে দেওয়ার নামে টালবাহানা শুরু করে। বাঙালির নির্বাচিত নেতা বঙ্গবন্ধু শেখ মুজিবুর রহমানের নেতৃত্বে ১৯৭১-এর মার্চে জাতি শুরু করে অসহযোগ আন্দোলন। ২৫ মার্চ রাতে নিরস্ত্র নাগরিকদের ওপর হত্যাযজ্ঞ শুরু করে পাকিস্তানি সামরিক জান্তা। ২৬ মার্চের প্রথম প্রহরে বাংলাদেশের স্বাধীনতা ঘোষণা করে মুক্তিযুদ্ধের ডাক দেন বঙ্গবন্ধু। ১৬ ডিসেম্বর বিকালে ঢাকায় সোহরাওয়ার্দী উদ্যানে বাংলাদেশ-ভারত যৌথবাহিনীর কাছে আত্মসমর্পণ করেন পাকিস্তানি বাহিনীর কমান্ডিং অফিসার জেনারেল এ এ কে নিয়াজি।",
     btnText: "read more",
     btnLink: "https://www.facebook.com/share/p/PdtbREXVRXkxNRBt/",
-    showDate:"16 dec, 2024"
+    showDate: "16 dec, 2024",
   },
- 
-  
 ];
 
 export const rifatInfo = [
@@ -419,41 +428,6 @@ export const busData = [
   },
 ];
 
-export const bgFormData = [
-  {
-    value: "A+",
-    name: "A+ (ve)",
-  },
-  {
-    value: "A-",
-    name: "A- (ve)",
-  },
-  {
-    value: "B+",
-    name: "B+ (ve)",
-  },
-  {
-    value: "B-",
-    name: "B- (ve)",
-  },
-  {
-    value: "O+",
-    name: "O+ (ve)",
-  },
-  {
-    value: "O-",
-    name: "O- (ve)",
-  },
-  {
-    value: "AB+",
-    name: "AB+ (ve)",
-  },
-  {
-    value: "AB-",
-    name: "AB- (ve)",
-  },
-];
-
 export const executiveCommittee = [
   {
     id: "1",
@@ -504,4 +478,44 @@ export const executiveCommittee = [
     ],
   },
 ];
-
+export const bgFormData = [{}];
+export const qContactDetails = [
+  {
+    id: "01",
+    title: "Rowmari, Kurigram",
+    icon: FaLocationArrow,
+    url: "https://maps.app.goo.gl/KTsGv78EpHn1HU7A9",
+  },
+  {
+    id: "02",
+    title: "01727-475744",
+    icon: FaPhone,
+    url: "tel:01727-475744",
+  },
+  {
+    id: "03",
+    title: "rswaofficial.est2009@gmail.com",
+    icon: FaEnvelope,
+    url: "mailto:rswaofficial.est2009@gmail.com",
+  },
+];
+export const SocialDesc = [
+  {
+    id: "01",
+    title: "page",
+    icon: FaSquareFacebook ,
+    url: "https://www.facebook.com/profile.php?id=100094207557939",
+  },
+  {
+    id: "02",
+    title: "group",
+    icon: FaFacebook,
+    url: "https://www.facebook.com/groups/RSWA2009",
+  },
+  {
+    id: "03",
+    title: "whatsapp",
+    icon: FaWhatsapp,
+    url: "https://wa.me/+8801727475744",
+  },
+];

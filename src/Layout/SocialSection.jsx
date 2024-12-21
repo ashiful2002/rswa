@@ -1,45 +1,25 @@
 import React from "react";
-import { FaFacebook } from "react-icons/fa";
-import { FaWhatsapp } from "react-icons/fa";
-import { FaFacebookF } from "react-icons/fa6";
-import { FaInstagram } from "react-icons/fa";
-import { GrFacebook } from "react-icons/gr";
+import { SocialDesc } from "../constants";
 
 const SocialSection = () => {
   return (
-    <>
-      <div className="flex items-center justify-center rounded-full px-2 py-1 shadow-xl hover:bg-green-500">
-        <a
-          href="https://www.facebook.com/profile.php?id=100094207557939"
-          target="_blank"
-          className="no-underline"
-        >
-          <FaFacebook className="inline text-xl text-white" />{" "}
-          <span className="ml-2 lowercase text-white">page</span>
-        </a>{" "}
-      </div>
-      <div className="flex items-center justify-center rounded-full px-2 py-1 hover:bg-green-500">
-        <a
-          href="https://www.facebook.com/groups/RSWA2009"
-          target="_blank"
-          className="no-underline"
-        >
-          <FaFacebookF className="inline text-xl text-white" />
-          <span className="ml-2 lowercase text-white">group</span>
-        </a>{" "}
-      </div>
+    <div className="-ml-3 flex flex-col items-start justify-around text-sm">
+      {SocialDesc.map(({ icon: Icon, title, url, id }) => (
+        <div key={id} className="flex items-start justify-between">
+          <a
+            href={url}
+            target="_blank"
+            className="mx-2 flex items-center justify-around text-white no-underline"
+          >
+            <p className="mx-2">
+              <Icon className="text-lg text-green-500" />
+            </p>
 
-      <div className="flex items-center justify-center rounded-full px-2 py-1 hover:bg-green-500">
-        <a
-          href="https://wa.me/+8801727475744"
-          target="_blank"
-          className="no-underline"
-        >
-          <FaWhatsapp className="inline text-xl text-white" />{" "}
-          <span className="ml-2 lowercase text-white">Whatsapp</span>
-        </a>{" "}
-      </div>
-    </>
+            <p className="hover:text-green-500">{title}</p>
+          </a>{" "}
+        </div>
+      ))}
+    </div>
   );
 };
 
