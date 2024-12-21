@@ -15,15 +15,15 @@ const Footer = () => {
         <div className="">
           <QuiCont />
         </div>
-        <>
+       
           <div className="">
-            <QuickContact />{" "}
+            <QuickContact />
           </div>
 
           <div className="">
             <Social />
           </div>
-        </>
+       
         <div className="">
           <HelpfulLinks />
         </div>
