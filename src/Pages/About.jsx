@@ -11,9 +11,12 @@ const About = () => {
         {aboutEnglish &&
           aboutEnglish.map((item, index) => <p key={index}>{item.para}</p>)}
 
-        <PageTitle heading=" বাংলায়ঃ " className="inline px-10 mb-4 shadow drop-shadow-sm"/>
+        <PageTitle
+          heading=" বাংলায়ঃ "
+          className="mb-4 inline px-10 shadow drop-shadow-sm"
+        />
         {aboutBangla &&
-          aboutBangla.map((item, index) => <p  key={index}>{item.para}</p>)}
+          aboutBangla.map((item, index) => <p key={index}>{item.para}</p>)}
       </div>
     </>
   );

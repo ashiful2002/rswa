@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Input, Table } from "antd";
 import { bloodGroupData } from "../constants/BloodGropuData";
 import axios from "axios";
-import { InfoCircleOutlined, UserOutlined } from '@ant-design/icons';
+import { MdBloodtype,MdOutlineBloodtype  } from "react-icons/md";
 
 const SearchTable = () => {
   const [searchedValue, setsearchBloogG] = useState("");
@@ -21,12 +21,18 @@ const SearchTable = () => {
     <>
       <div className="container mx-auto">
         <div className="">
-          
           <Input.Search
-           prefix={<UserOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
+            prefix={
+              <MdOutlineBloodtype
+                size={30}
+                className="-ml-3"
+                style={{ color: "rgba(0,0,0,.25)" }}
+              />
+            }
+            
             className="mb-2"
             size="large"
-            placeholder="Search by blood group    ( EG : ' A(+) ')"
+            placeholder="Search by blood group   -eg : 'A(+)'"
             onSearch={(value) => {
               setsearchBloogG(value);
             }}
@@ -34,7 +40,7 @@ const SearchTable = () => {
               setsearchBloogG(e.target.value);
             }}
           ></Input.Search>
-         
+
           <div className="h-[90vh] overflow-scroll">
             <Table
               dataSource={bloodGroupData}

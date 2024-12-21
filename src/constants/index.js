@@ -38,7 +38,7 @@ export const navigation = [
   },
   {
     id: "5",
-    title: "blog",
+    title: "blog & news",
     url: "/blog",
   },
 
@@ -135,7 +135,6 @@ export const aboutBangla = [
         ঐক্য এবং সম্মিলিত অগ্রগতির একটি উজ্জ্বল উদাহরণ করে তোলা।  `,
   },
 ];
-const Updated_date = new Date().getDate()
 
 export const cardtext = [
   {
@@ -505,3 +504,4 @@ export const executiveCommittee = [
     ],
   },
 ];
+

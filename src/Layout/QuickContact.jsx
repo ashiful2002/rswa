@@ -3,13 +3,13 @@ import { FaPhone } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { CiLocationOn } from "react-icons/ci";
 
-const QuickContact = () => { 
+const QuickContact = () => {
   return (
     <div className="">
-      <h5 className="h6 mt-5 mb-4 text-left text-sm ">Quick contact</h5>
+      <h5 className="h6 mb-4 mt-5 text-left text-sm">Quick contact</h5>
 
-      <div >
-        <div className="flex -ml-3 flex-col items-start justify-around  text-sm">
+      <div>
+        <div className="-ml-3 flex flex-col items-start justify-around text-sm">
           <div className="items-satrt flex justify-between">
             <a
               href="https://maps.app.goo.gl/KTsGv78EpHn1HU7A9"
@@ -25,7 +25,7 @@ const QuickContact = () => {
           </div>
 
           <div className="items-satrt flex justify-center">
-            {" "}
+           
             <a
               href="tel:01727-475744"
               className="mx-2 flex items-start justify-around text-white no-underline"
@@ -45,12 +45,12 @@ const QuickContact = () => {
               href="mailto:rswaofficial.est2009@gmail.com"
             >
               <p className="mx-2">
-                {" "}
-                <MdEmail className="text-lg text-green-500" />{" "}
+               
+                <MdEmail className="text-lg text-green-500" />
               </p>
 
               <span className="lowercase hover:text-green-500">
-                {" "}
+                
                 rswaofficial.est2009@gmail.com
               </span>
             </a>
