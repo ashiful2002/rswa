@@ -7,8 +7,6 @@ import { MdBloodtype,MdOutlineBloodtype  } from "react-icons/md";
 const SearchTable = () => {
   const [searchedValue, setsearchBloogG] = useState("");
 
-  const [users, setUsers] = useState([]);
-
   const getAllData = async () => {
     const response = await axios.get("http://localhost:3000/bloodGroupData");
     console.log(response.data);
@@ -21,6 +19,7 @@ const SearchTable = () => {
     <>
       <div className="container mx-auto">
         <div className="">
+          <label htmlFor="search" className="text-xl bg-slate-700 rounded text-white px-2 py-1 my-2">Search Blood Group:</label>
           <Input.Search
             prefix={
               <MdOutlineBloodtype

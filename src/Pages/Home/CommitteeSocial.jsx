@@ -4,15 +4,15 @@ const CommitteeSocial = (props) => {
   return (
     <div>
       <div className="flex gap-5 text-2xl">
-        {props.social.map((item) => (
-          <div key={item.id}>
+        {props.social.map(({ id, url, icon: Icon }) => (
+          <div key={id}>
             <a
-              href={item.url}
+              href={url}
               target="_blank"
               rel="noopener noreferrer"
               className="no-underline"
             >
-              <img src={item.icon} width={20}  alt={item.id}/>
+              <Icon />
             </a>
           </div>
         ))}

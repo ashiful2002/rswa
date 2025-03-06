@@ -14,12 +14,8 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 
-import phone from "../assets/icon/phone.svg";
-import whatsapp from "../assets/icon/whatsapp.svg";
-import facebook from "../assets/icon/facebook.svg";
-import { CgFacebook } from "react-icons/cg";
-import { CiFacebook } from "react-icons/ci";
 import { FaSquareFacebook } from "react-icons/fa6";
+import { BsWhatsapp } from "react-icons/bs";
 
 export const navigation = [
   {
@@ -438,17 +434,17 @@ export const executiveCommittee = [
     social: [
       {
         id: "11",
-        icon: phone,
+        icon: FaPhone,
         url: "tel:+880 1793997119",
       },
       {
         id: "12",
-        icon: whatsapp,
+        icon: FaWhatsapp,
         url: "https://wa.me/+8801793997119",
       },
       {
         id: "13",
-        icon: facebook,
+        icon: FaFacebook,
         url: "https://www.facebook.com/",
       },
     ],
@@ -462,17 +458,17 @@ export const executiveCommittee = [
     social: [
       {
         id: "22",
-        icon: phone,
+        icon: FaPhone,
         url: "tel:+880 1991499450",
       },
       {
         id: "23",
-        icon: whatsapp,
+        icon: FaWhatsapp,
         url: "https://wa.me/+8801991499450",
       },
       {
         id: "24",
-        icon: facebook,
+        icon: FaFacebook,
         url: "https://www.facebook.com/rhronihr",
       },
     ],
@@ -503,7 +499,7 @@ export const SocialDesc = [
   {
     id: "01",
     title: "page",
-    icon: FaSquareFacebook ,
+    icon: FaSquareFacebook,
     url: "https://www.facebook.com/profile.php?id=100094207557939",
   },
   {
@@ -515,7 +511,7 @@ export const SocialDesc = [
   {
     id: "03",
     title: "whatsapp",
-    icon: FaWhatsapp,
+    icon: BsWhatsapp,
     url: "https://wa.me/+8801727475744",
   },
 ];
