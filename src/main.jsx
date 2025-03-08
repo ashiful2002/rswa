@@ -13,7 +13,7 @@ import GFormBloog from "./Pages/Components/GFormBloog.jsx";
 import OtherLinks from "./Pages/OtherLinks.jsx";
 import BgForm1 from "./Components/Form/BgForm1.jsx";
 import Donate from "./Pages/Donate.jsx";
-import { Analytics } from '@vercel/analytics/next';
+import { Analytics } from "@vercel/analytics/react";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +67,6 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <RouterProvider router={router}></RouterProvider>
-    < Analytics />
-  </StrictMode>
+    <Analytics />
+  </StrictMode>,
 );
