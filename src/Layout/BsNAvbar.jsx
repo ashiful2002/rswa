@@ -8,7 +8,12 @@ import Footer from "./Footer";
 function BsNavbar() {
   return (
     <div className="">
-      <Navbar  sticky="top" expand="md" className="bg-body-tertiary sticky" collapseOnSelect >
+      <Navbar
+        sticky="top"
+        expand="md"
+        className="bg-body-tertiary sticky"
+        collapseOnSelect
+      >
         <Container>
           <Navbar.Brand>
             <Link to="/">
@@ -27,6 +32,7 @@ function BsNavbar() {
                 </Nav.Link>
               ))}
             </Nav>
+            <button className="btn ml-3">dasf</button>
           </Navbar.Collapse>
         </Container>
       </Navbar>

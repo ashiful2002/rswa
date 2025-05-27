@@ -6,12 +6,6 @@ import { bloodGroupData } from "../../constants/BloodGropuData";
 const BgForm1 = () => {
   const [data, setData] = useState(bloodGroupData);
 
-  // console.log(data);
-
-  // handeleNewTodo =(newData)=>{
-  // setData([...data,newData])
-  // }
-
   const [newData, setNewData] = useState();
   console.log(newData);
 
