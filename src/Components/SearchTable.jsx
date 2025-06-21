@@ -27,7 +27,7 @@ const SearchTable = () => {
 
   useEffect(() => {
     getAllData();
-  }, [searchItem]);
+  }, []);
 
   const columns = [
     { title: "Name", dataIndex: "Name", key: "Name" },
