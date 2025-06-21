@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import PageTitle from "./Components/PageTitle";
 import Slider from "./Pages/Home/Slider";
 import Committee from "./Pages/Home/Committee";
-import { Analytics } from "@vercel/analytics/react";
 const App = () => {
   const navigate = useNavigate();
 
@@ -30,7 +29,6 @@ const App = () => {
           </div>
         </div>
       </div>
-      <Analytics />
     </>
   );
 };

@@ -32,7 +32,9 @@ function BsNavbar() {
                 </Nav.Link>
               ))}
             </Nav>
-            <button className="btn ml-3">dasf</button>
+           <Link to="signin" className=" btn btn-success ml-3 bg-green-700">
+              Sign in
+            </Link>
           </Navbar.Collapse>
         </Container>
       </Navbar>

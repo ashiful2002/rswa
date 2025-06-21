@@ -21,10 +21,7 @@ const GFormBloog = () => {
             </span>{" "}
             on this website
           </p>
-          <GForm />
-          <p className="text-muted text-sm">
-            Your data will be added on website as soon as possible...
-          </p>
+          {/* <GForm /> */}
           <BgFormAnt />
           
         </div>

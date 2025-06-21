@@ -10,7 +10,7 @@ const QuickContact = () => {
 
       <div>
         <div className="-ml-3 flex flex-col items-start justify-around text-sm">
-          {qContactDetails.map(({id, url, icon: Icon, title }) => (
+          {qContactDetails.map(({ id, url, icon: Icon, title }) => (
             <div id={id} className="flex items-start justify-between">
               <a
                 href={url}
@@ -18,15 +18,13 @@ const QuickContact = () => {
                 className="mx-2 flex items-center justify-around text-white no-underline"
               >
                 <p className="mx-2">
-                  <Icon className="text-lg text-green-500 " />
+                  <Icon className="text-lg text-green-500" />
                 </p>
 
                 <p className="hover:text-green-500">{title}</p>
               </a>{" "}
             </div>
-          ))}       
-
-         
+          ))}
         </div>
       </div>
     </div>

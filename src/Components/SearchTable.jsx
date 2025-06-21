@@ -1,90 +1,87 @@
 import React, { useEffect, useState } from "react";
 import { Input, Table } from "antd";
-import { bloodGroupData } from "../constants/BloodGropuData";
 import axios from "axios";
-import { MdBloodtype,MdOutlineBloodtype  } from "react-icons/md";
+import { MdOutlineBloodtype } from "react-icons/md";
+import Loading from "./Loading/Loading.jsx";
 
 const SearchTable = () => {
-  const [searchedValue, setsearchBloogG] = useState("");
+  const [bloodGroupData, setBloodGroupData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchItem, setSearchItem] = useState("");
 
   const getAllData = async () => {
-    const response = await axios.get("http://localhost:3000/bloodGroupData");
-    console.log(response.data);
+    setLoading(true);
+    try {
+      const response = await axios.get("https://rswa-server.vercel.app/blood-group", {
+        params: {
+          search: searchItem,
+        },
+      });
+      setBloodGroupData(response.data);
+    } catch (error) {
+      console.error("Failed to fetch blood group data:", error);
+    } finally {
+      setLoading(false);
+    }
   };
+
   useEffect(() => {
     getAllData();
-  }, []);
+  }, [searchItem]);
+
+  const columns = [
+    { title: "Name", dataIndex: "Name", key: "Name" },
+    { title: "Blood Group", dataIndex: "Blood_Group", key: "Blood_Group" },
+    { title: "Contact", dataIndex: "Phone_Number", key: "Phone_Number" },
+    { title: "SSC Batch", dataIndex: "SSC_Batch", key: "SSC_Batch" },
+    { title: "Present Address", dataIndex: "Present_Address", key: "Present_Address" },
+    { title: "Permanent Address", dataIndex: "Permanent_Address", key: "Permanent_Address" },
+  ];
+
+  if (loading) return <Loading />;
 
   return (
-    <>
-      <div className="container mx-auto">
-        <div className="">
-          <label htmlFor="search" className="text-xl bg-slate-700 rounded text-white px-2 py-1 my-2">Search Blood Group:</label>
-          <Input.Search
-            prefix={
-              <MdOutlineBloodtype
-                size={30}
-                className="-ml-3"
-                style={{ color: "rgba(0,0,0,.25)" }}
-              />
-            }
-            
-            className="mb-2"
-            size="large"
-            placeholder="Search by blood group   -eg : 'A(+)'"
-            onSearch={(value) => {
-              setsearchBloogG(value);
-            }}
-            onChange={(e) => {
-              setsearchBloogG(e.target.value);
-            }}
-          ></Input.Search>
-
-          <div className="h-[90vh] overflow-scroll">
-            <Table
-              dataSource={bloodGroupData}
-              columns={[
-                {
-                  title: "Name",
-                  dataIndex: "Name",
-                },
-                {
-                  title: "Blood Group",
-                  dataIndex: "Blood_Group",
-                  filteredValue: [searchedValue],
-                  onFilter: (value, record) => {
-                    return (
-                      String(record.Blood_Group)
-                        .toLowerCase()
-                        .includes(value.toLowerCase()) ||
-                      String(record.Name)
-                        .toLowerCase()
-                        .includes(value.toLowerCase())
-                    );
-                  },
-                },
-                {
-                  title: "Contact",
-                  dataIndex: "Phone_Number",
-                },
-                {
-                  title: "SSC Batch",
-                  dataIndex: "SSC_Batch",
-                },
-                {
-                  title: "Present Address",
-                  dataIndex: "Present_Address",
-                },
-                {
-                  title: "Permanent Address",
-                  dataIndex: "Permanent_Address",
-                },
-              ]}
-            ></Table>
-          </div>
-        </div>
+    <div className="container mx-auto px-4 py-6">
+      <div className="mb-4 flex flex-col md:flex-row md:items-center md:justify-between">
+        <label
+          htmlFor="search"
+          className="mb-2 text-xl font-semibold text-gray-700 md:mb-0"
+        >
+          Search Blood Group:
+        </label>
+        <Input.Search
+          id="search"
+          prefix={<MdOutlineBloodtype size={20} className="text-gray-400" />}
+          className="md:w-96"
+          size="large"
+          placeholder="e.g. A(+)"
+          allowClear
+          value={searchItem}
+          onChange={(e) => setSearchItem(e.target.value)}
+        />
       </div>
-    </>
+
+      <div className="max-h-[80vh] overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300">
+  <div className="min-w-[700px]"> {/* or 1000px depending on column width */}
+    <Table
+      dataSource={bloodGroupData}
+      columns={columns}
+      locale={{
+        emptyText: searchItem
+          ? `No results found for "${searchItem}"`
+          : "No blood donors available.",
+      }}
+      pagination={{ pageSize: 10 }}
+      rowKey={(record) =>
+        record._id ||
+        record.Phone_Number ||
+        `${record.Name}-${Math.random()}`
+      }
+    />
+  </div>
+</div>
+
+    </div>
   );
 };
 

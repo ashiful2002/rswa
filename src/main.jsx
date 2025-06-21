@@ -13,12 +13,14 @@ import GFormBloog from "./Pages/Components/GFormBloog.jsx";
 import OtherLinks from "./Pages/OtherLinks.jsx";
 import BgForm1 from "./Components/Form/BgForm1.jsx";
 import Donate from "./Pages/Donate.jsx";
-import { Analytics } from "@vercel/analytics/react";
-
+import SignUp from "./Pages/SignUp/SignUp.jsx";
+import Signin from "./Pages/SignIn/Signin.jsx";
+import CustomForm from "./Components/Form/CustomForm.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <BsNavbar />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -42,7 +44,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/bgForm",
-        element: <GFormBloog />,
+        element: <CustomForm />,
+        // element: <GFormBloog />,
       },
       {
         path: "/donate",
@@ -57,8 +60,12 @@ const router = createBrowserRouter([
         element: <BgForm1 />,
       },
       {
-        path: "*",
-        element: <ErrorPage />,
+        path: "/signin",
+        element: <Signin />,
+      },
+      {
+        path: "/signup",
+        element: <SignUp />,
       },
     ],
   },
@@ -67,6 +74,5 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <RouterProvider router={router}></RouterProvider>
-    <Analytics />
   </StrictMode>,
 );
