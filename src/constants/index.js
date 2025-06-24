@@ -47,13 +47,7 @@ export const navigation = [
     id: "5",
     title: "blog & news",
     url: "/blog",
-  },
-
-  {
-    id: "7",
-    title: "donate",
-    url: "/donate",
-  },
+  }
 ];
 
 export const sliderDetails = [

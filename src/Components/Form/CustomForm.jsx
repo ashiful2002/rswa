@@ -1,24 +1,26 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { ToastContainer } from "react-bootstrap";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 const bgFormData = [
   { name: "A(+)", value: "A+" },
   { name: "B(+)", value: "B+" },
   { name: "O(+)", value: "O+" },
   { name: "AB(+)", value: "AB+" },
-  // Add more blood groups if needed
+  { name: "A(-)", value: "A-" },
+  { name: "B(-)", value: "B-" },
+  { name: "O(-)", value: "O-" },
+  { name: "AB(-)", value: "AB-" },
 ];
 
 const CustomForm = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    blood_group_select: "",
-    phone_number: "",
-    ssc_batch: "",
-    permanent_address: "",
-    present_address: "",
+    Name: "",
+    Blood_Group: "",
+    Phone_Number: "",
+    SSC_Batch: "",
+    Permanent_Address: "",
+    Present_Address: "",
     agree: false,
   });
 
@@ -29,24 +31,6 @@ const CustomForm = () => {
       [name]: type === "checkbox" ? checked : value,
     }));
   };
-
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    console.log(formData);
-    // Handle form submission here
-    try {
-      const response = await axios.post(
-        "https://rswa-server.vercel.app/add-blood-group",
-        formData,
-      );
-      alert("afsd adsfafsd fads");
-      console.log("Data submitted successfully:", response.data);
-      // Optionally reset form here
-    } catch (error) {
-      console.error("Error submitting form:", error);
-    }
-  };
-
   const onReset = () => {
     setFormData({
       name: "",
@@ -58,9 +42,28 @@ const CustomForm = () => {
       agree: false,
     });
   };
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    console.log(formData);
 
+    // Handle form submission here
+
+    try {
+      const response = await axios.post(
+        "https://rswa-server-oulisqmdl-ashiful2002s-projects.vercel.app/add-blood-group",
+        formData,
+      );
+      toast("Data added successfully");
+      // Optionally reset form here
+      onReset();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
+  //
   return (
-    <>
+    <div className="mx-auto md:w-11/12">
+      <button className="pageTitle">Blood Group Form</button>
       <form
         onSubmit={onSubmit}
         onReset={onReset}
@@ -72,11 +75,11 @@ const CustomForm = () => {
             Name <span className="text-red-600">*</span>
           </label>
           <input
-            id="name"
-            name="name"
+            id="Name"
+            name="Name"
             type="text"
             required
-            value={formData.name}
+            value={formData.Name}
             onChange={handleChange}
             placeholder="Enter your name"
             className="rounded-md border border-gray-300 px-4 py-3 shadow-sm transition duration-150 focus:outline-none focus:ring-2 focus:ring-green-600"
@@ -86,16 +89,16 @@ const CustomForm = () => {
         {/* Blood Group Select */}
         <div className="flex flex-col">
           <label
-            htmlFor="blood_group_select"
+            htmlFor="Blood_Group"
             className="mb-2 font-medium text-gray-700"
           >
             Blood Group <span className="text-red-600">*</span>
           </label>
           <select
-            id="blood_group_select"
-            name="blood_group_select"
+            id="Blood_Group"
+            name="Blood_Group"
             required
-            value={formData.blood_group_select}
+            value={formData.Blood_Group}
             onChange={handleChange}
             className="rounded-md border border-gray-300 bg-white px-4 py-3 capitalize shadow-sm transition duration-150 focus:outline-none focus:ring-2 focus:ring-green-600"
           >
@@ -117,75 +120,56 @@ const CustomForm = () => {
         {/* Phone Number */}
         <div className="flex flex-col">
           <label
-            htmlFor="phone_number"
+            htmlFor="Phone_Number"
             className="mb-2 font-medium text-gray-700"
           >
             Phone Number <span className="text-red-600">*</span>
           </label>
           <input
-            id="phone_number"
-            name="phone_number"
+            id="Phone_Number"
+            name="Phone_Number"
             type="tel"
             required
-            minLength={1}
+            minLength={11}
             maxLength={11}
-            value={formData.phone_number}
+            pattern="^01[3-9][0-9]{8}$"
+            value={formData.Phone_Number}
             onChange={handleChange}
-            placeholder="Enter your phone number"
+            placeholder="e.g. 017XXXXXXXX"
             className="rounded-md border border-gray-300 px-4 py-3 shadow-sm transition duration-150 focus:outline-none focus:ring-2 focus:ring-green-600"
           />
         </div>
 
         {/* SSC Batch */}
         <div className="flex flex-col">
-          <label htmlFor="ssc_batch" className="mb-2 font-medium text-gray-700">
+          <label htmlFor="SSC_Batch" className="mb-2 font-medium text-gray-700">
             SSC Batch <span className="text-red-600">*</span>
           </label>
           <input
-            id="ssc_batch"
-            name="ssc_batch"
+            id="SSC_Batch"
+            name="SSC_Batch"
             type="text"
             required
-            value={formData.ssc_batch}
+            value={formData.SSC_Batch}
             onChange={handleChange}
             placeholder="Enter your SSC batch"
             className="rounded-md border border-gray-300 px-4 py-3 shadow-sm transition duration-150 focus:outline-none focus:ring-2 focus:ring-green-600"
           />
         </div>
-
-        {/* Permanent Address */}
-        <div className="flex flex-col">
-          <label
-            htmlFor="permanent_address"
-            className="mb-2 font-medium text-gray-700"
-          >
-            Permanent Address <span className="text-red-600">*</span>
-          </label>
-          <input
-            id="permanent_address"
-            name="permanent_address"
-            type="text"
-            required
-            value={formData.permanent_address}
-            onChange={handleChange}
-            placeholder="Enter your permanent address"
-            className="rounded-md border border-gray-300 px-4 py-3 shadow-sm transition duration-150 focus:outline-none focus:ring-2 focus:ring-green-600"
-          />
-        </div>
-
         {/* Present Address */}
         <div className="flex flex-col">
           <label
-            htmlFor="present_address"
+            htmlFor="Present_Address"
             className="mb-2 font-medium text-gray-700"
           >
-            Present Address <span className="text-red-600">*</span>
+            Present Address
+            <span className="text-red-600">*</span>
           </label>
           <select
-            id="present_address"
-            name="present_address"
+            id="Present_Address"
+            name="Present_Address"
             required
-            value={formData.present_address}
+            value={formData.Present_Address}
             onChange={handleChange}
             className="rounded-md border border-gray-300 bg-white px-4 py-3 capitalize shadow-sm transition duration-150 focus:outline-none focus:ring-2 focus:ring-green-600"
           >
@@ -203,6 +187,26 @@ const CustomForm = () => {
             <option value="barishal">Barishal</option>
             <option value="khulna">Khulna</option>
           </select>
+        </div>
+
+        {/* Permanent Address */}
+        <div className="flex flex-col">
+          <label
+            htmlFor="Permanent_Address"
+            className="mb-2 font-medium text-gray-700"
+          >
+            Permanent Address <span className="text-red-600">*</span>
+          </label>
+          <input
+            id="Permanent_Address"
+            name="Permanent_Address"
+            type="text"
+            required
+            value={formData.Permanent_Address}
+            onChange={handleChange}
+            placeholder="Enter your permanent address"
+            className="rounded-md border border-gray-300 px-4 py-3 shadow-sm transition duration-150 focus:outline-none focus:ring-2 focus:ring-green-600"
+          />
         </div>
 
         {/* Agreement Checkbox */}
@@ -238,7 +242,7 @@ const CustomForm = () => {
         </div>
         <ToastContainer />
       </form>{" "}
-    </>
+    </div>
   );
 };
 

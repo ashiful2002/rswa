@@ -1,6 +1,5 @@
 import React from "react";
 
-import { Divider } from "antd";
 import QuickContact from "./QuickContact";
 import Social from "./Social";
 import ArrowCom from "../Components/ArrowCom";
@@ -29,7 +28,6 @@ const Footer = () => {
         </div>
 
         <div>
-          <Divider />
         </div>
       </div>
       <div className="">

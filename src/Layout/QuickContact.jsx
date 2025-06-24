@@ -11,7 +11,7 @@ const QuickContact = () => {
       <div>
         <div className="-ml-3 flex flex-col items-start justify-around text-sm">
           {qContactDetails.map(({ id, url, icon: Icon, title }) => (
-            <div id={id} className="flex items-start justify-between">
+            <div key={id} className="flex items-start justify-between">
               <a
                 href={url}
                 target="_blank"

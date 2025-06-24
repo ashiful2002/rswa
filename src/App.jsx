@@ -9,7 +9,7 @@ const App = () => {
 
   return (
     <>
-      <div className="container mx-auto">
+      <div className="mx-auto sm:w-11/12">
         <PageTitle title="Home" heading="home page" />
         <div className="flex flex-col items-center justify-center gap-4">
           <div className="p- rounded border shadow-sm">
@@ -22,7 +22,7 @@ const App = () => {
           </div>
 
           <div>
-            <Committee />
+            {/* <Committee /> */}
           </div>
           <div>
             <Button onClick={() => navigate("/blood")}> Go Blood Bank</Button>

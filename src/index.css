@@ -1,10 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@plugin "daisyui";
 @layer components {
   .btn {
-    @apply rounded p-2 capitalize last:bg-green-700 last:text-white last:hover:bg-green-800 last:hover:text-white;
+    @apply p-2 capitalize;
   }
   .pageTitle {
     @apply container rounded-sm bg-green-700 text-center text-3xl capitalize text-white;
@@ -13,7 +13,10 @@
     @apply flex items-center justify-center;
   }
   .hoverEffect {
-    @apply hover:bg-green-500  transition-colors;
+    @apply transition-colors hover:bg-green-500;
+  }
+  .active {
+    @apply text-green-700;
   }
 }
 

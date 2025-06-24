@@ -14,8 +14,8 @@ import OtherLinks from "./Pages/OtherLinks.jsx";
 import BgForm1 from "./Components/Form/BgForm1.jsx";
 import Donate from "./Pages/Donate.jsx";
 import SignUp from "./Pages/SignUp/SignUp.jsx";
-import Signin from "./Pages/SignIn/Signin.jsx";
 import CustomForm from "./Components/Form/CustomForm.jsx";
+import axios from "axios";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,9 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/blood",
         element: <Blood />,
+        // loader: () => axios.get("").then((res) => res.data),
       },
       {
-        path: "/bgForm",
+        path: "/add-bg",
         element: <CustomForm />,
         // element: <GFormBloog />,
       },
@@ -61,7 +62,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/signin",
-        element: <Signin />,
+        // element: <Signin />,
       },
       {
         path: "/signup",

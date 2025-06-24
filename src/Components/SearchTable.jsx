@@ -9,14 +9,16 @@ const SearchTable = () => {
   const [loading, setLoading] = useState(true);
   const [searchItem, setSearchItem] = useState("");
 
-  const getAllData = async () => {
+  // Fetch data with optional search param
+  const getAllData = async (search = "") => {
     setLoading(true);
     try {
-      const response = await axios.get("https://rswa-server.vercel.app/blood-group", {
-        params: {
-          search: searchItem,
-        },
-      });
+      const response = await axios.get(
+        "https://rswa-server-oulisqmdl-ashiful2002s-projects.vercel.app/blood-group",
+        {
+          params: { search },
+        }
+      );
       setBloodGroupData(response.data);
     } catch (error) {
       console.error("Failed to fetch blood group data:", error);
@@ -25,6 +27,7 @@ const SearchTable = () => {
     }
   };
 
+  // Load all data initially (no search)
   useEffect(() => {
     getAllData();
   }, []);
@@ -34,8 +37,16 @@ const SearchTable = () => {
     { title: "Blood Group", dataIndex: "Blood_Group", key: "Blood_Group" },
     { title: "Contact", dataIndex: "Phone_Number", key: "Phone_Number" },
     { title: "SSC Batch", dataIndex: "SSC_Batch", key: "SSC_Batch" },
-    { title: "Present Address", dataIndex: "Present_Address", key: "Present_Address" },
-    { title: "Permanent Address", dataIndex: "Permanent_Address", key: "Permanent_Address" },
+    {
+      title: "Present Address",
+      dataIndex: "Present_Address",
+      key: "Present_Address",
+    },
+    {
+      title: "Permanent Address",
+      dataIndex: "Permanent_Address",
+      key: "Permanent_Address",
+    },
   ];
 
   if (loading) return <Loading />;
@@ -58,29 +69,29 @@ const SearchTable = () => {
           allowClear
           value={searchItem}
           onChange={(e) => setSearchItem(e.target.value)}
+          onSearch={(value) => getAllData(value)} // only fetch when user submits search
         />
       </div>
 
-      <div className="max-h-[80vh] overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300">
-  <div className="min-w-[700px]"> {/* or 1000px depending on column width */}
-    <Table
-      dataSource={bloodGroupData}
-      columns={columns}
-      locale={{
-        emptyText: searchItem
-          ? `No results found for "${searchItem}"`
-          : "No blood donors available.",
-      }}
-      pagination={{ pageSize: 10 }}
-      rowKey={(record) =>
-        record._id ||
-        record.Phone_Number ||
-        `${record.Name}-${Math.random()}`
-      }
-    />
-  </div>
-</div>
-
+      <div className="scrollbar-thin scrollbar-thumb-gray-300 max-h-[80vh] overflow-x-auto">
+        <div className="min-w-[700px]">
+          <Table
+            dataSource={bloodGroupData}
+            columns={columns}
+            locale={{
+              emptyText: searchItem
+                ? `No results found for "${searchItem}"`
+                : "No blood donors available.",
+            }}
+            pagination={{ pageSize: 10 }}
+            rowKey={(record) =>
+              record._id ||
+              record.Phone_Number ||
+              `${record.Name}-${Math.random()}`
+            }
+          />
+        </div>
+      </div>
     </div>
   );
 };

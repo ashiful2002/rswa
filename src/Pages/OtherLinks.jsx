@@ -1,8 +1,9 @@
 import React from "react";
 import PageTitle from "../Components/PageTitle";
-import Businfo from "./Components/Businfo";
 import { FaFacebookF } from "react-icons/fa6";
 import BsBusInfo from "./Components/BsBusInfo";
+import Businfo from "./Components/BsBusInfo";
+import IndivisualBus from "./Components/IndivisualBus";
 
 const OtherLinks = () => {
   return (
@@ -10,9 +11,10 @@ const OtherLinks = () => {
       <PageTitle title="Numbers" heading="bus numbers" />
 
       <div className="mt-4">
-        <BsBusInfo />
+        <IndivisualBus />
         <Businfo />
-        
+        {/* <BsBusInfo /> */}
+
         <div className="text-center">
           <a
             href="https://facebook.com/groups/519447679364602/"
@@ -21,7 +23,6 @@ const OtherLinks = () => {
           >
             <div className="mb-3 mt-5 flex items-center justify-center">
               <p className="text-green-500">
-                
                 <>join</>
               </p>
               <p className="mx-1">
@@ -32,7 +33,7 @@ const OtherLinks = () => {
           </a>
         </div>
       </div>
-  
+
       <div>
         <PageTitle heading="other numbers" />
         <p>Ambulence:123434</p>
