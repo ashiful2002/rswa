@@ -50,7 +50,7 @@ const CustomForm = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/add-blood-group",
+        "https://rswa-server.vercel.app/add-blood-group",
         formData,
       );
       toast("Data added successfully");
