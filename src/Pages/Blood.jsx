@@ -28,16 +28,21 @@ const Blood = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get("https://rswa-server-oulisqmdl-ashiful2002s-projects.vercel.app/blood-group", {
-        params: {
-          search,
-          sortField,
-          sortOrder,
-          bloodGroup: bloodGroupFilter,
-          page,
-          limit,
+      const res = await axios.get(
+        "https://rswa-server.vercel.app/blood-group",
+        {
+          params: {
+            search,
+            sortField,
+            sortOrder,
+            bloodGroup: bloodGroupFilter,
+            page,
+            limit,
+          },
         },
-      });
+      );
+      console.log(res.data);
+
       if (res.data && Array.isArray(res.data.data)) {
         setBloodData(res.data.data);
         setTotalPages(res.data.totalPages || 1);
@@ -85,7 +90,7 @@ const Blood = () => {
         >
           {bloodGroups.map((bg, i) => (
             <option key={i} value={bg}>
-              {bg || "Filter by Blood Group"}
+              {bg || "All Blood Group"}
             </option>
           ))}
         </select>
@@ -124,6 +129,7 @@ const Blood = () => {
               <th className="border p-3">Name</th>
               <th className="border p-3">Blood Group</th>
               <th className="border p-3">Present address</th>
+              <th className="border p-3">SSC Batch</th>
               {/* <th className="border p-3">permanent address</th> */}
               <th className="border p-3">Phone</th>
             </tr>
@@ -136,6 +142,10 @@ const Blood = () => {
                   <td className="border p-3">{donor.Blood_Group}</td>
                   <td className="border p-3">
                     {donor.Present_Address || "N/A"}
+                  </td>
+                  <td className="border p-3">
+                    {" "}
+                    SSC-{donor.SSC_Batch || "N/A"}
                   </td>
                   {/* <td className="border p-3">
                     {donor.Permanent_Address || "N/A"}

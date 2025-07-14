@@ -3,14 +3,14 @@ import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 
 const bgFormData = [
-  { name: "A(+)", value: "A+" },
-  { name: "B(+)", value: "B+" },
-  { name: "O(+)", value: "O+" },
-  { name: "AB(+)", value: "AB+" },
-  { name: "A(-)", value: "A-" },
-  { name: "B(-)", value: "B-" },
-  { name: "O(-)", value: "O-" },
-  { name: "AB(-)", value: "AB-" },
+  { name: "A(+)", value: "A(+)ve" },
+  { name: "B(+)", value: "B(+)ve" },
+  { name: "O(+)", value: "O(+)ve" },
+  { name: "AB(+)", value: "AB(+)ve" },
+  { name: "A(-)", value: "A(-)ve" },
+  { name: "B(-)", value: "B(-)ve" },
+  { name: "O(-)", value: "O(-)ve" },
+  { name: "AB(-)", value: "AB(-)ve" },
 ];
 
 const CustomForm = () => {
@@ -50,7 +50,7 @@ const CustomForm = () => {
 
     try {
       const response = await axios.post(
-        "https://rswa-server-oulisqmdl-ashiful2002s-projects.vercel.app/add-blood-group",
+        "http://localhost:4000/add-blood-group",
         formData,
       );
       toast("Data added successfully");
