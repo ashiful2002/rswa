@@ -23,9 +23,9 @@ const Footer = () => {
             <Social />
           </div>
        
-        <div className="">
+        {/* <div className="">
           <HelpfulLinks />
-        </div>
+        </div> */}
 
         <div>
         </div>
