@@ -6,13 +6,27 @@ import Loading from "../Components/Loading/Loading";
 import { MdBloodtype } from "react-icons/md";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
-const bloodGroups = ["", "A(+)ve", "A(-)ve", "B(+)ve", "B(-)ve", "O(+)ve", "O(-)ve", "AB(+)ve", "AB(-)ve"];
+const bloodGroups = [
+  "",
+  "A(+)ve",
+  "A(-)ve",
+  "B(+)ve",
+  "B(-)ve",
+  "O(+)ve",
+  "O(-)ve",
+  "AB(+)ve",
+  "AB(-)ve",
+];
 
 const fetchBloodData = async ({ queryKey }) => {
-  const [_key, { search, sortField, sortOrder, bloodGroup, page, limit }] = queryKey;
-  const { data } = await axios.get("https://rswa-server.vercel.app/blood-group", {
-    params: { search, sortField, sortOrder, bloodGroup, page, limit },
-  });
+  const [_key, { search, sortField, sortOrder, bloodGroup, page, limit }] =
+    queryKey;
+  const { data } = await axios.get(
+    "https://rswa-server.vercel.app/blood-group",
+    {
+      params: { search, sortField, sortOrder, bloodGroup, page, limit },
+    },
+  );
   return data;
 };
 
@@ -34,7 +48,14 @@ const Blood = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: [
       "bloodData",
-      { search: debouncedSearch, sortField, sortOrder, bloodGroup: bloodGroupFilter, page, limit },
+      {
+        search: debouncedSearch,
+        sortField,
+        sortOrder,
+        bloodGroup: bloodGroupFilter,
+        page,
+        limit,
+      },
     ],
     queryFn: fetchBloodData,
     keepPreviousData: true,
@@ -48,7 +69,12 @@ const Blood = () => {
   };
 
   if (isLoading) return <Loading />;
-  if (isError) return <p className="text-center text-red-500 py-6">Something went wrong loading data.</p>;
+  if (isError)
+    return (
+      <p className="py-6 text-center text-red-500">
+        Something went wrong loading data.
+      </p>
+    );
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -96,11 +122,11 @@ const Blood = () => {
           </select>
         </div>
 
-        <Link to="/add-bg" className="btn btn-success text-white flex items-center justify-center gap-2 sm:w-56">
-          <MdBloodtype className="text-xl" />
-          Add new Blood Group
-          <AiOutlinePlusCircle className="text-xl" />
-        </Link>
+        <div>
+          <Link to="/add-bg" className="btn btn-success flex w-full text-white">
+            Add new Blood Group <MdBloodtype className="inline text-xl" />
+          </Link>
+        </div>
       </div>
 
       {/* Table */}
@@ -124,8 +150,12 @@ const Blood = () => {
                   <td className="border p-3">{index + 1}</td>
                   <td className="border p-3">{donor.Name}</td>
                   <td className="border p-3">{donor.Blood_Group}</td>
-                  <td className="border p-3">{donor.Present_Address || "N/A"}</td>
-                  <td className="border p-3">{donor.Permanent_Address || "N/A"}</td>
+                  <td className="border p-3">
+                    {donor.Present_Address || "N/A"}
+                  </td>
+                  <td className="border p-3">
+                    {donor.Permanent_Address || "N/A"}
+                  </td>
                   <td className="border p-3">SSC-{donor.SSC_Batch || "N/A"}</td>
                   <td className="border p-3">{donor.Phone_Number || "N/A"}</td>
                 </tr>
