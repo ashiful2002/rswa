@@ -16,6 +16,8 @@ import Donate from "./Pages/Donate.jsx";
 import SignUp from "./Pages/SignUp/SignUp.jsx";
 import CustomForm from "./Components/Form/CustomForm.jsx";
 import axios from "axios";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,7 +43,6 @@ const router = createBrowserRouter([
       {
         path: "/blood",
         element: <Blood />,
-        // loader: () => axios.get("").then((res) => res.data),
       },
       {
         path: "/add-bg",
@@ -71,9 +72,12 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router}></RouterProvider>
+    </QueryClientProvider>
   </StrictMode>,
 );

@@ -1,20 +1,23 @@
 import React from "react";
-import { Alert, Flex, Spin } from "antd";
-const contentStyle = {
-  padding: 50,
-  background: "rgba(0, 0, 0, 0.05)",
-  borderRadius: 4,
+import { MagnifyingGlass } from "react-loader-spinner";
+
+const Loading = () => {
+  return (
+    <div className="flex h-screen items-center justify-center">
+      <MagnifyingGlass
+        visible={true}
+        height="80"
+        width="80"
+        ariaLabel="magnifying-glass-loading"
+        wrapperStyle={{}}
+        wrapperClass="magnifying-glass-wrapper"
+        glassColor="#f8f9fa"
+        color="#15803d"
+      />
+      finding..
+    </div>
+  );
 };
-const content = <div style={contentStyle} />;
-const Loading = () => (
-  <div className="flex h-screen items-center justify-center">
-    <Flex gap="middle" vertical>
-      <Flex gap="middle">
-        <Spin tip="Loading" size="large">
-          {content}
-        </Spin>
-      </Flex>
-    </Flex>
-  </div>
-);
+// dccb75
+
 export default Loading;
