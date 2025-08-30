@@ -1,45 +1,28 @@
-import { Button } from "antd";
-import { GoogleOutlined } from "@ant-design/icons";
-import { useContext } from "react";
-import { AuthContext } from "../../../Context/AuthContext";
-import { useLocation, useNavigate } from "react-router-dom";
+import React from "react";
+import { FcGoogle } from "react-icons/fc";
+import useAuth from "../../../hooks/useAuth";
 
 const GoogleSignInButton = () => {
-  const { GoogleSignin } = useContext(AuthContext);
-  const navigate = useNavigate();
-  const location = useLocation();
+  const { GoogleSignin } = useAuth() || {}; // fallback
 
-  const from = location.state?.from?.pathname || "/";
-
-  const handleGoogleSignin = () => {
-    GoogleSignin()
-      .then((res) => {
-        navigate(from, { replace: true });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const handleGoogleSignIn = async () => {
+    if (!GoogleSignin) return;
+    try {
+      const result = await GoogleSignin();
+      console.log(result.user);
+    } catch (error) {
+      console.error(error);
+    }
   };
+
   return (
-    <Button
-      onClick={handleGoogleSignin}
-      type="default"
-      icon={<GoogleOutlined />}
-      style={{
-        backgroundColor: "#ffffff",
-        color: "#5f6368",
-        border: "1px solid #dadce0",
-        fontWeight: "500",
-        display: "flex",
-        alignItems: "center",
-        gap: "8px",
-        padding: "0 4px",
-        height: "40px",
-      }}
-      className="my-2 w-full"
+    <button
+      onClick={handleGoogleSignIn}
+      className="w-full flex items-center justify-center gap-2 border border-gray-300 rounded py-2 hover:bg-gray-100 transition-colors mb-4"
     >
-      Sign in with Google
-    </Button>
+      <FcGoogle className="text-xl" />
+      <span className="text-gray-700 font-medium">Continue with Google</span>
+    </button>
   );
 };
 

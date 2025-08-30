@@ -17,21 +17,22 @@ import SignUp from "./Pages/SignUp/SignUp.jsx";
 import CustomForm from "./Components/Form/CustomForm.jsx";
 import axios from "axios";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import RootLayout from "./Layout/RootLayout/RootLayout.jsx";
+import Signin from "./Pages/SignIn/Signin.jsx";
+import AuthProvider from "./Context/AuthProvider.jsx";
+import DashboardBlood from "./Pages/Dashboard/Blood/DashboardBlood.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <BsNavbar />,
+    element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <App />,
       },
-      {
-        path: "/home",
-        element: <App />,
-      },
+
       {
         path: "/about",
         element: <About />,
@@ -63,7 +64,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/signin",
-        // element: <Signin />,
+        element: <Signin />,
       },
       {
         path: "/signup",
@@ -71,13 +72,20 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/dashboard",
+    element: <DashboardBlood />,
+  },
 ]);
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router}></RouterProvider>
-    </QueryClientProvider>
+    {" "}
+    <AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router}></RouterProvider>
+      </QueryClientProvider>{" "}
+    </AuthProvider>
   </StrictMode>,
 );

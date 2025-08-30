@@ -14,7 +14,7 @@ const SearchTable = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        "http://localhost:4000/blood-group",
+        "https://rswa-server.vercel.app/blood-group",
         {
           params: { search },
         }

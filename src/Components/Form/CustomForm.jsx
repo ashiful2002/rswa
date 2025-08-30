@@ -32,29 +32,28 @@ const CustomForm = () => {
     }));
   };
   const onReset = () => {
-    setFormData({
-      name: "",
-      blood_group_select: "",
-      phone_number: "",
-      ssc_batch: "",
-      permanent_address: "",
-      present_address: "",
-      agree: false,
-    });
+   setFormData({
+    Name: "",
+    Blood_Group: "",
+    Phone_Number: "",
+    SSC_Batch: "",
+    Permanent_Address: "",
+    Present_Address: "",
+    agree: false,
+  });
   };
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    // console.log(formData);
 
     // Handle form submission here
 
     try {
       const response = await axios.post(
-        "https://rswa-server.vercel.app/add-blood-group",
+        "https://rswa-server.vercel.app/blood-group",
         formData,
       );
       toast("Data added successfully");
-      // Optionally reset form here
       onReset();
     } catch (error) {
       console.error("Error submitting form:", error);

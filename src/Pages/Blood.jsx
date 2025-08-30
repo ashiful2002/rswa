@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Loading from "../Components/Loading/Loading";
 import { MdBloodtype } from "react-icons/md";
-import { AiOutlinePlusCircle } from "react-icons/ai";
+import Loading from "../Components/Loading/Loading";
 
 const bloodGroups = [
   "",
@@ -19,14 +18,10 @@ const bloodGroups = [
 ];
 
 const fetchBloodData = async ({ queryKey }) => {
-  const [_key, { search, sortField, sortOrder, bloodGroup, page, limit }] =
-    queryKey;
-  const { data } = await axios.get(
-    "https://rswa-server.vercel.app/blood-group",
-    {
-      params: { search, sortField, sortOrder, bloodGroup, page, limit },
-    },
-  );
+  const [_key, params] = queryKey;
+  const { data } = await axios.get("https://rswa-server.vercel.app/blood-group", {
+    params,
+  });
   return data;
 };
 
@@ -37,9 +32,9 @@ const Blood = () => {
   const [sortField, setSortField] = useState("Name");
   const [sortOrder, setSortOrder] = useState("asc");
   const [page, setPage] = useState(1);
-  const limit = 20;
+  const [limit, setLimit] = useState(20);
 
-  // debounce the search
+  // Debounce search
   useEffect(() => {
     const timer = setTimeout(() => setDebouncedSearch(search), 500);
     return () => clearTimeout(timer);
@@ -50,9 +45,9 @@ const Blood = () => {
       "bloodData",
       {
         search: debouncedSearch,
+        bloodGroup: bloodGroupFilter,
         sortField,
         sortOrder,
-        bloodGroup: bloodGroupFilter,
         page,
         limit,
       },
@@ -67,15 +62,9 @@ const Blood = () => {
   const goToPage = (num) => {
     if (num >= 1 && num <= totalPages) setPage(num);
   };
-
-  if (isLoading) return <Loading />;
-  if (isError)
-    return (
-      <p className="py-6 text-center text-red-500">
-        Something went wrong loading data.
-      </p>
-    );
-
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="pageTitle">RSWA Virtual Blood Bank</h1>
@@ -146,8 +135,10 @@ const Blood = () => {
           <tbody>
             {bloodData.length > 0 ? (
               bloodData.map((donor, index) => (
-                <tr key={index} className="hover:bg-gray-50">
-                  <td className="border p-3">{index + 1}</td>
+                <tr key={donor._id} className="hover:bg-gray-50">
+                  <td className="border p-3">
+                    {(page - 1) * limit + index + 1}
+                  </td>
                   <td className="border p-3">{donor.Name}</td>
                   <td className="border p-3">{donor.Blood_Group}</td>
                   <td className="border p-3">

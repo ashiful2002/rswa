@@ -4,8 +4,12 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import logo from "../assets/logo.png";
 import { navigation } from "../constants";
-import Footer from "./Footer";
+import useAuth from "../hooks/useAuth";
 function BsNavbar() {
+  const { user, signOutUser } = useAuth();
+  const handleLogOut = () => {
+    signOutUser();
+  };
   return (
     <div className="">
       <Navbar
@@ -17,7 +21,6 @@ function BsNavbar() {
         <Container>
           <Navbar.Brand>
             <Link to="/">
-              {" "}
               <img src={logo} alt="rswa" width={70} />{" "}
             </Link>
           </Navbar.Brand>
@@ -33,15 +36,32 @@ function BsNavbar() {
                   {item.title}
                 </NavLink>
               ))}
+              {user && (
+                <>
+                  <NavLink
+                    className="p-2 capitalize no-underline"
+                    to="/dashboard"
+                  >
+                    Dashborard
+                  </NavLink>
+                </>
+              )}
             </Nav>
-            <Link to="signin" className="btn btn-success ml-3 bg-green-700">
-              Sign in
-            </Link>
+            {user ? (
+              <button
+                onClick={handleLogOut}
+                className="btn btn-success ml-3 bg-green-700"
+              >
+                Log out
+              </button>
+            ) : (
+              <Link to="signin" className="btn btn-success ml-3 bg-green-700">
+                Sign in
+              </Link>
+            )}
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Outlet />
-      <Footer />
     </div>
   );
 }

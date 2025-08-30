@@ -1,60 +1,94 @@
-// import React from "react";
-// import { LockOutlined, UserOutlined } from "@ant-design/icons";
-// import { Button, Checkbox, Form, Input, Flex } from "antd";
-// import { Link } from "react-router-dom";
-// // import GoogleSignInButton from "./GoogleLoginButton/GoogleLoginButton.jsx";
-// const Signin = () => {
-//   const onFinish = (values) => {
-//     const name = values.name;
-//     const password = values.password;
-//     const remember = values.remember;
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { FaUser, FaLock } from "react-icons/fa";
+import GoogleSignInButton from "./GoogleLoginButton/GoogleLoginButton";
 
-//     console.log({ name, password, remember });
-//   };
-//   return (
-//     <div className="flex h-[50vh] items-center justify-center">
-//       <Form
-//         className="w-full"
-//         name="login"
-//         initialValues={{ remember: true }}
-//         style={{ maxWidth: 360 }}
-//         onFinish={onFinish}
-//       >
-//         <Form.Item
-//           name="username"
-//           rules={[{ required: true, message: "Please input your Username!" }]}
-//         >
-//           <Input prefix={<UserOutlined />} placeholder="Username" />
-//         </Form.Item>
-//         <Form.Item
-//           name="password"
-//           rules={[{ required: true, message: "Please input your Password!" }]}
-//         >
-//           <Input
-//             prefix={<LockOutlined />}
-//             type="password"
-//             placeholder="Password"
-//           />
-//         </Form.Item>
-//         <Form.Item>
-//           <Flex justify="space-between" align="center">
-//             <Form.Item name="remember" valuePropName="checked" noStyle>
-//               <Checkbox>Remember me</Checkbox>
-//             </Form.Item>
-//             <Link>Forgot password</Link>
-//           </Flex>
-//         </Form.Item>
+const Signin = () => {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+    remember: false,
+  });
 
-//         <Form.Item>
-//           <Button block type="primary" htmlType="submit">
-//             Log in
-//           </Button>
-//           {/* <GoogleSignInButton /> */}
-//           or <Link to="/signup">Sign up now!</Link>
-//         </Form.Item>
-//       </Form>
-//     </div>
-//   );
-// };
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
 
-// export default Signin;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
+
+  return (
+    <div className="flex items-center justify-center bg-gray-50">
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-md rounded bg-white p-6 shadow-md"
+      >
+        <h2 className="mb-6 text-center text-2xl font-semibold">Sign In</h2>
+
+        {/* Username */}
+        <div className="mb-4">
+          <label className="mb-1 block text-gray-700" htmlFor="username">
+            Username
+          </label>
+          <div className="flex items-center rounded border px-3 py-2 focus-within:ring-2 focus-within:ring-blue-500">
+            <FaUser className="mr-2 text-gray-400" />
+            <input
+              type="text"
+              name="username"
+              id="username"
+              value={formData.username}
+              onChange={handleChange}
+              placeholder="Username"
+              className="w-full outline-none"
+              required
+            />
+          </div>
+        </div>
+
+        {/* Password */}
+        <div className="mb-4">
+          <label className="mb-1 block text-gray-700" htmlFor="password">
+            Password
+          </label>
+          <div className="flex items-center rounded border px-3 py-2 focus-within:ring-2 focus-within:ring-blue-500">
+            <FaLock className="mr-2 text-gray-400" />
+            <input
+              type="password"
+              name="password"
+              id="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Password"
+              className="w-full outline-none"
+              required
+            />
+          </div>
+        </div>
+
+        {/* Submit */}
+        <button
+          type="submit"
+          className="mb-4 w-full rounded bg-blue-500 py-2 text-white transition-colors hover:bg-blue-600"
+        >
+          Log in
+        </button>
+        <GoogleSignInButton />
+        {/* Sign up */}
+        <p className="text-center text-gray-600">
+          New User?{" "}
+          <Link to="/signup" className="text-blue-500 hover:underline">
+            Sign up now!
+          </Link>
+        </p>
+      </form>
+    </div>
+  );
+};
+
+export default Signin;
