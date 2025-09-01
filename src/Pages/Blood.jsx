@@ -19,9 +19,12 @@ const bloodGroups = [
 
 const fetchBloodData = async ({ queryKey }) => {
   const [_key, params] = queryKey;
-  const { data } = await axios.get("https://rswa-server.vercel.app/blood-group", {
-    params,
-  });
+  const { data } = await axios.get(
+    "https://rswa-server.vercel.app/blood-group",
+    {
+      params,
+    },
+  );
   return data;
 };
 
@@ -33,6 +36,8 @@ const Blood = () => {
   const [sortOrder, setSortOrder] = useState("asc");
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(20);
+  //
+  const [visible, setVisible] = useState(false);
 
   // Debounce search
   useEffect(() => {
@@ -71,36 +76,37 @@ const Blood = () => {
 
       {/* Filters */}
       <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <input
-          type="text"
-          placeholder="Search blood group"
-          className="w-full rounded border px-4 py-2 md:w-1/2"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+        {/* <div>
+          <input
+            type="text"
+            placeholder="Search blood group"
+            className="w-full rounded border px-4 py-2 md:w-1/2"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <button>Search</button>
+        </div> */}
 
-        <select
-          className="rounded border px-4 py-2"
-          value={bloodGroupFilter}
-          onChange={(e) => setBloodGroupFilter(e.target.value)}
-        >
-          {bloodGroups.map((bg, i) => (
-            <option key={i} value={bg}>
-              {bg || "All Blood Group"}
-            </option>
-          ))}
-        </select>
-
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between gap-2">
           <select
+            className="rounded border px-4 py-2"
+            value={bloodGroupFilter}
+            onChange={(e) => setBloodGroupFilter(e.target.value)}
+          >
+            {bloodGroups.map((bg, i) => (
+              <option key={i} value={bg}>
+                {bg || "All Blood Group"}
+              </option>
+            ))}
+          </select>{" "}
+          {/* <select
             className="rounded border px-3 py-2"
             value={sortField}
             onChange={(e) => setSortField(e.target.value)}
           >
             <option value="Name">Name</option>
             <option value="Blood_Group">Blood Group</option>
-          </select>
-
+          </select> */}
           <select
             className="rounded border px-3 py-2"
             value={sortOrder}
@@ -148,7 +154,11 @@ const Blood = () => {
                     {donor.Permanent_Address || "N/A"}
                   </td>
                   <td className="border p-3">SSC-{donor.SSC_Batch || "N/A"}</td>
-                  <td className="border p-3">{donor.Phone_Number || "N/A"}</td>
+                  <td className="border p-3">
+                    <a href={`tel:${donor.Phone_Number}`}>
+                      {donor.Phone_Number || "N/A"}
+                    </a>
+                  </td>
                 </tr>
               ))
             ) : (

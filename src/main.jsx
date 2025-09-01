@@ -21,6 +21,8 @@ import RootLayout from "./Layout/RootLayout/RootLayout.jsx";
 import Signin from "./Pages/SignIn/Signin.jsx";
 import AuthProvider from "./Context/AuthProvider.jsx";
 import DashboardBlood from "./Pages/Dashboard/Blood/DashboardBlood.jsx";
+import DashboardStat from "./Pages/Dashboard/DashBoardStat/DashboardStat.jsx";
+import DashboardLayout from "./Pages/Dashboard/DashboardLayout/DashboardLayout.jsx";
 
 const router = createBrowserRouter([
   {
@@ -74,7 +76,17 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardBlood />,
+    element: <DashboardLayout />,
+    children: [
+      {
+        index: true,
+        element: <DashboardStat />,
+      },
+      {
+        path: "manage-blood",
+        element: <DashboardBlood />,
+      },
+    ],
   },
 ]);
 const queryClient = new QueryClient();

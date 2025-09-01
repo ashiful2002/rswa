@@ -6,6 +6,8 @@ import UpdateDonorModal from "../../../Components/shared/modal/UpdateDonorModal"
 import ConfirmDeleteModal from "../../../Components/shared/modal/ConfirmDeleteModal";
 import Loading from "../../../Components/Loading/Loading";
 import { Link } from "react-router-dom";
+import DashboardStat from "../DashBoardStat/DashboardStat";
+import { toast, ToastContainer } from "react-toastify";
 const DashboardBlood = () => {
   const [search, setSearch] = useState("");
   //   const [debouncedSearch, setDebouncedSearch] = useState("");
@@ -17,9 +19,12 @@ const DashboardBlood = () => {
   const debouncedSearch = useDebounce(search, 500);
   const fetchBloodData = async ({ queryKey }) => {
     const [_key, { search, page, limit }] = queryKey;
-    const { data } = await axios.get("https://rswa-server.vercel.app/blood-group", {
-      params: { search, page, limit },
-    });
+    const { data } = await axios.get(
+      "https://rswa-server.vercel.app/blood-group",
+      {
+        params: { search, page, limit },
+      },
+    );
     return data;
   };
 
@@ -57,6 +62,7 @@ const DashboardBlood = () => {
     }
 
     await axios.put(`https://rswa-server.vercel.app/blood-group/${_id}`, updateData);
+    toast.success("Data updated");
     refetch();
     handleModalClose();
   };
@@ -91,7 +97,6 @@ const DashboardBlood = () => {
   return (
     <div className="p-5">
       <h2 className="mb-4 text-2xl font-semibold">Blood Donor List</h2>
-
       {/* Search */}
       <div className="mb-4 flex flex-row-reverse justify-between gap-2">
         <Link to="/" className="btn btn-primary my-1">
@@ -217,6 +222,7 @@ const DashboardBlood = () => {
           >
             Next
           </button>
+          <ToastContainer />
         </div>
       </div>
     </div>

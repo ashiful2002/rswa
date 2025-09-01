@@ -21,7 +21,7 @@ export const navigation = [
   {
     id: "1",
     title: "home",
-    url: "/home",
+    url: "/",
   },
   {
     id: "2",
@@ -34,47 +34,48 @@ export const navigation = [
     url: "/blood",
   },
   {
-    id: "6",
-    title: "nunmbers",
-    url: "/otherLinks",
-  },
-  {
     id: "4",
-    title: "projects",
-    url: "/projects",
+    title: "Add bg",
+    url: "/add-bg",
   },
+  // {
+  //   id: "6",
+  //   title: "nunmbers",
+  //   url: "/otherLinks",
+  // },
+
   {
     id: "5",
     title: "Blog",
     url: "/blog",
-  }
+  },
 ];
 
 export const sliderDetails = [
-  {
-    id: "0",
-    url: slider3,
-    title: "কৃতি শিক্ষার্থী সংবর্ধনা -২০২৪",
-    desc: "slider 1 desc",
-  },
+  // {
+  //   id: "0",
+  //   url: "",
+  //   title: "কৃতি শিক্ষার্থী সংবর্ধনা -২০২৪",
+  //   desc: "slider 1 desc",
+  // },
   {
     id: "1",
-    url: slider2,
-    title: "বন্যার্তদের মাঝে ত্রান সাম্পগ্রী বিতরণ ",
+    url: "https://i.ibb.co.com/Wvd7S4kb/slider2.jpg",
+    title: "বন্যার্তদের মাঝে ত্রান সাম্পগ্রী বিতরণ ২০১৯",
     desc: "slider 1 desc",
   },
   {
     id: "2",
-    url: bijoy,
-    title: "বিজয় দিবসে RSWA এর শ্রদ্ধাঞ্জলি",
+    url: "https://i.ibb.co.com/wZkdnLQ0/bijoy.jpg",
+    title: "বিজয় দিবসে RSWA এর শ্রদ্ধাঞ্জলি ২০২৪",
     desc: "মহান বিজয় দিবস উপলক্ষ্যে শহীদমিনারে শ্রদ্ধাঞ্জলি প্রদান করে RSWA পরিবার",
   },
-  {
-    id: "22",
-    url: slider1,
-    title: "বৃক্ষ রোপন কর্মসূচী  ",
-    desc: "slider 1 desc",
-  },
+  // {
+  //   id: "22",
+  //   url: slider1,
+  //   title: "বৃক্ষ রোপন কর্মসূচী  ",
+  //   desc: "slider 1 desc",
+  // },
 ];
 export const aboutEnglish = [
   {
