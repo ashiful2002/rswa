@@ -12,7 +12,7 @@ const DashboardLayout = () => {
       >
         <div className="flex flex-col justify-between gap-2 border-b p-4">
           <NavLink to="/">
-            <img src={logo} width={70} alt="logo" />
+            <h2>Bakk to main page</h2>{" "}
           </NavLink>{" "}
           <NavLink
             to="/dashboard"

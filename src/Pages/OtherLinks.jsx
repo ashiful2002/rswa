@@ -22,24 +22,21 @@ const OtherLinks = () => {
             rel="noopener noreferrer"
           >
             <div className="mb-3 mt-5 flex items-center justify-center">
-              <p className="text-green-500">
-                <>join</>
+              <p className="capitalize text-green-500">
+                join rowmari bus zone{" "}
+                <FaFacebookF className="inline text-blue-700" /> Group
               </p>
-              <p className="mx-1">
-                <FaFacebookF />
-              </p>
-              <p className="capitalize text-green-500"> rowmari bus zone</p>
             </div>
           </a>
         </div>
       </div>
 
-      <div>
+      {/* <div>
         <PageTitle heading="other numbers" />
         <p>Ambulence:123434</p>
         <p>Nouka:123434</p>
         <p>Ferry:123434</p>
-      </div>
+      </div> */}
     </div>
   );
 };

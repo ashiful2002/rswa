@@ -205,7 +205,7 @@ export const siamInfo = [
   {
     id: "1",
     counter: "mohakhali",
-    phoneNumber: "01916-23412",
+    phoneNumber: "01728-304789",
   },
   {
     id: "2",
