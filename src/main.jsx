@@ -20,6 +20,7 @@ import AuthProvider from "./Context/AuthProvider.jsx";
 import DashboardBlood from "./Pages/Dashboard/Blood/DashboardBlood.jsx";
 import DashboardStat from "./Pages/Dashboard/DashBoardStat/DashboardStat.jsx";
 import DashboardLayout from "./Pages/Dashboard/DashboardLayout/DashboardLayout.jsx";
+import Archives from "./Pages/archives/Archives.jsx";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
+        path: "/archives",
+        element: <Archives />,
+      },
+      {
         path: "/Blog",
         element: <Blog />,
       },
@@ -51,7 +56,6 @@ const router = createBrowserRouter([
       {
         path: "/add-bg",
         element: <CustomForm />,
-        // element: <GFormBloog />,
       },
       {
         path: "/donate",

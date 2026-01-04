@@ -49,6 +49,11 @@ export const navigation = [
     title: "Blog",
     url: "/blog",
   },
+  {
+    id: "6",
+    title: "archives",
+    url: "/archives",
+  },
 ];
 
 export const sliderDetails = [

@@ -1,0 +1,84 @@
+[
+  {
+    "id": 1,
+    "title": "Community Road Development Project",
+    "description": "",
+    "url": "https://i.ibb.co.com/q3fDtKLj/16-dec.jpg",
+    "is_open": false,
+    "category": "Infrastructure",
+    "year": 2025,
+    "status": "Completed",
+    "thumbnail": "https://i.ibb.co.com/N2w3dYJK/16-dec-min.jpg"
+  },
+
+  {
+    "id": 2,
+    "title": "ঈদ উপহার বিতরণ কর্মসূচি",
+    "description": "রৌমারী স্টুডেন্টস ওয়েলফেয়ার অ্যাসোসিয়েশন কর্তৃক আয়োজিত ঈদ উপহার বিতরণ কর্মসূচি (৬ জুন), ১০০ টি পরিবারের মধ্যে ৭০ টি পরিবারের মাঝে বিতরণের মাধ্যমে ১ম পর্ব সফল ভাবে বাস্তবায়ন হয়েছে। ২য় পর্বে নদীবন্দি পরিবারগুলোর মাঝে আমরা ঈদ সামগ্রী এবং ত্রাণ বিতরণ  আজকের মধ্যেই সম্পন্ন করবো ইন শা আল্লাহ। ঈদের খুশি ভাগাভাগির মধ্যেই ঈদের আনন্দ ছড়িয়ে পড়ুক সবার মাঝে।",
+    "url": "https://i.ibb.co.com/xK5jnsCP/eid-gift-min.jpg",
+    "is_open": true,
+    "category": "socioal welfare",
+    "date": "6 jun",
+    "year": 2025,
+    "status": "Completed",
+    "thumbnail": "https://i.ibb.co.com/xK5jnsCP/eid-gift-min.jpg"
+  },
+
+  {
+    "id": 3,
+    "title": "Primary School Renovation Initiative",
+    "description": "Renovation of classrooms, sanitation facilities, and playgrounds in rural primary schools.",
+    "url": "https://i.ibb.co.com/WTYgtdY/eid-gift-2-min.jpg",
+    "is_open": false,
+    "category": "Education",
+    "year": 2024,
+    "status": "Completed",
+    "thumbnail": "https://i.ibb.co.com/WTYgtdY/eid-gift-2-min.jpg"
+    
+  },
+  {
+    "id": 4,
+    "title": "Clean Water Supply Project",
+    "description": "Installation of tube wells and water purification systems to ensure safe drinking water.",
+    "url": "https://i.ibb.co.com/HLLBZKqF/guideline.jpg",
+    "is_open": false,
+    "category": "Health",
+    "year": 2024,
+    "status": "Completed",
+    "thumbnail": "https://i.ibb.co.com/hxkL5Hx9/guideline-min.jpg"
+  },
+  {
+    "id": 5,
+    "title": "Women Entrepreneurship Support Program",
+    "description": "Providing training, mentorship, and seed funding to support women-led small businesses.",
+    "url": "https://i.ibb.co.com/yngkR1Qw/IMG-3389.jpg",
+    "is_open": true,
+    "category": "Economic Development",
+    "year": 2025,
+    "status": "Ongoing",
+    "thumbnail": "https://i.ibb.co.com/wNQYtdr7/school-program-min.jpg"
+  },
+  {
+    "id": 6,
+    "title": "Victory Day 4.5 K Run - 2025",
+    "description": "RSWA কতৃক আয়োজিত আজকের Victory Day 4.5 Km Run - 2025 এর আয়োজন সফলভাবে সম্পন্ন করা হয়েছে। ছোট পরিসরে আয়োজিত এই ম্যারাথনে আমরা আশানুরূপ সাড়া পেয়েছি এবং সকলে স্বতঃস্ফূর্ত ভাবে অংশ নিয়েছে। আমরা ভবিষ্যতে আরো বড় পরিসরে এটার আয়োজন করবো।আজকের এই ম্যারাথনে যারা অংশগ্রহণ করেছে তাদের অসংখ্য ধন্যবাদ এবং শুভ কামনা।যারা অংশগ্রহণ করতে পারেনি তাদেরকে পরবর্তীতে অংশ নিতে আহ্বান করা হচ্ছে।",
+    "url": "https://i.ibb.co.com/rRyWqbhG/run.jpg",
+    "is_open": false,
+    "category": "Health",
+    "date": "17 Dec",
+    "year": 2023,
+    "status": "Completed",
+    "thumbnail": "https://i.ibb.co.com/qMswj20X/run-min.jpg"
+  },
+  {
+    "id": 6,
+    "title": "Healthcare Awareness Campaign",
+    "description": "Community-based awareness sessions focused on maternal health and disease prevention.",
+    "url": "https://i.ibb.co.com/4nR0PMHk/school-program.jpg",
+    "is_open": false,
+    "category": "Health",
+    "year": 2023,
+    "status": "Completed",
+    "thumbnail": "https://i.ibb.co.com/cXXCYJmN/IMG-3389-min.jpg"
+  }
+]

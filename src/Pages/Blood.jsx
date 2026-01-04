@@ -76,16 +76,7 @@ const Blood = () => {
 
       {/* Filters */}
       <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        {/* <div>
-          <input
-            type="text"
-            placeholder="Search blood group"
-            className="w-full rounded border px-4 py-2 md:w-1/2"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <button>Search</button>
-        </div> */}
+      
 
         <div className="flex items-center justify-between gap-2">
           <select
@@ -99,14 +90,7 @@ const Blood = () => {
               </option>
             ))}
           </select>{" "}
-          {/* <select
-            className="rounded border px-3 py-2"
-            value={sortField}
-            onChange={(e) => setSortField(e.target.value)}
-          >
-            <option value="Name">Name</option>
-            <option value="Blood_Group">Blood Group</option>
-          </select> */}
+          
           <select
             className="rounded border px-3 py-2"
             value={sortOrder}
