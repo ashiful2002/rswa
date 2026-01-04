@@ -5,12 +5,23 @@
     "description": "মহান বিজয় দিবস উপলক্ষে RSWA এর পক্ষ থেকে শহীদ মিনারে পুষ্পস্তবক অর্পন।Ï",
     "url": "https://i.ibb.co.com/q3fDtKLj/16-dec.jpg",
     "is_open": false,
-    "category": "",
+    "category": "16 Dec",
     "year": 2025,
     "status": "",
     "thumbnail": "https://i.ibb.co.com/N2w3dYJK/16-dec-min.jpg"
   },
-
+  {
+    "id": 22,
+    "title": "কৃতি শিক্ষার্থী সংবর্ধনা-২০২৪ খ্রি.",
+    "description": "কৃতি শিক্ষার্থী সংবর্ধনা-২০২৪ খ্রি. এ বিশেষ অতিথি হিসেবে উপস্থিত ছিলেন জনাব আসিফ উদ্দিন মিয়া, সহকারী কমিশনার ভূমি, রৌমারী উপজেলা এবং ভারপ্রাপ্ত উপজেলা নির্বাহী অফিসার রৌমারী, কুড়িগ্রাম। বিশেষ অতিথি হিসেবে আরও উপস্থিত ছিলেন জনাব আব্দুল কাইয়ুম স্যার, অধ্যক্ষ (ভারপ্রাপ্ত) রৌমারী সরকারি কলেজ, রৌমারী, কুড়িগ্রাম। সহ RSWA এর উপদেষ্টা মণ্ডলীর সদস্যরা। সকাল থেকে বৃষ্টি থাকায় এই প্রতিকূল পরিবেশেও সবার ঐকান্তিক প্রচেষ্টায় আমরা প্রোগ্রাম করতে পারি। এ জন্য সকলের প্রতি আমারা আন্তরিক ধন্যবাদ ও  কৃতজ্ঞতা জানাই। আমাদের সকল কার্যক্রমে আপনাদের স্বতঃস্ফূর্ত অংশগ্রহণ কামনা করি।",
+    "url": "https://i.ibb.co.com/FLk01jBt/image.png",
+    "is_open": true,
+    "category": "Education",
+    "date": "21 jun",
+    "year": 2024,
+    "status": "Completed",
+    "thumbnail": "https://i.ibb.co.com/FLk01jBt/image.png"
+  },
   {
     "id": 2,
     "title": "ঈদ উপহার বিতরণ কর্মসূচি",
@@ -117,5 +128,17 @@
     "year": 2024,
     "status": "Completed",
     "thumbnail": "https://i.ibb.co.com/chfmxDF9/image.png"
+  },
+  {
+    "id": 10,
+    "title": "ইফতার ও দোয়া মাহফিল ২০২৫",
+    "description": "রৌমারী স্টুডেন্টস ওয়েলফেয়ার এসোসিয়েশন এর বার্ষীক ইফতার ও দোয়া মাহফিল ২০২৫",
+    "url": "https://i.ibb.co.com/cKJ9Fc7h/image.png",
+    "is_open": false,
+    "category": "socioal welfare",
+    "date": "29 Mar",
+    "year": 2025,
+    "status": "Completed",
+    "thumbnail": "https://i.ibb.co.com/cKJ9Fc7h/image.png"
   }
 ]
