@@ -8,7 +8,7 @@ import {
 const Loading = () => {
   return (
     <div className="flex h-screen items-center justify-center">
-      {/* <BallTriangle
+      <BallTriangle
         height={100}
         width={100}
         radius={5}
@@ -17,13 +17,13 @@ const Loading = () => {
         wrapperStyle={{}}
         wrapperClass=""
         visible={true}
-      /> */}
-      <FallingLines
+      />
+      {/* <FallingLines
         color="#4fa94d"
         width="100"
         visible={true}
         ariaLabel="falling-circles-loading"
-      />
+      /> */}
     </div>
   );
 };

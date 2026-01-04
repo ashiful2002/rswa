@@ -32,7 +32,7 @@ const Signin = () => {
         <h2 className="mb-6 text-center text-2xl font-semibold">Sign In</h2>
 
         {/* Username */}
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label className="mb-1 block text-gray-700" htmlFor="username">
             Username
           </label>
@@ -49,10 +49,10 @@ const Signin = () => {
               required
             />
           </div>
-        </div>
+        </div> */}
 
         {/* Password */}
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label className="mb-1 block text-gray-700" htmlFor="password">
             Password
           </label>
@@ -69,23 +69,23 @@ const Signin = () => {
               required
             />
           </div>
-        </div>
+        </div> */}
 
         {/* Submit */}
-        <button
+        {/* <button
           type="submit"
           className="mb-4 w-full rounded bg-blue-500 py-2 text-white transition-colors hover:bg-blue-600"
         >
           Log in
-        </button>
+        </button> */}
         <GoogleSignInButton />
         {/* Sign up */}
-        <p className="text-center text-gray-600">
+        {/* <p className="text-center text-gray-600">
           New User?{" "}
           <Link to="/signup" className="text-blue-500 hover:underline">
             Sign up now!
           </Link>
-        </p>
+        </p> */}
       </form>
     </div>
   );
