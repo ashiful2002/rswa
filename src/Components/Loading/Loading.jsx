@@ -6,7 +6,7 @@ import {
   MagnifyingGlass,
 } from "react-loader-spinner";
 
-const Loading = () => {
+const Loading = ({ children }) => {
   return (
     <div className="flex h-screen items-center justify-center">
       <>
@@ -17,7 +17,7 @@ const Loading = () => {
           role="status"
           aria-hidden="true"
         />
-        <span className="ml-2">Loading...</span>
+        <span className="ml-2">Loading {children}...</span>
       </>
       {/* <BallTriangle
         height={100}

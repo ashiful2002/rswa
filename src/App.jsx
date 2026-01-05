@@ -23,7 +23,12 @@ const App = () => {
 
           <div>{/* <Committee /> */}</div>
           <div>
-            <Button onClick={() => navigate("/blood")}> Go Blood Bank</Button>
+            <button
+              className="btn btn-success"
+              onClick={() => navigate("/blood")}
+            >
+              Go Blood Bank
+            </button>
           </div>
         </div>
       </div>

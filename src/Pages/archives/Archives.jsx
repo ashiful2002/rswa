@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PageTitle from "../../Components/PageTitle";
+import Loading from "../../Components/Loading/Loading";
 
 const Archives = () => {
   const [projects, setProjects] = useState([]);
@@ -21,7 +22,7 @@ const Archives = () => {
       });
   }, []);
 
-  if (loading) return <p>Loading archives...</p>;
+  if (loading) return <Loading>archives</Loading>;
   if (error) return <p>{error}</p>;
 
   const toggleAccordion = (id) => {
@@ -56,7 +57,7 @@ const Archives = () => {
 
               <div className="mb-2 text-sm text-gray-500">
                 <span>
-                  {project?.date} {project?.date && "•"} {project.year} 
+                  {project?.date} {project?.date && "•"} {project.year}
                 </span>
                 <span className="ml-3"> • {project.category}</span>
               </div>
