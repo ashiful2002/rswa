@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PageTitle from "../../Components/PageTitle";
 import Loading from "../../Components/Loading/Loading";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Archives = () => {
   const [projects, setProjects] = useState([]);
@@ -26,7 +27,7 @@ const Archives = () => {
   if (error) return <p>{error}</p>;
 
   const toggleAccordion = (id) => {
-    setOpenId(openId === id ? null : id);
+    setOpenId((prev) => (prev === id ? null : id));
   };
 
   return (
@@ -37,20 +38,20 @@ const Archives = () => {
         {projects.map((project) => {
           const isOpen = openId === project.id;
           const shortText =
-            project.description.length > 30
+            project.description.length > 50
               ? project.description.slice(0, 50) + "..."
               : project.description;
 
           return (
-            <div
+            <motion.div
+              layout
               key={project.id}
-              className="rounded-lg border p-3 transition hover:shadow-md"
+              className="rounded-lg border p-3 hover:shadow-md"
             >
               <img
                 src={project.thumbnail}
                 alt={project.title}
                 className="mb-3 rounded object-cover"
-                // h-40 w-full
               />
 
               <h2 className="mb-1 text-xl font-semibold">{project.title}</h2>
@@ -59,22 +60,32 @@ const Archives = () => {
                 <span>
                   {project?.date} {project?.date && "•"} {project.year}
                 </span>
-                <span className="ml-3"> • {project.category}</span>
+                <span className="ml-3">• {project.category}</span>
               </div>
 
-              <p className="text-gray-600">
-                {isOpen ? project.description : shortText}
-              </p>
+              {/* Animated description */}
+              <AnimatePresence initial={false}>
+                <motion.p
+                  key={isOpen ? "full" : "short"}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25, ease: "easeInOut" }}
+                  className="overflow-hidden text-gray-600"
+                >
+                  {isOpen ? project.description : shortText}
+                </motion.p>
+              </AnimatePresence>
 
               {project.description.length > 50 && (
-                <span
+                <button
                   onClick={() => toggleAccordion(project.id)}
-                  className="text-sm font-medium text-blue-500 hover:underline"
+                  className="mt-2 text-sm font-medium text-blue-500 hover:underline"
                 >
-                  {isOpen ? "Show less " : "Read more"}
-                </span>
+                  {isOpen ? "Show less" : "Read more"}
+                </button>
               )}
-            </div>
+            </motion.div>
           );
         })}
       </div>
