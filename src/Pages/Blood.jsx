@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { MdBloodtype } from "react-icons/md";
 import Loading from "../Components/Loading/Loading";
+import { Spinner } from "react-bootstrap";
 
 const bloodGroups = [
   "",
@@ -76,8 +77,6 @@ const Blood = () => {
 
       {/* Filters */}
       <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-      
-
         <div className="flex items-center justify-between gap-2">
           <select
             className="rounded border px-4 py-2"
@@ -90,7 +89,6 @@ const Blood = () => {
               </option>
             ))}
           </select>{" "}
-          
           <select
             className="rounded border px-3 py-2"
             value={sortOrder}
