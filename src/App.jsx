@@ -22,7 +22,7 @@ const App = () => {
           </div>
 
           <div>
-            <Committee />
+            {/* <Committee /> */}
             </div>
           <div>
             <button
