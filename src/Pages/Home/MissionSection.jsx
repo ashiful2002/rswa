@@ -1,6 +1,6 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { ScrollRevealSection } from '@/hooks/useScrollReveal';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../components/ui/card';
+import { ScrollRevealSection } from '../../hooks/useScrollReveal';
 
 const MissionSection = () => {
   const stats = [

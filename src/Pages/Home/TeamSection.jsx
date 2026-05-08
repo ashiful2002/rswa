@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import { ScrollRevealSection } from '@/hooks/useScrollReveal';
+import { Card, CardContent, CardHeader } from '../../components/ui/card';
+import { Avatar, AvatarImage, AvatarFallback } from '../../components/ui/avatar';
+import { ScrollRevealSection } from '../../hooks/useScrollReveal';
 import { Mail, Share2 } from 'lucide-react';
 
 const TeamSection = () => {

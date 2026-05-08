@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { Menu, X, LogOut, BarChart3, Users, Droplet, FileText } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { Button } from "../../../components/ui/button";
+import { Separator } from "../../../components/ui/separator";
 
 const DashboardLayout = () => {
   const [isOpen, setIsOpen] = useState(true);
