@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
+import "./styles/animations.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import About from "./Pages/About.jsx";
@@ -20,6 +21,8 @@ import AuthProvider from "./Context/AuthProvider.jsx";
 import DashboardBlood from "./Pages/Dashboard/Blood/DashboardBlood.jsx";
 import DashboardStat from "./Pages/Dashboard/DashBoardStat/DashboardStat.jsx";
 import DashboardLayout from "./Pages/Dashboard/DashboardLayout/DashboardLayout.jsx";
+import DashboardUserManagement from "./Pages/Dashboard/DashboardUserManagement.jsx";
+import DashboardContent from "./Pages/Dashboard/DashboardContent.jsx";
 import Archives from "./Pages/archives/Archives.jsx";
 
 const router = createBrowserRouter([
@@ -91,6 +94,14 @@ const router = createBrowserRouter([
         path: "manage-blood",
         // here have to use private route
         element: <DashboardBlood />,
+      },
+      {
+        path: "users",
+        element: <DashboardUserManagement />,
+      },
+      {
+        path: "content",
+        element: <DashboardContent />,
       },
     ],
   },

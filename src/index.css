@@ -1,22 +1,80 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.6%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.6%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.6%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 142.1 70.6% 45.3%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --primary: 142.1 70.6% 45.3%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217.2 91.2% 59.8%;
+    --secondary-foreground: 0 0% 100%;
+    --ring: 142.1 70.6% 45.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 3.6%;
+    --foreground: 0 0% 98.2%;
+    --card: 0 0% 3.6%;
+    --card-foreground: 0 0% 98.2%;
+    --popover: 0 0% 3.6%;
+    --popover-foreground: 0 0% 98.2%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 142.1 70.6% 45.3%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98.2%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --primary: 142.1 70.6% 45.3%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217.2 91.2% 59.8%;
+    --secondary-foreground: 0 0% 100%;
+    --ring: 142.1 70.6% 45.3%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
 @plugin "daisyui";
+
 @layer components {
   .btn {
     @apply p-2 capitalize;
   }
   .pageTitle {
-    @apply container rounded-sm bg-green-700 text-center text-3xl capitalize text-white;
+    @apply container rounded-sm bg-primary text-center text-3xl capitalize text-primary-foreground;
   }
   .allCenter {
     @apply flex items-center justify-center;
   }
   .hoverEffect {
-    @apply transition-colors hover:bg-green-500;
+    @apply transition-colors hover:bg-primary/90;
   }
   .active {
-    @apply text-green-700;
+    @apply text-primary;
   }
 }
 
@@ -32,4 +90,19 @@ h4,
 h5,
 h5 {
   font-family: "Roboto", sans-serif;
+}
+
+/* Minimal animations */
+@layer utilities {
+  .fade-in {
+    @apply animate-fadeIn;
+  }
+
+  .slide-up {
+    @apply animate-slideUp;
+  }
+
+  .transition-smooth {
+    @apply transition-all duration-300 ease-in-out;
+  }
 }
