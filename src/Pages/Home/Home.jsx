@@ -10,7 +10,7 @@ import PageTitle from '../../Components/PageTitle';
 const Home = () => {
   return (
     <div className="mx-auto w-full sm:w-11/12">
-      <PageTitle title="Home" heading="home page" />
+      {/* <PageTitle title="Home" heading="home page" /> */}
 
       {/* Hero Section with Slider */}
       <HeroSection />
