@@ -57,12 +57,12 @@ export const navigation = [
 ];
 
 export const sliderDetails = [
-  // {
-  //   id: "0",
-  //   url: "",
-  //   title: "কৃতি শিক্ষার্থী সংবর্ধনা -২০২৪",
-  //   desc: "slider 1 desc",
-  // },
+  {
+    id: "0",
+    url: "https://i.ibb.co.com/7x9BwSyX/ll.jpg",
+    title: "কৃতি শিক্ষার্থী সংবর্ধনা -২০২৬",
+    desc: "slider 1 desc",
+  },
   {
     id: "1",
     url: "https://i.ibb.co.com/Wvd7S4kb/slider2.jpg",
