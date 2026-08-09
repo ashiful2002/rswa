@@ -74,10 +74,10 @@ const ServicesSection = () => {
               <span className="mt-1 inline-block h-2 w-2 rounded-full bg-primary flex-shrink-0" />
               <span className="text-foreground/80">Transparent reporting and impact metrics</span>
             </li>
-            <li className="flex items-start gap-3">
+            {/* <li className="flex items-start gap-3">
               <span className="mt-1 inline-block h-2 w-2 rounded-full bg-primary flex-shrink-0" />
               <span className="text-foreground/80">Dedicated support team available 24/7</span>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

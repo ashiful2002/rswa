@@ -34,26 +34,29 @@ const HeroSection = () => {
             <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
               <Button
                 size="lg"
-                variant="outline"
-                className="transition-smooth gap-2 hover:shadow-lg"
+                className="bg-green-700 hover:bg-green-800 transition-smooth gap-2 hover:shadow-lg"
                 onClick={() => navigate("/blood")}
               >
                 <Droplet className="h-5 w-5" />
-               RSWA  Virtual Blood Bank
+                RSWA Virtual Blood Bank
               </Button>
 
               <Button
                 size="lg"
-                className="transition-smooth gap-2 hover:shadow-lg"
+                variant="outline"
+                className="transition-smooth gap-2 hover:bg-green-700 hover:shadow-lg"
                 onClick={() => navigate("/rcl")}
               >
                 {/* <Heart className="h-5 w-5" /> */}
-                RCL<span className="text-xs">(Biggest cricket League in Rowmari)</span>
+                RCL
+                <span className="text-xs">
+                  (Biggest cricket League in Rowmari)
+                </span>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="transition-smooth gap-2 hover:shadow-lg"
+                className="transition-smooth gap-2 hover:bg-green-700 hover:shadow-lg"
                 onClick={() => navigate("/about")}
               >
                 কৃতি শিক্ষার্থী সংবর্ধনা
@@ -61,7 +64,7 @@ const HeroSection = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="transition-smooth gap-2 hover:shadow-lg"
+                className="transition-smooth gap-2 hover:bg-green-700 hover:shadow-lg"
                 onClick={() => navigate("/about")}
               >
                 Learn More

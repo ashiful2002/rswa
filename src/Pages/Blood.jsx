@@ -3,8 +3,9 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { MdBloodtype } from "react-icons/md";
+import { FaEye, FaPhoneAlt } from "react-icons/fa";
 import Loading from "../Components/Loading/Loading";
-import { Spinner } from "react-bootstrap";
+import { Modal, Button, Spinner } from "react-bootstrap";
 
 const bloodGroups = [
   "",
@@ -22,11 +23,86 @@ const fetchBloodData = async ({ queryKey }) => {
   const [_key, params] = queryKey;
   const { data } = await axios.get(
     "https://rswa-server.vercel.app/blood-group",
-    {
-      params,
-    },
+    { params }
   );
   return data;
+};
+
+// Phone cell with react-bootstrap confirm modal
+const PhoneCell = ({ phone, donorName }) => {
+  const [revealed, setRevealed] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  if (!phone) return <span className="text-muted">N/A</span>;
+
+  const visiblePart = phone.slice(0, 3);
+  const hiddenPart = phone.slice(3);
+
+  const handleConfirm = () => {
+    setRevealed(true);
+    setShowModal(false);
+  };
+
+  if (revealed) {
+    return (
+      <a
+        href={`tel:${phone}`}
+        className="d-inline-flex align-items-center gap-1 text-decoration-none fw-semibold"
+      >
+        <FaPhoneAlt className="text-success" size={12} />
+        {phone}
+      </a>
+    );
+  }
+
+  return (
+    <>
+      <span
+        role="button"
+        onClick={() => setShowModal(true)}
+        className="d-inline-flex align-items-center gap-2"
+        style={{ cursor: "pointer" }}
+        title="Click to reveal number"
+      >
+        <span>
+          {visiblePart}
+          <span
+            style={{
+              filter: "blur(4px)",
+              userSelect: "none",
+            }}
+          >
+            {hiddenPart}
+          </span>
+        </span>
+        <FaEye className="text-secondary" size={14} />
+      </span>
+
+      <Modal
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        centered
+        size="sm"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title className="fs-6">Reveal Phone Number</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to show{" "}
+          {donorName ? <strong>{donorName}'s</strong> : "this donor's"} full
+          phone number?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="outline-secondary" size="sm" onClick={() => setShowModal(false)}>
+            Cancel
+          </Button>
+          <Button variant="success" size="sm" onClick={handleConfirm}>
+            Yes, Show Number
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
 };
 
 const Blood = () => {
@@ -37,10 +113,8 @@ const Blood = () => {
   const [sortOrder, setSortOrder] = useState("asc");
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(20);
-  //
   const [visible, setVisible] = useState(false);
 
-  // Debounce search
   useEffect(() => {
     const timer = setTimeout(() => setDebouncedSearch(search), 500);
     return () => clearTimeout(timer);
@@ -68,12 +142,14 @@ const Blood = () => {
   const goToPage = (num) => {
     if (num >= 1 && num <= totalPages) setPage(num);
   };
+
   if (isLoading) {
     return <Loading />;
   }
+
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="pageTitle">RSWA Virtual Blood Bank</h1>
+      <h1 className="pageTitle bg-success">RSWA Virtual Blood Bank</h1>
 
       {/* Filters */}
       <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
@@ -100,7 +176,7 @@ const Blood = () => {
         </div>
 
         <div>
-          <Link to="/add-bg" className="btn btn-success flex w-full text-white">
+          <Link to="/add-bg" className="btn btn-danger text-white flex w-full">
             Add new Blood Group <MdBloodtype className="inline text-xl" />
           </Link>
         </div>
@@ -137,9 +213,7 @@ const Blood = () => {
                   </td>
                   <td className="border p-3">SSC-{donor.SSC_Batch || "N/A"}</td>
                   <td className="border p-3">
-                    <a href={`tel:${donor.Phone_Number}`}>
-                      {donor.Phone_Number || "N/A"}
-                    </a>
+                    <PhoneCell phone={donor.Phone_Number} donorName={donor.Name} />
                   </td>
                 </tr>
               ))

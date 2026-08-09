@@ -32,7 +32,7 @@ const Archives = () => {
 
   return (
     <div className="mx-auto max-w-6xl px-2 py-6">
-      <PageTitle title="Archives" heading="Archives" />
+      <PageTitle title="Archives" className={'bg-green-700'} heading="Archives" />
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => {

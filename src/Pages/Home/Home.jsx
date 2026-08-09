@@ -25,7 +25,7 @@ const Home = () => {
       <TeamSection />
 
       {/* Donate Section */}
-      <DonateSection />
+      {/* <DonateSection /> */}
 
       {/* Testimonials Section */}
       <TestimonialsSection />

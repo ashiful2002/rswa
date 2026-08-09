@@ -59,7 +59,7 @@ body {
     @apply p-2 capitalize;
   }
   .pageTitle {
-    @apply container rounded-sm bg-primary text-center text-3xl capitalize text-primary-foreground;
+    @apply container rounded-sm bg-primary text-center text-3xl capitalize  text-primary-foreground;
   }
   .allCenter {
     @apply flex items-center justify-center;
