@@ -5,7 +5,7 @@ import { sliderDetails } from "../../constants";
 const Slider = () => {
   return (
     <div className="mx-auto w-full max-w-6xl">
-      <Carousel interval={5000} pause={true}>
+      <Carousel interval={9000} pause={true}>
         {sliderDetails?.map((item) => (
           <Carousel.Item key={item.id}>
             <div className="w-full">

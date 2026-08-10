@@ -87,6 +87,8 @@ const DashboardStat = () => {
 
   return (
     <div className="grid md:grid-cols-2 gap-6 p-4">
+
+      <h1>Total Donors: {donors.length}</h1>
       {/* Pie Chart */}
       <div className="bg-white shadow-md rounded-lg p-4">
         <h2 className="font-semibold text-lg mb-2">SSC Batch Pie Chart</h2>
