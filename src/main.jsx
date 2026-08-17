@@ -1,10 +1,13 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 import App from "./App.jsx";
 import "./index.css";
 import "./styles/animations.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import About from "./Pages/About.jsx";
 import Blog from "./Pages/Blog.jsx";
 import ErrorPage from "./Pages/ErrorPage.jsx";
@@ -14,7 +17,6 @@ import BgForm1 from "./Components/Form/BgForm1.jsx";
 import Donate from "./Pages/Donate.jsx";
 import SignUp from "./Pages/SignUp/SignUp.jsx";
 import CustomForm from "./Components/Form/CustomForm.jsx";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import RootLayout from "./Layout/RootLayout/RootLayout.jsx";
 import Signin from "./Pages/SignIn/Signin.jsx";
 import AuthProvider from "./Context/AuthProvider.jsx";
@@ -24,6 +26,7 @@ import DashboardLayout from "./Pages/Dashboard/DashboardLayout/DashboardLayout.j
 import DashboardUserManagement from "./Pages/Dashboard/DashboardUserManagement.jsx";
 import DashboardContent from "./Pages/Dashboard/DashboardContent.jsx";
 import Archives from "./Pages/archives/Archives.jsx";
+import PrivateRoute from "./Components/ProtectedRoutes/privateRoute/PrivateRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -88,20 +91,36 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <DashboardStat />,
+        element: (
+          <PrivateRoute>
+            <DashboardStat />
+          </PrivateRoute>
+        ),
       },
       {
         path: "manage-blood",
         // here have to use private route
-        element: <DashboardBlood />,
+        element: (
+          <PrivateRoute>
+            <DashboardBlood />
+          </PrivateRoute>
+        ),
       },
       {
         path: "users",
-        element: <DashboardUserManagement />,
+        element: (
+          <PrivateRoute>
+            <DashboardUserManagement />
+          </PrivateRoute>
+        ),
       },
       {
         path: "content",
-        element: <DashboardContent />,
+        element: (
+          <PrivateRoute>
+            <DashboardContent />
+          </PrivateRoute>
+        ),
       },
     ],
   },
@@ -110,11 +129,10 @@ const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    {" "}
     <AuthProvider>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router}></RouterProvider>
-      </QueryClientProvider>{" "}
+      </QueryClientProvider>
     </AuthProvider>
   </StrictMode>,
 );

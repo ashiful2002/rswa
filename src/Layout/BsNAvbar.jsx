@@ -4,11 +4,15 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import logo from "../assets/logo.png";
 import { navigation } from "../constants";
-import useAuth from "../hooks/useAuth";
-function BsNavbar() {
-  const { user, signOutUser } = useAuth();
+import useAuth from "../Hooks/useAuth";
+ function BsNavbar() {
+  const { user, SignOutUser } = useAuth();
+
+  const admin = user;
+  console.log(admin);
+
   const handleLogOut = () => {
-    signOutUser();
+    SignOutUser();
   };
   return (
     <div className="">
@@ -47,7 +51,7 @@ function BsNavbar() {
                 </>
               )}
             </Nav>
-            {/* {user ? (
+            {user ? (
               <button
                 onClick={handleLogOut}
                 className="btn btn-success ml-3 bg-green-700"
@@ -58,7 +62,7 @@ function BsNavbar() {
               <Link to="signin" className="btn btn-success ml-3 bg-green-700">
                 Sign in
               </Link>
-            )} */}
+            )}
           </Navbar.Collapse>
         </Container>
       </Navbar>
