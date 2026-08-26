@@ -12,7 +12,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import logo from "../../../assets/logo.png";
-import useAuth from "../../../Hooks/useAuth";
+import useAuth from "../../../hooks/useAuth";
 import ThemeToggle from "../../../Components/shared/ThemeToggle";
 
 const DashboardLayout = () => {

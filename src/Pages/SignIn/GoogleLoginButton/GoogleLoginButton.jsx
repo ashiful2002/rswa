@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure/useAxiosSecure";
-import useAuth from "../../../Hooks/useAuth";
+import useAuth from "../../../hooks/useAuth";
 import useRedirect from "../../../hooks/useRedirect";
 
 const GoogleSignin = () => {

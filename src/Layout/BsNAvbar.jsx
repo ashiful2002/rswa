@@ -5,7 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import logo from "../assets/logo.png";
 import { navigation } from "../constants";
-import useAuth from "../Hooks/useAuth";
+import useAuth from "../hooks/useAuth";
 import ThemeToggle from "../Components/shared/ThemeToggle";
 
 function BsNavbar() {
