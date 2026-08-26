@@ -7,14 +7,15 @@ const Businfo = () => {
   return (
     <>
       <div>
-        < PageTitle heading="common buses numbers of rowmari" className="text-[24px] bg-red-600"/>
-       
+        <PageTitle
+          heading="common buses numbers of rowmari"
+          className="bg-red-600 text-[24px]"
+        />
 
         <Table
           className="capitalize"
-          dataSource={busData} 
+          dataSource={busData}
           columns={[
-            
             {
               title: "Name",
               dataIndex: "name",
@@ -29,9 +30,7 @@ const Businfo = () => {
             },
           ]}
         ></Table>
-        <div>
-          
-        </div>
+        <div></div>
       </div>
     </>
   );

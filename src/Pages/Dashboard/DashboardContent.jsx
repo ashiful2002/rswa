@@ -1,45 +1,64 @@
-import React, { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../components/ui/card';
-import { Button } from '../../components/ui/button';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../components/ui/table';
-import { Badge } from '../../components/ui/badge';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../../components/ui/dialog';
-import { Input } from '../../components/ui/input';
-import { Plus, Edit2, Trash2, Eye } from 'lucide-react';
+import React, { useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "../../components/ui/card";
+import { Button } from "../../components/ui/button";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "../../components/ui/table";
+import { Badge } from "../../components/ui/badge";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../../components/ui/dialog";
+import { Input } from "../../components/ui/input";
+import { Plus, Edit2, Trash2, Eye } from "lucide-react";
 
 const DashboardContent = () => {
   const [content, setContent] = useState([
     {
       id: 1,
-      title: 'New Blood Drive at City Hospital',
-      type: 'News',
-      author: 'Ahmed Hassan',
-      date: '2024-05-15',
-      status: 'Published',
+      title: "New Blood Drive at City Hospital",
+      type: "News",
+      author: "Ahmed Hassan",
+      date: "2024-05-15",
+      status: "Published",
     },
     {
       id: 2,
-      title: 'Success Story: Lives Saved Through Donations',
-      type: 'Story',
-      author: 'Fatima Khan',
-      date: '2024-05-10',
-      status: 'Published',
+      title: "Success Story: Lives Saved Through Donations",
+      type: "Story",
+      author: "Fatima Khan",
+      date: "2024-05-10",
+      status: "Published",
     },
     {
       id: 3,
-      title: 'Healthcare Tips for Summer',
-      type: 'Blog',
-      author: 'Mohammed Ali',
-      date: '2024-05-08',
-      status: 'Draft',
+      title: "Healthcare Tips for Summer",
+      type: "Blog",
+      author: "Mohammed Ali",
+      date: "2024-05-08",
+      status: "Draft",
     },
     {
       id: 4,
-      title: 'Community Event: Free Health Camp',
-      type: 'Event',
-      author: 'Zainab Ahmed',
-      date: '2024-05-05',
-      status: 'Published',
+      title: "Community Event: Free Health Camp",
+      type: "Event",
+      author: "Zainab Ahmed",
+      date: "2024-05-05",
+      status: "Published",
     },
   ]);
 
@@ -57,26 +76,30 @@ const DashboardContent = () => {
 
   const getTypeColor = (type) => {
     switch (type) {
-      case 'News':
-        return 'bg-blue-100 text-blue-800';
-      case 'Story':
-        return 'bg-purple-100 text-purple-800';
-      case 'Blog':
-        return 'bg-green-100 text-green-800';
-      case 'Event':
-        return 'bg-orange-100 text-orange-800';
+      case "News":
+        return "bg-blue-100 text-blue-800";
+      case "Story":
+        return "bg-purple-100 text-purple-800";
+      case "Blog":
+        return "bg-green-100 text-green-800";
+      case "Event":
+        return "bg-orange-100 text-orange-800";
       default:
-        return 'bg-gray-100 text-gray-800';
+        return "bg-gray-100 text-gray-800";
     }
   };
 
   return (
-    <div className="space-y-6 animate-fadeIn">
+    <div className="animate-fadeIn space-y-6">
       {/* Header */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="animate-slideUp">
-          <h2 className="text-3xl font-bold text-foreground">Content Management</h2>
-          <p className="mt-1 text-muted-foreground">Create and manage news, stories, and blog posts</p>
+          <h2 className="text-3xl font-bold text-foreground">
+            Content Management
+          </h2>
+          <p className="mt-1 text-muted-foreground">
+            Create and manage news, stories, and blog posts
+          </p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
@@ -87,22 +110,33 @@ const DashboardContent = () => {
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>{selectedContent ? 'Edit Content' : 'Create New Content'}</DialogTitle>
+              <DialogTitle>
+                {selectedContent ? "Edit Content" : "Create New Content"}
+              </DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
-              <Input placeholder="Content Title" defaultValue={selectedContent?.title || ''} />
-              <Input placeholder="Content Type (News, Story, Blog, Event)" defaultValue={selectedContent?.type || ''} />
+              <Input
+                placeholder="Content Title"
+                defaultValue={selectedContent?.title || ""}
+              />
+              <Input
+                placeholder="Content Type (News, Story, Blog, Event)"
+                defaultValue={selectedContent?.type || ""}
+              />
               <textarea
                 placeholder="Content description or summary..."
                 className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                 rows="4"
               />
               <div className="flex gap-2">
-                <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
+                <Button
+                  variant="outline"
+                  onClick={() => setIsDialogOpen(false)}
+                >
                   Cancel
                 </Button>
                 <Button onClick={() => setIsDialogOpen(false)}>
-                  {selectedContent ? 'Update' : 'Create'} Content
+                  {selectedContent ? "Update" : "Create"} Content
                 </Button>
               </div>
             </div>
@@ -112,49 +146,63 @@ const DashboardContent = () => {
 
       {/* Stats */}
       <div className="grid gap-4 md:grid-cols-4">
-        <Card className="border-0 shadow-sm">
+        <Card className="shadow-xs rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
           <CardContent className="pt-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary">
-                {content.filter((c) => c.status === 'Published').length}
+              <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">
+                {content.filter((c) => c.status === "Published").length}
               </div>
-              <p className="mt-2 text-sm text-muted-foreground">Published</p>
+              <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+                Published
+              </p>
             </div>
           </CardContent>
         </Card>
-        <Card className="border-0 shadow-sm">
+        <Card className="shadow-xs rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
           <CardContent className="pt-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-secondary">
-                {content.filter((c) => c.status === 'Draft').length}
+              <div className="text-3xl font-bold text-amber-500">
+                {content.filter((c) => c.status === "Draft").length}
               </div>
-              <p className="mt-2 text-sm text-muted-foreground">Drafts</p>
+              <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+                Drafts
+              </p>
             </div>
           </CardContent>
         </Card>
-        <Card className="border-0 shadow-sm">
+        <Card className="shadow-xs rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
           <CardContent className="pt-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-accent">{content.length}</div>
-              <p className="mt-2 text-sm text-muted-foreground">Total Content</p>
+              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
+                {content.length}
+              </div>
+              <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+                Total Content
+              </p>
             </div>
           </CardContent>
         </Card>
-        <Card className="border-0 shadow-sm">
+        <Card className="shadow-xs rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
           <CardContent className="pt-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary">3</div>
-              <p className="mt-2 text-sm text-muted-foreground">Contributors</p>
+              <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">
+                3
+              </div>
+              <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+                Contributors
+              </p>
             </div>
           </CardContent>
         </Card>
       </div>
 
       {/* Content Table */}
-      <Card className="border-0 shadow-sm overflow-hidden">
+      <Card className="shadow-xs overflow-hidden rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
         <CardHeader className="pb-3">
           <CardTitle>Content ({content.length})</CardTitle>
-          <CardDescription>All published and draft content across the platform</CardDescription>
+          <CardDescription>
+            All published and draft content across the platform
+          </CardDescription>
         </CardHeader>
         <CardContent className="p-0">
           <div className="overflow-x-auto">
@@ -181,7 +229,11 @@ const DashboardContent = () => {
                       {new Date(item.date).toLocaleDateString()}
                     </TableCell>
                     <TableCell>
-                      <Badge variant={item.status === 'Published' ? 'default' : 'secondary'}>
+                      <Badge
+                        variant={
+                          item.status === "Published" ? "default" : "secondary"
+                        }
+                      >
                         {item.status}
                       </Badge>
                     </TableCell>

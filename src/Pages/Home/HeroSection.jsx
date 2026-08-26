@@ -21,20 +21,34 @@ const HeroSection = () => {
             <h1 className="mb-3 text-2xl font-bold text-foreground sm:text-3xl md:text-4xl">
               Welcome to RSWA
             </h1>
-            <p className="mb-6 text-base text-muted-foreground sm:text-lg">
-              রৌমারী উপজেলার স্টুডেন্টদের নিয়ে গড়েওঠা সর্ব বৃহৎ প্লার্টফর্মে
-              স্বাগতম। শিক্ষার্থীদের সহযোঘীতা প্রদানের লক্ষে শিক্ক্ররথীদের
-              নানামুখী কল্যালে গোড়ে ওঠা একটি প্লার্টফর্ম। শিক্ষা মূলক বিভিন্ন
-              কাজের পাশাপাশি সামাজিক দায়বদ্ধ্যতা থেকে বিভিন্ন সামাজিক কাজ করে
-              আসছে এই সংগঠন। যার মাধ্যমে শিক্ষার্থী সহ সাধারণ জনগণ উপকৃত হয়ে
-              আসছে।
+            <p className="mb-6 text-justify text-base text-muted-foreground sm:text-lg">
+              Welcome to the largest student-led voluntary organization in
+              Roumari Upazila, dedicated to the welfare and development of
+              students. Founded in 2009, the{" "}
+              <strong>Roumari Students Welfare Association (RSWA)</strong> began
+              its journey with the aim of providing educational support and
+              promoting the overall well-being of students. The organization is
+              driven by student volunteers from Roumari who are currently
+              pursuing their studies in different parts of the country and
+              abroad. Since its establishment, the organization has been
+              actively engaged not only in educational initiatives but also in
+              organizing sports events and various academic and extracurricular
+              competitions. As part of its social responsibility, the
+              association also undertakes a wide range of community-oriented
+              initiatives, including providing relief and emergency assistance
+              during disasters, conducting tree-planting campaigns, supporting
+              underprivileged and disadvantaged people, and implementing other
+              humanitarian activities. Through these initiatives, the{" "}
+              <strong>Roumari Students Welfare Association (RSWA)</strong>{" "}
+              continues to make a meaningful and positive contribution to the
+              lives of students, the local community, and society as a whole.
             </p>
 
             {/* Action Buttons */}
             <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
               <Button
                 size="lg"
-                className="bg-green-700 hover:bg-green-800 transition-smooth gap-2 hover:shadow-lg"
+                className="transition-smooth gap-2 bg-green-700 hover:bg-green-800 hover:shadow-lg"
                 onClick={() => navigate("/blood")}
               >
                 <Droplet className="h-5 w-5" />
@@ -57,7 +71,7 @@ const HeroSection = () => {
                 size="lg"
                 variant="outline"
                 className="transition-smooth gap-2 hover:bg-green-700 hover:shadow-lg"
-                onClick={() => navigate("/about")}
+                onClick={() => navigate("/student-award")}
               >
                 কৃতি শিক্ষার্থী সংবর্ধনা
               </Button>
@@ -73,27 +87,24 @@ const HeroSection = () => {
           </div>
 
           {/* Quick Stats */}
-          <div className="stagger-container mt-8 grid grid-cols-3 gap-4 md:gap-6">
+          <div className="stagger-container mt-8 grid grid-cols-2 gap-4 md:gap-6">
             <div className="stagger-item transition-smooth rounded-lg bg-primary/10 p-4 text-center hover:bg-primary/20">
               <p className="text-sm font-semibold text-muted-foreground">
                 Active
               </p>
-              <p className="text-2xl font-bold text-primary">24/7</p>
+              <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+                24/7
+              </p>
               <p className="text-xs text-muted-foreground">Service Available</p>
             </div>
             <div className="stagger-item transition-smooth rounded-lg bg-secondary/10 p-4 text-center hover:bg-secondary/20">
               <p className="text-sm font-semibold text-muted-foreground">
                 Volunteer
               </p>
-              <p className="text-2xl font-bold text-secondary">500+</p>
-              <p className="text-xs text-muted-foreground">Team Members</p>
-            </div>
-            <div className="stagger-item transition-smooth rounded-lg bg-accent/10 p-4 text-center hover:bg-accent/20">
-              <p className="text-sm font-semibold text-muted-foreground">
-                Communities
+              <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+                200+
               </p>
-              <p className="text-2xl font-bold text-accent">50+</p>
-              <p className="text-xs text-muted-foreground">Served</p>
+              <p className="text-xs text-muted-foreground">Team Members</p>
             </div>
           </div>
         </div>

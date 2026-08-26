@@ -7,12 +7,11 @@ import { FaRegArrowAltCircleRight } from "react-icons/fa";
 const HelpfulLinks = () => {
   return (
     <div className="">
-      <h6 className="h6 mt-5 mb-4 text-left ">Helpful Numbers</h6>
+      <h6 className="h6 mb-4 mt-5 text-left">Helpful Numbers</h6>
 
-      <div className="flex flex-col text-sm items-start justify-center">
-        
+      <div className="flex flex-col items-start justify-center text-sm">
         <div>
-          <div className="flex " id="number">
+          <div className="flex" id="number">
             <p className="">emergency :</p>
             <p className="">
               <a
@@ -24,7 +23,7 @@ const HelpfulLinks = () => {
                   <FaPhone className="text-lg text-green-500" />
                 </p>
 
-                <p className="hover:text-green-500 ml-2">999</p>
+                <p className="ml-2 hover:text-green-500">999</p>
               </a>
             </p>
           </div>
@@ -66,7 +65,7 @@ const HelpfulLinks = () => {
             <p>
               <a
                 href="tel:01404700760"
-                className="mx-2 flex -mb-4 items-start justify-around text-white no-underline"
+                className="mx-2 -mb-4 flex items-start justify-around text-white no-underline"
                 target="_blank"
               >
                 <p className="mx-2">
@@ -78,15 +77,13 @@ const HelpfulLinks = () => {
             </p>
           </div>
 
-          <div className="flex" >
-           
-              <Link to="/otherLinks" className="text-green-500 text-[17px]">
-                <p>
-                  other importent numbers
-                  <FaRegArrowAltCircleRight className="ml-3 inline" />
-                </p>
-              </Link>
-            
+          <div className="flex">
+            <Link to="/otherLinks" className="text-[17px] text-green-500">
+              <p>
+                other importent numbers
+                <FaRegArrowAltCircleRight className="ml-3 inline" />
+              </p>
+            </Link>
           </div>
         </div>
       </div>

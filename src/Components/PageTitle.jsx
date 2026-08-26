@@ -1,7 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 
-const PageTitle = ({ title, heading, className ,link}) => {
+const PageTitle = ({ title, heading, className, link }) => {
   return (
     <>
       {title && (
@@ -9,10 +9,13 @@ const PageTitle = ({ title, heading, className ,link}) => {
           <title>{title} - RSWA</title>
         </Helmet>
       )}
-      {heading && <h1 href={link}  className={`pageTitle ${className}`} >{heading}</h1>}
+      {heading && (
+        <h1 href={link} className={`pageTitle ${className}`}>
+          {heading}
+        </h1>
+      )}
     </>
   );
 };
 
 export default PageTitle;
- 

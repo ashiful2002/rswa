@@ -8,6 +8,8 @@ import Loading from "../../../Components/Loading/Loading";
 import { Link } from "react-router-dom";
 import DashboardStat from "../DashBoardStat/DashboardStat";
 import { toast, ToastContainer } from "react-toastify";
+import { API_ENDPOINTS } from "../../../config/api";
+
 const DashboardBlood = () => {
   const [search, setSearch] = useState("");
   //   const [debouncedSearch, setDebouncedSearch] = useState("");
@@ -19,12 +21,9 @@ const DashboardBlood = () => {
   const debouncedSearch = useDebounce(search, 500);
   const fetchBloodData = async ({ queryKey }) => {
     const [_key, { search, page, limit }] = queryKey;
-    const { data } = await axios.get(
-      "https://rswa-server.vercel.app/blood-group",
-      {
-        params: { search, page, limit },
-      },
-    );
+    const { data } = await axios.get(API_ENDPOINTS.BLOOD_GROUP, {
+      params: { search, page, limit },
+    });
     return data;
   };
 
@@ -61,7 +60,7 @@ const DashboardBlood = () => {
       return;
     }
 
-    await axios.put(`https://rswa-server.vercel.app/blood-group/${_id}`, updateData);
+    await axios.put(`${API_ENDPOINTS.BLOOD_GROUP}/${_id}`, updateData);
     toast.success("Data updated");
     refetch();
     handleModalClose();
@@ -77,9 +76,7 @@ const DashboardBlood = () => {
 
   const handleDeleteConfirm = async () => {
     if (!donorToDelete) return;
-    await axios.delete(
-      `https://rswa-server.vercel.app/blood-group/${donorToDelete._id}`,
-    );
+    await axios.delete(`${API_ENDPOINTS.BLOOD_GROUP}/${donorToDelete._id}`);
     refetch(); // refetch updated data
     setIsDeleteModalOpen(false);
     setDonorToDelete(null);
@@ -95,13 +92,12 @@ const DashboardBlood = () => {
     return <p className="text-center text-red-500">Error fetching data.</p>;
 
   return (
-    <div className="p-5">
-      <h2 className="mb-4 text-2xl font-semibold">Blood Donor List</h2>
+    <div className="p-5 font-sans">
+      <h2 className="mb-4 text-2xl font-bold text-slate-800 dark:text-white">
+        Blood Donor List
+      </h2>
       {/* Search */}
-      <div className="mb-4 flex flex-row-reverse justify-between gap-2">
-        <Link to="/" className="btn btn-primary my-1">
-          Home
-        </Link>
+      <div className="mb-4 flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
         <input
           type="text"
           placeholder="Search by name or blood group..."
@@ -110,46 +106,63 @@ const DashboardBlood = () => {
             setSearch(e.target.value);
             setPage(1);
           }}
-          className="w-72 rounded border px-3 py-2"
+          className="shadow-xs w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 sm:w-72"
         />
+        <Link
+          to="/"
+          className="shadow-xs inline-flex items-center justify-center rounded-xl bg-emerald-600 px-4 py-2 text-xs font-medium text-white no-underline transition-colors hover:bg-emerald-700"
+        >
+          Home
+        </Link>
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-lg shadow-md">
-        <table className="w-full table-auto border border-gray-200 text-left text-sm">
-          <thead className="bg-gray-100 uppercase text-gray-700">
+      <div className="shadow-xs overflow-x-auto rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
+        <table className="w-full table-auto text-left text-sm">
+          <thead className="border-b border-slate-200 bg-slate-100 text-[11px] uppercase tracking-wider text-slate-700 dark:border-slate-800 dark:bg-slate-800/80 dark:text-slate-300">
             <tr>
-              <th className="border px-4 py-2">#</th>
-              <th className="border px-4 py-2">Name</th>
-              <th className="border px-4 py-2">Blood Group</th>
-              <th className="border px-4 py-2">Phone</th>
-              <th className="border px-4 py-2">Present Address</th>
-              <th className="border px-4 py-2">Permanent Address</th>
-              <th className="border px-4 py-2">SSC Batch</th>
-              <th className="border px-4 py-2">Actions</th>
+              <th className="px-4 py-3">#</th>
+              <th className="px-4 py-3">Name</th>
+              <th className="px-4 py-3">Blood Group</th>
+              <th className="px-4 py-3">Phone</th>
+              <th className="px-4 py-3">Present Address</th>
+              <th className="px-4 py-3">Permanent Address</th>
+              <th className="px-4 py-3">SSC Batch</th>
+              <th className="px-4 py-3">Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
             {bloodData.length > 0 ? (
               bloodData.map((donor, index) => (
-                <tr key={donor._id} className="hover:bg-gray-50">
-                  <td className="border px-4 py-2">
+                <tr
+                  key={donor._id}
+                  className="transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/50"
+                >
+                  <td className="px-4 py-3 text-slate-500">
                     {(page - 1) * limit + index + 1}
                   </td>
-                  <td className="border px-4 py-2">{donor.Name}</td>
-                  <td className="border px-4 py-2 font-semibold text-red-600">
+                  <td className="px-4 py-3 font-semibold text-slate-800 dark:text-slate-100">
+                    {donor.Name}
+                  </td>
+                  <td className="px-4 py-3 font-bold text-red-600 dark:text-red-400">
                     {donor.Blood_Group}
                   </td>
-                  <td className="border px-4 py-2">{donor.Phone_Number}</td>
-                  <td className="border px-4 py-2">{donor.Present_Address}</td>
-                  <td className="border px-4 py-2">
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-300">
+                    {donor.Phone_Number}
+                  </td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-300">
+                    {donor.Present_Address}
+                  </td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-300">
                     {donor.Permanent_Address}
                   </td>
-                  <td className="border px-4 py-2">{donor.SSC_Batch}</td>
-                  <td className="space-x-2 border px-4 py-2">
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-300">
+                    {donor.SSC_Batch}
+                  </td>
+                  <td className="space-x-2 whitespace-nowrap px-4 py-3">
                     <button
                       onClick={() => handleUpdate(donor)}
-                      className="rounded bg-blue-500 px-3 py-1 text-white hover:bg-blue-600"
+                      className="rounded-lg bg-blue-600 px-3 py-1 text-xs text-white transition-colors hover:bg-blue-700"
                     >
                       Update
                     </button>
@@ -161,7 +174,7 @@ const DashboardBlood = () => {
                     />
                     <button
                       onClick={() => handleDeleteClick(donor)}
-                      className="rounded bg-red-500 px-3 py-1 text-white hover:bg-red-600"
+                      className="rounded-lg bg-red-600 px-3 py-1 text-xs text-white transition-colors hover:bg-red-700"
                     >
                       Delete
                     </button>
@@ -177,7 +190,7 @@ const DashboardBlood = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="8" className="py-4 text-center text-gray-500">
+                <td colSpan="8" className="py-6 text-center text-slate-500">
                   No donors found.
                 </td>
               </tr>
@@ -187,16 +200,16 @@ const DashboardBlood = () => {
       </div>
 
       {/* Pagination */}
-      <div className="mt-4 flex items-center justify-between">
-        <div>
-          <label>Rows per page: </label>
+      <div className="mt-4 flex flex-col items-center justify-between gap-3 text-sm text-slate-700 dark:text-slate-300 sm:flex-row">
+        <div className="flex items-center gap-2">
+          <label className="text-xs font-medium">Rows per page: </label>
           <select
             value={limit}
             onChange={(e) => {
               setLimit(Number(e.target.value));
               setPage(1);
             }}
-            className="rounded border px-2 py-1"
+            className="rounded-xl border border-slate-300 bg-white px-3 py-1 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
           >
             <option value={5}>5</option>
             <option value={10}>10</option>
@@ -208,17 +221,17 @@ const DashboardBlood = () => {
           <button
             onClick={() => setPage((old) => Math.max(old - 1, 1))}
             disabled={page === 1}
-            className="rounded border px-3 py-1 disabled:opacity-50"
+            className="rounded-xl border border-slate-300 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-50 disabled:opacity-40 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
           >
             Prev
           </button>
-          <span>
+          <span className="px-1 text-xs font-medium">
             Page {page} of {totalPages}
           </span>
           <button
             onClick={() => setPage((old) => Math.min(old + 1, totalPages))}
             disabled={page === totalPages}
-            className="rounded border px-3 py-1 disabled:opacity-50"
+            className="rounded-xl border border-slate-300 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-50 disabled:opacity-40 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
           >
             Next
           </button>

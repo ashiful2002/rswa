@@ -9,12 +9,15 @@ const Committee = () => {
       <div className="mt-3">
         <PageTitle
           heading="executive committee (2024-2025)"
-          className="tracking-tight text-[25px] text-white"
+          className="text-[25px] tracking-tight text-white"
         />
-        <div className="grid grid-cols-2 gap-5 md:grid-cols-2 mt-4">
+        <div className="mt-4 grid grid-cols-2 gap-5 md:grid-cols-2">
           {executiveCommittee.map((item) => (
-            <div key={item.id} className="md:flex flex-col md:last:items-end md:last:text-end ">
-              <div className=" justify-center md:flex-none">
+            <div
+              key={item.id}
+              className="flex-col md:flex md:last:items-end md:last:text-end"
+            >
+              <div className="justify-center md:flex-none">
                 <img
                   src={item.url}
                   alt={item.name}
@@ -28,7 +31,10 @@ const Committee = () => {
                   {item.title}
                 </h2>
                 <h5 className="h5 capitalize">{item.name}</h5>
-               <p> <CommitteeSocial social={item.social} /></p>
+                <p>
+                  {" "}
+                  <CommitteeSocial social={item.social} />
+                </p>
                 <p className="text-sm capitalize">{item.says}</p>
               </div>
             </div>

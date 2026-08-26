@@ -89,7 +89,6 @@ const MyForm = () => {
           <option value="O-">O(-)</option>
           <option value="AB+">AB(+)</option>
           <option value="AB-">AB(-)</option>
-          
         </select>
       </div>
 

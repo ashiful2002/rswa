@@ -12,7 +12,7 @@ const TestimonialsSection = () => {
   const testimonials = [
     {
       name: "Sohel Rana",
-      role: "Sohel Rana",
+      role: "Community Member",
       initials: "SR",
       quote:
         "RSWA's collaborative approach to healthcare delivery in underserved communities is exemplary. They're true partners in our mission.",
@@ -50,7 +50,7 @@ const TestimonialsSection = () => {
         {Array.from({ length: 5 }).map((_, i) => (
           <Star
             key={i}
-            className={`h-4 w-4 ${i < rating ? "fill-amber-400 text-amber-400" : "text-gray-300"}`}
+            className={`h-4 w-4 ${i < rating ? "fill-amber-400 text-amber-400" : "text-slate-300 dark:text-slate-700"}`}
           />
         ))}
       </div>
@@ -58,13 +58,13 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <ScrollRevealSection className="bg-muted/30 py-16 md:py-24">
+    <ScrollRevealSection className="bg-slate-50/60 py-16 transition-colors duration-200 dark:bg-slate-950/60 md:py-24">
       <div className="mx-auto max-w-6xl px-4">
         <div className="mb-12 text-center">
-          <h2 className="mb-4 text-3xl font-bold md:text-4xl">
+          <h2 className="mb-4 text-3xl font-bold tracking-tight text-slate-900 dark:text-white md:text-4xl">
             Success Stories & Testimonials
           </h2>
-          <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+          <p className="mx-auto max-w-2xl text-balance text-lg text-slate-600 dark:text-slate-400">
             Hear from the people whose lives have been touched by our work
           </p>
         </div>
@@ -73,31 +73,31 @@ const TestimonialsSection = () => {
           {testimonials.map((testimonial, index) => (
             <Card
               key={index}
-              className="stagger-item transition-smooth border-0 bg-white shadow-sm hover:shadow-lg"
+              className="stagger-item shadow-xs rounded-2xl border border-slate-200/80 transition-all duration-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-900/90 dark:hover:border-emerald-500/40"
             >
               <CardHeader className="pb-3">
                 <div className="mb-3 flex items-center gap-3">
-                  <Avatar className="h-12 w-12">
+                  <Avatar className="h-12 w-12 border border-slate-200 dark:border-slate-800">
                     <AvatarImage
                       src={`https://api.dicebear.com/7.x/initials/svg?seed=${testimonial.initials}`}
                     />
-                    <AvatarFallback className="bg-primary font-bold text-primary-foreground">
+                    <AvatarFallback className="bg-emerald-600 font-bold text-white">
                       {testimonial.initials}
                     </AvatarFallback>
                   </Avatar>
                   <div>
-                    <p className="font-semibold text-foreground">
+                    <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
                       {testimonial.name}
                     </p>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
                       {testimonial.role}
                     </p>
                   </div>
                 </div>
-                <div className="pt-2">{renderStars(testimonial.rating)}</div>
+                <div className="pt-1">{renderStars(testimonial.rating)}</div>
               </CardHeader>
               <CardContent>
-                <p className="text-sm italic leading-relaxed text-foreground/80">
+                <p className="text-sm italic leading-relaxed text-slate-600 dark:text-slate-300">
                   &quot;{testimonial.quote}&quot;
                 </p>
               </CardContent>
@@ -107,13 +107,13 @@ const TestimonialsSection = () => {
 
         {/* CTA for more stories */}
         <div className="mt-12 text-center">
-          <p className="mb-4 text-lg text-muted-foreground">
+          <p className="mb-4 text-lg text-slate-600 dark:text-slate-400">
             These are just a few of the many lives we&apos;ve been privileged to
             impact
           </p>
           <a
             href="/archives"
-            className="transition-smooth inline-block rounded-lg bg-primary px-6 py-3 font-semibold text-white hover:bg-primary/90"
+            className="inline-block rounded-xl bg-emerald-600 px-6 py-3 font-semibold text-white no-underline shadow-sm transition-all duration-200 hover:bg-emerald-700 active:scale-95 dark:bg-emerald-400"
           >
             Read More Stories
           </a>

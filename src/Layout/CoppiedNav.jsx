@@ -21,57 +21,55 @@ const CoppiedNav = () => {
   return (
     <>
       <div className="max-w-full bg-green-700">
-        <header className="mb-5 mx-auto flex justify-between items-center capitalize bg-green-700 text-white rounded-xl shadow-slate-500">
+        <header className="mx-auto mb-5 flex items-center justify-between rounded-xl bg-green-700 capitalize text-white shadow-slate-500">
           <div>
             <a href="/">
               <img
                 width={60}
-                className="rounded ml-2 sm:ml-4"
+                className="ml-2 rounded sm:ml-4"
                 src={logo}
                 alt="ashiful islam"
               />
             </a>
           </div>
           {
-            <span onClick={handleToggle} className="mr-4 ">
+            <span onClick={handleToggle} className="mr-4">
               {toggle ? (
-                <ImCross className="md:hidden text-2xl" />
+                <ImCross className="text-2xl md:hidden" />
               ) : (
-                <FaBars className="md:hidden text-2xl" />
+                <FaBars className="text-2xl md:hidden" />
               )}
             </span>
           }
           <nav
             className={`${
               toggle
-                ? "flex  absolute top-20 w-screen flex-col list-none overflow-hidden gap-1 items-center py-4 bg-neutral-800"
+                ? "absolute top-20 flex w-screen list-none flex-col items-center gap-1 overflow-hidden bg-neutral-800 py-4"
                 : "hidden"
-            } md:flex md:items-center md:w-auto list-none `}
+            } list-none md:flex md:w-auto md:items-center`}
           >
             <>
               {" "}
               {navigation.map(({ id, title, url }) => {
                 return (
                   <>
-                   <Link className="no-underline text-white" onClick={handleMenuIteem} href={url}>{title}
-                  <li
-                    className="sm:m-2 cursor-pointer  hover:bg-slate-900 p-4 rounded w-full"
-                    
-                    key={id}
-                  >
-                   
-                  </li>
-                  </Link>
+                    <Link
+                      className="text-white no-underline"
+                      onClick={handleMenuIteem}
+                      href={url}
+                    >
+                      {title}
+                      <li
+                        className="w-full cursor-pointer rounded p-4 hover:bg-slate-900 sm:m-2"
+                        key={id}
+                      ></li>
+                    </Link>
                   </>
-                  
                 );
               })}
-              
             </>
           </nav>
-          
         </header>
-        
       </div>
       <Outlet />
     </>

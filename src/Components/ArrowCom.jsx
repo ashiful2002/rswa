@@ -5,8 +5,11 @@ const ArrowCom = () => {
   return (
     <>
       <div>
-        <p className=" flex items-center justify-center">
-          <a href="#" className="text-xl text-white hover:text-green-400  hover:scale-125 hover:rounded-full">
+        <p className="flex items-center justify-center">
+          <a
+            href="#"
+            className="text-xl text-white hover:scale-125 hover:rounded-full hover:text-green-400"
+          >
             <FaUpLong className="mt-4 text-2xl" />
           </a>
         </p>

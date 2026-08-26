@@ -2,7 +2,7 @@ import React from "react";
 
 import { Navigate, useLocation } from "react-router";
 import Loading from "../../Components/Loading/Loading";
- import useUserRole from "../../hooks/useUserRole/UseUserRole";
+import useUserRole from "../../hooks/useUserRole/UseUserRole";
 import useAuth from "../../Hooks/useAuth";
 
 const UserRoute = ({ children }) => {

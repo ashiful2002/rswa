@@ -11,11 +11,10 @@ const FormFace = () => {
   return (
     <div className="container mx-auto">
       <div className="my-4 flex flex-col items-center justify-center">
-        <h4 className="pageTitle ">
+        <h4 className="pageTitle">
           {/* fill up the google form to add your blood group data on this website */}
-          
         </h4>
-        < PageTitle title="Form" heading ="or"/>
+        <PageTitle title="Form" heading="or" />
         <div className="me-25">
           <Button
             className="mb-2"
@@ -30,7 +29,7 @@ const FormFace = () => {
             formFacadeURL="https://formfacade.com/include/109576207896430626334/form/1FAIpQLSe_55eUyLy2Se88Z-o10x18xtgXqBu7sWn7gOcluktk8qME8Q/classic.js/?div=ff-compose"
             onSubmitForm={() => console.log("Form submitted")}
           />
-          <p className="text-muted text-sm">
+          <p className="text-sm text-muted">
             Your data will be added on website as soon as possible...
           </p>
         </div>

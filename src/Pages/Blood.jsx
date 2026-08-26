@@ -7,6 +7,8 @@ import { FaEye, FaPhoneAlt } from "react-icons/fa";
 import Loading from "../Components/Loading/Loading";
 import { Modal, Button, Spinner } from "react-bootstrap";
 
+import { API_ENDPOINTS } from "../config/api";
+
 const bloodGroups = [
   "",
   "A(+)ve",
@@ -21,10 +23,7 @@ const bloodGroups = [
 
 const fetchBloodData = async ({ queryKey }) => {
   const [_key, params] = queryKey;
-  const { data } = await axios.get(
-    "https://rswa-server.vercel.app/blood-group",
-    { params }
-  );
+  const { data } = await axios.get(API_ENDPOINTS.BLOOD_GROUP, { params });
   return data;
 };
 
@@ -47,7 +46,7 @@ const PhoneCell = ({ phone, donorName }) => {
     return (
       <a
         href={`tel:${phone}`}
-        className="d-inline-flex align-items-center gap-1 text-decoration-none fw-semibold"
+        className="d-inline-flex align-items-center text-decoration-none fw-semibold gap-1"
       >
         <FaPhoneAlt className="text-success" size={12} />
         {phone}
@@ -93,7 +92,11 @@ const PhoneCell = ({ phone, donorName }) => {
           phone number?
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="outline-secondary" size="sm" onClick={() => setShowModal(false)}>
+          <Button
+            variant="outline-secondary"
+            size="sm"
+            onClick={() => setShowModal(false)}
+          >
             Cancel
           </Button>
           <Button variant="success" size="sm" onClick={handleConfirm}>
@@ -176,7 +179,7 @@ const Blood = () => {
         </div>
 
         <div>
-          <Link to="/add-bg" className="btn btn-danger text-white flex w-full">
+          <Link to="/add-bg" className="btn btn-danger flex w-full text-white">
             Add new Blood Group <MdBloodtype className="inline text-xl" />
           </Link>
         </div>
@@ -213,7 +216,10 @@ const Blood = () => {
                   </td>
                   <td className="border p-3">SSC-{donor.SSC_Batch || "N/A"}</td>
                   <td className="border p-3">
-                    <PhoneCell phone={donor.Phone_Number} donorName={donor.Name} />
+                    <PhoneCell
+                      phone={donor.Phone_Number}
+                      donorName={donor.Name}
+                    />
                   </td>
                 </tr>
               ))

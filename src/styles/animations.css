@@ -45,7 +45,8 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -134,7 +135,11 @@
 
 /* Text gradient effect (subtle) */
 .gradient-text {
-  background: linear-gradient(to right, var(--primary, #10b981), var(--secondary, #3b82f6));
+  background: linear-gradient(
+    to right,
+    var(--primary, #10b981),
+    var(--secondary, #3b82f6)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

@@ -1,12 +1,12 @@
-import React from 'react'
-import { Button } from 'react-bootstrap'
+import React from "react";
+import { Button } from "react-bootstrap";
 
-const CustomButton = ({btnText}) => {
+const CustomButton = ({ btnText }) => {
   return (
     <>
-       <Button variant="primary">{btnText}</Button>
+      <Button variant="primary">{btnText}</Button>
     </>
-  )
-}
+  );
+};
 
-export default CustomButton
+export default CustomButton;

@@ -1,5 +1,13 @@
 import React from "react";
-import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend } from "recharts";
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  Legend,
+} from "recharts";
 
 const AreaChartBloodGroup = ({ data }) => {
   const count = {};
@@ -15,15 +23,20 @@ const AreaChartBloodGroup = ({ data }) => {
   }));
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-4">
-      <h2 className="font-semibold text-lg mb-2">Blood Group Area Chart</h2>
+    <div className="rounded-lg bg-white p-4 shadow-md">
+      <h2 className="mb-2 text-lg font-semibold">Blood Group Area Chart</h2>
       <ResponsiveContainer width="100%" height={300}>
         <AreaChart data={chartData}>
           <XAxis dataKey="group" />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Area type="monotone" dataKey="donors" stroke="#8884d8" fill="#8884d8" />
+          <Area
+            type="monotone"
+            dataKey="donors"
+            stroke="#8884d8"
+            fill="#8884d8"
+          />
         </AreaChart>
       </ResponsiveContainer>
     </div>

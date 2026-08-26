@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Input, Table } from "antd";
 import axios from "axios";
 import { MdOutlineBloodtype } from "react-icons/md";
-import Loading from "./Loading/Loading.jsx";
+import { API_ENDPOINTS } from "../config/api";
 
 const SearchTable = () => {
   const [bloodGroupData, setBloodGroupData] = useState([]);
@@ -13,13 +13,10 @@ const SearchTable = () => {
   const getAllData = async (search = "") => {
     setLoading(true);
     try {
-      const response = await axios.get(
-        "https://rswa-server.vercel.app/blood-group",
-        {
-          params: { search },
-        }
-      );
-      setBloodGroupData(response.data);
+      const response = await axios.get(API_ENDPOINTS.BLOOD_GROUP, {
+        params: { search },
+      });
+      setBloodGroupData(response.data?.data || response.data || []);
     } catch (error) {
       console.error("Failed to fetch blood group data:", error);
     } finally {

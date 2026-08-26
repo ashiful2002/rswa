@@ -1,4 +1,4 @@
-  const userData = [
+const userData = [
   {
     name: "mukto",
     email: "mukto@gmail.com",
@@ -11,4 +11,4 @@
   },
 ];
 
-export default userData
+export default userData;

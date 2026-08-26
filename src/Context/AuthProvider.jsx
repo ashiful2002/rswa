@@ -71,7 +71,7 @@ const AuthProvider = ({ children }) => {
 
     return () => unsubscribe();
   }, []);
-  console.log("AuthProvider user:", user.role);
+  // console.log("AuthProvider user:", user.role);
 
   const authInfo = {
     user,

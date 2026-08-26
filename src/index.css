@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 :root {
+  --bs-primary: #479f76;
+  --bs-primary-rgb: 71, 159, 118;
   --background: 0 0% 100%;
   --foreground: 0 0% 3.6%;
   --card: 0 0% 100%;
@@ -11,55 +13,72 @@
   --popover-foreground: 0 0% 3.6%;
   --muted: 0 0% 96.1%;
   --muted-foreground: 0 0% 45.1%;
-  --accent: 142.1 70.6% 45.3%;
+  --accent: 152 38% 45%;
   --accent-foreground: 0 0% 100%;
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 100%;
   --border: 0 0% 89.8%;
   --input: 0 0% 89.8%;
-  --primary: 142.1 70.6% 45.3%;
+  --primary: 152 38% 45%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 217.2 91.2% 59.8%;
+  --secondary: 152 38% 45%;
   --secondary-foreground: 0 0% 100%;
-  --ring: 142.1 70.6% 45.3%;
+  --ring: 152 38% 45%;
   --radius: 0.5rem;
 }
 
 .dark {
-  --background: 0 0% 3.6%;
-  --foreground: 0 0% 98.2%;
-  --card: 0 0% 3.6%;
-  --card-foreground: 0 0% 98.2%;
-  --popover: 0 0% 3.6%;
-  --popover-foreground: 0 0% 98.2%;
-  --muted: 0 0% 14.9%;
-  --muted-foreground: 0 0% 63.9%;
-  --accent: 142.1 70.6% 45.3%;
+  --background: 222 47% 7%;
+  --foreground: 210 40% 98%;
+  --card: 222 47% 10%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222 47% 10%;
+  --popover-foreground: 210 40% 98%;
+  --muted: 217 33% 17%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 152 38% 45%;
   --accent-foreground: 0 0% 100%;
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98.2%;
-  --border: 0 0% 14.9%;
-  --input: 0 0% 14.9%;
-  --primary: 142.1 70.6% 45.3%;
+  --border: 217 33% 18%;
+  --input: 217 33% 18%;
+  --primary: 152 38% 45%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 217.2 91.2% 59.8%;
+  --secondary: 152 38% 45%;
   --secondary-foreground: 0 0% 100%;
-  --ring: 142.1 70.6% 45.3%;
+  --ring: 152 38% 45%;
 }
 
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
+  @apply bg-slate-50 text-slate-900 transition-colors duration-200 dark:bg-slate-950 dark:text-slate-100;
 }
-
-@plugin "daisyui";
 
 @layer components {
   .btn {
     @apply p-2 capitalize;
   }
+  .btn-primary {
+    background-color: #479f76 !important;
+    border-color: #479f76 !important;
+    color: #ffffff !important;
+  }
+  .btn-primary:hover {
+    background-color: #3d8b67 !important;
+    border-color: #3d8b67 !important;
+  }
+  .text-primary {
+    color: #479f76 !important;
+  }
+  .bg-primary {
+    background-color: #479f76 !important;
+  }
+  .border-primary {
+    border-color: #479f76 !important;
+  }
   .pageTitle {
-    @apply container rounded-sm bg-primary text-center text-3xl capitalize  text-primary-foreground;
+    @apply container rounded-sm bg-primary text-center text-3xl capitalize text-primary-foreground;
   }
   .allCenter {
     @apply flex items-center justify-center;
@@ -70,6 +89,14 @@ body {
   .active {
     @apply text-primary;
   }
+}
+
+/* Dark mode navbar hamburger toggle icon fix */
+.dark .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+.dark .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
 
 a,

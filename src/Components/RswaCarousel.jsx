@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const RswaCarousel = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <div></div>;
+};
 
-export default RswaCarousel
+export default RswaCarousel;

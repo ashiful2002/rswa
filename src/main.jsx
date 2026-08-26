@@ -18,6 +18,8 @@ import Donate from "./Pages/Donate.jsx";
 import SignUp from "./Pages/SignUp/SignUp.jsx";
 import CustomForm from "./Components/Form/CustomForm.jsx";
 import RootLayout from "./Layout/RootLayout/RootLayout.jsx";
+import RCL from "./Pages/RCL/RCL.jsx";
+import StudentAward from "./Pages/StudentAward/StudentAward.jsx";
 import Signin from "./Pages/SignIn/Signin.jsx";
 import AuthProvider from "./Context/AuthProvider.jsx";
 import DashboardBlood from "./Pages/Dashboard/Blood/DashboardBlood.jsx";
@@ -48,8 +50,16 @@ const router = createBrowserRouter([
         element: <Archives />,
       },
       {
-        path: "/Blog",
+        path: "/blog",
         element: <Blog />,
+      },
+      {
+        path: "/rcl",
+        element: <RCL />,
+      },
+      {
+        path: "/student-award",
+        element: <StudentAward />,
       },
       {
         path: "/blood",
@@ -125,14 +135,18 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+import ThemeProvider from "./Context/ThemeProvider.jsx";
+
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AuthProvider>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router}></RouterProvider>
-      </QueryClientProvider>
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router}></RouterProvider>
+        </QueryClientProvider>
+      </AuthProvider>
+    </ThemeProvider>
   </StrictMode>,
 );

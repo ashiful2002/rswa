@@ -3,19 +3,19 @@
 // import PrimaryBtn from './PrimaryButton'
 
 // const Button = ({primaryBtn,secondaryBtn}) => {
-    
+
 //     const btn1 = ()=>{
 // <Button varient="primary">
-        
+
 //         </Button>
 //     }
 //     const btn2 = ()=>{
 // <Button varient="success">
-        
+
 //         </Button>
 //     }
 //   return (
-    
+
 //     PrimaryBtn ? btn1() : btn2()
 //   )
 // }

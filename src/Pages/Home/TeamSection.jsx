@@ -15,7 +15,7 @@ const TeamSection = () => {
       role: "President",
       bio: "2026-27 Executive committee",
       initials: "MARUF",
-      email: "ahmed@rswa.org",
+      email: "alfarazi.me@gmail.com",
     },
     {
       name: "Mehedi Hasan Pollob",
@@ -52,7 +52,7 @@ const TeamSection = () => {
       <div className="mx-auto max-w-6xl px-4">
         <div className="mb-12 text-center">
           <h2 className="mb-4 text-3xl font-bold md:text-4xl">Meet Our Team</h2>
-          <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+          <p className="mx-auto max-w-2xl text-balance text-lg text-muted-foreground">
             Dedicated professionals committed to making a difference in our
             communities
           </p>
@@ -104,22 +104,6 @@ const TeamSection = () => {
               </CardContent>
             </Card>
           ))}
-        </div>
-
-        {/* Team Info */}
-        <div className="mt-12 rounded-lg bg-primary/5 p-6 md:p-8">
-          <h3 className="mb-4 text-xl font-bold">Our Leadership Approach</h3>
-          <p className="mb-4 text-foreground/80">
-            Our team is composed of experienced professionals from healthcare,
-            operations, and community development backgrounds. We believe in
-            collaborative leadership where every team member contributes their
-            expertise toward our shared mission of community empowerment.
-          </p>
-          <p className="text-foreground/80">
-            Beyond our core team, we're supported by hundreds of dedicated
-            volunteers and board members who help us extend our reach and impact
-            throughout the communities we serve.
-          </p>
         </div>
       </div>
     </ScrollRevealSection>

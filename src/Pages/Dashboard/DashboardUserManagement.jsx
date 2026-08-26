@@ -1,56 +1,75 @@
-import React, { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../components/ui/card';
-import { Button } from '../../components/ui/button';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../components/ui/table';
-import { Badge } from '../../components/ui/badge';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../../components/ui/dialog';
-import { Input } from '../../components/ui/input';
-import { Search, Plus, Edit2, Trash2 } from 'lucide-react';
+import React, { useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "../../components/ui/card";
+import { Button } from "../../components/ui/button";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "../../components/ui/table";
+import { Badge } from "../../components/ui/badge";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../../components/ui/dialog";
+import { Input } from "../../components/ui/input";
+import { Search, Plus, Edit2, Trash2 } from "lucide-react";
 
 const DashboardUserManagement = () => {
   const [users, setUsers] = useState([
     {
       id: 1,
-      name: 'Ahmed Hassan',
-      email: 'ahmed@example.com',
-      role: 'Donor',
-      status: 'Active',
-      joinDate: '2024-01-15',
+      name: "Ahmed Hassan",
+      email: "ahmed@example.com",
+      role: "Donor",
+      status: "Active",
+      joinDate: "2024-01-15",
     },
     {
       id: 2,
-      name: 'Fatima Khan',
-      email: 'fatima@example.com',
-      role: 'Volunteer',
-      status: 'Active',
-      joinDate: '2024-02-20',
+      name: "Fatima Khan",
+      email: "fatima@example.com",
+      role: "Volunteer",
+      status: "Active",
+      joinDate: "2024-02-20",
     },
     {
       id: 3,
-      name: 'Mohammed Ali',
-      email: 'mohammed@example.com',
-      role: 'Admin',
-      status: 'Active',
-      joinDate: '2023-12-10',
+      name: "Mohammed Ali",
+      email: "mohammed@example.com",
+      role: "Admin",
+      status: "Active",
+      joinDate: "2023-12-10",
     },
     {
       id: 4,
-      name: 'Zainab Ahmed',
-      email: 'zainab@example.com',
-      role: 'Donor',
-      status: 'Inactive',
-      joinDate: '2024-01-25',
+      name: "Zainab Ahmed",
+      email: "zainab@example.com",
+      role: "Donor",
+      status: "Inactive",
+      joinDate: "2024-01-25",
     },
   ]);
 
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [selectedUser, setSelectedUser] = useState(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const filteredUsers = users.filter(
     (user) =>
       user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchTerm.toLowerCase())
+      user.email.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   const handleDelete = (id) => {
@@ -64,28 +83,32 @@ const DashboardUserManagement = () => {
 
   const getRoleColor = (role) => {
     switch (role) {
-      case 'Admin':
-        return 'bg-red-100 text-red-800';
-      case 'Volunteer':
-        return 'bg-blue-100 text-blue-800';
-      case 'Donor':
-        return 'bg-green-100 text-green-800';
+      case "Admin":
+        return "bg-red-100 text-red-800";
+      case "Volunteer":
+        return "bg-blue-100 text-blue-800";
+      case "Donor":
+        return "bg-green-100 text-green-800";
       default:
-        return 'bg-gray-100 text-gray-800';
+        return "bg-gray-100 text-gray-800";
     }
   };
 
   const getStatusColor = (status) => {
-    return status === 'Active' ? 'default' : 'secondary';
+    return status === "Active" ? "default" : "secondary";
   };
 
   return (
-    <div className="space-y-6 animate-fadeIn">
+    <div className="animate-fadeIn space-y-6">
       {/* Header */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="animate-slideUp">
-          <h2 className="text-3xl font-bold text-foreground">User Management</h2>
-          <p className="mt-1 text-muted-foreground">Manage donors, volunteers, and admin users</p>
+          <h2 className="text-3xl font-bold text-foreground">
+            User Management
+          </h2>
+          <p className="mt-1 text-muted-foreground">
+            Manage donors, volunteers, and admin users
+          </p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
@@ -96,18 +119,33 @@ const DashboardUserManagement = () => {
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>{selectedUser ? 'Edit User' : 'Add New User'}</DialogTitle>
+              <DialogTitle>
+                {selectedUser ? "Edit User" : "Add New User"}
+              </DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
-              <Input placeholder="Full Name" defaultValue={selectedUser?.name || ''} />
-              <Input placeholder="Email" type="email" defaultValue={selectedUser?.email || ''} />
-              <Input placeholder="Role" defaultValue={selectedUser?.role || ''} />
+              <Input
+                placeholder="Full Name"
+                defaultValue={selectedUser?.name || ""}
+              />
+              <Input
+                placeholder="Email"
+                type="email"
+                defaultValue={selectedUser?.email || ""}
+              />
+              <Input
+                placeholder="Role"
+                defaultValue={selectedUser?.role || ""}
+              />
               <div className="flex gap-2">
-                <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
+                <Button
+                  variant="outline"
+                  onClick={() => setIsDialogOpen(false)}
+                >
                   Cancel
                 </Button>
                 <Button onClick={() => setIsDialogOpen(false)}>
-                  {selectedUser ? 'Update' : 'Create'} User
+                  {selectedUser ? "Update" : "Create"} User
                 </Button>
               </div>
             </div>
@@ -116,25 +154,27 @@ const DashboardUserManagement = () => {
       </div>
 
       {/* Search Bar */}
-      <Card className="border-0 shadow-sm">
+      <Card className="shadow-xs rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
         <CardContent className="pt-6">
           <div className="relative">
-            <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+            <Search className="absolute left-3.5 top-3 h-4 w-4 text-slate-400" />
             <Input
               placeholder="Search by name or email..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
+              className="rounded-xl border-slate-300 bg-white pl-10 text-slate-800 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
             />
           </div>
         </CardContent>
       </Card>
 
       {/* Users Table */}
-      <Card className="border-0 shadow-sm overflow-hidden">
+      <Card className="shadow-xs overflow-hidden rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
         <CardHeader className="pb-3">
           <CardTitle>Users ({filteredUsers.length})</CardTitle>
-          <CardDescription>Complete list of system users and their details</CardDescription>
+          <CardDescription>
+            Complete list of system users and their details
+          </CardDescription>
         </CardHeader>
         <CardContent className="p-0">
           <div className="overflow-x-auto">

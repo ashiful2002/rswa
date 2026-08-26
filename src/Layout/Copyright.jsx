@@ -18,8 +18,9 @@ const Copyright = () => {
             href="https://ashiful-islam.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-          >developed by</a>
-          
+          >
+            developed by
+          </a>
         </p>
       </div>
     </>

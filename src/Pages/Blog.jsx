@@ -5,13 +5,10 @@ import PageTitle from "../Components/PageTitle";
 const Blog = () => {
   return (
     <>
-    
-   
-    <div className="container mx-auto">
-    <PageTitle title="Blog" heading="blog / news" />
-      <BsCard />
-     
-    </div>
+      <div className="container mx-auto">
+        <PageTitle title="Blog" heading="blog / news" />
+        <BsCard />
+      </div>
     </>
   );
 };

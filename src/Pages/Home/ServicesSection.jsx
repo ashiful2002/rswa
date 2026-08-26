@@ -1,84 +1,98 @@
-import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
-import { ScrollRevealSection } from '../../hooks/useScrollReveal';
-import { Heart, Users, Stethoscope, Droplet } from 'lucide-react';
+import React from "react";
+import { ScrollRevealSection } from "../../hooks/useScrollReveal";
+import {
+  GraduationCap,
+  Trophy,
+  UserCheck,
+  Trees,
+  HeartHandshake,
+  ShieldAlert,
+} from "lucide-react";
 
 const ServicesSection = () => {
   const services = [
     {
-      icon: <Heart className="h-10 w-10 text-primary" />,
-      title: 'Community Healthcare',
-      description: 'Providing accessible healthcare services to underserved communities through mobile clinics and health camps.',
+      icon: (
+        <GraduationCap className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+      ),
+      title: "Educational Support",
+      description:
+        "Providing educational assistance, guidance and opportunities to students in need.",
     },
     {
-      icon: <Droplet className="h-10 w-10 text-primary" />,
-      title: 'Blood Donation',
-      description: 'Managing a comprehensive blood bank with quality assurance and convenient donation drives throughout the region.',
+      icon: (
+        <Trophy className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+      ),
+      title: "Competition & Events",
+      description:
+        "Organizing academic, cultural, sports and extracurricular competitions to encourage student participation and talent development.",
     },
     {
-      icon: <Users className="h-10 w-10 text-primary" />,
-      title: 'Community Support',
-      description: 'Building strong community networks through education, skill development, and social welfare programs.',
+      icon: (
+        <UserCheck className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+      ),
+      title: "Student Development",
+      description:
+        "Creating opportunities for students to develop leadership, teamwork, communication and organizational skills.",
     },
     {
-      icon: <Stethoscope className="h-10 w-10 text-primary" />,
-      title: 'Medical Awareness',
-      description: 'Conducting health awareness programs and workshops to promote preventive care and healthy living.',
+      icon: (
+        <Trees className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+      ),
+      title: "Blood Donation",
+      description:
+        "Our volunteers regularly contribute blood donation. Either they donate or search for possible donors ASAP. We also arrange Blood Group check campaigns and motivate them to donate blood.",
+    },
+    {
+      icon: (
+        <HeartHandshake className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+      ),
+      title: "Social Welfare",
+      description:
+        "Supporting disadvantaged and underprivileged people through various community initiatives.",
+    },
+    {
+      icon: (
+        <ShieldAlert className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+      ),
+      title: "Disaster Response",
+      description:
+        "Providing relief and emergency assistance to affected communities during floods, disasters and other crises.",
     },
   ];
 
   return (
-    <ScrollRevealSection className="bg-muted/30 py-16 md:py-24">
+    <ScrollRevealSection className="bg-slate-50/60 py-16 transition-colors duration-200 dark:bg-slate-950/60 md:py-24">
       <div className="mx-auto max-w-6xl px-4">
         <div className="mb-12 text-center">
-          <h2 className="mb-4 text-3xl font-bold md:text-4xl">Our Services & Programs</h2>
-          <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            We offer comprehensive programs designed to address the most pressing needs in our communities
+          <h2 className="mb-4 text-3xl font-bold tracking-tight text-slate-900 dark:text-white md:text-4xl">
+            Our Service & Programs
+          </h2>
+          <p className="mx-auto max-w-2xl text-balance text-lg text-slate-600 dark:text-slate-400">
+            We offer comprehensive programs designed to address the most
+            pressing needs in our communities
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
-            <Card
+            <div
               key={index}
-              className="stagger-item card-hover border-0 bg-card shadow-sm transition-smooth"
+              className="stagger-item shadow-xs flex flex-col justify-between rounded-2xl border border-slate-200/80 p-6 transition-all duration-300 hover:border-emerald-500/40 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-500/50"
             >
-              <CardHeader className="pb-3">
-                <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+              <div>
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-emerald-100 bg-emerald-50 text-emerald-600 dark:border-emerald-900/50 dark:bg-emerald-950/60 dark:text-emerald-400">
                   {service.icon}
                 </div>
-                <CardTitle className="text-xl">{service.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <h3 className="mb-2 text-xl font-bold text-slate-900 dark:text-slate-100">
+                  {service.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                   {service.description}
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
-        </div>
-
-        {/* Additional Info */}
-        <div className="mt-12 rounded-lg bg-white p-6 shadow-sm md:p-8">
-          <h3 className="mb-4 text-xl font-bold">Why Choose Us?</h3>
-          <ul className="space-y-3">
-            <li className="flex items-start gap-3">
-              <span className="mt-1 inline-block h-2 w-2 rounded-full bg-primary flex-shrink-0" />
-              <span className="text-foreground/80">Certified and recognized healthcare professionals</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="mt-1 inline-block h-2 w-2 rounded-full bg-primary flex-shrink-0" />
-              <span className="text-foreground/80">State-of-the-art medical equipment and technology</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="mt-1 inline-block h-2 w-2 rounded-full bg-primary flex-shrink-0" />
-              <span className="text-foreground/80">Transparent reporting and impact metrics</span>
-            </li>
-            {/* <li className="flex items-start gap-3">
-              <span className="mt-1 inline-block h-2 w-2 rounded-full bg-primary flex-shrink-0" />
-              <span className="text-foreground/80">Dedicated support team available 24/7</span>
-            </li> */}
-          </ul>
         </div>
       </div>
     </ScrollRevealSection>

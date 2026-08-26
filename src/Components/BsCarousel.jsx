@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const BsCarousel = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <div></div>;
+};
 
-export default BsCarousel
+export default BsCarousel;

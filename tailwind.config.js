@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: "class",
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -39,6 +40,24 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        emerald: {
+          50: "#eefbf5",
+          100: "#d6f5e5",
+          200: "#b0ebcf",
+          300: "#7bdab1",
+          400: "#479f76", // Bootstrap 400 green shade
+          500: "#479f76",
+          600: "#3d8b67",
+          700: "#2d6c4e",
+          800: "#265740",
+          900: "#204836",
+          950: "#0f281d",
+        },
+        green: {
+          400: "#479f76",
+          500: "#479f76",
+          600: "#3d8b67",
         },
       },
       borderRadius: {
