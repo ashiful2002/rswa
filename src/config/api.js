@@ -1,7 +1,5 @@
 export const BASE_URL =
   import.meta.env.VITE_API_URL ||
-  import.meta.env.VITE_BASE_URL ||
-  import.meta.env.BACKEND_URL ||
   "http://localhost:5004/api/v1";
 
 export const API_ENDPOINTS = {

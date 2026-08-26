@@ -17,7 +17,7 @@ const HeroSection = () => {
       {/* Overlay CTA Section */}
       <div className="bg-gradient-to-b from-transparent via-transparent to-background px-4 py-8 sm:py-12">
         <div className="mx-auto max-w-6xl">
-          <div className="transition-smooth animate-fadeIn rounded-lg border border-border bg-card/95 p-6 shadow-lg backdrop-blur-sm sm:p-8 md:p-10">
+          <div className="transition-smooth animate-fadeIn rounded-lg bg-card/95 p-6 shadow-lg backdrop-blur-sm sm:p-8 md:p-10">
             <h1 className="mb-3 text-2xl font-bold text-foreground sm:text-3xl md:text-4xl">
               Welcome to RSWA
             </h1>
@@ -48,7 +48,7 @@ const HeroSection = () => {
             <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
               <Button
                 size="lg"
-                className="transition-smooth gap-2 bg-green-700 hover:bg-green-800 hover:shadow-lg"
+                className="transition-smooth gap-2 bg-red-700 hover:bg-red-800 text-white hover:shadow-lg"
                 onClick={() => navigate("/blood")}
               >
                 <Droplet className="h-5 w-5" />
@@ -58,19 +58,18 @@ const HeroSection = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="transition-smooth gap-2 hover:bg-green-700 hover:shadow-lg"
+                className="transition-smooth gap-2 hover:bg-emerald-600 hover:text-white dark:border-slate-700 dark:hover:bg-emerald-600 dark:hover:text-white hover:shadow-lg"
                 onClick={() => navigate("/rcl")}
               >
-                {/* <Heart className="h-5 w-5" /> */}
                 RCL
-                <span className="text-xs">
-                  (Biggest cricket League in Rowmari)
+                <span className="text-xs opacity-90">
+                  (Biggest Cricket League in Rowmari)
                 </span>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="transition-smooth gap-2 hover:bg-green-700 hover:shadow-lg"
+                className="transition-smooth gap-2 hover:bg-emerald-600 hover:text-white dark:border-slate-700 dark:hover:bg-emerald-600 dark:hover:text-white hover:shadow-lg"
                 onClick={() => navigate("/student-award")}
               >
                 কৃতি শিক্ষার্থী সংবর্ধনা
@@ -78,7 +77,7 @@ const HeroSection = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="transition-smooth gap-2 hover:bg-green-700 hover:shadow-lg"
+                className="transition-smooth gap-2 hover:bg-emerald-600 hover:text-white dark:border-slate-700 dark:hover:bg-emerald-600 dark:hover:text-white hover:shadow-lg"
                 onClick={() => navigate("/about")}
               >
                 Learn More

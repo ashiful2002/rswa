@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase/Firebase.init";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:4000",
+  baseURL: `${import.meta.env.VITE_BACKEND_URL}`,
   withCredentials: true,
 });
 

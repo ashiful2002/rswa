@@ -10,22 +10,16 @@ import PageTitle from "../../Components/PageTitle";
 const Home = () => {
   return (
     <div className="mx-auto w-full sm:w-11/12">
-      {/* Hero Section with Slider */}
       <HeroSection />
 
-      {/* Mission & Impact Section */}
       <MissionSection />
 
-      {/* Services Section */}
       <ServicesSection />
 
-      {/* Team Section */}
       <TeamSection />
 
-      {/* Donate Section */}
       {/* <DonateSection /> */}
 
-      {/* Testimonials Section */}
       <TestimonialsSection />
     </div>
   );

@@ -24,7 +24,6 @@ const BgForm1 = () => {
   return (
     <div className="container mx-auto">
       <PageTitle title="Form" />
-
       <form
         onSubmit={formik.handleSubmit}
         className="flex flex-col items-center"

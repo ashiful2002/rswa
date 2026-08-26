@@ -77,10 +77,10 @@ const router = createBrowserRouter([
         path: "/donate",
         element: <Donate />,
       },
-      // {
-      //   path: "/otherLinks",
-      //   element: <OtherLinks />,
-      // },
+      {
+        path: "numbers",
+        element: <OtherLinks />,
+      },
       {
         path: "/bgForm1",
         element: <BgForm1 />,

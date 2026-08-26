@@ -38,11 +38,11 @@ export const navigation = [
     title: "Add bg",
     url: "/add-bg",
   },
-  // {
-  //   id: "6",
-  //   title: "nunmbers",
-  //   url: "/otherLinks",
-  // },
+  {
+    id: "6",
+    title: "Important contact",
+    url: "/numbers",
+  },
 
   {
     id: "5",
@@ -168,20 +168,20 @@ export const rifatInfo = [
     counter: "uttara",
     phoneNumber: "01711-061898",
   },
-  // {
-  //   id: "2",
-  //   counter: "gazipur",
-  //   phoneNumber: "01*******",
-  // },
   {
     id: "3",
+    counter: "gazipur",
+    phoneNumber: "01745-446465"
+  },
+  {
+    id: "4",
     counter: "rowmari",
     phoneNumber: "01720-363319",
   },
   {
     id: "4",
     counter: "kortimari",
-    phoneNumber: "01******",
+    phoneNumber: "01734-013901"
   },
 ];
 export const polyInfo = [
@@ -210,12 +210,27 @@ export const siamInfo = [
   {
     id: "1",
     counter: "mohakhali",
-    phoneNumber: "01728-304789",
+    phoneNumber: "01711-021229",
   },
   {
     id: "2",
+    counter: "uttara",
+    phoneNumber: "01921-245974",
+  },
+  {
+    id: "3",
+    counter: "gazipur",
+    phoneNumber: "01728-304789",
+  },
+  {
+    id: "4",
     counter: "rowmari",
     phoneNumber: "01757-561493",
+  },
+  {
+    id: "5",
+    counter: "kortimari",
+    phoneNumber: "01725-416939",
   },
 ];
 export const jonySamyInfo = [
@@ -284,60 +299,7 @@ export const busDataMap = [
 ];
 
 export const busData = [
-  // {
-  //   id: "1",
-  //   name: "Rifat",
-  //   counter: "mohakhali",
-  //   phoneNumber: "01733-732052",
-  // },
-  // {
-  //   id: "2",
-  //   name: "Rifat",
-  //   counter: "uttara",
-  //   phoneNumber: "01711-061898",
-  // },
-  // {
-  //   id: "3",
-  //   name: "Rifat",
-  //   counter: "rowmari",
-  //   phoneNumber: "01720-363319",
-  // },
-  // {
-  //   id: "4",
-  //   name: "poly",
-  //   counter: "mohakhali",
-  //   phoneNumber: "01958-155311",
-  // },
-  // {
-  //   id: "5",
-  //   name: "poly ",
-  //   counter: "uttara",
-  //   phoneNumber: "01958-155312",
-  // },
-  // {
-  //   id: "6",
-  //   name: "poly",
-  //   counter: "rowmari thana more",
-  //   phoneNumber: "01741-000137",
-  // },
-  // {
-  //   id: "7",
-  //   name: "poly",
-  //   counter: "rowmari upazila",
-  //   phoneNumber: "01958-155313",
-  // },
-  // {
-  //   id: "8",
-  //   name: "siam",
-  //   counter: "mohakhali",
-  //   phoneNumber: "01916-23412",
-  // },
-  // {
-  //   id: "9",
-  //   name: "siam",
-  //   counter: "rowmari",
-  //   phoneNumber: "01757-561493",
-  // },
+
   {
     id: "11",
     name: "shawon",
@@ -347,8 +309,8 @@ export const busData = [
   {
     id: "12",
     name: "shawon",
-    counter: "kucchamara",
-    phoneNumber: "01926-531612",
+    counter: "mohakhali",
+    phoneNumber: "01798-386165",
   },
   // {
   //   id: "13",
@@ -392,12 +354,12 @@ export const busData = [
   //   counter: "rowmari ",
   //   phoneNumber: "01311-800182",
   // },
-  // {
-  //   id: "20",
-  //   name: "chattogram",
-  //   counter: "a. k. khan ",
-  //   phoneNumber: "01970-900715",
-  // },
+  {
+    id: "20",
+    name: "chattogram paribahan",
+    counter: "chattogram",
+    phoneNumber: "01970-900715",
+  },
   {
     id: "21",
     name: "rowmari travels ",
@@ -421,6 +383,119 @@ export const busData = [
     name: "unity ",
     counter: "supiversor2",
     phoneNumber: "01764-269773",
+  },
+  {
+    id: "25",
+    name: "Bismillah Paribahan ",
+    counter: "supiversor 1",
+    phoneNumber: "00000000",
+  },
+  {
+    id: "26",
+    name: "Bismillah Paribahan ",
+    counter: "supiversor 2",
+    phoneNumber: "0000",
+  },
+  {
+    id: "27",
+    name: "Shahi Bhromon",
+    counter: "Rowmari",
+    phoneNumber: "01905-397052",
+  },
+  {
+    id: "28",
+    name: "Shahi Bhromon",
+    counter: "Sylhet",
+    phoneNumber: "01901-355489",
+  },
+  //  taohid, nabil, arif
+  {
+    id: "29",
+    name: "taohid",
+    counter: "rowmari",
+    phoneNumber: "000000000",
+  },
+  {
+    id: "30",
+    name: "taohid",
+    counter: "konabari",
+    phoneNumber: "000000000",
+  },
+  {
+    id: "31",
+    name: "nabil",
+    counter: "rowmari",
+    phoneNumber: "0000000",
+  },
+  {
+    id: "32",
+    name: "nabil",
+    counter: "konabari",
+    phoneNumber: "000000000",
+  },
+  {
+    id: "33",
+    name: "arif",
+    counter: "rowmari",
+    phoneNumber: "000000000",
+  },
+  {
+    id: "34",
+    name: "arif",
+    counter: "konabari",
+    phoneNumber: "000000000",
+  },
+];
+
+export const emergencyNumbers = [
+  {
+    id: "1",
+    service: "National Emergency Service",
+    contact: "Emergency Hotline",
+    phoneNumber: "999",
+    category: "Emergency",
+  },
+  {
+    id: "2",
+    service: "Rowmari Upazila Health Complex",
+    contact: "Hospital Emergency Dept",
+    phoneNumber: "01306-500141",
+    category: "Medical",
+  },
+  {
+    id: "3",
+    service: "Rowmari Hospital Ambulance",
+    contact: "Ambulance Driver (Md. Keramat Ali)",
+    phoneNumber: "01913-514915",
+    category: "Medical",
+  },
+  {
+    id: "4",
+    service: "Rowmari Thana (OC)",
+    contact: "Officer-in-Charge, Police Station",
+    phoneNumber: "01320-133568",
+    category: "Police",
+  },
+  {
+    id: "5",
+    service: "Rowmari Thana Duty Officer",
+    contact: "Police Station Control Room",
+    phoneNumber: "01320-133573",
+    category: "Police",
+  },
+  {
+    id: "6",
+    service: "Rowmari Fire Service",
+    contact: "Fire Service & Civil Defence Station",
+    phoneNumber: "01901-023347",
+    category: "Fire",
+  },
+  {
+    id: "7",
+    service: "Rowmari UNO Office",
+    contact: "Upazila Nirbahi Officer",
+    phoneNumber: "01709-974509",
+    category: "Administration",
   },
 ];
 

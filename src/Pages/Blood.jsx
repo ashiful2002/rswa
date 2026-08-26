@@ -3,9 +3,10 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { MdBloodtype } from "react-icons/md";
-import { FaEye, FaPhoneAlt } from "react-icons/fa";
+import { FaEye, FaPhoneAlt, FaSearch } from "react-icons/fa";
 import Loading from "../Components/Loading/Loading";
-import { Modal, Button, Spinner } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
+import Pagination from "../Components/shared/Pagination";
 
 import { API_ENDPOINTS } from "../config/api";
 
@@ -23,7 +24,23 @@ const bloodGroups = [
 
 const fetchBloodData = async ({ queryKey }) => {
   const [_key, params] = queryKey;
-  const { data } = await axios.get(API_ENDPOINTS.BLOOD_GROUP, { params });
+  const queryParams = {
+    page: params.page,
+    limit: params.limit,
+    sortField: params.sortField,
+    sortOrder: params.sortOrder,
+  };
+
+  if (params.search) {
+    queryParams.search = params.search;
+  }
+  if (params.bloodGroup) {
+    queryParams.Blood_Group = params.bloodGroup;
+  }
+
+  const { data } = await axios.get(API_ENDPOINTS.BLOOD_GROUP, {
+    params: queryParams,
+  });
   return data;
 };
 
@@ -32,7 +49,7 @@ const PhoneCell = ({ phone, donorName }) => {
   const [revealed, setRevealed] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  if (!phone) return <span className="text-muted">N/A</span>;
+  if (!phone) return <span className="text-muted dark:text-slate-400">N/A</span>;
 
   const visiblePart = phone.slice(0, 3);
   const hiddenPart = phone.slice(3);
@@ -46,9 +63,9 @@ const PhoneCell = ({ phone, donorName }) => {
     return (
       <a
         href={`tel:${phone}`}
-        className="d-inline-flex align-items-center text-decoration-none fw-semibold gap-1"
+        className="d-inline-flex align-items-center gap-1 font-semibold text-emerald-600 text-decoration-none dark:text-emerald-400"
       >
-        <FaPhoneAlt className="text-success" size={12} />
+        <FaPhoneAlt size={12} />
         {phone}
       </a>
     );
@@ -59,7 +76,7 @@ const PhoneCell = ({ phone, donorName }) => {
       <span
         role="button"
         onClick={() => setShowModal(true)}
-        className="d-inline-flex align-items-center gap-2"
+        className="d-inline-flex align-items-center gap-2 text-slate-800 dark:text-slate-200"
         style={{ cursor: "pointer" }}
         title="Click to reveal number"
       >
@@ -74,7 +91,7 @@ const PhoneCell = ({ phone, donorName }) => {
             {hiddenPart}
           </span>
         </span>
-        <FaEye className="text-secondary" size={14} />
+        <FaEye className="text-secondary dark:text-slate-400" size={14} />
       </span>
 
       <Modal
@@ -82,24 +99,40 @@ const PhoneCell = ({ phone, donorName }) => {
         onHide={() => setShowModal(false)}
         centered
         size="sm"
+        contentClassName=" text-slate-900 border border-slate-200 dark:bg-slate-900 dark:text-slate-100 dark:border-slate-800 shadow-lg"
       >
-        <Modal.Header closeButton>
-          <Modal.Title className="fs-6">Reveal Phone Number</Modal.Title>
+        <Modal.Header
+          closeButton
+          className="border-b border-slate-200 text-slate-900 dark:border-slate-800 dark:text-slate-100 dark:[&_.btn-close]:filter dark:[&_.btn-close]:invert"
+        >
+          <Modal.Title className="fs-6 font-bold text-slate-900 dark:text-slate-100">
+            Reveal Phone Number
+          </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="text-slate-700 dark:text-slate-200">
           Are you sure you want to show{" "}
-          {donorName ? <strong>{donorName}'s</strong> : "this donor's"} full
-          phone number?
+          {donorName ? (
+            <strong className="text-slate-900 dark:text-slate-100">{donorName}'s</strong>
+          ) : (
+            "this donor's"
+          )}{" "}
+          full phone number?
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="border-t border-slate-200 dark:border-slate-800">
           <Button
             variant="outline-secondary"
             size="sm"
             onClick={() => setShowModal(false)}
+            className="border-slate-300 text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
           >
             Cancel
           </Button>
-          <Button variant="success" size="sm" onClick={handleConfirm}>
+          <Button
+            variant="success"
+            size="sm"
+            onClick={handleConfirm}
+            className="border-emerald-600 bg-emerald-600 text-white hover:bg-emerald-700 dark:border-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-700"
+          >
             Yes, Show Number
           </Button>
         </Modal.Footer>
@@ -116,14 +149,16 @@ const Blood = () => {
   const [sortOrder, setSortOrder] = useState("asc");
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(20);
-  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setDebouncedSearch(search), 500);
+    const timer = setTimeout(() => {
+      setDebouncedSearch(search);
+      setPage(1);
+    }, 400);
     return () => clearTimeout(timer);
   }, [search]);
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: [
       "bloodData",
       {
@@ -139,7 +174,8 @@ const Blood = () => {
     keepPreviousData: true,
   });
 
-  const totalPages = data?.totalPages || 1;
+  const totalPages = data?.meta?.totalPages || data?.totalPages || 1;
+  const totalDonors = data?.meta?.total ?? data?.total ?? 0;
   const bloodData = data?.data || [];
 
   const goToPage = (num) => {
@@ -151,25 +187,40 @@ const Blood = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="pageTitle bg-success">RSWA Virtual Blood Bank</h1>
+    <div className="container mx-auto py-4">
+      <h1 className="pageTitle bg-emerald-600 dark:bg-emerald-400">RSWA Virtual Blood Bank</h1>
+      <p className="mb-6 text-sm font-medium text-slate-600 dark:text-slate-400">
+        Save a life today — search among{" "}
+        <span className="font-bold text-emerald-600 dark:text-emerald-400">
+          {totalDonors}
+        </span>{" "}
+        registered donors.
+      </p>
 
       {/* Filters */}
       <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div className="flex items-center justify-between gap-2">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+
+
+          {/* Blood Group Select */}
           <select
-            className="rounded border px-4 py-2"
+            className="rounded border border-slate-200  px-4 py-2 text-sm text-slate-900 transition-colors dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100"
             value={bloodGroupFilter}
-            onChange={(e) => setBloodGroupFilter(e.target.value)}
+            onChange={(e) => {
+              setBloodGroupFilter(e.target.value);
+              setPage(1);
+            }}
           >
             {bloodGroups.map((bg, i) => (
               <option key={i} value={bg}>
-                {bg || "All Blood Group"}
+                {bg || "All Blood Groups"}
               </option>
             ))}
-          </select>{" "}
+          </select>
+
+          {/* Sort Order */}
           <select
-            className="rounded border px-3 py-2"
+            className="rounded border border-slate-200  px-3 py-2 text-sm text-slate-900 transition-colors dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100"
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value)}
           >
@@ -186,36 +237,36 @@ const Blood = () => {
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto">
-        <table className="min-w-full table-auto border border-gray-300">
+      <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+        <table className="min-w-full table-auto border-collapse">
           <thead>
-            <tr className="bg-gray-200 text-left">
-              <th className="border p-3">#</th>
-              <th className="border p-3">Name</th>
-              <th className="border p-3">Blood Group</th>
-              <th className="border p-3">Present address</th>
-              <th className="border p-3">Permanent address</th>
-              <th className="border p-3">SSC Batch</th>
-              <th className="border p-3">Phone</th>
+            <tr className="bg-slate-100 text-left dark:bg-slate-800/80 dark:text-slate-100">
+              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">#</th>
+              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">Name</th>
+              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">Blood Group</th>
+              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">Present address</th>
+              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">Permanent address</th>
+              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">SSC Batch</th>
+              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">Phone</th>
             </tr>
           </thead>
           <tbody>
             {bloodData.length > 0 ? (
               bloodData.map((donor, index) => (
-                <tr key={donor._id} className="hover:bg-gray-50">
-                  <td className="border p-3">
+                <tr key={donor._id} className="transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                  <td className="border border-slate-200 p-3 text-slate-800 dark:border-slate-800 dark:text-slate-200">
                     {(page - 1) * limit + index + 1}
                   </td>
-                  <td className="border p-3">{donor.Name}</td>
-                  <td className="border p-3">{donor.Blood_Group}</td>
-                  <td className="border p-3">
+                  <td className="border border-slate-200 p-3 text-slate-800 dark:border-slate-800 dark:text-slate-200">{donor.Name}</td>
+                  <td className="border border-slate-200 p-3 font-semibold text-emerald-600 dark:border-slate-800 dark:text-emerald-400">{donor.Blood_Group}</td>
+                  <td className="border border-slate-200 p-3 text-slate-800 dark:border-slate-800 dark:text-slate-200">
                     {donor.Present_Address || "N/A"}
                   </td>
-                  <td className="border p-3">
+                  <td className="border border-slate-200 p-3 text-slate-800 dark:border-slate-800 dark:text-slate-200">
                     {donor.Permanent_Address || "N/A"}
                   </td>
-                  <td className="border p-3">SSC-{donor.SSC_Batch || "N/A"}</td>
-                  <td className="border p-3">
+                  <td className="border border-slate-200 p-3 text-slate-800 dark:border-slate-800 dark:text-slate-200">SSC-{donor.SSC_Batch || "N/A"}</td>
+                  <td className="border border-slate-200 p-3 text-slate-800 dark:border-slate-800 dark:text-slate-200">
                     <PhoneCell
                       phone={donor.Phone_Number}
                       donorName={donor.Name}
@@ -225,7 +276,7 @@ const Blood = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="7" className="p-4 text-center">
+                <td colSpan="7" className="p-4 text-center text-slate-500 dark:text-slate-400">
                   No data found.
                 </td>
               </tr>
@@ -234,32 +285,8 @@ const Blood = () => {
         </table>
       </div>
 
-      {/* Pagination */}
-      <div className="mt-6 flex justify-center space-x-2">
-        <button
-          className="rounded border px-3 py-1 disabled:opacity-50"
-          onClick={() => goToPage(page - 1)}
-          disabled={page === 1}
-        >
-          Prev
-        </button>
-        {[...Array(totalPages)].map((_, i) => (
-          <button
-            key={i}
-            className={`rounded border px-3 py-1 ${page === i + 1 ? "bg-blue-600 text-white" : ""}`}
-            onClick={() => goToPage(i + 1)}
-          >
-            {i + 1}
-          </button>
-        ))}
-        <button
-          className="rounded border px-3 py-1 disabled:opacity-50"
-          onClick={() => goToPage(page + 1)}
-          disabled={page === totalPages}
-        >
-          Next
-        </button>
-      </div>
+      {/* Reusable Ellipsis Pagination */}
+      <Pagination page={page} totalPages={totalPages} onPageChange={goToPage} />
     </div>
   );
 };

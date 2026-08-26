@@ -1,28 +1,26 @@
 import React from "react";
-import { FaPhone } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
-import { CiLocationOn } from "react-icons/ci";
 import { qContactDetails } from "../constants/index";
+
 const QuickContact = () => {
   return (
-    <div className="">
-      <h5 className="h6 mb-4 mt-5 text-left text-sm">Quick contact</h5>
+    <div>
+      <h5 className="mb-4 mt-5 text-left text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-slate-100">
+        Quick Contact
+      </h5>
 
       <div>
-        <div className="-ml-3 flex flex-col items-start justify-around text-sm">
+        <div className="-ml-3 flex flex-col items-start justify-around text-sm gap-2">
           {qContactDetails.map(({ id, url, icon: Icon, title }) => (
             <div key={id} className="flex items-start justify-between">
               <a
                 href={url}
                 target="_blank"
-                className="mx-2 flex items-center justify-around text-white no-underline"
+                rel="noreferrer"
+                className="mx-2 flex items-center gap-2 text-slate-700 no-underline transition-colors hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
               >
-                <p className="mx-2">
-                  <Icon className="text-lg text-green-500" />
-                </p>
-
-                <p className="hover:text-green-500">{title}</p>
-              </a>{" "}
+                <Icon className="text-lg text-emerald-600 dark:text-emerald-400" />
+                <span>{title}</span>
+              </a>
             </div>
           ))}
         </div>
