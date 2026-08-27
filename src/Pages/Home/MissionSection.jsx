@@ -9,16 +9,9 @@ import {
 } from "../../components/ui/card";
 
 const MissionSection = () => {
-  const stats = [
-    { number: "10K+", label: "Lives Impacted" },
-    { number: "500+", label: "Active Volunteers" },
-    { number: "50+", label: "Communities Served" },
-    { number: "100%", label: "Transparent Operations" },
-  ];
-
   return (
-    <Section className="-mt-10 ">
-      <div className="flex flex-col gap-4 md:flex-row ">
+    <Section className="-mt-10">
+      <div className="flex flex-col gap-4 md:flex-row">
         {/* Mission Statement */}
         <Card className="mb-12 border-0 bg-gradient-to-br from-primary/5 to-secondary/5 shadow-lg">
           <CardHeader>
@@ -43,23 +36,6 @@ const MissionSection = () => {
         </Card>
       </div>
 
-      {/* Impact Stats */}
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
-        {stats.map((stat, index) => (
-          <div
-            key={index}
-            className="stagger-item rounded-lg bg-card p-6 text-center shadow-sm transition-smooth hover:shadow-md"
-          >
-            <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">
-              {stat.number}
-            </div>
-            <p className="mt-2 text-sm text-muted-foreground md:text-base">
-              {stat.label}
-            </p>
-          </div>
-        ))}
-      </div>
-
       {/* Core Values */}
       <div className="mt-16">
         <h3 className="mb-8 text-center text-2xl font-bold">Our Core Values</h3>
@@ -81,7 +57,10 @@ const MissionSection = () => {
                 "We create long-term solutions that benefit communities for years to come",
             },
           ].map((value, index) => (
-            <Card key={index} className="stagger-item border-0 transition-smooth">
+            <Card
+              key={index}
+              className="stagger-item transition-smooth border-0"
+            >
               <CardHeader>
                 <CardTitle className="text-xl">{value.title}</CardTitle>
               </CardHeader>

@@ -10,7 +10,6 @@ import { Star } from "lucide-react";
 
 const TestimonialsSection = () => {
   const testimonials = [
-
     {
       name: "Sohel Rana",
       role: "Advisor",
@@ -64,7 +63,7 @@ const TestimonialsSection = () => {
 
   return (
     <Section
-      className="bg-slate-50/60 dark:bg-slate-950/60 -mt-32 -mb-12"
+      className="-mb-12 -mt-12 bg-slate-50/60 dark:bg-slate-950/60"
       title="Success Stories & Testimonials"
       subtitle="Hear from the people whose lives have been touched by our work"
     >

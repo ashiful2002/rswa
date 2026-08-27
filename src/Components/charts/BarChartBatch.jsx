@@ -23,13 +23,21 @@ const BarChartBloodGroup = ({ data }) => {
   }));
 
   return (
-    <div className="rounded-lg bg-white p-4 shadow-md">
-      <h2 className="mb-2 text-lg font-semibold">Blood Group Bar Chart</h2>
+    <div className="shadow-xs rounded-2xl border border-slate-200 bg-white p-5 transition-colors dark:border-slate-800 dark:bg-slate-900">
+      <h2 className="mb-2 text-lg font-semibold text-slate-800 dark:text-white">
+        Blood Group Bar Chart
+      </h2>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={chartData}>
-          <XAxis dataKey="group" />
-          <YAxis />
-          <Tooltip />
+          <XAxis dataKey="group" stroke="#94a3b8" />
+          <YAxis stroke="#94a3b8" />
+          <Tooltip
+            contentStyle={{
+              backgroundColor: "#0f172a",
+              borderColor: "#334155",
+              color: "#fff",
+            }}
+          />
           <Legend />
           <Bar dataKey="donors" fill="#36A2EB" />
         </BarChart>

@@ -283,7 +283,7 @@ const DashboardStat = () => {
         </div>
         <button
           onClick={fetchData}
-          className="shadow-xs flex items-center gap-1.5 self-start rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700 sm:self-auto"
+          className="shadow-xs flex items-center gap-1.5 self-start rounded-xl border border-slate-200 px-3.5 py-2 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700 sm:self-auto"
         >
           <RefreshCw className="h-3.5 w-3.5 text-emerald-600" />
           <span>Refresh Analytics</span>
@@ -293,7 +293,7 @@ const DashboardStat = () => {
       {/* KPI Metric Cards Grid */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
         {/* Card 1: Total Donors */}
-        <div className="shadow-xs rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+        <div className="shadow-xs rounded-2xl border border-slate-200 p-4 dark:border-slate-800 dark:bg-slate-900">
           <div className="flex items-center justify-between">
             <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
               Total Donors
@@ -311,7 +311,7 @@ const DashboardStat = () => {
         </div>
 
         {/* Card 2: Registered System Users */}
-        <div className="shadow-xs rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+        <div className="shadow-xs rounded-2xl border border-slate-200 p-4 dark:border-slate-800 dark:bg-slate-900">
           <div className="flex items-center justify-between">
             <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
               Total Users
@@ -327,7 +327,7 @@ const DashboardStat = () => {
         </div>
 
         {/* Card 3: Top Blood Group */}
-        <div className="shadow-xs rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+        <div className="shadow-xs rounded-2xl border border-slate-200 p-4 dark:border-slate-800 dark:bg-slate-900">
           <div className="flex items-center justify-between">
             <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
               Top Blood Group
@@ -348,7 +348,7 @@ const DashboardStat = () => {
         </div>
 
         {/* Card 4: Top Region */}
-        <div className="shadow-xs rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+        <div className="shadow-xs rounded-2xl border border-slate-200 p-4 dark:border-slate-800 dark:bg-slate-900">
           <div className="flex items-center justify-between">
             <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
               Top Location
@@ -369,7 +369,7 @@ const DashboardStat = () => {
         </div>
 
         {/* Card 5: SSC Batches */}
-        <div className="shadow-xs rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+        <div className="shadow-xs rounded-2xl border border-slate-200 p-4 dark:border-slate-800 dark:bg-slate-900">
           <div className="flex items-center justify-between">
             <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
               SSC Batches
@@ -390,7 +390,7 @@ const DashboardStat = () => {
       {/* Primary Analytics Charts Section */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {/* Chart 1: Blood Group Distribution */}
-        <div className="shadow-xs rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
+        <div className="shadow-xs rounded-2xl border border-slate-200 p-5 dark:border-slate-800 dark:bg-slate-900">
           <div className="mb-4 flex items-center justify-between">
             <div>
               <h3 className="text-sm font-bold text-slate-800 dark:text-white">
@@ -443,7 +443,7 @@ const DashboardStat = () => {
         </div>
 
         {/* Chart 2: SSC Batch Demographics */}
-        <div className="shadow-xs rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
+        <div className="shadow-xs rounded-2xl border border-slate-200 p-5 dark:border-slate-800 dark:bg-slate-900">
           <div className="mb-4 flex items-center justify-between">
             <div>
               <h3 className="text-sm font-bold text-slate-800 dark:text-white">
@@ -497,7 +497,7 @@ const DashboardStat = () => {
       {/* Secondary Analytics Grid */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {/* Chart 3: Regional Distribution Bar Chart (2 columns) */}
-        <div className="shadow-xs rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900 lg:col-span-2">
+        <div className="shadow-xs rounded-2xl border border-slate-200 p-5 dark:border-slate-800 dark:bg-slate-900 lg:col-span-2">
           <div className="mb-4 flex items-center justify-between">
             <div>
               <h3 className="text-sm font-bold text-slate-800 dark:text-white">
@@ -558,7 +558,7 @@ const DashboardStat = () => {
         </div>
 
         {/* Chart 4: User Roles Distribution Bar Chart (1 column) */}
-        <div className="shadow-xs rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
+        <div className="shadow-xs rounded-2xl border border-slate-200 p-5 dark:border-slate-800 dark:bg-slate-900">
           <div className="mb-4 flex items-center justify-between">
             <div>
               <h3 className="text-sm font-bold text-slate-800 dark:text-white">

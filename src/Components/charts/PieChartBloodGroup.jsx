@@ -31,8 +31,10 @@ const PieChartBloodGroup = ({ data }) => {
   }));
 
   return (
-    <div className="rounded-lg bg-white p-4 shadow-md">
-      <h2 className="mb-2 text-lg font-semibold">Blood Group Pie Chart</h2>
+    <div className="shadow-xs rounded-2xl border border-slate-200 bg-white p-5 transition-colors dark:border-slate-800 dark:bg-slate-900">
+      <h2 className="mb-2 text-lg font-semibold text-slate-800 dark:text-white">
+        Blood Group Pie Chart
+      </h2>
       <ResponsiveContainer width="100%" height={300}>
         <PieChart>
           <Pie
@@ -46,7 +48,13 @@ const PieChartBloodGroup = ({ data }) => {
               <Cell key={index} fill={COLORS[index % COLORS.length]} />
             ))}
           </Pie>
-          <Tooltip />
+          <Tooltip
+            contentStyle={{
+              backgroundColor: "#0f172a",
+              borderColor: "#334155",
+              color: "#fff",
+            }}
+          />
           <Legend />
         </PieChart>
       </ResponsiveContainer>

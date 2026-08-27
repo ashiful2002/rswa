@@ -68,7 +68,7 @@ const DashboardLayout = () => {
 
       {/* Sidebar (Responsive Mobile Drawer + Desktop Sidebar) */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 flex flex-col border-r border-slate-200 bg-white transition-all duration-300 dark:border-slate-800 dark:bg-slate-900 ${
+        className={`fixed inset-y-0 left-0 z-50 flex flex-col border-r border-slate-200 transition-all duration-300 dark:border-slate-800 dark:bg-slate-900 ${
           isMobileOpen ? "w-64 translate-x-0 shadow-2xl" : "-translate-x-full"
         } lg:static lg:translate-x-0 ${isSidebarOpen ? "lg:w-64" : "lg:w-20"}`}
       >

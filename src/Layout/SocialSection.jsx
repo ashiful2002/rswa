@@ -3,7 +3,7 @@ import { SocialDesc } from "../constants";
 
 const SocialSection = () => {
   return (
-    <div className="-ml-3 flex flex-col items-start justify-around text-sm gap-2">
+    <div className="-ml-3 flex flex-col items-start justify-around gap-2 text-sm">
       {SocialDesc.map(({ icon: Icon, title, url, id }) => (
         <div key={id} className="flex items-start justify-between">
           <a

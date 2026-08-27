@@ -28,10 +28,16 @@ const Section = ({
     <section
       ref={animate ? ref : null}
       id={id}
-      className={`py-16 md:py-24 transition-colors duration-200 ${
-        animate ? `transition-smooth ${isVisible ? "fade-in" : "opacity-0"}` : ""
+      className={`py-16 transition-colors duration-200 md:py-24 ${
+        animate
+          ? `transition-smooth ${isVisible ? "fade-in" : "opacity-0"}`
+          : ""
       } ${className}`}
-      style={animate ? { transitionDelay: isVisible ? `${delay}ms` : "0ms" } : undefined}
+      style={
+        animate
+          ? { transitionDelay: isVisible ? `${delay}ms` : "0ms" }
+          : undefined
+      }
       {...props}
     >
       <div className={`mx-auto px-4 ${maxW} ${containerClassName}`}>

@@ -1,74 +1,148 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import useDebounce from "../../../hooks/useDebounce";
 import UpdateDonorModal from "../../../Components/shared/modal/UpdateDonorModal";
 import ConfirmDeleteModal from "../../../Components/shared/modal/ConfirmDeleteModal";
-import Loading from "../../../Components/Loading/Loading";
+import Pagination from "../../../Components/shared/Pagination";
 import { Link } from "react-router-dom";
-import DashboardStat from "../DashBoardStat/DashboardStat";
 import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { API_ENDPOINTS } from "../../../config/api";
+import useAuth from "../../../hooks/useAuth";
+import useUserRole from "../../../hooks/useUserRole/UseUserRole";
+
+const bloodGroupsList = [
+  "",
+  "A(+)ve",
+  "A(-)ve",
+  "B(+)ve",
+  "B(-)ve",
+  "O(+)ve",
+  "O(-)ve",
+  "AB(+)ve",
+  "AB(-)ve",
+];
 
 const DashboardBlood = () => {
+  const { user } = useAuth();
+  const { role } = useUserRole();
+
   const [search, setSearch] = useState("");
-  //   const [debouncedSearch, setDebouncedSearch] = useState("");
+  const [sscBatch, setSscBatch] = useState("");
+  const [bloodGroup, setBloodGroup] = useState("");
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(5);
+  const [limit, setLimit] = useState(10);
 
-  // Debounce search to reduce unnecessary requests
+  // Role permissions: Edit (admin/moderator), Delete (admin only)
+  const canEdit = role === "admin" || role === "moderator";
+  const canDelete = role === "admin";
+  const hasActions = canEdit || canDelete;
 
+  // Debounce search text input
   const debouncedSearch = useDebounce(search, 500);
+
+  // 1. Fetch unique existing SSC Batches dynamically from database records
+  const { data: allDonorsForBatches } = useQuery({
+    queryKey: ["allDonorsForBatches"],
+    queryFn: async () => {
+      const { data } = await axios.get(API_ENDPOINTS.BLOOD_GROUP, {
+        params: { limit: 1000 },
+      });
+      return data;
+    },
+    staleTime: 5 * 60 * 1000,
+  });
+
+  const existingSscBatches = Array.from(
+    new Set(
+      (allDonorsForBatches?.data || [])
+        .map((donor) => donor.SSC_Batch)
+        .filter((batch) => Boolean(batch) && String(batch).trim() !== "N/A"),
+    ),
+  ).sort((a, b) =>
+    String(b).localeCompare(String(a), undefined, { numeric: true }),
+  );
+
+  // 2. Fetch paginated blood data with active filters
   const fetchBloodData = async ({ queryKey }) => {
-    const [_key, { search, page, limit }] = queryKey;
-    const { data } = await axios.get(API_ENDPOINTS.BLOOD_GROUP, {
-      params: { search, page, limit },
-    });
+    const [_key, { search, page, limit, bloodGroup, sscBatch }] = queryKey;
+    const params = { search, page, limit };
+
+    if (bloodGroup) params.Blood_Group = bloodGroup;
+    if (sscBatch) params.SSC_Batch = sscBatch;
+
+    const { data } = await axios.get(API_ENDPOINTS.BLOOD_GROUP, { params });
     return data;
   };
 
-  const { data, isLoading, isError, refetch } = useQuery({
-    queryKey: ["Blood", { search: debouncedSearch, page, limit }],
+  const { data, isLoading, refetch } = useQuery({
+    queryKey: [
+      "Blood",
+      {
+        search: debouncedSearch,
+        page,
+        limit,
+        bloodGroup,
+        sscBatch,
+      },
+    ],
     queryFn: fetchBloodData,
     keepPreviousData: true,
   });
 
   const bloodData = data?.data || [];
-  const totalPages = data?.totalPages || 1;
-  // existing state
+  const totalPages = data?.meta?.totalPages || data?.totalPages || 1;
+
+  // Modal states
   const [selectedDonor, setSelectedDonor] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [donorToDelete, setDonorToDelete] = useState(null);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  // Helper to fetch Firebase ID Token header
+  const getAuthHeaders = async () => {
+    if (!user) return {};
+    const token = await user.getIdToken();
+    return { Authorization: `Bearer ${token}` };
+  };
+
+  // Handle Edit Action
   const handleUpdate = (donor) => {
     setSelectedDonor(donor);
     setIsModalOpen(true);
   };
+
   const handleModalClose = () => {
     setIsModalOpen(false);
     setSelectedDonor(null);
   };
+
   const handleModalUpdate = async (updatedonor) => {
-    // create a copy and remove _id
     const { _id, ...updateData } = updatedonor;
 
-    // Remove empty fields (optional)
     Object.keys(updateData).forEach(
       (key) => updateData[key] === undefined && delete updateData[key],
     );
 
-    if (Object.keys(updateData).length === 0) {
-      alert("Nothing to update!");
-      return;
-    }
+    try {
+      const headers = await getAuthHeaders();
+      await axios.put(`${API_ENDPOINTS.BLOOD_GROUP}/${_id}`, updateData, {
+        headers,
+      });
 
-    await axios.put(`${API_ENDPOINTS.BLOOD_GROUP}/${_id}`, updateData);
-    toast.success("Data updated");
-    refetch();
-    handleModalClose();
+      toast.success("Donor record updated successfully!");
+      refetch();
+      handleModalClose();
+    } catch (err) {
+      console.error("Update donor error:", err);
+      const errorMsg =
+        err.response?.data?.message || err.message || "Failed to update donor.";
+      toast.error(`Error (${err.response?.status || "500"}): ${errorMsg}`);
+    }
   };
 
-  const [donorToDelete, setDonorToDelete] = useState(null);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-
+  // Handle Delete Action
   const handleDeleteClick = (donor) => {
     setDonorToDelete(donor);
     setIsDeleteModalOpen(true);
@@ -76,10 +150,23 @@ const DashboardBlood = () => {
 
   const handleDeleteConfirm = async () => {
     if (!donorToDelete) return;
-    await axios.delete(`${API_ENDPOINTS.BLOOD_GROUP}/${donorToDelete._id}`);
-    refetch(); // refetch updated data
-    setIsDeleteModalOpen(false);
-    setDonorToDelete(null);
+
+    try {
+      const headers = await getAuthHeaders();
+      await axios.delete(`${API_ENDPOINTS.BLOOD_GROUP}/${donorToDelete._id}`, {
+        headers,
+      });
+
+      toast.success("Donor deleted successfully!");
+      refetch();
+      setIsDeleteModalOpen(false);
+      setDonorToDelete(null);
+    } catch (err) {
+      console.error("Delete donor error:", err);
+      const errorMsg =
+        err.response?.data?.message || err.message || "Failed to delete donor.";
+      toast.error(`Error (${err.response?.status || "500"}): ${errorMsg}`);
+    }
   };
 
   const handleDeleteCancel = () => {
@@ -87,27 +174,78 @@ const DashboardBlood = () => {
     setDonorToDelete(null);
   };
 
-  if (isLoading) return <Loading />;
-  if (isError)
-    return <p className="text-center text-red-500">Error fetching data.</p>;
+  const handleResetFilters = () => {
+    setSearch("");
+    setSscBatch("");
+    setBloodGroup("");
+    setPage(1);
+  };
 
   return (
     <div className="p-5 font-sans">
       <h2 className="mb-4 text-2xl font-bold text-slate-800 dark:text-white">
-        Blood Donor List
+        Blood Donor List Management
       </h2>
-      {/* Search */}
-      <div className="mb-4 flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
-        <input
-          type="text"
-          placeholder="Search by name or blood group..."
-          value={search}
-          onChange={(e) => {
-            setSearch(e.target.value);
-            setPage(1);
-          }}
-          className="shadow-xs w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 sm:w-72"
-        />
+
+      {/* Search & Dynamic Filter Controls */}
+      <div className="mb-4 flex flex-col flex-wrap gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-wrap items-center gap-3">
+          {/* General Search Input */}
+          <input
+            type="text"
+            placeholder="Search by name, address..."
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setPage(1);
+            }}
+            className="shadow-xs w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 sm:w-60"
+          />
+
+          {/* Database-Driven SSC Batch Select Filter */}
+          <select
+            value={sscBatch}
+            onChange={(e) => {
+              setSscBatch(e.target.value);
+              setPage(1);
+            }}
+            className="shadow-xs rounded-xl border border-slate-300 px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+          >
+            <option value="">All SSC Batches</option>
+            {existingSscBatches.map((batch) => (
+              <option key={batch} value={batch}>
+                SSC {batch}
+              </option>
+            ))}
+          </select>
+
+          {/* Blood Group Select Filter */}
+          <select
+            value={bloodGroup}
+            onChange={(e) => {
+              setBloodGroup(e.target.value);
+              setPage(1);
+            }}
+            className="shadow-xs rounded-xl border border-slate-300 px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+          >
+            {bloodGroupsList.map((bg, idx) => (
+              <option key={idx} value={bg}>
+                {bg || "All Blood Groups"}
+              </option>
+            ))}
+          </select>
+
+          {/* Reset Filters Button */}
+          {(search || sscBatch || bloodGroup) && (
+            <button
+              onClick={handleResetFilters}
+              className="rounded-xl border border-slate-300 bg-slate-100 px-3 py-2 text-xs font-semibold text-slate-600 transition-colors hover:bg-slate-200 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+            >
+              Reset Filters
+            </button>
+          )}
+        </div>
+
         <Link
           to="/"
           className="shadow-xs inline-flex items-center justify-center rounded-xl bg-emerald-600 px-4 py-2 text-xs font-medium text-white no-underline transition-colors hover:bg-emerald-700"
@@ -117,9 +255,9 @@ const DashboardBlood = () => {
       </div>
 
       {/* Table */}
-      <div className="shadow-xs overflow-x-auto rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
+      <div className="shadow-xs overflow-x-auto rounded-xl border border-slate-700 dark:border-slate-800 dark:bg-slate-900">
         <table className="w-full table-auto text-left text-sm">
-          <thead className="border-b border-slate-200 bg-slate-100 text-[11px] uppercase tracking-wider text-slate-700 dark:border-slate-800 dark:bg-slate-800/80 dark:text-slate-300">
+          <thead className="border-b border-slate-700 bg-slate-100 text-[11px] uppercase tracking-wider text-slate-700 dark:border-slate-800 dark:bg-slate-800/80 dark:text-slate-300">
             <tr>
               <th className="px-4 py-3">#</th>
               <th className="px-4 py-3">Name</th>
@@ -128,11 +266,42 @@ const DashboardBlood = () => {
               <th className="px-4 py-3">Present Address</th>
               <th className="px-4 py-3">Permanent Address</th>
               <th className="px-4 py-3">SSC Batch</th>
-              <th className="px-4 py-3">Actions</th>
+              {hasActions && <th className="px-4 py-3">Actions</th>}
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
-            {bloodData.length > 0 ? (
+            {isLoading ? (
+              Array.from({ length: limit || 10 }).map((_, idx) => (
+                <tr key={idx} className="animate-pulse">
+                  <td className="px-4 py-3">
+                    <div className="h-4 w-6 rounded bg-slate-200 dark:bg-slate-800"></div>
+                  </td>
+                  <td className="px-4 py-3">
+                    <div className="h-4 w-32 rounded bg-slate-200 dark:bg-slate-800"></div>
+                  </td>
+                  <td className="px-4 py-3">
+                    <div className="h-4 w-12 rounded bg-slate-200 dark:bg-slate-800"></div>
+                  </td>
+                  <td className="px-4 py-3">
+                    <div className="h-4 w-28 rounded bg-slate-200 dark:bg-slate-800"></div>
+                  </td>
+                  <td className="px-4 py-3">
+                    <div className="h-4 w-32 rounded bg-slate-200 dark:bg-slate-800"></div>
+                  </td>
+                  <td className="px-4 py-3">
+                    <div className="h-4 w-28 rounded bg-slate-200 dark:bg-slate-800"></div>
+                  </td>
+                  <td className="px-4 py-3">
+                    <div className="h-4 w-20 rounded bg-slate-200 dark:bg-slate-800"></div>
+                  </td>
+                  {hasActions && (
+                    <td className="px-4 py-3">
+                      <div className="h-4 w-24 rounded bg-slate-200 dark:bg-slate-800"></div>
+                    </td>
+                  )}
+                </tr>
+              ))
+            ) : bloodData.length > 0 ? (
               bloodData.map((donor, index) => (
                 <tr
                   key={donor._id}
@@ -151,46 +320,42 @@ const DashboardBlood = () => {
                     {donor.Phone_Number}
                   </td>
                   <td className="px-4 py-3 text-slate-600 dark:text-slate-300">
-                    {donor.Present_Address}
+                    {donor.Present_Address || "N/A"}
                   </td>
                   <td className="px-4 py-3 text-slate-600 dark:text-slate-300">
-                    {donor.Permanent_Address}
+                    {donor.Permanent_Address || "N/A"}
                   </td>
                   <td className="px-4 py-3 text-slate-600 dark:text-slate-300">
-                    {donor.SSC_Batch}
+                    {donor.SSC_Batch ? `SSC-${donor.SSC_Batch}` : "N/A"}
                   </td>
-                  <td className="space-x-2 whitespace-nowrap px-4 py-3">
-                    <button
-                      onClick={() => handleUpdate(donor)}
-                      className="rounded-lg bg-blue-600 px-3 py-1 text-xs text-white transition-colors hover:bg-blue-700"
-                    >
-                      Update
-                    </button>
-                    <UpdateDonorModal
-                      isOpen={isModalOpen}
-                      onClose={handleModalClose}
-                      donor={selectedDonor}
-                      onUpdate={handleModalUpdate}
-                    />
-                    <button
-                      onClick={() => handleDeleteClick(donor)}
-                      className="rounded-lg bg-red-600 px-3 py-1 text-xs text-white transition-colors hover:bg-red-700"
-                    >
-                      Delete
-                    </button>
-                    <ConfirmDeleteModal
-                      isOpen={isDeleteModalOpen}
-                      onClose={handleDeleteCancel}
-                      onConfirm={handleDeleteConfirm}
-                      itemName={donorToDelete?.Name}
-                      itemBlood={donorToDelete?.Blood_Group}
-                    />
-                  </td>
+                  {hasActions && (
+                    <td className="space-x-2 whitespace-nowrap px-4 py-3">
+                      {canEdit && (
+                        <button
+                          onClick={() => handleUpdate(donor)}
+                          className="rounded-lg bg-blue-600 px-3 py-1 text-xs text-white transition-colors hover:bg-blue-700"
+                        >
+                          Update
+                        </button>
+                      )}
+                      {canDelete && (
+                        <button
+                          onClick={() => handleDeleteClick(donor)}
+                          className="rounded-lg bg-red-600 px-3 py-1 text-xs text-white transition-colors hover:bg-red-700"
+                        >
+                          Delete
+                        </button>
+                      )}
+                    </td>
+                  )}
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="8" className="py-6 text-center text-slate-500">
+                <td
+                  colSpan={hasActions ? "8" : "7"}
+                  className="py-6 text-center text-slate-500"
+                >
                   No donors found.
                 </td>
               </tr>
@@ -199,8 +364,8 @@ const DashboardBlood = () => {
         </table>
       </div>
 
-      {/* Pagination */}
-      <div className="mt-4 flex flex-col items-center justify-between gap-3 text-sm text-slate-700 dark:text-slate-300 sm:flex-row">
+      {/* Rows per page & Shared Pagination Component */}
+      <div className="mt-6 flex flex-col items-center justify-between gap-4 text-sm text-slate-700 dark:text-slate-300 sm:flex-row">
         <div className="flex items-center gap-2">
           <label className="text-xs font-medium">Rows per page: </label>
           <select
@@ -209,35 +374,35 @@ const DashboardBlood = () => {
               setLimit(Number(e.target.value));
               setPage(1);
             }}
-            className="rounded-xl border border-slate-300 bg-white px-3 py-1 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+            className="rounded-xl border border-slate-300 px-3 py-1 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
           >
-            <option value={5}>5</option>
-            <option value={10}>10</option>
             <option value={20}>20</option>
+            <option value={50}>50</option>
           </select>
         </div>
 
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => setPage((old) => Math.max(old - 1, 1))}
-            disabled={page === 1}
-            className="rounded-xl border border-slate-300 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-50 disabled:opacity-40 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
-          >
-            Prev
-          </button>
-          <span className="px-1 text-xs font-medium">
-            Page {page} of {totalPages}
-          </span>
-          <button
-            onClick={() => setPage((old) => Math.min(old + 1, totalPages))}
-            disabled={page === totalPages}
-            className="rounded-xl border border-slate-300 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-50 disabled:opacity-40 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
-          >
-            Next
-          </button>
-          <ToastContainer />
-        </div>
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          onPageChange={(num) => setPage(num)}
+        />
       </div>
+
+      {/* Modals */}
+      <UpdateDonorModal
+        isOpen={isModalOpen}
+        onClose={handleModalClose}
+        donor={selectedDonor}
+        onUpdate={handleModalUpdate}
+      />
+      <ConfirmDeleteModal
+        isOpen={isDeleteModalOpen}
+        onClose={handleDeleteCancel}
+        onConfirm={handleDeleteConfirm}
+        itemName={donorToDelete?.Name}
+        itemBlood={donorToDelete?.Blood_Group}
+      />
+      <ToastContainer position="bottom-right" />
     </div>
   );
 };

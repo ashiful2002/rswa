@@ -50,7 +50,7 @@ export const navigation = [
     url: "/blog",
   },
   {
-    id: "6",
+    id: "7",
     title: "archives",
     url: "/archives",
   },
@@ -171,7 +171,7 @@ export const rifatInfo = [
   {
     id: "3",
     counter: "gazipur",
-    phoneNumber: "01745-446465"
+    phoneNumber: "01745-446465",
   },
   {
     id: "4",
@@ -181,7 +181,7 @@ export const rifatInfo = [
   {
     id: "4",
     counter: "kortimari",
-    phoneNumber: "01734-013901"
+    phoneNumber: "01734-013901",
   },
 ];
 export const polyInfo = [
@@ -299,7 +299,6 @@ export const busDataMap = [
 ];
 
 export const busData = [
-
   {
     id: "11",
     name: "shawon",

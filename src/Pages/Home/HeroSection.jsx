@@ -48,7 +48,7 @@ const HeroSection = () => {
             <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
               <Button
                 size="lg"
-                className="transition-smooth gap-2 bg-red-700 hover:bg-red-800 text-white hover:shadow-lg"
+                className="transition-smooth gap-2 bg-red-700 text-white hover:bg-red-800 hover:shadow-lg"
                 onClick={() => navigate("/blood")}
               >
                 <Droplet className="h-5 w-5" />
@@ -58,7 +58,7 @@ const HeroSection = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="transition-smooth gap-2 hover:bg-emerald-600 hover:text-white dark:border-slate-700 dark:hover:bg-emerald-600 dark:hover:text-white hover:shadow-lg"
+                className="transition-smooth gap-2 hover:bg-emerald-600 hover:text-white hover:shadow-lg dark:border-slate-700 dark:hover:bg-emerald-600 dark:hover:text-white"
                 onClick={() => navigate("/rcl")}
               >
                 RCL
@@ -69,7 +69,7 @@ const HeroSection = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="transition-smooth gap-2 hover:bg-emerald-600 hover:text-white dark:border-slate-700 dark:hover:bg-emerald-600 dark:hover:text-white hover:shadow-lg"
+                className="transition-smooth gap-2 hover:bg-emerald-600 hover:text-white hover:shadow-lg dark:border-slate-700 dark:hover:bg-emerald-600 dark:hover:text-white"
                 onClick={() => navigate("/student-award")}
               >
                 কৃতি শিক্ষার্থী সংবর্ধনা
@@ -77,7 +77,7 @@ const HeroSection = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="transition-smooth gap-2 hover:bg-emerald-600 hover:text-white dark:border-slate-700 dark:hover:bg-emerald-600 dark:hover:text-white hover:shadow-lg"
+                className="transition-smooth gap-2 hover:bg-emerald-600 hover:text-white hover:shadow-lg dark:border-slate-700 dark:hover:bg-emerald-600 dark:hover:text-white"
                 onClick={() => navigate("/about")}
               >
                 Learn More

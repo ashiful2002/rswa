@@ -4,12 +4,19 @@ import Businfo from "./Components/BsBusInfo";
 import IndivisualBus from "./Components/IndivisualBus";
 import EmergencyContacts from "./Components/EmergencyContacts";
 import Section from "../Components/shared/Section";
+import SEO from "../Components/shared/SEO";
 import { Button } from "../components/ui/button";
 
 const OtherLinks = () => {
   return (
     <Section animate={false} className="-mt-12">
-      <PageTitle title="Important Numbers" />
+      <SEO
+        title="Rowmari Emergency Numbers & Bus Schedules | RSWA"
+        description="Find essential Rowmari emergency contact numbers (Hospital, Police, Ambulance, Fire Service) and Rowmari bus schedules (Rifat, Poly, Siam Paribahan counters) provided by RSWA."
+        keywords="Rowmari emergency numbers, Rowmari hospital phone number, Rowmari police station contact, Rowmari bus counter number, Rifat Paribahan Rowmari, Poly Paribahan, Siam Enterprise, RSWA emergency contacts"
+      />
+
+      <PageTitle title="Important & Emergency Numbers" />
 
       <div>
         <EmergencyContacts />

@@ -63,18 +63,21 @@ const CustomForm = () => {
   };
 
   return (
-    <div className="mx-auto md:w-11/12" >
+    <div className="mx-auto md:w-11/12">
       <button className="me-1 ms-1 w-full rounded-md bg-emerald-600 py-3 text-center text-2xl font-bold capitalize text-white shadow-sm hover:bg-emerald-700 dark:bg-emerald-600 dark:hover:bg-emerald-700">
         Blood Group Form
       </button>
-      <form 
+      <form
         onSubmit={onSubmit}
         onReset={onReset}
-        className="mx-auto max-w-3xl space-y-6 rounded-xl border border-slate-200 p-6 shadow-md transition-colors dark:border-slate-800 dark:bg-slate-900 my-12"
+        className="mx-auto my-12 max-w-3xl space-y-6 rounded-xl border border-slate-200 p-6 shadow-md transition-colors dark:border-slate-800 dark:bg-slate-900"
       >
         {/* Name */}
-        <div className="flex flex-col ">
-          <label htmlFor="Name" className="mb-1 text-sm font-semibold text-slate-700 dark:text-slate-200">
+        <div className="flex flex-col">
+          <label
+            htmlFor="Name"
+            className="mb-1 text-sm font-semibold text-slate-700 dark:text-slate-200"
+          >
             Name <span className="text-red-500">*</span>
           </label>
           <input
@@ -85,13 +88,16 @@ const CustomForm = () => {
             value={formData.Name}
             onChange={handleChange}
             placeholder="Enter your name"
-            className="rounded-md border border-slate-200 px-4 py-2 text-slate-900 shadow-xs focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+            className="shadow-xs rounded-md border border-slate-200 px-4 py-2 text-slate-900 focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
           />
         </div>
 
         {/* Blood Group Select */}
         <div className="flex flex-col">
-          <label htmlFor="Blood_Group" className="mb-1 text-sm font-semibold text-slate-700 dark:text-slate-200">
+          <label
+            htmlFor="Blood_Group"
+            className="mb-1 text-sm font-semibold text-slate-700 dark:text-slate-200"
+          >
             Blood Group <span className="text-red-500">*</span>
           </label>
           <select
@@ -100,7 +106,7 @@ const CustomForm = () => {
             required
             value={formData.Blood_Group}
             onChange={handleChange}
-            className="rounded-md border border-slate-200 px-4 py-2 text-slate-900 shadow-xs focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+            className="shadow-xs rounded-md border border-slate-200 px-4 py-2 text-slate-900 focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
           >
             <option value="" disabled>
               Select your blood group
@@ -119,7 +125,10 @@ const CustomForm = () => {
 
         {/* Phone Number */}
         <div className="flex flex-col">
-          <label htmlFor="Phone_Number" className="mb-1 text-sm font-semibold text-slate-700 dark:text-slate-200">
+          <label
+            htmlFor="Phone_Number"
+            className="mb-1 text-sm font-semibold text-slate-700 dark:text-slate-200"
+          >
             Phone Number <span className="text-red-500">*</span>
           </label>
           <input
@@ -132,13 +141,16 @@ const CustomForm = () => {
             value={formData.Phone_Number}
             onChange={handleChange}
             placeholder="e.g. 017XXXXXXXX"
-            className="rounded-md border border-slate-200 px-4 py-2 text-slate-900 shadow-xs focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+            className="shadow-xs rounded-md border border-slate-200 px-4 py-2 text-slate-900 focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
           />
         </div>
 
         {/* SSC Batch */}
         <div className="flex flex-col">
-          <label htmlFor="SSC_Batch" className="mb-1 text-sm font-semibold text-slate-700 dark:text-slate-200">
+          <label
+            htmlFor="SSC_Batch"
+            className="mb-1 text-sm font-semibold text-slate-700 dark:text-slate-200"
+          >
             SSC Batch
           </label>
           <input
@@ -148,7 +160,7 @@ const CustomForm = () => {
             value={formData.SSC_Batch}
             onChange={handleChange}
             placeholder="Enter your SSC batch"
-            className="rounded-md border border-slate-200 px-4 py-2 text-slate-900 shadow-xs focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+            className="shadow-xs rounded-md border border-slate-200 px-4 py-2 text-slate-900 focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
           />
         </div>
 
@@ -165,21 +177,71 @@ const CustomForm = () => {
             name="Present_Address"
             value={formData.Present_Address}
             onChange={handleChange}
-            className="rounded-md border border-slate-200 px-4 py-2 text-slate-900 shadow-xs focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+            className="shadow-xs rounded-md border border-slate-200 px-4 py-2 text-slate-900 focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
           >
             <option value="" className="dark:bg-slate-900 dark:text-slate-100">
               Select location or leave empty
             </option>
-            <option value="rowmari" className="dark:bg-slate-900 dark:text-slate-100">Rowmari</option>
-            <option value="dhaka" className="dark:bg-slate-900 dark:text-slate-100">Dhaka</option>
-            <option value="gazipur" className="dark:bg-slate-900 dark:text-slate-100">Gazipur</option>
-            <option value="rangpur" className="dark:bg-slate-900 dark:text-slate-100">Rangpur</option>
-            <option value="rajshahi" className="dark:bg-slate-900 dark:text-slate-100">Rajshahi</option>
-            <option value="mymensingh" className="dark:bg-slate-900 dark:text-slate-100">Mymensingh</option>
-            <option value="sylhet" className="dark:bg-slate-900 dark:text-slate-100">Sylhet</option>
-            <option value="chottogram" className="dark:bg-slate-900 dark:text-slate-100">Chottogram</option>
-            <option value="barishal" className="dark:bg-slate-900 dark:text-slate-100">Barishal</option>
-            <option value="khulna" className="dark:bg-slate-900 dark:text-slate-100">Khulna</option>
+            <option
+              value="rowmari"
+              className="dark:bg-slate-900 dark:text-slate-100"
+            >
+              Rowmari
+            </option>
+            <option
+              value="dhaka"
+              className="dark:bg-slate-900 dark:text-slate-100"
+            >
+              Dhaka
+            </option>
+            <option
+              value="gazipur"
+              className="dark:bg-slate-900 dark:text-slate-100"
+            >
+              Gazipur
+            </option>
+            <option
+              value="rangpur"
+              className="dark:bg-slate-900 dark:text-slate-100"
+            >
+              Rangpur
+            </option>
+            <option
+              value="rajshahi"
+              className="dark:bg-slate-900 dark:text-slate-100"
+            >
+              Rajshahi
+            </option>
+            <option
+              value="mymensingh"
+              className="dark:bg-slate-900 dark:text-slate-100"
+            >
+              Mymensingh
+            </option>
+            <option
+              value="sylhet"
+              className="dark:bg-slate-900 dark:text-slate-100"
+            >
+              Sylhet
+            </option>
+            <option
+              value="chottogram"
+              className="dark:bg-slate-900 dark:text-slate-100"
+            >
+              Chottogram
+            </option>
+            <option
+              value="barishal"
+              className="dark:bg-slate-900 dark:text-slate-100"
+            >
+              Barishal
+            </option>
+            <option
+              value="khulna"
+              className="dark:bg-slate-900 dark:text-slate-100"
+            >
+              Khulna
+            </option>
           </select>
         </div>
 
@@ -198,7 +260,7 @@ const CustomForm = () => {
             value={formData.Permanent_Address}
             onChange={handleChange}
             placeholder="Enter your permanent address"
-            className="rounded-md border border-slate-200 px-4 py-2 text-slate-900 shadow-xs focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+            className="shadow-xs rounded-md border border-slate-200 px-4 py-2 text-slate-900 focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
           />
         </div>
 
@@ -212,7 +274,10 @@ const CustomForm = () => {
             onChange={handleChange}
             className="h-4 w-4 cursor-pointer rounded border-slate-300 bg-white accent-emerald-600 focus:ring-emerald-600 dark:border-slate-700 dark:bg-slate-950 dark:accent-emerald-500"
           />
-          <label htmlFor="agree" className="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-300">
+          <label
+            htmlFor="agree"
+            className="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-300"
+          >
             অন্যের জীবন বাঁচাতে রক্তদানে এগিয়ে আসবো
           </label>
         </div>

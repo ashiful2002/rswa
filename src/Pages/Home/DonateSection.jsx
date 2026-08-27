@@ -46,7 +46,7 @@ const DonateSection = () => {
         {donationOptions.map((option, index) => (
           <div
             key={index}
-            className="stagger-item rounded-lg bg-white/10 p-6 backdrop-blur-sm transition-smooth hover:bg-white/20"
+            className="stagger-item transition-smooth rounded-lg bg-white/10 p-6 backdrop-blur-sm hover:bg-white/20"
           >
             <div className="mb-3 inline-block rounded-lg bg-white/20 p-3">
               {React.cloneElement(option.icon, {
@@ -103,10 +103,7 @@ const DonateSection = () => {
         </p>
         <p className="mt-2">
           Questions?{" "}
-          <a
-            href="mailto:donate@rswa.org"
-            className="font-semibold underline"
-          >
+          <a href="mailto:donate@rswa.org" className="font-semibold underline">
             Contact us
           </a>
         </p>

@@ -27,8 +27,7 @@ import DashboardStat from "./Pages/Dashboard/DashBoardStat/DashboardStat.jsx";
 import DashboardLayout from "./Pages/Dashboard/DashboardLayout/DashboardLayout.jsx";
 import DashboardUserManagement from "./Pages/Dashboard/DashboardUserManagement.jsx";
 import DashboardContent from "./Pages/Dashboard/DashboardContent.jsx";
-import Archives from "./Pages/archives/Archives.jsx";
-import PrivateRoute from "./Components/ProtectedRoutes/privateRoute/PrivateRoute.jsx";
+import AdminRoute from "./Components/ProtectedRoutes/AdminRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -97,45 +96,33 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <AdminRoute>
+        <DashboardLayout />
+      </AdminRoute>
+    ),
     children: [
       {
         index: true,
-        element: (
-          <PrivateRoute>
-            <DashboardStat />
-          </PrivateRoute>
-        ),
+        element: <DashboardStat />,
       },
       {
         path: "manage-blood",
-        // here have to use private route
-        element: (
-          <PrivateRoute>
-            <DashboardBlood />
-          </PrivateRoute>
-        ),
+        element: <DashboardBlood />,
       },
       {
         path: "users",
-        element: (
-          <PrivateRoute>
-            <DashboardUserManagement />
-          </PrivateRoute>
-        ),
+        element: <DashboardUserManagement />,
       },
       {
         path: "content",
-        element: (
-          <PrivateRoute>
-            <DashboardContent />
-          </PrivateRoute>
-        ),
+        element: <DashboardContent />,
       },
     ],
   },
 ]);
 import ThemeProvider from "./Context/ThemeProvider.jsx";
+import Archives from "./Pages/archives/Archives.jsx";
 
 const queryClient = new QueryClient();
 

@@ -18,7 +18,7 @@ import { Phone } from "lucide-react";
 
 const BusTable = ({ title, data }) => {
   return (
-    <Card className="w-full shadow-2xs border-slate-200/80 dark:border-slate-800 md:w-[32%]">
+    <Card className="shadow-2xs w-full border-slate-200/80 dark:border-slate-800 md:w-[32%]">
       <CardHeader className="pb-3">
         <CardTitle className="text-base font-bold text-slate-900 dark:text-slate-100">
           {title}
@@ -39,7 +39,7 @@ const BusTable = ({ title, data }) => {
           <TableBody>
             {data?.map((item, index) => (
               <TableRow key={index}>
-                <TableCell className="capitalize font-medium text-slate-800 dark:text-slate-200">
+                <TableCell className="font-medium capitalize text-slate-800 dark:text-slate-200">
                   {item.counter}
                 </TableCell>
                 <TableCell className="font-mono">

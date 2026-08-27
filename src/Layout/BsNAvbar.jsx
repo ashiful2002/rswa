@@ -6,11 +6,15 @@ import Navbar from "react-bootstrap/Navbar";
 import logo from "../assets/logo.png";
 import { navigation } from "../constants";
 import useAuth from "../hooks/useAuth";
+import useUserRole from "../hooks/useUserRole/UseUserRole";
 import ThemeToggle from "../Components/shared/ThemeToggle";
 
 function BsNavbar() {
   const { user, SignOutUser } = useAuth();
+  const { role } = useUserRole();
   const [expanded, setExpanded] = useState(false);
+
+  const isAdmin = role === "admin" || role === "moderator";
 
   const handleLogOut = () => {
     SignOutUser();
@@ -28,23 +32,32 @@ function BsNavbar() {
       className="border-b border-slate-100 bg-white/95 py-2 shadow-sm backdrop-blur-md transition-colors duration-200 dark:border-slate-800 dark:bg-slate-900/95"
     >
       <Container>
-        <Navbar.Brand>
-          <Link to="/" onClick={closeMenu} className="inline-block">
-            <img
-              src={logo}
-              alt="RSWA Logo"
-              className="h-auto w-14 object-contain transition-transform duration-200 hover:scale-105 sm:w-16"
-            />
-          </Link>
+        {/* Brand Logo & Name */}
+        <Navbar.Brand
+          as={Link}
+          to="/"
+          onClick={closeMenu}
+          className="flex items-center gap-2.5 no-underline"
+        >
+          <img
+            src={logo}
+            alt="RSWA Logo"
+            className="h-16 w-16 object-cover transition-transform hover:scale-105"
+          />
+          {/* <span className="text-xl font-bold tracking-tight text-slate-800 dark:text-white">
+            RSWA
+          </span> */}
         </Navbar.Brand>
 
-        <Navbar.Toggle
-          aria-controls="basic-navbar-nav"
-          className="rounded-lg border border-slate-200 p-2 focus:shadow-none focus:outline-none dark:border-slate-700"
-        />
+        {/* Mobile Toggle Button */}
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <Navbar.Toggle aria-controls="rswa-navbar-nav" />
+        </div>
 
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="my-md-0 my-2 ms-auto items-start gap-1">
+        {/* Navigation Content */}
+        <Navbar.Collapse id="rswa-navbar-nav">
+          <Nav className="mx-auto my-2 flex gap-1 md:my-0">
             {navigation.map((item) => (
               <NavLink
                 key={item.id}
@@ -62,7 +75,7 @@ function BsNavbar() {
               </NavLink>
             ))}
 
-            {user && (
+            {user && isAdmin && (
               <NavLink
                 to="/dashboard"
                 onClick={closeMenu}
@@ -79,24 +92,41 @@ function BsNavbar() {
             )}
           </Nav>
 
-          <div className="ms-md-3 mt-md-0 mt-2 flex items-center gap-2">
-            <ThemeToggle />
+          {/* User Auth Buttons / Profile & Theme Toggle */}
+          <div className="flex items-center justify-end gap-3 pt-2 md:pt-0">
+            <div className="hidden md:block">
+              <ThemeToggle />
+            </div>
+
             {user ? (
-              <button
-                onClick={handleLogOut}
-                className="cursor-pointer rounded-full border-0 bg-emerald-600 px-5 py-2 text-sm font-medium text-white shadow-sm transition-all duration-200 hover:bg-emerald-700 active:scale-95"
-              >
-                Log out
-              </button>
+              <div className="flex items-center gap-3">
+                <span className="hidden text-xs font-semibold text-slate-600 dark:text-slate-300 lg:inline">
+                  {user.displayName || user.email}
+                </span>
+                <button
+                  onClick={handleLogOut}
+                  className="rounded-full bg-red-600 px-4 py-1.5 text-xs font-semibold text-white transition-all hover:bg-red-700 focus:outline-none dark:bg-red-600 dark:hover:bg-red-700"
+                >
+                  Log Out
+                </button>
+              </div>
             ) : (
-              <></>
-              // <Link
-              //   to="/signin"
-              //   onClick={closeMenu}
-              //   className="bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-medium text-sm px-5 py-2 rounded-full transition-all duration-200 shadow-sm border-0 no-underline inline-block text-center"
-              // >
-              //   Sign in
-              // </Link>
+              <div className="flex items-center gap-2">
+                <Link
+                  to="/signin"
+                  onClick={closeMenu}
+                  className="rounded-full border border-emerald-600 px-4 py-1.5 text-xs font-semibold text-emerald-600 no-underline transition-all hover:bg-emerald-50 dark:border-emerald-500 dark:text-emerald-400 dark:hover:bg-emerald-950/50"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  to="/signup"
+                  onClick={closeMenu}
+                  className="rounded-full bg-emerald-600 px-4 py-1.5 text-xs font-semibold text-white no-underline transition-all hover:bg-emerald-700 dark:bg-emerald-600 dark:hover:bg-emerald-700"
+                >
+                  Register
+                </Link>
+              </div>
             )}
           </div>
         </Navbar.Collapse>

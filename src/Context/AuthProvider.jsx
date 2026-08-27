@@ -11,6 +11,7 @@ import {
 
 import { auth } from "../firebase/Firebase.init";
 import axios from "axios";
+import { API_ENDPOINTS } from "../config/api";
 
 const GoogleProvider = new GoogleAuthProvider();
 
@@ -50,14 +51,23 @@ const AuthProvider = ({ children }) => {
       if (currentUser) {
         try {
           const token = await currentUser.getIdToken();
+          window.firebaseToken = token;
+          // console.log("🔑 YOUR FIREBASE ID TOKEN FOR POSTMAN:\n", token);
 
-          const response = await axios.get("http://localhost:4000/users/me", {
-            headers: {
-              Authorization: `Bearer ${token}`,
+          const response = await axios.get(
+            `${API_ENDPOINTS.USERS}/${currentUser.email}/role`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
             },
-          });
+          );
 
-          setRole(response.data.role);
+          const fetchedRole =
+            response?.data?.data?.role ||
+            response?.data?.role ||
+            response?.data?.data?.user?.role;
+          setRole(fetchedRole || null);
         } catch (error) {
           console.error("Failed to load user role:", error);
           setRole(null);

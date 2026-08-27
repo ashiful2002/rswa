@@ -15,7 +15,7 @@ const getPageNumbers = (currentPage, totalPages) => {
         totalPages - 3,
         totalPages - 2,
         totalPages - 1,
-        totalPages
+        totalPages,
       );
     } else {
       pages.push(
@@ -25,7 +25,7 @@ const getPageNumbers = (currentPage, totalPages) => {
         currentPage,
         currentPage + 1,
         "...",
-        totalPages
+        totalPages,
       );
     }
   }
@@ -38,11 +38,13 @@ const Pagination = ({ page, totalPages, onPageChange, className = "" }) => {
   const pageNumbers = getPageNumbers(page, totalPages);
 
   return (
-    <div className={`mt-6 flex flex-wrap items-center justify-center space-x-1.5 sm:space-x-2 ${className}`}>
+    <div
+      className={`mt-6 flex flex-wrap items-center justify-center space-x-1.5 sm:space-x-2 ${className}`}
+    >
       {/* Prev Button */}
       <button
         type="button"
-        className="rounded-lg border border-slate-200  px-3 py-1.5 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-100 disabled:opacity-40 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+        className="rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-100 disabled:opacity-40 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
         onClick={() => onPageChange(page - 1)}
         disabled={page === 1}
       >
@@ -83,7 +85,7 @@ const Pagination = ({ page, totalPages, onPageChange, className = "" }) => {
       {/* Next Button */}
       <button
         type="button"
-        className="rounded-lg border border-slate-200   px-3 py-1.5 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-100 disabled:opacity-40 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+        className="rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-100 disabled:opacity-40 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
         onClick={() => onPageChange(page + 1)}
         disabled={page === totalPages}
       >

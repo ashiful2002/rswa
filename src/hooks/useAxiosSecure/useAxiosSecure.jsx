@@ -2,9 +2,10 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase/Firebase.init";
+import { BASE_URL } from "../../config/api";
 
 const axiosSecure = axios.create({
-  baseURL: `${import.meta.env.VITE_BACKEND_URL}`,
+  baseURL: BASE_URL,
   withCredentials: true,
 });
 
@@ -18,7 +19,6 @@ const useAxiosSecure = () => {
 
         if (currentUser) {
           const token = await currentUser.getIdToken();
-
           config.headers.Authorization = `Bearer ${token}`;
         }
 

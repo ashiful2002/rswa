@@ -3,12 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { MdBloodtype } from "react-icons/md";
-import { FaEye, FaPhoneAlt, FaSearch } from "react-icons/fa";
-import Loading from "../Components/Loading/Loading";
+import { FaEye, FaPhoneAlt } from "react-icons/fa";
 import { Modal, Button } from "react-bootstrap";
 import Pagination from "../Components/shared/Pagination";
 
 import { API_ENDPOINTS } from "../config/api";
+import SEO from "../Components/shared/SEO";
 
 const bloodGroups = [
   "",
@@ -49,7 +49,8 @@ const PhoneCell = ({ phone, donorName }) => {
   const [revealed, setRevealed] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  if (!phone) return <span className="text-muted dark:text-slate-400">N/A</span>;
+  if (!phone)
+    return <span className="text-muted dark:text-slate-400">N/A</span>;
 
   const visiblePart = phone.slice(0, 3);
   const hiddenPart = phone.slice(3);
@@ -63,7 +64,7 @@ const PhoneCell = ({ phone, donorName }) => {
     return (
       <a
         href={`tel:${phone}`}
-        className="d-inline-flex align-items-center gap-1 font-semibold text-emerald-600 text-decoration-none dark:text-emerald-400"
+        className="d-inline-flex align-items-center text-decoration-none gap-1 font-semibold text-emerald-600 dark:text-emerald-400"
       >
         <FaPhoneAlt size={12} />
         {phone}
@@ -103,7 +104,7 @@ const PhoneCell = ({ phone, donorName }) => {
       >
         <Modal.Header
           closeButton
-          className="border-b border-slate-200 text-slate-900 dark:border-slate-800 dark:text-slate-100 dark:[&_.btn-close]:filter dark:[&_.btn-close]:invert"
+          className="border-b border-slate-200 text-slate-900 dark:border-slate-800 dark:text-slate-100 dark:[&_.btn-close]:invert dark:[&_.btn-close]:filter"
         >
           <Modal.Title className="fs-6 font-bold text-slate-900 dark:text-slate-100">
             Reveal Phone Number
@@ -112,7 +113,9 @@ const PhoneCell = ({ phone, donorName }) => {
         <Modal.Body className="text-slate-700 dark:text-slate-200">
           Are you sure you want to show{" "}
           {donorName ? (
-            <strong className="text-slate-900 dark:text-slate-100">{donorName}'s</strong>
+            <strong className="text-slate-900 dark:text-slate-100">
+              {donorName}'s
+            </strong>
           ) : (
             "this donor's"
           )}{" "}
@@ -140,6 +143,33 @@ const PhoneCell = ({ phone, donorName }) => {
     </>
   );
 };
+
+// Skeleton row component for animated table loading
+const SkeletonRow = ({ index }) => (
+  <tr className="animate-pulse border-b border-slate-200 dark:border-slate-800">
+    <td className="p-3">
+      <div className="h-4 w-6 rounded bg-slate-200 dark:bg-slate-800"></div>
+    </td>
+    <td className="p-3">
+      <div className="h-4 w-32 rounded bg-slate-200 dark:bg-slate-800"></div>
+    </td>
+    <td className="p-3">
+      <div className="h-4 w-12 rounded bg-slate-200 dark:bg-slate-800"></div>
+    </td>
+    <td className="p-3">
+      <div className="h-4 w-28 rounded bg-slate-200 dark:bg-slate-800"></div>
+    </td>
+    <td className="p-3">
+      <div className="h-4 w-36 rounded bg-slate-200 dark:bg-slate-800"></div>
+    </td>
+    <td className="p-3">
+      <div className="h-4 w-28 rounded bg-slate-200 dark:bg-slate-800"></div>
+    </td>
+    <td className="p-3">
+      <div className="h-4 w-24 rounded bg-slate-200 dark:bg-slate-800"></div>
+    </td>
+  </tr>
+);
 
 const Blood = () => {
   const [search, setSearch] = useState("");
@@ -182,29 +212,30 @@ const Blood = () => {
     if (num >= 1 && num <= totalPages) setPage(num);
   };
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
   return (
     <div className="container mx-auto py-4">
-      <h1 className="pageTitle bg-emerald-600 dark:bg-emerald-400">RSWA Virtual Blood Bank</h1>
+      <SEO
+        title="Virtual Blood Bank - Find Donors | RSWA"
+        description="Find and contact registered blood donors in Rowmari quickly through RSWA Virtual Blood Bank."
+        keywords="RSWA Blood Bank, Rowmari Blood Donor, Emergency Blood Donor Rowmari"
+      />
+      <h1 className="pageTitle bg-emerald-600 dark:bg-emerald-400">
+        RSWA Virtual Blood Bank
+      </h1>
       <p className="mb-6 text-sm font-medium text-slate-600 dark:text-slate-400">
         Save a life today — search among{" "}
         <span className="font-bold text-emerald-600 dark:text-emerald-400">
-          {totalDonors}
+          {isLoading ? "..." : totalDonors}
         </span>{" "}
         registered donors.
       </p>
 
-      {/* Filters */}
+      {/* Filters & Actions */}
       <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-wrap items-center justify-between gap-3">
-
-
           {/* Blood Group Select */}
           <select
-            className="rounded border border-slate-200  px-4 py-2 text-sm text-slate-900 transition-colors dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100"
+            className="rounded border border-slate-200 px-4 py-2 text-sm text-slate-900 transition-colors dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100"
             value={bloodGroupFilter}
             onChange={(e) => {
               setBloodGroupFilter(e.target.value);
@@ -220,7 +251,7 @@ const Blood = () => {
 
           {/* Sort Order */}
           <select
-            className="rounded border border-slate-200  px-3 py-2 text-sm text-slate-900 transition-colors dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100"
+            className="rounded border border-slate-200 px-3 py-2 text-sm text-slate-900 transition-colors dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100"
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value)}
           >
@@ -236,36 +267,63 @@ const Blood = () => {
         </div>
       </div>
 
-      {/* Table */}
+      {/* Table with Skeleton Loading */}
       <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
         <table className="min-w-full table-auto border-collapse">
           <thead>
             <tr className="bg-slate-100 text-left dark:bg-slate-800/80 dark:text-slate-100">
-              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">#</th>
-              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">Name</th>
-              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">Blood Group</th>
-              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">Present address</th>
-              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">Permanent address</th>
-              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">SSC Batch</th>
-              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">Phone</th>
+              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">
+                #
+              </th>
+              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">
+                Name
+              </th>
+              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">
+                Blood Group
+              </th>
+              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">
+                Present Address
+              </th>
+              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">
+                Permanent Address
+              </th>
+              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">
+                SSC Batch
+              </th>
+              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">
+                Mobile Number
+              </th>
             </tr>
           </thead>
           <tbody>
-            {bloodData.length > 0 ? (
+            {isLoading ? (
+              Array.from({ length: limit || 20 }).map((_, index) => (
+                <SkeletonRow key={index} index={index} />
+              ))
+            ) : bloodData.length > 0 ? (
               bloodData.map((donor, index) => (
-                <tr key={donor._id} className="transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <tr
+                  key={donor._id}
+                  className="transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/40"
+                >
                   <td className="border border-slate-200 p-3 text-slate-800 dark:border-slate-800 dark:text-slate-200">
                     {(page - 1) * limit + index + 1}
                   </td>
-                  <td className="border border-slate-200 p-3 text-slate-800 dark:border-slate-800 dark:text-slate-200">{donor.Name}</td>
-                  <td className="border border-slate-200 p-3 font-semibold text-emerald-600 dark:border-slate-800 dark:text-emerald-400">{donor.Blood_Group}</td>
+                  <td className="border border-slate-200 p-3 text-slate-800 dark:border-slate-800 dark:text-slate-200">
+                    {donor.Name}
+                  </td>
+                  <td className="border border-slate-200 p-3 font-semibold text-emerald-600 dark:border-slate-800 dark:text-emerald-400">
+                    {donor.Blood_Group}
+                  </td>
                   <td className="border border-slate-200 p-3 text-slate-800 dark:border-slate-800 dark:text-slate-200">
                     {donor.Present_Address || "N/A"}
                   </td>
                   <td className="border border-slate-200 p-3 text-slate-800 dark:border-slate-800 dark:text-slate-200">
                     {donor.Permanent_Address || "N/A"}
                   </td>
-                  <td className="border border-slate-200 p-3 text-slate-800 dark:border-slate-800 dark:text-slate-200">SSC-{donor.SSC_Batch || "N/A"}</td>
+                  <td className="border border-slate-200 p-3 text-slate-800 dark:border-slate-800 dark:text-slate-200">
+                    SSC-{donor.SSC_Batch || "N/A"}
+                  </td>
                   <td className="border border-slate-200 p-3 text-slate-800 dark:border-slate-800 dark:text-slate-200">
                     <PhoneCell
                       phone={donor.Phone_Number}
@@ -276,7 +334,10 @@ const Blood = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="7" className="p-4 text-center text-slate-500 dark:text-slate-400">
+                <td
+                  colSpan="7"
+                  className="p-4 text-center text-slate-500 dark:text-slate-400"
+                >
                   No data found.
                 </td>
               </tr>

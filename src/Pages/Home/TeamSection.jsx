@@ -64,7 +64,7 @@ const TeamSection = () => {
 
   return (
     <Section
-      className="-mt-36"
+      className="-mt-12"
       title="Meet Our Team"
       subtitle="Dedicated professionals committed to making a difference in our communities"
     >
@@ -86,7 +86,7 @@ const TeamSection = () => {
                 </AvatarFallback>
               </Avatar>
             </div>
-            <CardHeader className="p-4 ">
+            <CardHeader className="p-4">
               <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100">
                 {member.name}
               </h3>
@@ -94,11 +94,11 @@ const TeamSection = () => {
                 {member.role}
               </p>
             </CardHeader>
-            <CardContent className="flex flex-1 flex-col justify-between p-4 pt-0  ">
+            <CardContent className="flex flex-1 flex-col justify-between p-4 pt-0">
               <p className="mb-4 text-xs font-medium text-slate-500 dark:text-slate-400">
                 {member.bio}
               </p>
-              <div className="flex items-center  gap-2">
+              <div className="flex items-center gap-2">
                 {member.email && (
                   <a
                     href={`mailto:${member.email}`}

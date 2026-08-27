@@ -3,8 +3,8 @@ import Section from "../../Components/shared/Section";
 import {
   GraduationCap,
   Trophy,
-  UserCheck,
   Trees,
+  Droplet,
   HeartHandshake,
   ShieldAlert,
 } from "lucide-react";
@@ -15,9 +15,9 @@ const ServicesSection = () => {
       icon: (
         <GraduationCap className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
       ),
-      title: "Educational Support",
+      title: "Educational Support & Student Development",
       description:
-        "Providing educational assistance, guidance and opportunities to students in need.",
+        "Providing educational assistance, guidance, and opportunities to students in need while empowering them to develop essential skills in leadership, teamwork, communication, and organization.",
     },
     {
       icon: (
@@ -29,15 +29,15 @@ const ServicesSection = () => {
     },
     {
       icon: (
-        <UserCheck className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+        <Trees className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
       ),
-      title: "Student Development",
+      title: "Environmental Initiatives",
       description:
-        "Creating opportunities for students to develop leadership, teamwork, communication and organizational skills.",
+        "Conducting environmental awareness programs such as tree plantation and clean Rowmari campaigns.",
     },
     {
       icon: (
-        <Trees className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+        <Droplet className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
       ),
       title: "Blood Donation",
       description:
@@ -63,25 +63,24 @@ const ServicesSection = () => {
 
   return (
     <Section
-      className="bg-slate-50/60 dark:bg-slate-950/60 -mt-32"
+      className="-mt-12 bg-slate-50/60 dark:bg-slate-950/60"
       title="Our Service & Programs"
       subtitle="We offer comprehensive programs designed to address the most pressing needs in our communities"
     >
-
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {services.map((service, index) => (
           <div
             key={index}
-            className="stagger-item flex h-full flex-col justify-between rounded-2xl border-slate-200/80 p-6 transition-all duration-300 hover:border-emerald-500/40 shadow hover:translate-y-1 hover:translate-x-1 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-500/50"
+            className="stagger-item shadow-xs flex flex-col justify-between rounded-xl border border-slate-200 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md dark:border-slate-800 dark:bg-slate-900"
           >
             <div>
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-emerald-100 bg-emerald-50 text-emerald-600 dark:border-emerald-900/50 dark:bg-emerald-950/60 dark:text-emerald-400">
+              <div className="mb-4 inline-flex rounded-lg bg-emerald-50 p-3 dark:bg-emerald-950/50">
                 {service.icon}
               </div>
-              <h3 className="mb-2 text-xl font-bold text-slate-900 dark:text-slate-100">
+              <h3 className="mb-2 text-lg font-bold text-slate-900 dark:text-slate-100">
                 {service.title}
               </h3>
-              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                 {service.description}
               </p>
             </div>

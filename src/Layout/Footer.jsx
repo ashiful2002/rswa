@@ -7,7 +7,7 @@ import Copyright from "./Copyright";
 
 const Footer = () => {
   return (
-    <footer className="  border-t border-slate-200/80 bg-slate-100/80 text-slate-700 transition-colors duration-200 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-300">
+    <footer className="border-t border-slate-200/80 bg-slate-100/80 text-slate-700 transition-colors duration-200 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-300">
       <div className="container mx-auto px-4 py-10">
         <div className="flex flex-col justify-around gap-8 sm:items-start md:flex-row">
           <div>
