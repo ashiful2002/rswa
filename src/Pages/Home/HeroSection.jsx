@@ -15,10 +15,10 @@ const HeroSection = () => {
       </div>
 
       {/* Overlay CTA Section */}
-      <div className="bg-gradient-to-b from-transparent via-transparent to-background px-4 py-8 sm:py-12">
+      <div className="bg-gradient-to-b from-transparent via-transparent to-background px -4 py-8 sm:py-12">
         <div className="mx-auto max-w-6xl">
           <div className="transition-smooth animate-fadeIn rounded-lg bg-card/95 p-6 shadow-lg backdrop-blur-sm sm:p-8 md:p-10">
-            <h1 className="mb-3 text-2xl font-bold text-foreground sm:text-3xl md:text-4xl">
+            <h1 className="mb-3 text-3xl font-bold text-foreground sm:text-3xl md:text-4xl">
               Welcome to RSWA
             </h1>
             <p className="mb-6 text-justify text-base text-muted-foreground sm:text-lg">
@@ -86,16 +86,8 @@ const HeroSection = () => {
           </div>
 
           {/* Quick Stats */}
-          <div className="stagger-container mt-8 grid grid-cols-2 gap-4 md:gap-6">
-            <div className="stagger-item transition-smooth rounded-lg bg-primary/10 p-4 text-center hover:bg-primary/20">
-              <p className="text-sm font-semibold text-muted-foreground">
-                Active
-              </p>
-              <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
-                24/7
-              </p>
-              <p className="text-xs text-muted-foreground">Service Available</p>
-            </div>
+          <div className="stagger-container mt-8 grid grid-cols-2 gap-4 md:gap-6 px-3">
+
             <div className="stagger-item transition-smooth rounded-lg bg-secondary/10 p-4 text-center hover:bg-secondary/20">
               <p className="text-sm font-semibold text-muted-foreground">
                 Volunteer
@@ -105,6 +97,16 @@ const HeroSection = () => {
               </p>
               <p className="text-xs text-muted-foreground">Team Members</p>
             </div>
+            <div className="stagger-item transition-smooth rounded-lg bg-primary/10 p-4 text-center hover:bg-primary/20">
+              <p className="text-sm font-semibold text-muted-foreground">
+                Active
+              </p>
+              <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+                24/7
+              </p>
+              <p className="text-xs text-muted-foreground">Service Available</p>
+            </div>
+
           </div>
         </div>
       </div>

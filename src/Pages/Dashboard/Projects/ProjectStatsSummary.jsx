@@ -6,7 +6,7 @@ const ProjectStatsSummary = ({ projects = [], totalCount = 0 }) => {
 
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-      <div className="shadow-xs rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+      <div className="shadow-xs rounded-2xl border border-slate-200  p-4 dark:border-slate-800 dark:bg-slate-900">
         <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
           Total Projects
         </p>
@@ -14,7 +14,7 @@ const ProjectStatsSummary = ({ projects = [], totalCount = 0 }) => {
           {total}
         </p>
       </div>
-      <div className="shadow-xs rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+      <div className="shadow-xs rounded-2xl border border-slate-200 p-4 dark:border-slate-800 dark:bg-slate-900">
         <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-500">
           Active
         </p>
@@ -22,7 +22,7 @@ const ProjectStatsSummary = ({ projects = [], totalCount = 0 }) => {
           {active}
         </p>
       </div>
-      <div className="shadow-xs rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+      <div className="shadow-xs rounded-2xl border border-slate-200 p-4 dark:border-slate-800 dark:bg-slate-900">
         <p className="text-[10px] font-bold uppercase tracking-wider text-amber-500">
           Upcoming
         </p>
@@ -30,7 +30,7 @@ const ProjectStatsSummary = ({ projects = [], totalCount = 0 }) => {
           {upcoming}
         </p>
       </div>
-      <div className="shadow-xs rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+      <div className="shadow-xs rounded-2xl border border-slate-200 p-4 dark:border-slate-800 dark:bg-slate-900">
         <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
           Completed
         </p>

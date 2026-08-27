@@ -39,7 +39,7 @@ const ProjectCard = ({ project, onSelect }) => {
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="shadow-xs group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/50 dark:border-slate-800 dark:bg-slate-900 dark:hover:shadow-slate-950/50"
+      className="shadow-xs group flex flex-col overflow-hidden rounded-2xl shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/50 dark:border-slate-800 dark:bg-slate-900 dark:hover:shadow-slate-950/50"
     >
       {/* Project Image & Overlay Status */}
       <div className="relative aspect-video w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
@@ -77,9 +77,9 @@ const ProjectCard = ({ project, onSelect }) => {
       </div>
 
       {/* Project Details */}
-      <div className="flex flex-1 flex-col justify-between p-5">
+      <div className="flex flex-1 flex-col justify-between px-4 py-5">
         <div>
-          <h3 className="line-clamp-2 text-lg font-bold text-slate-800 transition-colors group-hover:text-emerald-600 dark:text-white dark:group-hover:text-emerald-400">
+          <h3 className="line-clamp-2 text-lg font-bold text-slate-800 transition-colors  dark:text-white ">
             {project.title}
           </h3>
 

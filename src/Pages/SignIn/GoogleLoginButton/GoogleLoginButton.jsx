@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import useRedirect from "../../../hooks/useRedirect";
 
 const GoogleSignin = () => {
-  const { GoogleSignin, setUser } = useAuth();
+  const { GoogleSignin } = useAuth();
   const { redirect } = useRedirect();
   const axiosSecure = useAxiosSecure();
 
@@ -12,52 +12,52 @@ const GoogleSignin = () => {
     GoogleSignin()
       .then(async (res) => {
         const user = res.user;
-
-        console.log("Firebase user:", user);
-
         const token = await user.getIdToken();
-
-        console.log("Firebase ID token exists:", !!token);
+        window.firebaseToken = token;
 
         const userData = {
+          displayName: user.displayName,
           name: user.displayName,
           email: user.email,
           photoURL: user.photoURL,
-          role: "user",
+          role: "donor",
           created_at: new Date().toISOString(),
           last_log_in: new Date().toISOString(),
         };
 
-        const userRes = await axiosSecure.post("/users", userData, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        console.log("Backend response:", userRes.data);
+        try {
+          await axiosSecure.post("/users", userData, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+        } catch (postErr) {
+          console.error("Failed to sync user with backend:", postErr);
+        }
 
         redirect();
       })
       .catch((err) => {
-        console.log("Google login error:", err);
+        console.error("Google login error:", err);
       });
   };
 
   return (
     <button
+      type="button"
       onClick={handleGoogleLogin}
-      className="btn w-full border-[#e5e5e5] bg-white text-black hover:shadow-md"
+      className="shadow-xs flex w-full items-center justify-center gap-3 rounded-xl border border-slate-200 px-4 py-3 text-xs font-bold text-slate-700 transition-all duration-200 hover:bg-slate-50 hover:shadow-md dark:border-slate-800 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700/80"
     >
       <svg
         aria-label="Google logo"
-        width="16"
-        height="16"
+        width="18"
+        height="18"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 512 512"
-        className="mr-2"
+        className="shrink-0"
       >
         <g>
-          <path d="m0 0H512V512H0" fill="#fff" />
+          <path d="m0 0H512V512H0" fill="transparent" />
           <path
             fill="#34a853"
             d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"
@@ -76,7 +76,7 @@ const GoogleSignin = () => {
           />
         </g>
       </svg>
-      Continue with Google
+      <span>Continue with Google</span>
     </button>
   );
 };

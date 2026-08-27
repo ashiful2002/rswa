@@ -2,7 +2,7 @@ import { Edit2, Trash2, RefreshCw } from "lucide-react";
 
 const ProjectTable = ({ projects, loading, isAdmin, onEdit, onDelete }) => {
   return (
-    <div className="shadow-xs overflow-hidden rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
+    <div className="shadow-xs overflow-hidden rounded-2xl border border-slate-200   dark:border-slate-800 dark:bg-slate-900">
       <div className="overflow-x-auto">
         <table className="w-full text-left text-xs">
           <thead className="border-b border-slate-200 bg-slate-50 text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:border-slate-800 dark:bg-slate-800/60 dark:text-slate-400">

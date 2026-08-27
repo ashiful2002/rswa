@@ -19,7 +19,7 @@ const ProjectFilter = ({
   return (
     <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
       {/* Category Tabs */}
-      <div className="shadow-xs flex flex-wrap items-center gap-1.5 rounded-2xl border border-slate-200 bg-white p-1.5 dark:border-slate-800 dark:bg-slate-900">
+      <div className="shadow-xs flex flex-wrap items-center gap-1.5 rounded-2xl border border-slate-200 p-1.5 dark:border-slate-800 dark:bg-slate-900">
         {CATEGORIES.map((cat) => (
           <button
             key={cat}
@@ -43,7 +43,7 @@ const ProjectFilter = ({
           placeholder="Search projects..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full rounded-2xl border border-slate-200 bg-white py-2.5 pl-10 pr-4 text-xs text-slate-800 outline-none transition-all placeholder:text-slate-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100"
+          className="w-full rounded-2xl border border-slate-200   py-2.5 pl-10 pr-4 text-xs text-slate-800 outline-none transition-all placeholder:text-slate-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100"
         />
         {searchQuery && (
           <button

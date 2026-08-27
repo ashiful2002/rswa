@@ -28,6 +28,7 @@ const TeamSection = () => {
       initials: "POLLOB",
       img: "https://i.ibb.co.com/M5kT9WqL/pollob.jpg",
       email: "[EMAIL_ADDRESS]",
+      phone: "+880 1703-369290",
       facebook: "https://www.facebook.com/mehedihasanpollob11",
     },
     {

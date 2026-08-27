@@ -71,7 +71,7 @@ const ServicesSection = () => {
         {services.map((service, index) => (
           <div
             key={index}
-            className="stagger-item shadow-xs flex flex-col justify-between rounded-xl border border-slate-200 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md dark:border-slate-800 dark:bg-slate-900"
+            className="stagger-item shadow-xs flex flex-col justify-between rounded-xl  p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md dark:border-slate-800 dark:bg-slate-900"
           >
             <div>
               <div className="mb-4 inline-flex rounded-lg bg-emerald-50 p-3 dark:bg-emerald-950/50">

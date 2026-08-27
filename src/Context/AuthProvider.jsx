@@ -54,20 +54,40 @@ const AuthProvider = ({ children }) => {
           window.firebaseToken = token;
           // console.log("🔑 YOUR FIREBASE ID TOKEN FOR POSTMAN:\n", token);
 
+          // 1. Automatically sync/upsert user into MongoDB
+          const userData = {
+            email: currentUser.email,
+            displayName: currentUser.displayName || currentUser.email?.split("@")[0],
+            name: currentUser.displayName || currentUser.email?.split("@")[0],
+            photoURL: currentUser.photoURL,
+            role: "donor",
+          };
+
+          try {
+            await axios.post(API_ENDPOINTS.USERS, userData, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
+          } catch (syncErr) {
+            console.error("Backend user sync error:", syncErr);
+          }
+
+          // 2. Fetch assigned user role from MongoDB
           const response = await axios.get(
             `${API_ENDPOINTS.USERS}/${currentUser.email}/role`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
-            },
+            }
           );
 
           const fetchedRole =
             response?.data?.data?.role ||
             response?.data?.role ||
             response?.data?.data?.user?.role;
-          setRole(fetchedRole || null);
+          setRole(fetchedRole || "donor");
         } catch (error) {
           console.error("Failed to load user role:", error);
           setRole(null);
@@ -81,7 +101,6 @@ const AuthProvider = ({ children }) => {
 
     return () => unsubscribe();
   }, []);
-  // console.log("AuthProvider user:", user.role);
 
   const authInfo = {
     user,
