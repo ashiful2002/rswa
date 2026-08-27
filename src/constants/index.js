@@ -23,11 +23,11 @@ export const navigation = [
     title: "home",
     url: "/",
   },
-  {
-    id: "2",
-    title: "about",
-    url: "/about",
-  },
+  // {
+  //   id: "2",
+  //   title: "about",
+  //   url: "/about",
+  // },
   {
     id: "3",
     title: "Blood",
@@ -38,21 +38,21 @@ export const navigation = [
     title: "Add bg",
     url: "/add-bg",
   },
-  {
-    id: "6",
-    title: "Important contact",
-    url: "/numbers",
-  },
 
-  {
-    id: "5",
-    title: "Blog",
-    url: "/blog",
-  },
+  // {
+  //   id: "5",
+  //   title: "Blog",
+  //   url: "/blog",
+  // },
   {
     id: "7",
-    title: "archives",
-    url: "/archives",
+    title: "Our projects",
+    url: "/projects",
+  },
+  {
+    id: "6",
+    title: "Important Numbers",
+    url: "/numbers",
   },
 ];
 

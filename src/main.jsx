@@ -27,6 +27,8 @@ import DashboardStat from "./Pages/Dashboard/DashBoardStat/DashboardStat.jsx";
 import DashboardLayout from "./Pages/Dashboard/DashboardLayout/DashboardLayout.jsx";
 import DashboardUserManagement from "./Pages/Dashboard/DashboardUserManagement.jsx";
 import DashboardContent from "./Pages/Dashboard/DashboardContent.jsx";
+import DashboardProjects from "./Pages/Dashboard/Projects/DashboardProjects.jsx";
+import Projects from "./Pages/Projects/Projects.jsx";
 import AdminRoute from "./Components/ProtectedRoutes/AdminRoute.jsx";
 
 const router = createBrowserRouter([
@@ -45,8 +47,16 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
+        path: "/projects",
+        element: <Projects />,
+      },
+      {
+        path: "/projects/:slug",
+        element: <Projects />,
+      },
+      {
         path: "/archives",
-        element: <Archives />,
+        element: <Projects />,
       },
       {
         path: "/blog",
@@ -111,6 +121,10 @@ const router = createBrowserRouter([
         element: <DashboardBlood />,
       },
       {
+        path: "projects",
+        element: <DashboardProjects />,
+      },
+      {
         path: "users",
         element: <DashboardUserManagement />,
       },
@@ -122,7 +136,6 @@ const router = createBrowserRouter([
   },
 ]);
 import ThemeProvider from "./Context/ThemeProvider.jsx";
-import Archives from "./Pages/archives/Archives.jsx";
 
 const queryClient = new QueryClient();
 

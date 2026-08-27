@@ -13,4 +13,5 @@ export const API_ENDPOINTS = {
   STATS: `${BASE_URL}/stats`,
   BLOOD_GROUP: `${BASE_URL}/blood-group`,
   USERS: `${BASE_URL}/users`,
+  PROJECTS: `${BASE_URL}/projects`,
 };

@@ -7,6 +7,7 @@ import {
   Users,
   Droplet,
   FileText,
+  FolderKanban,
   Home,
   ChevronLeft,
   ChevronRight,
@@ -34,6 +35,11 @@ const DashboardLayout = () => {
       icon: Droplet,
     },
     {
+      path: "/dashboard/projects",
+      label: "Manage Projects",
+      icon: FolderKanban,
+    },
+    {
       path: "/dashboard/users",
       label: "User Management",
       icon: Users,
@@ -49,6 +55,8 @@ const DashboardLayout = () => {
   const getPageTitle = () => {
     if (location.pathname === "/dashboard/manage-blood")
       return "Manage Blood Donors";
+    if (location.pathname === "/dashboard/projects")
+      return "Manage Projects & Initiatives";
     if (location.pathname === "/dashboard/users") return "User Management";
     if (location.pathname === "/dashboard/content") return "Content Management";
     return "Dashboard Overview";
