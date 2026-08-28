@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
+import Swal from "sweetalert2";
+import axios from "axios";
 import GoogleSignInButton from "../SignIn/GoogleLoginButton/GoogleLoginButton";
 import SEO from "../../Components/shared/SEO";
+import useAuth from "../../hooks/useAuth";
+import useRedirect from "../../hooks/useRedirect";
+import { API_ENDPOINTS } from "../../config/api";
 
 const SignUp = () => {
+  const { signUp } = useAuth();
+  const { redirect } = useRedirect();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -17,11 +25,60 @@ const SignUp = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match!");
+      Swal.fire({
+        icon: "warning",
+        title: "Password Mismatch",
+        text: "Passwords do not match!",
+      });
       return;
+    }
+
+    setLoading(true);
+
+    try {
+      const res = await signUp(formData.email, formData.password);
+      const user = res.user;
+      const token = await user.getIdToken();
+
+      const userData = {
+        email: user.email?.toLowerCase(),
+        displayName: formData.username || user.email?.split("@")[0],
+        name: formData.username || user.email?.split("@")[0],
+        role: "donor",
+      };
+
+      try {
+        await axios.post(API_ENDPOINTS.USERS, userData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+      } catch (syncErr) {
+        console.error("MongoDB user sync failed during signup:", syncErr);
+      }
+
+      Swal.fire({
+        icon: "success",
+        title: "Account Created!",
+        text: "Welcome to RSWA Portal.",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+      redirect();
+    } catch (err) {
+      console.error("Sign up error:", err);
+      Swal.fire({
+        icon: "error",
+        title: "Sign Up Failed",
+        text: err.message || "Could not create account.",
+        confirmButtonColor: "#dc2626",
+      });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -150,9 +207,10 @@ const SignUp = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full rounded-xl bg-emerald-600 py-3 text-xs font-bold text-white shadow-md shadow-emerald-600/20 transition-all hover:bg-emerald-700 active:scale-[0.99]"
+            disabled={loading}
+            className="w-full rounded-xl bg-emerald-600 py-3 text-xs font-bold text-white shadow-md shadow-emerald-600/20 transition-all hover:bg-emerald-700 active:scale-[0.99] disabled:opacity-50"
           >
-            Create Account
+            {loading ? "Creating Account..." : "Create Account"}
           </button>
 
           {/* Already have an account */}

@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
@@ -12,6 +11,7 @@ import {
 } from "lucide-react";
 import { API_ENDPOINTS } from "../../../config/api";
 import useDebounce from "../../../hooks/useDebounce";
+import useAxiosSecure from "../../../hooks/useAxiosSecure/useAxiosSecure";
 import SEO from "../../../Components/shared/SEO";
 import StudentAwardStatCards from "../../../Components/Dashboard/StudentAward/StudentAwardStatCards";
 import StudentAwardFilters from "../../../Components/Dashboard/StudentAward/StudentAwardFilters";
@@ -19,6 +19,7 @@ import StudentAwardTable from "../../../Components/Dashboard/StudentAward/Studen
 import StudentAwardDetailsModal from "../../../Components/Dashboard/StudentAward/StudentAwardDetailsModal";
 
 const DashboardStudentAward = () => {
+  const axiosSecure = useAxiosSecure();
   const [search, setSearch] = useState("");
   const [sessionFilter, setSessionFilter] = useState("");
   const [sortField, setSortField] = useState("createdAt");
@@ -45,7 +46,7 @@ const DashboardStudentAward = () => {
     ],
     queryFn: async ({ queryKey }) => {
       const [, params] = queryKey;
-      const { data: resData } = await axios.get(API_ENDPOINTS.STUDENT_AWARD, {
+      const { data: resData } = await axiosSecure.get(API_ENDPOINTS.STUDENT_AWARD, {
         params: {
           search: params.search,
           session: params.session,
@@ -57,7 +58,7 @@ const DashboardStudentAward = () => {
       });
       return resData;
     },
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
   });
 
   const students = data?.data || [];
@@ -69,7 +70,7 @@ const DashboardStudentAward = () => {
     try {
       setExportingPDF(true);
 
-      const { data: resData } = await axios.get(API_ENDPOINTS.STUDENT_AWARD, {
+      const { data: resData } = await axiosSecure.get(API_ENDPOINTS.STUDENT_AWARD, {
         params: {
           search: debouncedSearch,
           session: sessionFilter,
@@ -217,7 +218,7 @@ const DashboardStudentAward = () => {
   // Handle Seed Data Trigger
   const handleSeedData = async () => {
     try {
-      const { data: resData } = await axios.post(
+      const { data: resData } = await axiosSecure.post(
         `${API_ENDPOINTS.STUDENT_AWARD}/seed`
       );
       Swal.fire({
@@ -252,7 +253,7 @@ const DashboardStudentAward = () => {
 
     if (result.isConfirmed) {
       try {
-        await axios.delete(`${API_ENDPOINTS.STUDENT_AWARD}/${id}`);
+        await axiosSecure.delete(`${API_ENDPOINTS.STUDENT_AWARD}/${id}`);
         Swal.fire({
           icon: "success",
           title: "Deleted!",

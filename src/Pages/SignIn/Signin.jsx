@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaUser, FaLock } from "react-icons/fa";
+import Swal from "sweetalert2";
 import GoogleSignInButton from "./GoogleLoginButton/GoogleLoginButton";
 import SEO from "../../Components/shared/SEO";
+import useAuth from "../../hooks/useAuth";
+import useRedirect from "../../hooks/useRedirect";
 
 const Signin = () => {
+  const { signin } = useAuth();
+  const { redirect } = useRedirect();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -19,8 +25,30 @@ const Signin = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
+    try {
+      await signin(formData.email, formData.password);
+      Swal.fire({
+        icon: "success",
+        title: "Signed In Successfully!",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+      redirect();
+    } catch (err) {
+      console.error("Sign in error:", err);
+      Swal.fire({
+        icon: "error",
+        title: "Sign In Failed",
+        text: err.message || "Invalid email or password.",
+        confirmButtonColor: "#dc2626",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -104,9 +132,10 @@ const Signin = () => {
           {/* Submit */}
           <button
             type="submit"
-            className="w-full rounded-xl bg-emerald-600 py-3 text-xs font-bold text-white shadow-md shadow-emerald-600/20 transition-all hover:bg-emerald-700 active:scale-[0.99]"
+            disabled={loading}
+            className="w-full rounded-xl bg-emerald-600 py-3 text-xs font-bold text-white shadow-md shadow-emerald-600/20 transition-all hover:bg-emerald-700 active:scale-[0.99] disabled:opacity-50"
           >
-            Sign In
+            {loading ? "Signing In..." : "Sign In"}
           </button>
 
           {/* Sign up Link */}

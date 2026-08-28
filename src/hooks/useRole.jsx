@@ -4,9 +4,10 @@ const useRole = () => {
   return {
     role,
     loading,
-    isAdmin: role === "admin",
+    isSuperAdmin: role === "super_admin",
+    isAdmin: role === "super_admin" || role === "admin",
     isModerator: role === "moderator",
-    isUser: role === "user",
+    isUser: role === "donor" || role === "user",
   };
 };
 

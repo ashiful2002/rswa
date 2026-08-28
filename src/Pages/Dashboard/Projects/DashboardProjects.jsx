@@ -10,9 +10,12 @@ import ProjectTable from "./ProjectTable";
 import ProjectFormModal from "./ProjectFormModal";
 import Pagination from "../../../Components/shared/Pagination";
 
+import useAxiosSecure from "../../../hooks/useAxiosSecure/useAxiosSecure";
+
 const CATEGORIES = ["Education", "Health", "Environment", "Relief", "Cultural"];
 
 const DashboardProjects = () => {
+  const axiosSecure = useAxiosSecure();
   const [projects, setProjects] = useState([]);
   const [meta, setMeta] = useState({
     page: 1,
@@ -45,9 +48,8 @@ const DashboardProjects = () => {
     endDate: "",
   });
 
-  const { user } = useAuth();
   const { role } = useUserRole();
-  const isAdmin = role === "admin";
+  const isAdmin = role === "super_admin" || role === "admin";
   const isModerator = role === "moderator" || isAdmin;
 
   // Reset to page 1 on category/search change
@@ -144,7 +146,6 @@ const DashboardProjects = () => {
 
     setIsSubmitting(true);
     try {
-      const headers = await getAuthHeaders();
       const payload = {
         title: formData.title,
         category: formData.category,
@@ -162,10 +163,9 @@ const DashboardProjects = () => {
       };
 
       if (editingProject) {
-        const res = await axios.put(
+        const res = await axiosSecure.put(
           `${API_ENDPOINTS.PROJECTS}/${editingProject._id || editingProject.slug}`,
           payload,
-          { headers },
         );
         if (res.data && res.data.success) {
           Swal.fire("Updated!", "Project updated successfully.", "success");
@@ -173,9 +173,7 @@ const DashboardProjects = () => {
           setIsModalOpen(false);
         }
       } else {
-        const res = await axios.post(API_ENDPOINTS.PROJECTS, payload, {
-          headers,
-        });
+        const res = await axiosSecure.post(API_ENDPOINTS.PROJECTS, payload);
         if (res.data && res.data.success) {
           Swal.fire("Created!", "Project created successfully.", "success");
           fetchProjects();
@@ -215,10 +213,8 @@ const DashboardProjects = () => {
 
     if (confirm.isConfirmed) {
       try {
-        const headers = await getAuthHeaders();
-        const res = await axios.delete(
+        const res = await axiosSecure.delete(
           `${API_ENDPOINTS.PROJECTS}/${project._id || project.slug}`,
-          { headers },
         );
         if (res.data && res.data.success) {
           Swal.fire("Deleted!", "Project deleted successfully.", "success");

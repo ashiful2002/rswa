@@ -16,13 +16,17 @@ import {
   Calendar,
 } from "lucide-react";
 
+import useAxiosSecure from "../../hooks/useAxiosSecure/useAxiosSecure";
+
 const ROLES = [
   { label: "Donor", value: "donor", color: "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300" },
   { label: "Moderator", value: "moderator", color: "bg-blue-100 text-blue-800 dark:bg-blue-950/80 dark:text-blue-300" },
-  { label: "Admin", value: "admin", color: "bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300" },
+  { label: "Admin", value: "admin", color: "bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300" },
+  { label: "Super Admin", value: "super_admin", color: "bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300" },
 ];
 
 const DashboardUserManagement = () => {
+  const axiosSecure = useAxiosSecure();
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
@@ -30,30 +34,19 @@ const DashboardUserManagement = () => {
   const [updatingEmail, setUpdatingEmail] = useState(null);
 
   const { user } = useAuth();
-  const { role } = useUserRole();
-  const isAdmin = role === "admin";
+  const { role, roleLoading } = useUserRole();
+  const isAuthorized = role === "super_admin" || role === "admin";
 
   useEffect(() => {
-    fetchUsers();
-  }, []);
-
-  const getAuthHeaders = async () => {
-    let token = window.firebaseToken;
-    if (!token && user && typeof user.getIdToken === "function") {
-      try {
-        token = await user.getIdToken(true);
-      } catch (e) {
-        console.error("Failed to get Firebase token:", e);
-      }
+    if (isAuthorized) {
+      fetchUsers();
     }
-    return token ? { Authorization: `Bearer ${token}` } : {};
-  };
+  }, [isAuthorized]);
 
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const headers = await getAuthHeaders();
-      const res = await axios.get(API_ENDPOINTS.USERS, { headers });
+      const res = await axiosSecure.get(API_ENDPOINTS.USERS);
       if (res.data && res.data.data) {
         setUsers(res.data.data);
       } else {
@@ -66,8 +59,22 @@ const DashboardUserManagement = () => {
     }
   };
 
+  if (!isAuthorized && !roleLoading) {
+    return (
+      <div className="flex min-h-[60vh] flex-col items-center justify-center p-6 text-center">
+        <ShieldAlert className="mb-4 h-16 w-16 text-rose-500" />
+        <h2 className="text-2xl font-bold text-slate-800 dark:text-white">
+          Access Denied
+        </h2>
+        <p className="mt-2 max-w-md text-sm text-slate-500 dark:text-slate-400">
+          User Management is restricted to Administrators and Super Admins.
+        </p>
+      </div>
+    );
+  }
+
   const handleRoleChange = async (targetUser, newRole) => {
-    if (!isAdmin) {
+    if (!isAuthorized) {
       Swal.fire("Permission Denied", "Only Administrators can modify user roles.", "warning");
       return;
     }
@@ -88,11 +95,9 @@ const DashboardUserManagement = () => {
 
     setUpdatingEmail(targetUser.email);
     try {
-      const headers = await getAuthHeaders();
-      const res = await axios.put(
+      const res = await axiosSecure.put(
         `${API_ENDPOINTS.USERS}/${targetUser.email}/role`,
-        { role: newRole },
-        { headers }
+        { role: newRole }
       );
 
       if (res.data && res.data.success) {
@@ -115,7 +120,7 @@ const DashboardUserManagement = () => {
   };
 
   const handleDeleteUser = async (targetUser) => {
-    if (!isAdmin) {
+    if (!isAuthorized) {
       Swal.fire("Permission Denied", "Only Administrators can delete users.", "warning");
       return;
     }
@@ -133,8 +138,7 @@ const DashboardUserManagement = () => {
     if (!confirm.isConfirmed) return;
 
     try {
-      const headers = await getAuthHeaders();
-      const res = await axios.delete(`${API_ENDPOINTS.USERS}/${targetUser.email}`, { headers });
+      const res = await axiosSecure.delete(`${API_ENDPOINTS.USERS}/${targetUser.email}`);
       if (res.data && res.data.success) {
         Swal.fire("Deleted!", "User record has been removed.", "success");
         fetchUsers();
@@ -223,8 +227,8 @@ const DashboardUserManagement = () => {
               key={r}
               onClick={() => setRoleFilter(r)}
               className={`rounded-xl px-3.5 py-1.5 text-xs font-semibold transition-colors ${roleFilter === r
-                  ? "bg-emerald-600 text-white shadow-xs"
-                  : "border border-slate-200  text-slate-600 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
+                ? "bg-emerald-600 text-white shadow-xs"
+                : "border border-slate-200  text-slate-600 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
                 }`}
             >
               {r}
@@ -311,17 +315,20 @@ const DashboardUserManagement = () => {
                     {/* Current Role Badge */}
                     <td className="px-4 py-3">
                       <span
-                        className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-bold capitalize ${u.role === "admin"
+                        className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-bold capitalize ${u.role === "super_admin"
                             ? "bg-rose-100 text-rose-800 dark:bg-rose-950/70 dark:text-rose-300"
-                            : u.role === "moderator"
-                              ? "bg-blue-100 text-blue-800 dark:bg-blue-950/70 dark:text-blue-300"
-                              : "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/70 dark:text-emerald-300"
+                            : u.role === "admin"
+                              ? "bg-amber-100 text-amber-800 dark:bg-amber-950/70 dark:text-amber-300"
+                              : u.role === "moderator"
+                                ? "bg-blue-100 text-blue-800 dark:bg-blue-950/70 dark:text-blue-300"
+                                : "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/70 dark:text-emerald-300"
                           }`}
                       >
-                        {u.role === "admin" && <ShieldAlert className="h-3 w-3" />}
+                        {u.role === "super_admin" && <ShieldAlert className="h-3 w-3 text-rose-600" />}
+                        {u.role === "admin" && <ShieldAlert className="h-3 w-3 text-amber-600" />}
                         {u.role === "moderator" && <ShieldCheck className="h-3 w-3" />}
                         {(!u.role || u.role === "donor") && <UserCheck className="h-3 w-3" />}
-                        {u.role || "donor"}
+                        {u.role ? u.role.replace("_", " ") : "donor"}
                       </span>
                     </td>
 
@@ -341,23 +348,24 @@ const DashboardUserManagement = () => {
                     <td className="px-4 py-3 text-right">
                       <div className="flex items-center justify-end gap-2">
                         {/* Role Switch Dropdown */}
-                        {isAdmin ? (
+                        {isAuthorized ? (
                           <select
                             value={u.role || "donor"}
                             disabled={updatingEmail === u.email || u.email === user?.email}
                             onChange={(e) => handleRoleChange(u, e.target.value)}
-                            className="rounded-xl border border-slate-200  px-2.5 py-1 text-xs font-semibold text-slate-700 outline-none transition-all focus:border-emerald-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
+                            className="rounded-xl border border-slate-200 px-2.5 py-1 text-xs font-semibold text-slate-700 outline-none transition-all focus:border-emerald-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
                           >
                             <option value="donor">Donor (Default)</option>
                             <option value="moderator">Moderator</option>
                             <option value="admin">Admin</option>
+                            <option value="super_admin">Super Admin</option>
                           </select>
                         ) : (
                           <span className="text-[11px] text-slate-400">View Only</span>
                         )}
 
-                        {/* Delete User Button (Admin only, non-self) */}
-                        {isAdmin && u.email !== user?.email && (
+                        {/* Delete User Button */}
+                        {isAuthorized && u.email !== user?.email && (
                           <button
                             onClick={() => handleDeleteUser(u)}
                             className="rounded-lg p-1.5 text-slate-400 transition-colors hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-950/50 dark:hover:text-rose-400"

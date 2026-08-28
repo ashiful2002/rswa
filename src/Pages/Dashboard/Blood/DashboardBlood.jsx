@@ -1,13 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useState } from "react";
 import useDebounce from "../../../hooks/useDebounce";
 import UpdateDonorModal from "../../../Components/shared/modal/UpdateDonorModal";
-import ConfirmDeleteModal from "../../../Components/shared/modal/ConfirmDeleteModal";
 import Pagination from "../../../Components/shared/Pagination";
 import { Link } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import Swal from "sweetalert2";
 import { API_ENDPOINTS } from "../../../config/api";
 import useAuth from "../../../hooks/useAuth";
 import useUserRole from "../../../hooks/useUserRole/UseUserRole";
@@ -34,9 +32,9 @@ const DashboardBlood = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
-  // Role permissions: Edit (admin/moderator), Delete (admin only)
-  const canEdit = role === "admin" || role === "moderator";
-  const canDelete = role === "admin";
+  // Role permissions: Edit (super_admin/admin/moderator), Delete (super_admin/admin)
+  const canEdit = role === "super_admin" || role === "admin" || role === "moderator";
+  const canDelete = role === "super_admin" || role === "admin";
   const hasActions = canEdit || canDelete;
 
   // Debounce search text input
@@ -88,7 +86,7 @@ const DashboardBlood = () => {
       },
     ],
     queryFn: fetchBloodData,
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
   });
 
   const bloodData = data?.data || [];
@@ -97,8 +95,6 @@ const DashboardBlood = () => {
   // Modal states
   const [selectedDonor, setSelectedDonor] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [donorToDelete, setDonorToDelete] = useState(null);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   // Helper to fetch Firebase ID Token header
   const getAuthHeaders = async () => {
@@ -131,47 +127,51 @@ const DashboardBlood = () => {
         headers,
       });
 
-      toast.success("Donor record updated successfully!");
+      Swal.fire({
+        title: "Updated Successfully!",
+        text: "Donor record updated successfully.",
+        icon: "success",
+        timer: 2000,
+        showConfirmButton: false,
+      });
       refetch();
       handleModalClose();
     } catch (err) {
       console.error("Update donor error:", err);
       const errorMsg =
         err.response?.data?.message || err.message || "Failed to update donor.";
-      toast.error(`Error (${err.response?.status || "500"}): ${errorMsg}`);
+      Swal.fire("Update Error", errorMsg, "error");
     }
   };
 
   // Handle Delete Action
-  const handleDeleteClick = (donor) => {
-    setDonorToDelete(donor);
-    setIsDeleteModalOpen(true);
-  };
+  const handleDeleteClick = async (donor) => {
+    const confirm = await Swal.fire({
+      title: "Delete Donor?",
+      text: `Are you sure you want to delete ${donor.Name} (${donor.Blood_Group})? This action cannot be undone.`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#ef4444",
+      cancelButtonColor: "#64748b",
+      confirmButtonText: "Yes, Delete",
+    });
 
-  const handleDeleteConfirm = async () => {
-    if (!donorToDelete) return;
+    if (!confirm.isConfirmed) return;
 
     try {
       const headers = await getAuthHeaders();
-      await axios.delete(`${API_ENDPOINTS.BLOOD_GROUP}/${donorToDelete._id}`, {
+      await axios.delete(`${API_ENDPOINTS.BLOOD_GROUP}/${donor._id}`, {
         headers,
       });
 
-      toast.success("Donor deleted successfully!");
+      Swal.fire("Deleted!", "Donor record has been deleted.", "success");
       refetch();
-      setIsDeleteModalOpen(false);
-      setDonorToDelete(null);
     } catch (err) {
       console.error("Delete donor error:", err);
       const errorMsg =
         err.response?.data?.message || err.message || "Failed to delete donor.";
-      toast.error(`Error (${err.response?.status || "500"}): ${errorMsg}`);
+      Swal.fire("Error", errorMsg, "error");
     }
-  };
-
-  const handleDeleteCancel = () => {
-    setIsDeleteModalOpen(false);
-    setDonorToDelete(null);
   };
 
   const handleResetFilters = () => {
@@ -182,7 +182,7 @@ const DashboardBlood = () => {
   };
 
   return (
-    <div className="p-5 font-sans">
+    <div className="p-1 font-sans">
       <h2 className="mb-4 text-2xl font-bold text-slate-800 dark:text-white">
         Blood Donor List Management
       </h2>
@@ -395,14 +395,6 @@ const DashboardBlood = () => {
         donor={selectedDonor}
         onUpdate={handleModalUpdate}
       />
-      <ConfirmDeleteModal
-        isOpen={isDeleteModalOpen}
-        onClose={handleDeleteCancel}
-        onConfirm={handleDeleteConfirm}
-        itemName={donorToDelete?.Name}
-        itemBlood={donorToDelete?.Blood_Group}
-      />
-      <ToastContainer position="bottom-right" />
     </div>
   );
 };

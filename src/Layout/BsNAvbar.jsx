@@ -14,7 +14,7 @@ function BsNavbar() {
   const { role } = useUserRole();
   const [expanded, setExpanded] = useState(false);
 
-  const isAdmin = role === "admin" || role === "moderator";
+  const canAccessDashboard = role === "super_admin" || role === "admin" || role === "moderator" || role === "donor";
 
   const handleLogOut = () => {
     SignOutUser();
@@ -74,7 +74,7 @@ function BsNavbar() {
               </NavLink>
             ))}
 
-            {user && isAdmin && (
+            {user && canAccessDashboard && (
               <NavLink
                 to="/dashboard"
                 onClick={closeMenu}

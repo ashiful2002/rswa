@@ -126,6 +126,7 @@ const router = createBrowserRouter([
         <DashboardLayout />
       </AdminRoute>
     ),
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,

@@ -4,7 +4,7 @@ const useRedirect = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/dashboard";
 
   const redirect = (delay = 0) => {
     if (delay > 0) {

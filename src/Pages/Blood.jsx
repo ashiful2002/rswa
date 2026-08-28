@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect, lazy, Suspense } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { MdBloodtype } from "react-icons/md";
@@ -197,7 +197,7 @@ const Blood = () => {
       },
     ],
     queryFn: fetchBloodData,
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
   });
 
   const totalPages = data?.meta?.totalPages || data?.totalPages || 1;
@@ -305,19 +305,19 @@ const Blood = () => {
                   <td className="border border-slate-200 p-3 text-slate-800 dark:border-slate-800 dark:text-slate-200">
                     {(page - 1) * limit + index + 1}
                   </td>
-                  <td className="border border-slate-200 p-3 text-slate-800 dark:border-slate-800 dark:text-slate-200">
+                  <td className="border capitalize border-slate-200 p-3 text-slate-800 dark:border-slate-800 dark:text-slate-200">
                     {donor.Name}
                   </td>
                   <td className="border border-slate-200 p-3 font-semibold text-emerald-600 dark:border-slate-800 dark:text-emerald-400">
                     {donor.Blood_Group}
                   </td>
-                  <td className="border border-slate-200 p-3 text-slate-800 dark:border-slate-800 dark:text-slate-200">
+                  <td className="border capitalize border-slate-200 p-3 text-slate-800 dark:border-slate-800 dark:text-slate-200">
                     {donor.Present_Address || "N/A"}
                   </td>
-                  <td className="border border-slate-200 p-3 text-slate-800 dark:border-slate-800 dark:text-slate-200">
+                  <td className="border capitalize border-slate-200 p-3 text-slate-800 dark:border-slate-800 dark:text-slate-200">
                     {donor.Permanent_Address || "N/A"}
                   </td>
-                  <td className="border border-slate-200 p-3 text-slate-800 dark:border-slate-800 dark:text-slate-200">
+                  <td className="border uppercase border-slate-200 p-3 text-slate-800 dark:border-slate-800 dark:text-slate-200">
                     SSC-{donor.SSC_Batch || "N/A"}
                   </td>
                   <td className="border border-slate-200 p-3 text-slate-800 dark:border-slate-800 dark:text-slate-200">

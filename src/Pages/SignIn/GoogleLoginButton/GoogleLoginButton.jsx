@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import useRedirect from "../../../hooks/useRedirect";
@@ -7,8 +8,10 @@ const GoogleSignin = () => {
   const { GoogleSignin } = useAuth();
   const { redirect } = useRedirect();
   const axiosSecure = useAxiosSecure();
+  const [loading, setLoading] = useState(false);
 
   const handleGoogleLogin = () => {
+    setLoading(true);
     GoogleSignin()
       .then(async (res) => {
         const user = res.user;
@@ -18,7 +21,7 @@ const GoogleSignin = () => {
         const userData = {
           displayName: user.displayName,
           name: user.displayName,
-          email: user.email,
+          email: user.email?.toLowerCase(),
           photoURL: user.photoURL,
           role: "donor",
           created_at: new Date().toISOString(),
@@ -35,10 +38,25 @@ const GoogleSignin = () => {
           console.error("Failed to sync user with backend:", postErr);
         }
 
+        Swal.fire({
+          icon: "success",
+          title: "Google Sign In Successful!",
+          timer: 1500,
+          showConfirmButton: false,
+        });
         redirect();
       })
       .catch((err) => {
         console.error("Google login error:", err);
+        Swal.fire({
+          icon: "error",
+          title: "Login Failed",
+          text: err.message || "Failed to sign in with Google.",
+          confirmButtonColor: "#dc2626",
+        });
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -46,7 +64,8 @@ const GoogleSignin = () => {
     <button
       type="button"
       onClick={handleGoogleLogin}
-      className="shadow-xs flex w-full items-center justify-center gap-3 rounded-xl border border-slate-200 px-4 py-3 text-xs font-bold text-slate-700 transition-all duration-200 hover:bg-slate-50 hover:shadow-md dark:border-slate-800 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700/80"
+      disabled={loading}
+      className="shadow-xs flex w-full items-center justify-center gap-3 rounded-xl border border-slate-200 px-4 py-3 text-xs font-bold text-slate-700 transition-all duration-200 hover:bg-slate-50 hover:shadow-md disabled:opacity-50 dark:border-slate-800 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700/80"
     >
       <svg
         aria-label="Google logo"
@@ -76,7 +95,7 @@ const GoogleSignin = () => {
           />
         </g>
       </svg>
-      <span>Continue with Google</span>
+      <span>{loading ? "Signing in..." : "Continue with Google"}</span>
     </button>
   );
 };

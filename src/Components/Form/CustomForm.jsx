@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import Swal from "sweetalert2";
 import { API_ENDPOINTS } from "../../config/api";
 
 const bgFormData = [
@@ -15,6 +15,7 @@ const bgFormData = [
 ];
 
 const CustomForm = () => {
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     Name: "",
     Blood_Group: "",
@@ -47,10 +48,16 @@ const CustomForm = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       const response = await axios.post(API_ENDPOINTS.BLOOD_GROUP, formData);
-      toast.success(response?.data?.message || "Data added successfully");
+      Swal.fire({
+        icon: "success",
+        title: "Submitted Successfully!",
+        text: response?.data?.message || "Data added successfully",
+        confirmButtonColor: "#059669",
+      });
       onReset();
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -58,7 +65,14 @@ const CustomForm = () => {
         error?.response?.data?.message ||
         error?.response?.data?.errorSources?.[0]?.message ||
         "Failed to submit blood group data. Please check required fields.";
-      toast.error(errorMessage);
+      Swal.fire({
+        icon: "error",
+        title: "Submission Failed",
+        text: errorMessage,
+        confirmButtonColor: "#dc2626",
+      });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -286,19 +300,26 @@ const CustomForm = () => {
         <div className="flex justify-between">
           <button
             type="reset"
-            className="rounded-md border border-red-500 px-5 py-2 text-sm font-semibold text-red-600 transition duration-200 hover:bg-red-600 hover:text-white dark:border-red-600 dark:text-red-400 dark:hover:bg-red-600 dark:hover:text-white"
+            disabled={loading}
+            className="rounded-md border border-red-500 px-5 py-2 text-sm font-semibold text-red-600 transition duration-200 hover:bg-red-600 hover:text-white disabled:opacity-50 dark:border-red-600 dark:text-red-400 dark:hover:bg-red-600 dark:hover:text-white"
           >
             Clear Form
           </button>
           <button
             type="submit"
-            className="rounded-md bg-emerald-600 px-5 py-2 text-sm font-semibold text-white transition duration-200 hover:bg-emerald-700 dark:bg-emerald-600 dark:hover:bg-emerald-700"
+            disabled={loading}
+            className="inline-flex items-center justify-center gap-2 rounded-md bg-emerald-600 px-6 py-2.5 text-sm font-semibold text-white transition duration-200 hover:bg-emerald-700 active:scale-[0.99] disabled:opacity-50 dark:bg-emerald-600 dark:hover:bg-emerald-700"
           >
-            Submit
+            {loading ? (
+              <span className="flex items-center gap-2">
+                <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                <span>Submiting...</span>
+              </span>
+            ) : (
+              <span>Submit</span>
+            )}
           </button>
         </div>
-
-        <ToastContainer />
       </form>
     </div>
   );
