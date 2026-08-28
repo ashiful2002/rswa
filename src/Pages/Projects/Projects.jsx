@@ -158,7 +158,7 @@ const Projects = () => {
             </button>
           </div>
         ) : projects.length === 0 ? (
-          <div className="rounded-2xl border border-slate-200 bg-white p-12 text-center dark:border-slate-800 dark:bg-slate-900">
+          <div className="rounded-2xl border border-slate-200  p-12 text-center dark:border-slate-800 dark:bg-slate-900">
             <Tag className="mx-auto h-12 w-12 text-slate-300 dark:text-slate-700" />
             <h3 className="mt-3 text-base font-semibold text-slate-800 dark:text-white">
               No Projects Found

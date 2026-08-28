@@ -31,7 +31,7 @@ const PieChartBloodGroup = ({ data }) => {
   }));
 
   return (
-    <div className="shadow-xs rounded-2xl border border-slate-200 bg-white p-5 transition-colors dark:border-slate-800 dark:bg-slate-900">
+    <div className="shadow-xs rounded-2xl border border-slate-200  p-5 transition-colors dark:border-slate-800 dark:bg-slate-900">
       <h2 className="mb-2 text-lg font-semibold text-slate-800 dark:text-white">
         Blood Group Pie Chart
       </h2>

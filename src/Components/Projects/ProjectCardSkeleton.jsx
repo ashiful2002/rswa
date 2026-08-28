@@ -1,6 +1,6 @@
 const ProjectCardSkeleton = () => {
   return (
-    <div className="flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xs dark:border-slate-800 dark:bg-slate-900">
+    <div className="flex flex-col overflow-hidden rounded-2xl border border-slate-200  shadow-xs dark:border-slate-800 dark:bg-slate-900">
       {/* Thumbnail Skeleton */}
       <div className="aspect-video w-full animate-pulse bg-slate-200 dark:bg-slate-800" />
 

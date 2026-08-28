@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import {
   Menu,
@@ -8,6 +8,7 @@ import {
   Droplet,
   FileText,
   FolderKanban,
+  GraduationCap,
   Home,
   ChevronLeft,
   ChevronRight,
@@ -35,6 +36,11 @@ const DashboardLayout = () => {
       icon: Droplet,
     },
     {
+      path: "/dashboard/student-award",
+      label: "Student Award",
+      icon: GraduationCap,
+    },
+    {
       path: "/dashboard/projects",
       label: "Manage Projects",
       icon: FolderKanban,
@@ -55,6 +61,8 @@ const DashboardLayout = () => {
   const getPageTitle = () => {
     if (location.pathname === "/dashboard/manage-blood")
       return "Manage Blood Donors";
+    if (location.pathname === "/dashboard/student-award")
+      return "Student Award Applicants";
     if (location.pathname === "/dashboard/projects")
       return "Manage Projects & Initiatives";
     if (location.pathname === "/dashboard/users") return "User Management";
@@ -76,9 +84,8 @@ const DashboardLayout = () => {
 
       {/* Sidebar (Responsive Mobile Drawer + Desktop Sidebar) */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 flex flex-col border-r border-slate-200 transition-all duration-300 dark:border-slate-800 dark:bg-slate-900 ${
-          isMobileOpen ? "w-64 translate-x-0 shadow-2xl" : "-translate-x-full"
-        } lg:static lg:translate-x-0 ${isSidebarOpen ? "lg:w-64" : "lg:w-20"}`}
+        className={`fixed inset-y-0 left-0 z-50 flex flex-col border-r border-slate-200 transition-all duration-300 dark:border-slate-800 dark:bg-slate-900 ${isMobileOpen ? "w-64 translate-x-0 shadow-2xl" : "-translate-x-full"
+          } lg:static lg:translate-x-0 ${isSidebarOpen ? "lg:w-64" : "lg:w-20"}`}
       >
         {/* Sidebar Brand Header */}
         <div className="flex h-16 items-center justify-between border-b border-slate-200 px-4 dark:border-slate-800">
@@ -144,10 +151,9 @@ const DashboardLayout = () => {
                 end={item.end}
                 onClick={closeMobileSidebar}
                 className={({ isActive }) =>
-                  `flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-semibold no-underline transition-all duration-200 ${
-                    isActive
-                      ? "bg-emerald-600 text-white shadow-md shadow-emerald-600/25"
-                      : "text-slate-600 hover:bg-slate-100 hover:text-emerald-700 dark:text-slate-300 dark:hover:bg-slate-800"
+                  `flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-semibold no-underline transition-all duration-200 ${isActive
+                    ? "bg-emerald-600 text-white shadow-md shadow-emerald-600/25"
+                    : "text-slate-600 hover:bg-slate-100 hover:text-emerald-700 dark:text-slate-300 dark:hover:bg-slate-800"
                   }`
                 }
               >
@@ -204,7 +210,7 @@ const DashboardLayout = () => {
       {/* Main Content Area */}
       <div className="flex min-h-screen min-w-0 flex-1 flex-col">
         {/* Top Header Bar */}
-        <header className="shadow-xs sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200 bg-white/95 px-4 backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/95 sm:px-6">
+        <header className="shadow-xs sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200 /95 px-4 backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/95 sm:px-6">
           <div className="flex items-center gap-3">
             {/* Mobile Hamburger Button */}
             <button

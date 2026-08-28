@@ -301,6 +301,18 @@ export const busDataMap = [
 export const busData = [
   {
     id: "11",
+    name: "Shanti Paribahan",
+    counter: "Rowmari",
+    phoneNumber: "01767949341",
+  },
+  {
+    id: "12",
+    name: "Shanti Paribahan",
+    counter: "Khagrachori",
+    phoneNumber: "01855966804",
+  },
+  {
+    id: "11",
     name: "shawon",
     counter: "rowmari",
     phoneNumber: "01701-967855",
@@ -355,7 +367,7 @@ export const busData = [
   // },
   {
     id: "20",
-    name: "chattogram paribahan",
+    name: "chattogram Express",
     counter: "chattogram",
     phoneNumber: "01970-900715",
   },
@@ -363,13 +375,13 @@ export const busData = [
     id: "21",
     name: "rowmari travels ",
     counter: "rowmari",
-    phoneNumber: " 01960-138762",
+    phoneNumber: "01901-327920",
   },
   {
     id: "22",
     name: "rowmari travels ",
     counter: "company ghat ",
-    phoneNumber: "01960-138 763",
+    phoneNumber: "01901-327921",
   },
   {
     id: "23",
@@ -387,16 +399,22 @@ export const busData = [
     id: "25",
     name: "Bismillah Paribahan ",
     counter: "supiversor 1",
-    phoneNumber: "00000000",
+    phoneNumber: "01325075936",
   },
   {
     id: "26",
     name: "Bismillah Paribahan ",
     counter: "supiversor 2",
-    phoneNumber: "0000",
+    phoneNumber: "01325075937",
   },
   {
     id: "27",
+    name: "Bismillah Paribahan ",
+    counter: "supiversor 3",
+    phoneNumber: "01325075938",
+  },
+  {
+    id: "28",
     name: "Shahi Bhromon",
     counter: "Rowmari",
     phoneNumber: "01905-397052",
@@ -410,40 +428,52 @@ export const busData = [
   //  taohid, nabil, arif
   {
     id: "29",
-    name: "taohid",
-    counter: "rowmari",
-    phoneNumber: "000000000",
+    name: "Tauhid",
+    counter: "Rowmari",
+    phoneNumber: "01986535145",
   },
   {
     id: "30",
-    name: "taohid",
-    counter: "konabari",
-    phoneNumber: "000000000",
+    name: "Tauhid",
+    counter: "Konabari",
+    phoneNumber: "01734008820",
   },
   {
     id: "31",
     name: "nabil",
-    counter: "rowmari",
-    phoneNumber: "0000000",
+    counter: "Rowmari",
+    phoneNumber: "01951137210",
   },
   {
     id: "32",
     name: "nabil",
-    counter: "konabari",
-    phoneNumber: "000000000",
+    counter: "Konabari",
+    phoneNumber: "N/A",
   },
   {
     id: "33",
     name: "arif",
-    counter: "rowmari",
-    phoneNumber: "000000000",
+    counter: "Rowmari",
+    phoneNumber: "01747591590",
   },
   {
     id: "34",
     name: "arif",
     counter: "konabari",
-    phoneNumber: "000000000",
+    phoneNumber: "01734008820",
   },
+  {
+    id: "35",
+    name: "Esha",
+    counter: "Rowmari",
+    phoneNumber: "01767949341",
+  },
+  {
+    id: "36",
+    name: "Esha",
+    counter: "Konabari",
+    phoneNumber: "01616177275",
+  }
 ];
 
 export const emergencyNumbers = [
@@ -500,56 +530,7 @@ export const emergencyNumbers = [
   },
 ];
 
-export const executiveCommittee = [
-  {
-    id: "1",
-    url: President,
-    title: "President",
-    name: "Bashir Ahmed bakul",
-    says: " something he want to say about ...  something he want to say about ...  recusandae ipsum consequuntur delectus quaerat architecto numquam veniam inventore dolor, laudantium, quae.",
-    social: [
-      {
-        id: "11",
-        icon: FaPhone,
-        url: "tel:+880 1793997119",
-      },
-      {
-        id: "12",
-        icon: FaWhatsapp,
-        url: "https://wa.me/+8801793997119",
-      },
-      {
-        id: "13",
-        icon: FaFacebook,
-        url: "https://www.facebook.com/",
-      },
-    ],
-  },
-  {
-    id: "2",
-    url: Secreatary,
-    title: "secreatary",
-    name: "Mehedi hasan roni",
-    says: "Secreatary's speech... Secreatary's speech... Secreatary's speech Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis qui enim maxime asperiores neque hic, iste non, quia quibusdam voluptatum minima velit voluptatibus aspernatur quod.",
-    social: [
-      {
-        id: "22",
-        icon: FaPhone,
-        url: "tel:+880 1991499450",
-      },
-      {
-        id: "23",
-        icon: FaWhatsapp,
-        url: "https://wa.me/+8801991499450",
-      },
-      {
-        id: "24",
-        icon: FaFacebook,
-        url: "https://www.facebook.com/rhronihr",
-      },
-    ],
-  },
-];
+
 export const bgFormData = [{}];
 export const qContactDetails = [
   {

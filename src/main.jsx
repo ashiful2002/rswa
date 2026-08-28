@@ -38,6 +38,9 @@ const DashboardStat = lazy(
 const DashboardBlood = lazy(
   () => import("./Pages/Dashboard/Blood/DashboardBlood.jsx"),
 );
+const DashboardStudentAward = lazy(
+  () => import("./Pages/Dashboard/StudentAward/DashboardStudentAward.jsx"),
+);
 const DashboardProjects = lazy(
   () => import("./Pages/Dashboard/Projects/DashboardProjects.jsx"),
 );
@@ -131,6 +134,10 @@ const router = createBrowserRouter([
       {
         path: "manage-blood",
         element: <DashboardBlood />,
+      },
+      {
+        path: "student-award",
+        element: <DashboardStudentAward />,
       },
       {
         path: "projects",

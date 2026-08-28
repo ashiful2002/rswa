@@ -14,4 +14,5 @@ export const API_ENDPOINTS = {
   BLOOD_GROUP: `${BASE_URL}/blood-group`,
   USERS: `${BASE_URL}/users`,
   PROJECTS: `${BASE_URL}/projects`,
+  STUDENT_AWARD: `${BASE_URL}/student-award`,
 };

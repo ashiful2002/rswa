@@ -24,7 +24,7 @@ const MyForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mx-auto max-w-md space-y-6 rounded-md bg-white p-6 shadow-md"
+      className="mx-auto max-w-md space-y-6 rounded-md  p-6 shadow-md"
     >
       <div>
         <label
@@ -75,7 +75,7 @@ const MyForm = () => {
           name="bloodGroup"
           value={formData.bloodGroup}
           onChange={handleChange}
-          className="w-full rounded-md border border-gray-300 bg-white px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
+          className="w-full rounded-md border border-gray-300  px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
           required
         >
           <option value="" disabled>
