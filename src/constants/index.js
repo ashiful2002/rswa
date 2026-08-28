@@ -448,12 +448,20 @@ export const busData = [
 
 export const emergencyNumbers = [
   {
+    id: "6",
+    service: "Rowmari Fire Service",
+    contact: "Fire Service & Civil Defence Station",
+    phoneNumber: "01901-023347",
+    category: "Fire",
+  },
+  {
     id: "1",
     service: "National Emergency Service",
     contact: "Emergency Hotline",
     phoneNumber: "999",
     category: "Emergency",
   },
+
   {
     id: "2",
     service: "Rowmari Upazila Health Complex",
@@ -482,13 +490,7 @@ export const emergencyNumbers = [
     phoneNumber: "01320-133573",
     category: "Police",
   },
-  {
-    id: "6",
-    service: "Rowmari Fire Service",
-    contact: "Fire Service & Civil Defence Station",
-    phoneNumber: "01901-023347",
-    category: "Fire",
-  },
+
   {
     id: "7",
     service: "Rowmari UNO Office",

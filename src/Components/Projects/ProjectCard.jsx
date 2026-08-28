@@ -46,6 +46,7 @@ const ProjectCard = ({ project, onSelect }) => {
         <img
           src={project.thumbnail}
           alt={project.title}
+          loading="lazy"
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           onError={(e) => {
             e.target.onerror = null;
@@ -79,7 +80,7 @@ const ProjectCard = ({ project, onSelect }) => {
       {/* Project Details */}
       <div className="flex flex-1 flex-col justify-between px-4 py-5">
         <div>
-          <h3 className="line-clamp-2 text-lg font-bold text-slate-800 transition-colors  dark:text-white ">
+          <h3 className="line-clamp-2 text-lg font-bold text-slate-800 transition-colors dark:text-white">
             {project.title}
           </h3>
 

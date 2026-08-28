@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+import { StrictMode, lazy } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -8,28 +8,45 @@ import "./index.css";
 import "./styles/animations.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import About from "./Pages/About.jsx";
-import Blog from "./Pages/Blog.jsx";
-import ErrorPage from "./Pages/ErrorPage.jsx";
-import Blood from "./Pages/Blood.jsx";
-import OtherLinks from "./Pages/OtherLinks.jsx";
-import BgForm1 from "./Components/Form/BgForm1.jsx";
-import Donate from "./Pages/Donate.jsx";
-import SignUp from "./Pages/SignUp/SignUp.jsx";
-import CustomForm from "./Components/Form/CustomForm.jsx";
 import RootLayout from "./Layout/RootLayout/RootLayout.jsx";
-import RCL from "./Pages/RCL/RCL.jsx";
-import StudentAward from "./Pages/StudentAward/StudentAward.jsx";
-import Signin from "./Pages/SignIn/Signin.jsx";
-import AuthProvider from "./Context/AuthProvider.jsx";
-import DashboardBlood from "./Pages/Dashboard/Blood/DashboardBlood.jsx";
-import DashboardStat from "./Pages/Dashboard/DashBoardStat/DashboardStat.jsx";
-import DashboardLayout from "./Pages/Dashboard/DashboardLayout/DashboardLayout.jsx";
-import DashboardUserManagement from "./Pages/Dashboard/DashboardUserManagement.jsx";
-import DashboardContent from "./Pages/Dashboard/DashboardContent.jsx";
-import DashboardProjects from "./Pages/Dashboard/Projects/DashboardProjects.jsx";
-import Projects from "./Pages/Projects/Projects.jsx";
+import ErrorPage from "./Pages/ErrorPage.jsx";
 import AdminRoute from "./Components/ProtectedRoutes/AdminRoute.jsx";
+import ThemeProvider from "./Context/ThemeProvider.jsx";
+import AuthProvider from "./Context/AuthProvider.jsx";
+
+// Lazy-loaded pages for optimized performance and bundle splitting
+const About = lazy(() => import("./Pages/About.jsx"));
+const Blog = lazy(() => import("./Pages/Blog.jsx"));
+const Blood = lazy(() => import("./Pages/Blood.jsx"));
+const OtherLinks = lazy(() => import("./Pages/OtherLinks.jsx"));
+const BgForm1 = lazy(() => import("./Components/Form/BgForm1.jsx"));
+const Donate = lazy(() => import("./Pages/Donate.jsx"));
+const SignUp = lazy(() => import("./Pages/SignUp/SignUp.jsx"));
+const CustomForm = lazy(() => import("./Components/Form/CustomForm.jsx"));
+const RCL = lazy(() => import("./Pages/RCL/RCL.jsx"));
+const StudentAward = lazy(() => import("./Pages/StudentAward/StudentAward.jsx"));
+const Signin = lazy(() => import("./Pages/SignIn/Signin.jsx"));
+const Projects = lazy(() => import("./Pages/Projects/Projects.jsx"));
+
+// Lazy-loaded Dashboard pages
+const DashboardLayout = lazy(
+  () => import("./Pages/Dashboard/DashboardLayout/DashboardLayout.jsx"),
+);
+const DashboardStat = lazy(
+  () => import("./Pages/Dashboard/DashBoardStat/DashboardStat.jsx"),
+);
+const DashboardBlood = lazy(
+  () => import("./Pages/Dashboard/Blood/DashboardBlood.jsx"),
+);
+const DashboardProjects = lazy(
+  () => import("./Pages/Dashboard/Projects/DashboardProjects.jsx"),
+);
+const DashboardUserManagement = lazy(
+  () => import("./Pages/Dashboard/DashboardUserManagement.jsx"),
+);
+const DashboardContent = lazy(
+  () => import("./Pages/Dashboard/DashboardContent.jsx"),
+);
 
 const router = createBrowserRouter([
   {
@@ -41,7 +58,6 @@ const router = createBrowserRouter([
         index: true,
         element: <App />,
       },
-
       {
         path: "/about",
         element: <About />,
@@ -85,10 +101,6 @@ const router = createBrowserRouter([
       {
         path: "/donate",
         element: <Donate />,
-      },
-      {
-        path: "numbers",
-        element: <OtherLinks />,
       },
       {
         path: "/bgForm1",
@@ -135,7 +147,6 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-import ThemeProvider from "./Context/ThemeProvider.jsx";
 
 const queryClient = new QueryClient();
 

@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react/prop-types */
+import { useState, useEffect, lazy, Suspense } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { MdBloodtype } from "react-icons/md";
 import { FaEye, FaPhoneAlt } from "react-icons/fa";
 import { Modal, Button } from "react-bootstrap";
-import Pagination from "../Components/shared/Pagination";
+
+const Pagination = lazy(() => import("../Components/shared/Pagination"));
 
 import { API_ENDPOINTS } from "../config/api";
 import SEO from "../Components/shared/SEO";
@@ -23,7 +25,7 @@ const bloodGroups = [
 ];
 
 const fetchBloodData = async ({ queryKey }) => {
-  const [_key, params] = queryKey;
+  const [, params] = queryKey;
   const queryParams = {
     page: params.page,
     limit: params.limit,
@@ -60,51 +62,45 @@ const PhoneCell = ({ phone, donorName }) => {
     setShowModal(false);
   };
 
-  if (revealed) {
-    return (
-      <a
-        href={`tel:${phone}`}
-        className="d-inline-flex align-items-center text-decoration-none gap-1 font-semibold text-emerald-600 dark:text-emerald-400"
-      >
-        <FaPhoneAlt size={12} />
-        {phone}
-      </a>
-    );
-  }
-
   return (
     <>
-      <span
-        role="button"
-        onClick={() => setShowModal(true)}
-        className="d-inline-flex align-items-center gap-2 text-slate-800 dark:text-slate-200"
-        style={{ cursor: "pointer" }}
-        title="Click to reveal number"
-      >
-        <span>
-          {visiblePart}
-          <span
-            style={{
-              filter: "blur(4px)",
-              userSelect: "none",
-            }}
+      <div className="flex items-center gap-2">
+        {revealed ? (
+          <a
+            href={`tel:${phone}`}
+            className="flex items-center gap-1.5 font-mono font-medium text-emerald-600 hover:underline dark:text-emerald-400"
           >
-            {hiddenPart}
-          </span>
-        </span>
-        <FaEye className="text-secondary dark:text-slate-400" size={14} />
-      </span>
+            <FaPhoneAlt className="text-xs" />
+            {phone}
+          </a>
+        ) : (
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-slate-600 dark:text-slate-400">
+              {visiblePart}
+              {hiddenPart.replace(/./g, "X")}
+            </span>
+            <button
+              onClick={() => setShowModal(true)}
+              className="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-700 hover:bg-emerald-100 dark:bg-emerald-950/60 dark:text-emerald-300 dark:hover:bg-emerald-900/60"
+              title="Click to reveal phone number"
+            >
+              <FaEye className="text-xs" />
+              <span>Show</span>
+            </button>
+          </div>
+        )}
+      </div>
 
+      {/* React-Bootstrap Modal */}
       <Modal
         show={showModal}
         onHide={() => setShowModal(false)}
         centered
         size="sm"
-        contentClassName=" text-slate-900 border border-slate-200 dark:bg-slate-900 dark:text-slate-100 dark:border-slate-800 shadow-lg"
       >
         <Modal.Header
           closeButton
-          className="border-b border-slate-200 text-slate-900 dark:border-slate-800 dark:text-slate-100 dark:[&_.btn-close]:invert dark:[&_.btn-close]:filter"
+          className="border-b border-slate-200 dark:border-slate-800"
         >
           <Modal.Title className="fs-6 font-bold text-slate-900 dark:text-slate-100">
             Reveal Phone Number
@@ -114,7 +110,7 @@ const PhoneCell = ({ phone, donorName }) => {
           Are you sure you want to show{" "}
           {donorName ? (
             <strong className="text-slate-900 dark:text-slate-100">
-              {donorName}'s
+              {donorName}&apos;s
             </strong>
           ) : (
             "this donor's"
@@ -145,7 +141,7 @@ const PhoneCell = ({ phone, donorName }) => {
 };
 
 // Skeleton row component for animated table loading
-const SkeletonRow = ({ index }) => (
+const SkeletonRow = () => (
   <tr className="animate-pulse border-b border-slate-200 dark:border-slate-800">
     <td className="p-3">
       <div className="h-4 w-6 rounded bg-slate-200 dark:bg-slate-800"></div>
@@ -172,13 +168,13 @@ const SkeletonRow = ({ index }) => (
 );
 
 const Blood = () => {
-  const [search, setSearch] = useState("");
+  const [search] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [bloodGroupFilter, setBloodGroupFilter] = useState("");
-  const [sortField, setSortField] = useState("Name");
+  const [sortField] = useState("Name");
   const [sortOrder, setSortOrder] = useState("asc");
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(20);
+  const [limit] = useState(20);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -267,38 +263,38 @@ const Blood = () => {
         </div>
       </div>
 
-      {/* Table with Skeleton Loading */}
+      {/* Table */}
       <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
-        <table className="min-w-full table-auto border-collapse">
-          <thead>
-            <tr className="bg-slate-100 text-left dark:bg-slate-800/80 dark:text-slate-100">
-              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">
+        <table className="w-full text-left text-sm">
+          <thead className="bg-slate-100 font-semibold text-slate-900 dark:bg-slate-800/80 dark:text-slate-100">
+            <tr>
+              <th className="border border-slate-200 p-3 dark:border-slate-800">
                 #
               </th>
-              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">
+              <th className="border border-slate-200 p-3 dark:border-slate-800">
                 Name
               </th>
-              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">
-                Blood Group
+              <th className="border border-slate-200 p-3 dark:border-slate-800">
+                Group
               </th>
-              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">
+              <th className="border border-slate-200 p-3 dark:border-slate-800">
                 Present Address
               </th>
-              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">
+              <th className="border border-slate-200 p-3 dark:border-slate-800">
                 Permanent Address
               </th>
-              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">
+              <th className="border border-slate-200 p-3 dark:border-slate-800">
                 SSC Batch
               </th>
-              <th className="border border-slate-200 p-3 font-semibold dark:border-slate-800">
-                Mobile Number
+              <th className="border border-slate-200 p-3 dark:border-slate-800">
+                Contact Number
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
             {isLoading ? (
               Array.from({ length: limit || 20 }).map((_, index) => (
-                <SkeletonRow key={index} index={index} />
+                <SkeletonRow key={index} />
               ))
             ) : bloodData.length > 0 ? (
               bloodData.map((donor, index) => (
@@ -347,7 +343,9 @@ const Blood = () => {
       </div>
 
       {/* Reusable Ellipsis Pagination */}
-      <Pagination page={page} totalPages={totalPages} onPageChange={goToPage} />
+      <Suspense fallback={null}>
+        <Pagination page={page} totalPages={totalPages} onPageChange={goToPage} />
+      </Suspense>
     </div>
   );
 };

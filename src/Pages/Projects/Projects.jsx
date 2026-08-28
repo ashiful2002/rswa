@@ -1,14 +1,22 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, lazy, Suspense } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_ENDPOINTS } from "../../config/api";
 import PageTitle from "../../Components/PageTitle";
-import Loading from "../../Components/Loading/Loading";
-import ProjectFilter from "../../Components/Projects/ProjectFilter";
-import ProjectCard from "../../Components/Projects/ProjectCard";
-import ProjectDetailModal from "../../Components/Projects/ProjectDetailModal";
-import Pagination from "../../Components/shared/Pagination";
 import { Tag } from "lucide-react";
+import ProjectCardSkeleton from "../../Components/Projects/ProjectCardSkeleton";
+
+// Lazy loaded components for optimized bundle performance
+const ProjectFilter = lazy(
+  () => import("../../Components/Projects/ProjectFilter"),
+);
+const ProjectCard = lazy(
+  () => import("../../Components/Projects/ProjectCard"),
+);
+const ProjectDetailModal = lazy(
+  () => import("../../Components/Projects/ProjectDetailModal"),
+);
+const Pagination = lazy(() => import("../../Components/shared/Pagination"));
 
 const Projects = () => {
   const { slug } = useParams();
@@ -49,11 +57,7 @@ const Projects = () => {
     setCurrentPage(1);
   }, [selectedCategory, searchQuery]);
 
-  useEffect(() => {
-    fetchProjects();
-  }, [selectedCategory, searchQuery, currentPage]);
-
-  const fetchProjects = async () => {
+  const fetchProjects = useCallback(async () => {
     setLoading(true);
     try {
       // Fetch only Completed projects for public site view
@@ -80,7 +84,11 @@ const Projects = () => {
       setError("Failed to load projects from server.");
       setLoading(false);
     }
-  };
+  }, [currentPage, selectedCategory, searchQuery]);
+
+  useEffect(() => {
+    fetchProjects();
+  }, [fetchProjects]);
 
   const handleSelectProject = (project) => {
     setSelectedProject(project);
@@ -118,18 +126,26 @@ const Projects = () => {
           </p>
         </div>
 
-        {/* Filter Controls */}
-        <ProjectFilter
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-        />
+        {/* Lazy Loaded Filter Controls */}
+        <Suspense
+          fallback={
+            <div className="mb-8 h-12 w-full animate-pulse rounded-2xl bg-slate-200 dark:bg-slate-800" />
+          }
+        >
+          <ProjectFilter
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
+        </Suspense>
 
-        {/* States: Loading / Error / Empty / Grid */}
+        {/* States: Skeleton Loading / Error / Empty / Grid */}
         {loading ? (
-          <div className="py-12">
-            <Loading>projects</Loading>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {Array.from({ length: 9 }).map((_, index) => (
+              <ProjectCardSkeleton key={index} />
+            ))}
           </div>
         ) : error ? (
           <div className="rounded-2xl border border-red-200 bg-red-50 p-6 text-center text-red-700 dark:border-red-900/50 dark:bg-red-950/40 dark:text-red-400">
@@ -153,7 +169,15 @@ const Projects = () => {
             </p>
           </div>
         ) : (
-          <>
+          <Suspense
+            fallback={
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {Array.from({ length: 9 }).map((_, index) => (
+                  <ProjectCardSkeleton key={index} />
+                ))}
+              </div>
+            }
+          >
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {projects.map((project) => (
                 <ProjectCard
@@ -170,14 +194,16 @@ const Projects = () => {
               totalPages={meta.totalPages || 1}
               onPageChange={handlePageChange}
             />
-          </>
+          </Suspense>
         )}
 
-        {/* Detail Modal */}
-        <ProjectDetailModal
-          project={selectedProject}
-          onClose={handleCloseModal}
-        />
+        {/* Lazy Loaded Detail Modal */}
+        <Suspense fallback={null}>
+          <ProjectDetailModal
+            project={selectedProject}
+            onClose={handleCloseModal}
+          />
+        </Suspense>
       </div>
     </div>
   );
