@@ -166,8 +166,7 @@ const DashboardStudentAward = () => {
         "Email",
         "University",
         "Session",
-        "SSC School",
-        "HSC College",
+        "College Name",
       ];
 
       const tableRows = exportList.map((st, i) => [
@@ -178,7 +177,6 @@ const DashboardStudentAward = () => {
         st.email || "",
         st.university || "",
         st.session || "",
-        st.sscSchool || "-",
         st.hscCollege || "-",
       ]);
 

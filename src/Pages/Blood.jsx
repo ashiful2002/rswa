@@ -11,6 +11,7 @@ const Pagination = lazy(() => import("../Components/shared/Pagination"));
 
 import { API_ENDPOINTS } from "../config/api";
 import SEO from "../Components/shared/SEO";
+import { useTheme } from "../Context/ThemeProvider";
 
 const bloodGroups = [
   "",
@@ -50,6 +51,7 @@ const fetchBloodData = async ({ queryKey }) => {
 const PhoneCell = ({ phone, donorName }) => {
   const [revealed, setRevealed] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const { isDark } = useTheme();
 
   if (!phone)
     return <span className="text-muted dark:text-slate-400">N/A</span>;
@@ -97,9 +99,11 @@ const PhoneCell = ({ phone, donorName }) => {
         onHide={() => setShowModal(false)}
         centered
         size="sm"
+        contentClassName={`${isDark ? "dark:bg-slate-900" : "bg-white"} border-0 rounded-2xl shadow-xl`}
       >
         <Modal.Header
           closeButton
+          closeVariant={isDark ? "white" : undefined}
           className="border-b border-slate-200 dark:border-slate-800"
         >
           <Modal.Title className="fs-6 font-bold text-slate-900 dark:text-slate-100">

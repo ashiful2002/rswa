@@ -24,7 +24,8 @@ const StudentAwardTable = ({
               <th className="p-3.5">Contact Details</th>
               <th className="p-3.5">University</th>
               <th className="p-3.5">Session</th>
-              <th className="p-3.5">School / College</th>
+              <th className="p-3.5">School Name</th>
+              <th className="p-3.5">College Name</th>
               <th className="p-3.5 text-right">Actions</th>
             </tr>
           </thead>
@@ -50,6 +51,9 @@ const StudentAwardTable = ({
                   <td className="p-3.5">
                     <div className="h-4 w-28 rounded bg-slate-200 dark:bg-slate-800" />
                   </td>
+                  <td className="p-3.5">
+                    <div className="h-4 w-28 rounded bg-slate-200 dark:bg-slate-800" />
+                  </td>
                   <td className="p-3.5 text-right">
                     <div className="ml-auto h-6 w-12 rounded bg-slate-200 dark:bg-slate-800" />
                   </td>
@@ -66,7 +70,7 @@ const StudentAwardTable = ({
                   </td>
                   <td className="p-3.5">
                     <div className="font-bold text-slate-900 dark:text-white">
-                      {student.nameEnglish}
+                       {student.nameEnglish}
                     </div>
                     <div className="text-[11px] text-slate-500 dark:text-slate-400">
                       {student.nameBangla}
@@ -93,10 +97,14 @@ const StudentAwardTable = ({
                   </td>
                   <td className="p-3.5 text-slate-600 dark:text-slate-400">
                     <div className="flex items-center gap-1">
-                      <School className="h-3 w-3 shrink-0 text-slate-400" />
-                      <span>
-                        {student.hscCollege || student.sscSchool || "N/A"}
-                      </span>
+                      <School className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+                      <span>{student.sscSchool || "N/A"}</span>
+                    </div>
+                  </td>
+                  <td className="p-3.5 text-slate-600 dark:text-slate-400">
+                    <div className="flex items-center gap-1">
+                      <GraduationCap className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+                      <span>{student.hscCollege || "N/A"}</span>
                     </div>
                   </td>
                   <td className="p-3.5 text-right">
@@ -124,7 +132,7 @@ const StudentAwardTable = ({
             ) : (
               <tr>
                 <td
-                  colSpan="7"
+                  colSpan="8"
                   className="p-8 text-center text-slate-500 dark:text-slate-400"
                 >
                   <div className="flex flex-col items-center gap-2">
