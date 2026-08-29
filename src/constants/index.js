@@ -473,7 +473,7 @@ export const busData = [
     name: "Esha",
     counter: "Konabari",
     phoneNumber: "01616177275",
-  }
+  },
 ];
 
 export const emergencyNumbers = [
@@ -529,7 +529,6 @@ export const emergencyNumbers = [
     category: "Administration",
   },
 ];
-
 
 export const bgFormData = [{}];
 export const qContactDetails = [

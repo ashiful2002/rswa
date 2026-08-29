@@ -19,10 +19,28 @@ import {
 import useAxiosSecure from "../../hooks/useAxiosSecure/useAxiosSecure";
 
 const ROLES = [
-  { label: "Donor", value: "donor", color: "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300" },
-  { label: "Moderator", value: "moderator", color: "bg-blue-100 text-blue-800 dark:bg-blue-950/80 dark:text-blue-300" },
-  { label: "Admin", value: "admin", color: "bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300" },
-  { label: "Super Admin", value: "super_admin", color: "bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300" },
+  {
+    label: "Donor",
+    value: "donor",
+    color:
+      "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300",
+  },
+  {
+    label: "Moderator",
+    value: "moderator",
+    color: "bg-blue-100 text-blue-800 dark:bg-blue-950/80 dark:text-blue-300",
+  },
+  {
+    label: "Admin",
+    value: "admin",
+    color:
+      "bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300",
+  },
+  {
+    label: "Super Admin",
+    value: "super_admin",
+    color: "bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300",
+  },
 ];
 
 const DashboardUserManagement = () => {
@@ -75,7 +93,11 @@ const DashboardUserManagement = () => {
 
   const handleRoleChange = async (targetUser, newRole) => {
     if (!isAuthorized) {
-      Swal.fire("Permission Denied", "Only Administrators can modify user roles.", "warning");
+      Swal.fire(
+        "Permission Denied",
+        "Only Administrators can modify user roles.",
+        "warning",
+      );
       return;
     }
 
@@ -97,7 +119,7 @@ const DashboardUserManagement = () => {
     try {
       const res = await axiosSecure.put(
         `${API_ENDPOINTS.USERS}/${targetUser.email}/role`,
-        { role: newRole }
+        { role: newRole },
       );
 
       if (res.data && res.data.success) {
@@ -121,7 +143,11 @@ const DashboardUserManagement = () => {
 
   const handleDeleteUser = async (targetUser) => {
     if (!isAuthorized) {
-      Swal.fire("Permission Denied", "Only Administrators can delete users.", "warning");
+      Swal.fire(
+        "Permission Denied",
+        "Only Administrators can delete users.",
+        "warning",
+      );
       return;
     }
 
@@ -138,7 +164,9 @@ const DashboardUserManagement = () => {
     if (!confirm.isConfirmed) return;
 
     try {
-      const res = await axiosSecure.delete(`${API_ENDPOINTS.USERS}/${targetUser.email}`);
+      const res = await axiosSecure.delete(
+        `${API_ENDPOINTS.USERS}/${targetUser.email}`,
+      );
       if (res.data && res.data.success) {
         Swal.fire("Deleted!", "User record has been removed.", "success");
         fetchUsers();
@@ -158,7 +186,9 @@ const DashboardUserManagement = () => {
       u.displayName?.toLowerCase().includes(searchTerm.toLowerCase());
 
     const matchesRole =
-      roleFilter === "All" ? true : u.role?.toLowerCase() === roleFilter.toLowerCase();
+      roleFilter === "All"
+        ? true
+        : u.role?.toLowerCase() === roleFilter.toLowerCase();
 
     return matchesSearch && matchesRole;
   });
@@ -178,44 +208,55 @@ const DashboardUserManagement = () => {
             User Management & RBAC
           </h2>
           <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-            View registered system users and assign role permissions (Admin, Moderator, Donor).
+            View registered system users and assign role permissions (Admin,
+            Moderator, Donor).
           </p>
         </div>
 
         <button
           onClick={fetchUsers}
-          className="flex items-center gap-2 rounded-xl border border-slate-200  px-4 py-2.5 text-xs font-semibold text-slate-700 shadow-xs transition-all hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
+          className="shadow-xs flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-xs font-semibold text-slate-700 transition-all hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
         >
-          <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin text-emerald-500" : ""}`} />
+          <RefreshCw
+            className={`h-4 w-4 ${loading ? "animate-spin text-emerald-500" : ""}`}
+          />
           Refresh List
         </button>
       </div>
 
       {/* KPI Stats Cards */}
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <div className="shadow-xs rounded-2xl border border-slate-200  p-4 dark:border-slate-800 dark:bg-slate-900">
+        <div className="shadow-xs rounded-2xl border border-slate-200 p-4 dark:border-slate-800 dark:bg-slate-900">
           <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
             Total Signed-in Users
           </p>
-          <p className="mt-1 text-2xl font-black text-slate-800 dark:text-white">{totalCount}</p>
+          <p className="mt-1 text-2xl font-black text-slate-800 dark:text-white">
+            {totalCount}
+          </p>
         </div>
-        <div className="shadow-xs rounded-2xl border border-slate-200  p-4 dark:border-slate-800 dark:bg-slate-900">
+        <div className="shadow-xs rounded-2xl border border-slate-200 p-4 dark:border-slate-800 dark:bg-slate-900">
           <p className="text-[10px] font-bold uppercase tracking-wider text-rose-500">
             Admins
           </p>
-          <p className="mt-1 text-2xl font-black text-rose-600 dark:text-rose-400">{adminCount}</p>
+          <p className="mt-1 text-2xl font-black text-rose-600 dark:text-rose-400">
+            {adminCount}
+          </p>
         </div>
-        <div className="shadow-xs rounded-2xl border border-slate-200  p-4 dark:border-slate-800 dark:bg-slate-900">
+        <div className="shadow-xs rounded-2xl border border-slate-200 p-4 dark:border-slate-800 dark:bg-slate-900">
           <p className="text-[10px] font-bold uppercase tracking-wider text-blue-500">
             Moderators
           </p>
-          <p className="mt-1 text-2xl font-black text-blue-600 dark:text-blue-400">{moderatorCount}</p>
+          <p className="mt-1 text-2xl font-black text-blue-600 dark:text-blue-400">
+            {moderatorCount}
+          </p>
         </div>
-        <div className="shadow-xs rounded-2xl border border-slate-200  p-4 dark:border-slate-800 dark:bg-slate-900">
+        <div className="shadow-xs rounded-2xl border border-slate-200 p-4 dark:border-slate-800 dark:bg-slate-900">
           <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-500">
             Donors / Members
           </p>
-          <p className="mt-1 text-2xl font-black text-emerald-600 dark:text-emerald-400">{donorCount}</p>
+          <p className="mt-1 text-2xl font-black text-emerald-600 dark:text-emerald-400">
+            {donorCount}
+          </p>
         </div>
       </div>
 
@@ -226,10 +267,11 @@ const DashboardUserManagement = () => {
             <button
               key={r}
               onClick={() => setRoleFilter(r)}
-              className={`rounded-xl px-3.5 py-1.5 text-xs font-semibold transition-colors ${roleFilter === r
-                ? "bg-emerald-600 text-white shadow-xs"
-                : "border border-slate-200  text-slate-600 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
-                }`}
+              className={`rounded-xl px-3.5 py-1.5 text-xs font-semibold transition-colors ${
+                roleFilter === r
+                  ? "shadow-xs bg-emerald-600 text-white"
+                  : "border border-slate-200 text-slate-600 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
+              }`}
             >
               {r}
             </button>
@@ -243,13 +285,13 @@ const DashboardUserManagement = () => {
             placeholder="Search user by name or email..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full rounded-xl border border-slate-200  py-2 pl-9 pr-3 text-xs text-slate-800 outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100"
+            className="w-full rounded-xl border border-slate-200 py-2 pl-9 pr-3 text-xs text-slate-800 outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100"
           />
         </div>
       </div>
 
       {/* User Management Table */}
-      <div className="shadow-xs overflow-hidden rounded-2xl border border-slate-200  dark:border-slate-800 dark:bg-slate-900">
+      <div className="shadow-xs overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 dark:bg-slate-900">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead className="border-b border-slate-200 bg-slate-50 text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:border-slate-800 dark:bg-slate-800/60 dark:text-slate-400">
@@ -258,7 +300,9 @@ const DashboardUserManagement = () => {
                 <th className="px-4 py-3.5">Email</th>
                 <th className="px-4 py-3.5">Assigned Role</th>
                 <th className="px-4 py-3.5">Registered Date</th>
-                <th className="px-4 py-3.5 text-right">Actions / Role Control</th>
+                <th className="px-4 py-3.5 text-right">
+                  Actions / Role Control
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60">
@@ -315,30 +359,41 @@ const DashboardUserManagement = () => {
                     {/* Current Role Badge */}
                     <td className="px-4 py-3">
                       <span
-                        className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-bold capitalize ${u.role === "super_admin"
+                        className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-bold capitalize ${
+                          u.role === "super_admin"
                             ? "bg-rose-100 text-rose-800 dark:bg-rose-950/70 dark:text-rose-300"
                             : u.role === "admin"
                               ? "bg-amber-100 text-amber-800 dark:bg-amber-950/70 dark:text-amber-300"
                               : u.role === "moderator"
                                 ? "bg-blue-100 text-blue-800 dark:bg-blue-950/70 dark:text-blue-300"
                                 : "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/70 dark:text-emerald-300"
-                          }`}
+                        }`}
                       >
-                        {u.role === "super_admin" && <ShieldAlert className="h-3 w-3 text-rose-600" />}
-                        {u.role === "admin" && <ShieldAlert className="h-3 w-3 text-amber-600" />}
-                        {u.role === "moderator" && <ShieldCheck className="h-3 w-3" />}
-                        {(!u.role || u.role === "donor") && <UserCheck className="h-3 w-3" />}
+                        {u.role === "super_admin" && (
+                          <ShieldAlert className="h-3 w-3 text-rose-600" />
+                        )}
+                        {u.role === "admin" && (
+                          <ShieldAlert className="h-3 w-3 text-amber-600" />
+                        )}
+                        {u.role === "moderator" && (
+                          <ShieldCheck className="h-3 w-3" />
+                        )}
+                        {(!u.role || u.role === "donor") && (
+                          <UserCheck className="h-3 w-3" />
+                        )}
                         {u.role ? u.role.replace("_", " ") : "donor"}
                       </span>
                     </td>
 
                     {/* Join Date */}
-                    <td className="px-4 py-3 text-slate-500 whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-3 text-slate-500">
                       <div className="flex items-center gap-1">
                         <Calendar className="h-3.5 w-3.5 text-slate-400" />
                         <span>
                           {u.created_at || u.createdAt
-                            ? new Date(u.created_at || u.createdAt).toLocaleDateString()
+                            ? new Date(
+                                u.created_at || u.createdAt,
+                              ).toLocaleDateString()
                             : "N/A"}
                         </span>
                       </div>
@@ -351,8 +406,13 @@ const DashboardUserManagement = () => {
                         {isAuthorized ? (
                           <select
                             value={u.role || "donor"}
-                            disabled={updatingEmail === u.email || u.email === user?.email}
-                            onChange={(e) => handleRoleChange(u, e.target.value)}
+                            disabled={
+                              updatingEmail === u.email ||
+                              u.email === user?.email
+                            }
+                            onChange={(e) =>
+                              handleRoleChange(u, e.target.value)
+                            }
                             className="rounded-xl border border-slate-200 px-2.5 py-1 text-xs font-semibold text-slate-700 outline-none transition-all focus:border-emerald-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
                           >
                             <option value="donor">Donor (Default)</option>
@@ -361,7 +421,9 @@ const DashboardUserManagement = () => {
                             <option value="super_admin">Super Admin</option>
                           </select>
                         ) : (
-                          <span className="text-[11px] text-slate-400">View Only</span>
+                          <span className="text-[11px] text-slate-400">
+                            View Only
+                          </span>
                         )}
 
                         {/* Delete User Button */}

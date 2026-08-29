@@ -286,7 +286,7 @@ const CustomForm = () => {
             name="agree"
             checked={formData.agree}
             onChange={handleChange}
-            className="h-4 w-4 cursor-pointer rounded border-slate-300  accent-emerald-600 focus:ring-emerald-600 dark:border-slate-700 dark:bg-slate-950 dark:accent-emerald-500"
+            className="h-4 w-4 cursor-pointer rounded border-slate-300 accent-emerald-600 focus:ring-emerald-600 dark:border-slate-700 dark:bg-slate-950 dark:accent-emerald-500"
           />
           <label
             htmlFor="agree"

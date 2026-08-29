@@ -24,7 +24,12 @@ const Donate = lazy(() => import("./Pages/Donate.jsx"));
 const SignUp = lazy(() => import("./Pages/SignUp/SignUp.jsx"));
 const CustomForm = lazy(() => import("./Components/Form/CustomForm.jsx"));
 const RCL = lazy(() => import("./Pages/RCL/RCL.jsx"));
-const StudentAward = lazy(() => import("./Pages/StudentAward/StudentAward.jsx"));
+const StudentAward = lazy(
+  () => import("./Pages/StudentAward/StudentAward.jsx"),
+);
+const AdmissionForm = lazy(
+  () => import("./Pages/StudentAward/AdmissionForm.jsx"),
+);
 const Signin = lazy(() => import("./Pages/SignIn/Signin.jsx"));
 const Projects = lazy(() => import("./Pages/Projects/Projects.jsx"));
 
@@ -88,6 +93,10 @@ const router = createBrowserRouter([
       {
         path: "/student-award",
         element: <StudentAward />,
+      },
+      {
+        path: "/student-award/forms/admission",
+        element: <AdmissionForm />,
       },
       {
         path: "/blood",

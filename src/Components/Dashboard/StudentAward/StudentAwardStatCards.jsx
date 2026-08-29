@@ -3,7 +3,7 @@ import { GraduationCap, Calendar } from "lucide-react";
 const StudentAwardStatCards = ({ isLoading, totalStudents, students }) => {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-      <div className="rounded-2xl border border-slate-200  p-5 shadow-xs dark:border-slate-800 dark:bg-slate-900">
+      <div className="shadow-xs rounded-2xl border border-slate-200 p-5 dark:border-slate-800 dark:bg-slate-900">
         <div className="flex items-center justify-between">
           <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
             Total Applicants
@@ -17,7 +17,7 @@ const StudentAwardStatCards = ({ isLoading, totalStudents, students }) => {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-slate-200  p-5 shadow-xs dark:border-slate-800 dark:bg-slate-900">
+      <div className="shadow-xs rounded-2xl border border-slate-200 p-5 dark:border-slate-800 dark:bg-slate-900">
         <div className="flex items-center justify-between">
           <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
             2025-26 Session
@@ -33,7 +33,7 @@ const StudentAwardStatCards = ({ isLoading, totalStudents, students }) => {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-slate-200  p-5 shadow-xs dark:border-slate-800 dark:bg-slate-900">
+      <div className="shadow-xs rounded-2xl border border-slate-200 p-5 dark:border-slate-800 dark:bg-slate-900">
         <div className="flex items-center justify-between">
           <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
             2026-27 Session

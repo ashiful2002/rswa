@@ -14,7 +14,8 @@ function BsNavbar() {
   const { role } = useUserRole();
   const [expanded, setExpanded] = useState(false);
 
-  const canAccessDashboard = role === "super_admin" || role === "admin" || role === "moderator" || role === "donor";
+  const canAccessDashboard =
+    role === "super_admin" || role === "admin" || role === "moderator";
 
   const handleLogOut = () => {
     SignOutUser();
@@ -29,7 +30,7 @@ function BsNavbar() {
       expand="md"
       expanded={expanded}
       onToggle={(isExpanded) => setExpanded(isExpanded)}
-      className="border-b border-slate-100 /95 py-2 shadow-sm backdrop-blur-md transition-colors duration-200 dark:border-slate-800 dark:bg-slate-900/95"
+      className="/95 border-b border-slate-100 py-2 shadow-sm backdrop-blur-md transition-colors duration-200 dark:border-slate-800 dark:bg-slate-900/95"
     >
       <Container>
         {/* Brand Logo & Name */}
@@ -64,9 +65,10 @@ function BsNavbar() {
                 to={item.url}
                 onClick={closeMenu}
                 className={({ isActive }) =>
-                  `rounded-lg px-3.5 py-2 text-sm font-medium capitalize no-underline transition-all ${isActive
-                    ? "bg-emerald-50/80 font-semibold text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400"
-                    : "text-slate-700 hover:bg-slate-50 hover:text-emerald-600 dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-emerald-400"
+                  `rounded-lg px-3.5 py-2 text-sm font-medium capitalize no-underline transition-all ${
+                    isActive
+                      ? "bg-emerald-50/80 font-semibold text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400"
+                      : "text-slate-700 hover:bg-slate-50 hover:text-emerald-600 dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-emerald-400"
                   }`
                 }
               >
@@ -79,9 +81,10 @@ function BsNavbar() {
                 to="/dashboard"
                 onClick={closeMenu}
                 className={({ isActive }) =>
-                  `rounded-lg px-3.5 py-2 text-sm font-medium capitalize no-underline transition-all ${isActive
-                    ? "bg-emerald-50/80 font-semibold text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400"
-                    : "text-slate-700 hover:bg-slate-50 hover:text-emerald-600 dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-emerald-400"
+                  `rounded-lg px-3.5 py-2 text-sm font-medium capitalize no-underline transition-all ${
+                    isActive
+                      ? "bg-emerald-50/80 font-semibold text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400"
+                      : "text-slate-700 hover:bg-slate-50 hover:text-emerald-600 dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-emerald-400"
                   }`
                 }
               >

@@ -146,7 +146,7 @@ const DashboardContent = () => {
 
       {/* Stats */}
       <div className="grid gap-4 md:grid-cols-4">
-        <Card className="shadow-xs rounded-2xl border border-slate-200  dark:border-slate-800 dark:bg-slate-900">
+        <Card className="shadow-xs rounded-2xl border border-slate-200 dark:border-slate-800 dark:bg-slate-900">
           <CardContent className="pt-6">
             <div className="text-center">
               <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">
@@ -158,7 +158,7 @@ const DashboardContent = () => {
             </div>
           </CardContent>
         </Card>
-        <Card className="shadow-xs rounded-2xl border border-slate-200  dark:border-slate-800 dark:bg-slate-900">
+        <Card className="shadow-xs rounded-2xl border border-slate-200 dark:border-slate-800 dark:bg-slate-900">
           <CardContent className="pt-6">
             <div className="text-center">
               <div className="text-3xl font-bold text-amber-500">
@@ -170,7 +170,7 @@ const DashboardContent = () => {
             </div>
           </CardContent>
         </Card>
-        <Card className="shadow-xs rounded-2xl border border-slate-200  dark:border-slate-800 dark:bg-slate-900">
+        <Card className="shadow-xs rounded-2xl border border-slate-200 dark:border-slate-800 dark:bg-slate-900">
           <CardContent className="pt-6">
             <div className="text-center">
               <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
@@ -182,7 +182,7 @@ const DashboardContent = () => {
             </div>
           </CardContent>
         </Card>
-        <Card className="shadow-xs rounded-2xl border border-slate-200  dark:border-slate-800 dark:bg-slate-900">
+        <Card className="shadow-xs rounded-2xl border border-slate-200 dark:border-slate-800 dark:bg-slate-900">
           <CardContent className="pt-6">
             <div className="text-center">
               <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">
@@ -197,7 +197,7 @@ const DashboardContent = () => {
       </div>
 
       {/* Content Table */}
-      <Card className="shadow-xs overflow-hidden rounded-2xl border border-slate-200  dark:border-slate-800 dark:bg-slate-900">
+      <Card className="shadow-xs overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 dark:bg-slate-900">
         <CardHeader className="pb-3">
           <CardTitle>Content ({content.length})</CardTitle>
           <CardDescription>

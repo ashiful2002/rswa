@@ -1,11 +1,11 @@
 import { GraduationCap } from "lucide-react";
 
- const StudentAwardDetailsModal = ({ student, onClose }) => {
+const StudentAwardDetailsModal = ({ student, onClose }) => {
   if (!student) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 p-4 backdrop-blur-xs">
-      <div className="w-full max-w-lg rounded-3xl border bg-white/90 backdrop-blur-xl  border-slate-200  p-6 shadow-2xl transition-all dark:border-slate-800 dark:bg-slate-900 sm:p-8">
+    <div className="backdrop-blur-xs fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 p-4">
+      <div className="/90 w-full max-w-lg rounded-3xl border border-slate-200 p-6 shadow-2xl backdrop-blur-xl transition-all dark:border-slate-800 dark:bg-slate-900 sm:p-8">
         <div className="flex items-center justify-between border-b border-slate-200 pb-4 dark:border-slate-800">
           <div className="flex items-center gap-2">
             <GraduationCap className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />

@@ -7,6 +7,7 @@ RSWA is a web platform designed for a social organization to manage blood group 
 ## Features
 
 ### Key Features
+
 - User registration and login
 - Role-based authentication (User/Admin)
 - Add, view, and manage blood group data
@@ -15,6 +16,7 @@ RSWA is a web platform designed for a social organization to manage blood group 
 - Smooth navigation with React Router
 
 ### Additional Features
+
 - Responsive UI built with React and Tailwind CSS
 - Admin panel with full CRUD operations
 - Integration with Node.js, Express, and MongoDB backend
@@ -29,31 +31,33 @@ RSWA is a web platform designed for a social organization to manage blood group 
 ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Ant Design](https://img.shields.io/badge/AntDesign-0170FE?style=for-the-badge&logo=ant-design&logoColor=white)
 
-- React Router  
+- React Router
 
 **Backend:**  
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
 
-
 ---
 
 ## Screenshots
 
 ![RSWA Dashboard](link-to-dashboard-screenshot)  
-![RSWA User Form](link-to-user-form-screenshot)  
+![RSWA User Form](link-to-user-form-screenshot)
 
 ---
 
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js v14+
 - MongoDB
 
 ### Installation
-1. Clone the repository:  
+
+1. Clone the repository:
+
 ```bash
 git clone https://github.com/yourusername/rswa.git
 cd rswa
@@ -65,3 +69,4 @@ npm run dev
 
 
 [knock me for .env variables]
+```

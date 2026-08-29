@@ -3,12 +3,7 @@ import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
-import {
-  GraduationCap,
-  RefreshCw,
-  Database,
-  FileDown,
-} from "lucide-react";
+import { GraduationCap, RefreshCw, Database, FileDown } from "lucide-react";
 import { API_ENDPOINTS } from "../../../config/api";
 import useDebounce from "../../../hooks/useDebounce";
 import useAxiosSecure from "../../../hooks/useAxiosSecure/useAxiosSecure";
@@ -46,16 +41,19 @@ const DashboardStudentAward = () => {
     ],
     queryFn: async ({ queryKey }) => {
       const [, params] = queryKey;
-      const { data: resData } = await axiosSecure.get(API_ENDPOINTS.STUDENT_AWARD, {
-        params: {
-          search: params.search,
-          session: params.session,
-          sortField: params.sortField,
-          sortOrder: params.sortOrder,
-          page: params.page,
-          limit: params.limit,
+      const { data: resData } = await axiosSecure.get(
+        API_ENDPOINTS.STUDENT_AWARD,
+        {
+          params: {
+            search: params.search,
+            session: params.session,
+            sortField: params.sortField,
+            sortOrder: params.sortOrder,
+            page: params.page,
+            limit: params.limit,
+          },
         },
-      });
+      );
       return resData;
     },
     placeholderData: keepPreviousData,
@@ -70,15 +68,18 @@ const DashboardStudentAward = () => {
     try {
       setExportingPDF(true);
 
-      const { data: resData } = await axiosSecure.get(API_ENDPOINTS.STUDENT_AWARD, {
-        params: {
-          search: debouncedSearch,
-          session: sessionFilter,
-          sortField,
-          sortOrder,
-          limit: 1000,
+      const { data: resData } = await axiosSecure.get(
+        API_ENDPOINTS.STUDENT_AWARD,
+        {
+          params: {
+            search: debouncedSearch,
+            session: sessionFilter,
+            sortField,
+            sortOrder,
+            limit: 1000,
+          },
         },
-      });
+      );
 
       const exportList = resData?.data || [];
 
@@ -105,7 +106,7 @@ const DashboardStudentAward = () => {
       doc.setTextColor(255, 255, 255);
       doc.setFontSize(15);
       doc.setFont("helvetica", "bold");
-      doc.text("Rowmari Social Welfare Association (RSWA)", 14, 11);
+      doc.text("Rowmari Students Welfare Association (RSWA)", 14, 11);
 
       doc.setFontSize(10);
       doc.setFont("helvetica", "normal");
@@ -119,7 +120,7 @@ const DashboardStudentAward = () => {
       doc.text(
         `Filter: ${sessionFilter ? `Session ${sessionFilter}` : "All Sessions"}${debouncedSearch ? ` | Search: "${debouncedSearch}"` : ""}`,
         200,
-        28
+        28,
       );
 
       // Table columns & rows
@@ -180,12 +181,12 @@ const DashboardStudentAward = () => {
           doc.text(
             str,
             dataArg.settings.margin.left,
-            doc.internal.pageSize.height - 8
+            doc.internal.pageSize.height - 8,
           );
           doc.text(
             "RSWA Official Dashboard Report",
             doc.internal.pageSize.width - 60,
-            doc.internal.pageSize.height - 8
+            doc.internal.pageSize.height - 8,
           );
         },
       });
@@ -219,7 +220,7 @@ const DashboardStudentAward = () => {
   const handleSeedData = async () => {
     try {
       const { data: resData } = await axiosSecure.post(
-        `${API_ENDPOINTS.STUDENT_AWARD}/seed`
+        `${API_ENDPOINTS.STUDENT_AWARD}/seed`,
       );
       Swal.fire({
         icon: "success",
@@ -292,14 +293,15 @@ const DashboardStudentAward = () => {
             <span>Manage Student Award Data</span>
           </h1>
           <p className="mt-1 text-xs font-medium text-slate-500 dark:text-slate-400">
-            কৃতি শিক্ষার্থী সংবর্ধনা ২০২৭ অনুষ্ঠানে নিবন্ধিত শিক্ষার্থীদের তথ্য পরিচালনা করুন।
+            কৃতি শিক্ষার্থী সংবর্ধনা ২০২৭ অনুষ্ঠানে নিবন্ধিত শিক্ষার্থীদের তথ্য
+            পরিচালনা করুন।
           </p>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
           <button
             onClick={() => refetch()}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200  px-3.5 py-2 text-xs font-bold text-slate-700 shadow-xs transition-colors hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+            className="shadow-xs inline-flex items-center gap-1.5 rounded-xl border border-slate-200 px-3.5 py-2 text-xs font-bold text-slate-700 transition-colors hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
             title="Refresh Data"
           >
             <RefreshCw className="h-3.5 w-3.5" />
@@ -309,7 +311,7 @@ const DashboardStudentAward = () => {
           <button
             onClick={handleExportPDF}
             disabled={exportingPDF}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200  px-3.5 py-2 text-xs font-bold text-slate-700 shadow-xs transition-colors hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+            className="shadow-xs inline-flex items-center gap-1.5 rounded-xl border border-slate-200 px-3.5 py-2 text-xs font-bold text-slate-700 transition-colors hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
           >
             <FileDown className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
             <span>{exportingPDF ? "Generating PDF..." : "Export PDF"}</span>

@@ -1,10 +1,4 @@
-import {
-  GraduationCap,
-  Trash2,
-  Eye,
-  Building2,
-  School,
-} from "lucide-react";
+import { GraduationCap, Trash2, Eye, Building2, School } from "lucide-react";
 import Pagination from "../../shared/Pagination";
 
 /* eslint-disable react/prop-types */
@@ -20,7 +14,7 @@ const StudentAwardTable = ({
   onPageChange,
 }) => {
   return (
-    <div className="overflow-hidden rounded-2xl border border-slate-200  shadow-xs dark:border-slate-800 dark:bg-slate-900">
+    <div className="shadow-xs overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 dark:bg-slate-900">
       <div className="overflow-x-auto">
         <table className="w-full text-left text-xs">
           <thead className="bg-slate-100/80 font-bold uppercase tracking-wider text-slate-700 dark:bg-slate-800/80 dark:text-slate-300">
@@ -100,7 +94,9 @@ const StudentAwardTable = ({
                   <td className="p-3.5 text-slate-600 dark:text-slate-400">
                     <div className="flex items-center gap-1">
                       <School className="h-3 w-3 shrink-0 text-slate-400" />
-                      <span>{student.hscCollege || student.sscSchool || "N/A"}</span>
+                      <span>
+                        {student.hscCollege || student.sscSchool || "N/A"}
+                      </span>
                     </div>
                   </td>
                   <td className="p-3.5 text-right">
@@ -133,7 +129,9 @@ const StudentAwardTable = ({
                 >
                   <div className="flex flex-col items-center gap-2">
                     <GraduationCap className="h-8 w-8 text-slate-300 dark:text-slate-600" />
-                    <p className="font-semibold">No student submissions found.</p>
+                    <p className="font-semibold">
+                      No student submissions found.
+                    </p>
                     <button
                       onClick={onSeedData}
                       className="mt-2 text-xs font-bold text-emerald-600 hover:underline dark:text-emerald-400"

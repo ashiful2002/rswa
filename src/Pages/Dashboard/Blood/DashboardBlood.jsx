@@ -33,7 +33,8 @@ const DashboardBlood = () => {
   const [limit, setLimit] = useState(10);
 
   // Role permissions: Edit (super_admin/admin/moderator), Delete (super_admin/admin)
-  const canEdit = role === "super_admin" || role === "admin" || role === "moderator";
+  const canEdit =
+    role === "super_admin" || role === "admin" || role === "moderator";
   const canDelete = role === "super_admin" || role === "admin";
   const hasActions = canEdit || canDelete;
 

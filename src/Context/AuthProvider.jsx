@@ -57,7 +57,8 @@ const AuthProvider = ({ children }) => {
           // 1. Automatically sync/upsert user into MongoDB
           const userData = {
             email: currentUser.email,
-            displayName: currentUser.displayName || currentUser.email?.split("@")[0],
+            displayName:
+              currentUser.displayName || currentUser.email?.split("@")[0],
             name: currentUser.displayName || currentUser.email?.split("@")[0],
             photoURL: currentUser.photoURL,
             role: "donor",
@@ -80,7 +81,7 @@ const AuthProvider = ({ children }) => {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
-            }
+            },
           );
 
           const fetchedRole =

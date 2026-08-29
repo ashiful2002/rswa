@@ -15,7 +15,7 @@ const HeroSection = () => {
       </div>
 
       {/* Overlay CTA Section */}
-      <div className="bg-gradient-to-b from-transparent via-transparent to-background px -4 py-8 sm:py-12">
+      <div className="px -4 bg-gradient-to-b from-transparent via-transparent to-background py-8 sm:py-12">
         <div className="mx-auto max-w-6xl">
           <div className="transition-smooth animate-fadeIn rounded-lg bg-card/95 p-6 shadow-lg backdrop-blur-sm sm:p-8 md:p-10">
             <h1 className="mb-3 text-3xl font-bold text-foreground sm:text-3xl md:text-4xl">
@@ -86,8 +86,7 @@ const HeroSection = () => {
           </div>
 
           {/* Quick Stats */}
-          <div className="stagger-container mt-8 grid grid-cols-2 gap-4 md:gap-6 px-3">
-
+          <div className="stagger-container mt-8 grid grid-cols-2 gap-4 px-3 md:gap-6">
             <div className="stagger-item transition-smooth rounded-lg bg-secondary/10 p-4 text-center hover:bg-secondary/20">
               <p className="text-sm font-semibold text-muted-foreground">
                 Volunteer
@@ -106,7 +105,6 @@ const HeroSection = () => {
               </p>
               <p className="text-xs text-muted-foreground">Service Available</p>
             </div>
-
           </div>
         </div>
       </div>

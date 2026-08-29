@@ -56,7 +56,7 @@ const Pagination = ({
         type="button"
         onClick={() => onPageChange(activePage - 1)}
         disabled={activePage <= 1}
-        className="shadow-xs flex items-center gap-1 rounded-xl border border-slate-200   px-3 py-2 text-xs font-semibold text-slate-700 transition-all hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+        className="shadow-xs flex items-center gap-1 rounded-xl border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 transition-all hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
         title="Previous Page"
       >
         <ChevronLeft className="h-4 w-4" />
@@ -86,7 +86,7 @@ const Pagination = ({
             className={`h-9 min-w-[36px] rounded-xl px-2.5 text-xs font-bold transition-all duration-200 ${
               isActive
                 ? "bg-emerald-600 text-white shadow-md shadow-emerald-600/25 dark:bg-emerald-600 dark:text-white"
-                : "border border-slate-200   text-slate-700 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+                : "border border-slate-200 text-slate-700 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
             }`}
           >
             {num}
@@ -99,7 +99,7 @@ const Pagination = ({
         type="button"
         onClick={() => onPageChange(activePage + 1)}
         disabled={activePage >= totalPages}
-        className="shadow-xs flex items-center gap-1 rounded-xl border border-slate-200  px-3 py-2 text-xs font-semibold text-slate-700 transition-all hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+        className="shadow-xs flex items-center gap-1 rounded-xl border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 transition-all hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
         title="Next Page"
       >
         <span className="hidden sm:inline">Next</span>

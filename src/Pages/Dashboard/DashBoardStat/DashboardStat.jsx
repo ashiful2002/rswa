@@ -126,8 +126,7 @@ const DashboardStat = () => {
     if (!l._id) return;
     const raw = String(l._id).trim();
     if (!raw) return;
-    const formatted =
-      raw.charAt(0).toUpperCase() + raw.slice(1).toLowerCase();
+    const formatted = raw.charAt(0).toUpperCase() + raw.slice(1).toLowerCase();
     locationMap[formatted] = (locationMap[formatted] || 0) + l.count;
   });
 
@@ -145,12 +144,12 @@ const DashboardStat = () => {
   }));
 
   // 5. Project Category Distribution Data
-  const projectCategoryData = (statsData?.projectCategoryDistribution || []).map(
-    (c) => ({
-      name: c._id || "General",
-      count: c.count,
-    })
-  );
+  const projectCategoryData = (
+    statsData?.projectCategoryDistribution || []
+  ).map((c) => ({
+    name: c._id || "General",
+    count: c.count,
+  }));
 
   // 6. Student Award Session Distribution Data
   const studentAwardSessionData = (
@@ -170,7 +169,8 @@ const DashboardStat = () => {
             Executive Dashboard Statistics & Analytics
           </h2>
           <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
-            Real-time analytics for blood donors, user roles, student award submissions, projects, and regional coverage.
+            Real-time analytics for blood donors, user roles, student award
+            submissions, projects, and regional coverage.
           </p>
         </div>
         <button

@@ -6,6 +6,8 @@ import GoogleSignInButton from "./GoogleLoginButton/GoogleLoginButton";
 import SEO from "../../Components/shared/SEO";
 import useAuth from "../../hooks/useAuth";
 import useRedirect from "../../hooks/useRedirect";
+import axios from "axios";
+import { API_ENDPOINTS } from "../../config/api";
 
 const Signin = () => {
   const { signin } = useAuth();
@@ -30,14 +32,34 @@ const Signin = () => {
     setLoading(true);
 
     try {
-      await signin(formData.email, formData.password);
+      const userCredential = await signin(formData.email, formData.password);
+      const user = userCredential.user;
+      const token = await user.getIdToken();
+      window.firebaseToken = token;
+
+      let loggedInRole = "donor";
+      try {
+        const response = await axios.get(
+          `${API_ENDPOINTS.USERS}/${user.email?.toLowerCase()}/role`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+        loggedInRole =
+          response?.data?.data?.role || response?.data?.role || "donor";
+      } catch (roleErr) {
+        console.error("Failed to load user role on login:", roleErr);
+      }
+
       Swal.fire({
         icon: "success",
         title: "Signed In Successfully!",
         timer: 1500,
         showConfirmButton: false,
       });
-      redirect();
+      redirect(0, loggedInRole);
     } catch (err) {
       console.error("Sign in error:", err);
       Swal.fire({

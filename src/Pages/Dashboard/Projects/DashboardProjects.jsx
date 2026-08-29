@@ -245,7 +245,7 @@ const DashboardProjects = () => {
         <div className="flex items-center gap-2">
           <button
             onClick={fetchProjects}
-            className="rounded-xl border border-slate-200  p-2.5 text-slate-600 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+            className="rounded-xl border border-slate-200 p-2.5 text-slate-600 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
             title="Refresh Projects"
           >
             <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
@@ -270,10 +270,11 @@ const DashboardProjects = () => {
         <div className="flex flex-wrap items-center gap-1.5">
           <button
             onClick={() => setSelectedCategory("All")}
-            className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition-colors ${selectedCategory === "All"
-              ? "  text-white  bg-emerald-600 border-slate-200 dark:text-slate-900"
-              : "border border-slate-200  text-slate-600 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
-              }`}
+            className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition-colors ${
+              selectedCategory === "All"
+                ? "border-slate-200 bg-emerald-600 text-white dark:text-slate-900"
+                : "border border-slate-200 text-slate-600 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
+            }`}
           >
             All Categories
           </button>
@@ -281,10 +282,11 @@ const DashboardProjects = () => {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition-colors ${selectedCategory === cat
-                ? "bg-emerald-600 text-white"
-                : "border border-slate-200   text-slate-600 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
-                }`}
+              className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition-colors ${
+                selectedCategory === cat
+                  ? "bg-emerald-600 text-white"
+                  : "border border-slate-200 text-slate-600 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
+              }`}
             >
               {cat}
             </button>
@@ -298,7 +300,7 @@ const DashboardProjects = () => {
             placeholder="Search projects..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full rounded-xl border border-slate-200   py-2 pl-9 pr-3 text-xs text-slate-800 outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100"
+            className="w-full rounded-xl border border-slate-200 py-2 pl-9 pr-3 text-xs text-slate-800 outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100"
           />
         </div>
       </div>

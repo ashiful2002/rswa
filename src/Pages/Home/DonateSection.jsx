@@ -46,9 +46,9 @@ const DonateSection = () => {
         {donationOptions.map((option, index) => (
           <div
             key={index}
-            className="stagger-item transition-smooth rounded-lg /10 p-6 backdrop-blur-sm hover:/20"
+            className="stagger-item transition-smooth /10 hover:/20 rounded-lg p-6 backdrop-blur-sm"
           >
-            <div className="mb-3 inline-block rounded-lg /20 p-3">
+            <div className="/20 mb-3 inline-block rounded-lg p-3">
               {React.cloneElement(option.icon, {
                 className: "h-6 w-6 text-white",
               })}
@@ -79,7 +79,7 @@ const DonateSection = () => {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-center">
         <Button
           size="lg"
-          className=" text-primary hover:bg-gray-100"
+          className="text-primary hover:bg-gray-100"
           onClick={() => navigate("/donate")}
         >
           <Heart className="mr-2 h-5 w-5" />
@@ -88,7 +88,7 @@ const DonateSection = () => {
         <Button
           size="lg"
           variant="outline"
-          className="border-white text-white hover:/10"
+          className="hover:/10 border-white text-white"
           onClick={() => navigate("/blood")}
         >
           Donate Blood

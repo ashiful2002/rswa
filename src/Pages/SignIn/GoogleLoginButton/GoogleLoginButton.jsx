@@ -28,12 +28,15 @@ const GoogleSignin = () => {
           last_log_in: new Date().toISOString(),
         };
 
+        let loggedInRole = "donor";
         try {
-          await axiosSecure.post("/users", userData, {
+          const syncRes = await axiosSecure.post("/users", userData, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           });
+          loggedInRole =
+            syncRes?.data?.data?.role || syncRes?.data?.role || "donor";
         } catch (postErr) {
           console.error("Failed to sync user with backend:", postErr);
         }
@@ -44,7 +47,7 @@ const GoogleSignin = () => {
           timer: 1500,
           showConfirmButton: false,
         });
-        redirect();
+        redirect(0, loggedInRole);
       })
       .catch((err) => {
         console.error("Google login error:", err);

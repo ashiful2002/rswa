@@ -1,4 +1,10 @@
-import { Droplet, Users, FolderKanban, GraduationCap, TrendingUp } from "lucide-react";
+import {
+  Droplet,
+  Users,
+  FolderKanban,
+  GraduationCap,
+  TrendingUp,
+} from "lucide-react";
 
 const StatKPICards = ({
   totalDonors,
@@ -9,7 +15,7 @@ const StatKPICards = ({
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {/* Card 1: Total Donors */}
-      <div className="shadow-xs rounded-2xl border border-slate-200  p-4 dark:border-slate-800 dark:bg-slate-900">
+      <div className="shadow-xs rounded-2xl border border-slate-200 p-4 dark:border-slate-800 dark:bg-slate-900">
         <div className="flex items-center justify-between">
           <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
             Total Donors
@@ -27,7 +33,7 @@ const StatKPICards = ({
       </div>
 
       {/* Card 2: Registered System Users */}
-      <div className="shadow-xs rounded-2xl border border-slate-200  p-4 dark:border-slate-800 dark:bg-slate-900">
+      <div className="shadow-xs rounded-2xl border border-slate-200 p-4 dark:border-slate-800 dark:bg-slate-900">
         <div className="flex items-center justify-between">
           <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
             Total Users
@@ -43,7 +49,7 @@ const StatKPICards = ({
       </div>
 
       {/* Card 3: Active Projects */}
-      <div className="shadow-xs rounded-2xl border border-slate-200  p-4 dark:border-slate-800 dark:bg-slate-900">
+      <div className="shadow-xs rounded-2xl border border-slate-200 p-4 dark:border-slate-800 dark:bg-slate-900">
         <div className="flex items-center justify-between">
           <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
             Projects & Initiatives
@@ -59,7 +65,7 @@ const StatKPICards = ({
       </div>
 
       {/* Card 4: Student Award Applicants */}
-      <div className="shadow-xs rounded-2xl border border-slate-200  p-4 dark:border-slate-800 dark:bg-slate-900">
+      <div className="shadow-xs rounded-2xl border border-slate-200 p-4 dark:border-slate-800 dark:bg-slate-900">
         <div className="flex items-center justify-between">
           <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
             Student Award Applicants

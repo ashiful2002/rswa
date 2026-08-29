@@ -91,8 +91,9 @@ const DashboardLayout = () => {
 
       {/* Sidebar (Responsive Mobile Drawer + Desktop Sidebar) */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 flex flex-col border-r border-slate-200 transition-all duration-300 dark:border-slate-800 dark:bg-slate-900 ${isMobileOpen ? "w-64 translate-x-0 shadow-2xl" : "-translate-x-full"
-          } lg:static lg:translate-x-0 ${isSidebarOpen ? "lg:w-64" : "lg:w-20"}`}
+        className={`fixed inset-y-0 left-0 z-50 flex flex-col border-r border-slate-200 transition-all duration-300 dark:border-slate-800 dark:bg-slate-900 ${
+          isMobileOpen ? "w-64 translate-x-0 shadow-2xl" : "-translate-x-full"
+        } lg:static lg:translate-x-0 ${isSidebarOpen ? "lg:w-64" : "lg:w-20"}`}
       >
         {/* Sidebar Brand Header */}
         <div className="flex h-16 items-center justify-between border-b border-slate-200 px-4 dark:border-slate-800">
@@ -158,9 +159,10 @@ const DashboardLayout = () => {
                 end={item.end}
                 onClick={closeMobileSidebar}
                 className={({ isActive }) =>
-                  `flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-semibold no-underline transition-all duration-200 ${isActive
-                    ? "bg-emerald-600 text-white shadow-md shadow-emerald-600/25"
-                    : "text-slate-600 hover:bg-slate-100 hover:text-emerald-700 dark:text-slate-300 dark:hover:bg-slate-800"
+                  `flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-semibold no-underline transition-all duration-200 ${
+                    isActive
+                      ? "bg-emerald-600 text-white shadow-md shadow-emerald-600/25"
+                      : "text-slate-600 hover:bg-slate-100 hover:text-emerald-700 dark:text-slate-300 dark:hover:bg-slate-800"
                   }`
                 }
               >
@@ -217,7 +219,7 @@ const DashboardLayout = () => {
       {/* Main Content Area */}
       <div className="flex min-h-screen min-w-0 flex-1 flex-col">
         {/* Top Header Bar */}
-        <header className="shadow-xs sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200 /95 px-4 backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/95 sm:px-6">
+        <header className="shadow-xs /95 sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200 px-4 backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/95 sm:px-6">
           <div className="flex items-center gap-3">
             {/* Mobile Hamburger Button */}
             <button
@@ -247,8 +249,10 @@ const DashboardLayout = () => {
                     className="h-8 w-8 rounded-full object-cover ring-2 ring-emerald-500/30"
                   />
                 ) : (
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-600 font-bold text-xs text-white shadow-xs">
-                    {(user.displayName || user.email || "U").charAt(0).toUpperCase()}
+                  <div className="shadow-xs flex h-8 w-8 items-center justify-center rounded-full bg-emerald-600 text-xs font-bold text-white">
+                    {(user.displayName || user.email || "U")
+                      .charAt(0)
+                      .toUpperCase()}
                   </div>
                 )}
                 <div className="flex flex-col">
@@ -256,14 +260,14 @@ const DashboardLayout = () => {
                     {user.displayName || user.email?.split("@")[0] || "User"}
                   </span>
                   <span
-                    className={`inline-block self-start rounded-full px-2 py-0.2 text-[9px] font-extrabold uppercase tracking-wider ${
+                    className={`py-0.2 inline-block self-start rounded-full px-2 text-[9px] font-extrabold uppercase tracking-wider ${
                       role === "super_admin"
                         ? "bg-rose-100 text-rose-700 dark:bg-rose-950/80 dark:text-rose-300"
                         : role === "admin"
-                        ? "bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300"
-                        : role === "moderator"
-                        ? "bg-blue-100 text-blue-800 dark:bg-blue-950/80 dark:text-blue-300"
-                        : "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300"
+                          ? "bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300"
+                          : role === "moderator"
+                            ? "bg-blue-100 text-blue-800 dark:bg-blue-950/80 dark:text-blue-300"
+                            : "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300"
                     }`}
                   >
                     {role ? role.replace("_", " ") : "Donor"}

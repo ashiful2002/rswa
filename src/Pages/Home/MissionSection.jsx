@@ -38,7 +38,9 @@ const MissionSection = () => {
 
       {/* Core Values */}
       <div className="mt-16">
-        <h3 className="mb-8 text-3xl font-bold tracking-tight text-slate-900 dark:text-white md:text-4xl text-center">Our Core Values</h3>
+        <h3 className="mb-8 text-center text-3xl font-bold tracking-tight text-slate-900 dark:text-white md:text-4xl">
+          Our Core Values
+        </h3>
         <div className="grid gap-6 md:grid-cols-3">
           {[
             {

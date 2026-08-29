@@ -48,7 +48,7 @@ const StatBarChartCard = ({
 }) => {
   return (
     <div
-      className={`shadow-xs rounded-2xl border border-slate-200  p-5 dark:border-slate-800 dark:bg-slate-900 ${columnSpanClass}`}
+      className={`shadow-xs rounded-2xl border border-slate-200 p-5 dark:border-slate-800 dark:bg-slate-900 ${columnSpanClass}`}
     >
       <div className="mb-4 flex items-center justify-between">
         <div>
@@ -71,7 +71,13 @@ const StatBarChartCard = ({
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={data}
-              margin={{ top: 10, right: 10, left: -20, bottom: 0, ...xAxisProps.margin }}
+              margin={{
+                top: 10,
+                right: 10,
+                left: -20,
+                bottom: 0,
+                ...xAxisProps.margin,
+              }}
             >
               <CartesianGrid
                 strokeDasharray="3 3"
@@ -93,7 +99,12 @@ const StatBarChartCard = ({
                 tickLine={false}
               />
               <Tooltip content={<CustomTooltip />} />
-              <Bar dataKey={dataKey} fill={barColor} radius={[6, 6, 0, 0]} maxBarSize={45}>
+              <Bar
+                dataKey={dataKey}
+                fill={barColor}
+                radius={[6, 6, 0, 0]}
+                maxBarSize={45}
+              >
                 {colorMap &&
                   data.map((entry, index) => (
                     <Cell

@@ -12,7 +12,7 @@ const ConfirmDeleteModal = ({
 
   return (
     <div className="backdrop-blur-xs fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 p-4">
-      <div className="relative w-full max-w-md rounded-2xl border border-slate-200  p-6 shadow-2xl transition-colors dark:border-slate-800 dark:bg-slate-900">
+      <div className="relative w-full max-w-md rounded-2xl border border-slate-200 p-6 shadow-2xl transition-colors dark:border-slate-800 dark:bg-slate-900">
         <button
           onClick={onClose}
           className="absolute right-4 top-4 rounded-lg p-1 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-200"

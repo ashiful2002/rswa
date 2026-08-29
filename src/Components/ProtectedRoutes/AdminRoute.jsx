@@ -13,7 +13,9 @@ const AdminRoute = ({ children }) => {
     return <Loading />;
   }
 
-  const isAllowed = Boolean(user) && (role === "super_admin" || role === "admin" || role === "moderator" || role === "donor");
+  const isAllowed =
+    Boolean(user) &&
+    (role === "super_admin" || role === "admin" || role === "moderator");
 
   if (!user || !isAllowed) {
     return <Navigate to="/signin" state={{ from: location }} replace />;

@@ -44,7 +44,7 @@ const ProjectFormModal = ({
         className="backdrop-blur-xs fixed inset-0 bg-slate-900/60"
       />
 
-      <div className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-3xl border border-slate-200  p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900 sm:p-8">
+      <div className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-3xl border border-slate-200 p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900 sm:p-8">
         <div className="flex items-center justify-between border-b border-slate-100 pb-4 dark:border-slate-800">
           <h3 className="text-lg font-bold text-slate-800 dark:text-white">
             {editingProject ? "Edit Project" : "Create New Project"}
@@ -70,7 +70,7 @@ const ProjectFormModal = ({
               onChange={(e) =>
                 setFormData({ ...formData, title: e.target.value })
               }
-              className="w-full rounded-xl border border-slate-200  p-2.5 text-slate-800 outline-none focus:border-emerald-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+              className="w-full rounded-xl border border-slate-200 p-2.5 text-slate-800 outline-none focus:border-emerald-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
             />
           </div>
 
@@ -84,7 +84,7 @@ const ProjectFormModal = ({
                 onChange={(e) =>
                   setFormData({ ...formData, category: e.target.value })
                 }
-                className="w-full rounded-xl border border-slate-200  p-2.5 text-slate-800 outline-none focus:border-emerald-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+                className="w-full rounded-xl border border-slate-200 p-2.5 text-slate-800 outline-none focus:border-emerald-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
               >
                 {CATEGORIES.map((c) => (
                   <option key={c} value={c}>
@@ -102,7 +102,7 @@ const ProjectFormModal = ({
                 onChange={(e) =>
                   setFormData({ ...formData, status: e.target.value })
                 }
-                className="w-full rounded-xl border border-slate-200  p-2.5 text-slate-800 outline-none focus:border-emerald-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+                className="w-full rounded-xl border border-slate-200 p-2.5 text-slate-800 outline-none focus:border-emerald-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
               >
                 {STATUSES.map((s) => (
                   <option key={s} value={s}>
@@ -161,7 +161,7 @@ const ProjectFormModal = ({
               onChange={(e) =>
                 setFormData({ ...formData, thumbnail: e.target.value })
               }
-              className="w-full rounded-xl border border-slate-200  p-2.5 text-slate-800 outline-none focus:border-emerald-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+              className="w-full rounded-xl border border-slate-200 p-2.5 text-slate-800 outline-none focus:border-emerald-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
             />
 
             {/* Thumbnail Preview */}
@@ -192,7 +192,7 @@ const ProjectFormModal = ({
               onChange={(e) =>
                 setFormData({ ...formData, summary: e.target.value })
               }
-              className="w-full rounded-xl border border-slate-200  p-2.5 text-slate-800 outline-none focus:border-emerald-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+              className="w-full rounded-xl border border-slate-200 p-2.5 text-slate-800 outline-none focus:border-emerald-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
             />
           </div>
 
@@ -207,7 +207,7 @@ const ProjectFormModal = ({
               onChange={(e) =>
                 setFormData({ ...formData, description: e.target.value })
               }
-              className="w-full rounded-xl border border-slate-200  p-2.5 text-slate-800 outline-none focus:border-emerald-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+              className="w-full rounded-xl border border-slate-200 p-2.5 text-slate-800 outline-none focus:border-emerald-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
             />
           </div>
 
@@ -231,7 +231,7 @@ const ProjectFormModal = ({
                       beneficiaries: e.target.value,
                     })
                   }
-                  className="w-full rounded-xl border border-slate-200  p-2 text-slate-800 outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+                  className="w-full rounded-xl border border-slate-200 p-2 text-slate-800 outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
                 />
               </div>
               <div>
@@ -248,7 +248,7 @@ const ProjectFormModal = ({
                       volunteersCount: e.target.value,
                     })
                   }
-                  className="w-full rounded-xl border border-slate-200  p-2 text-slate-800 outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+                  className="w-full rounded-xl border border-slate-200 p-2 text-slate-800 outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
                 />
               </div>
               <div>
@@ -262,7 +262,7 @@ const ProjectFormModal = ({
                   onChange={(e) =>
                     setFormData({ ...formData, location: e.target.value })
                   }
-                  className="w-full rounded-xl border border-slate-200  p-2 text-slate-800 outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+                  className="w-full rounded-xl border border-slate-200 p-2 text-slate-800 outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
                 />
               </div>
             </div>
@@ -279,7 +279,7 @@ const ProjectFormModal = ({
                 onChange={(e) =>
                   setFormData({ ...formData, startDate: e.target.value })
                 }
-                className="w-full rounded-xl border border-slate-200  p-2.5 text-slate-800 outline-none focus:border-emerald-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+                className="w-full rounded-xl border border-slate-200 p-2.5 text-slate-800 outline-none focus:border-emerald-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
               />
             </div>
             <div>
@@ -292,7 +292,7 @@ const ProjectFormModal = ({
                 onChange={(e) =>
                   setFormData({ ...formData, endDate: e.target.value })
                 }
-                className="w-full rounded-xl border border-slate-200  p-2.5 text-slate-800 outline-none focus:border-emerald-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+                className="w-full rounded-xl border border-slate-200 p-2.5 text-slate-800 outline-none focus:border-emerald-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
               />
             </div>
           </div>
@@ -301,7 +301,7 @@ const ProjectFormModal = ({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-xl border border-slate-200  px-5 py-2.5 text-slate-600 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
+              className="rounded-xl border border-slate-200 px-5 py-2.5 text-slate-600 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
             >
               Cancel
             </button>

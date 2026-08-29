@@ -13,7 +13,7 @@ const StudentAwardFilters = ({
   setPage,
 }) => {
   return (
-    <div className="flex flex-col gap-3 rounded-2xl border border-slate-200  p-4 shadow-xs dark:border-slate-800 dark:bg-slate-900 md:flex-row md:items-center md:justify-between">
+    <div className="shadow-xs flex flex-col gap-3 rounded-2xl border border-slate-200 p-4 dark:border-slate-800 dark:bg-slate-900 md:flex-row md:items-center md:justify-between">
       {/* Search Input */}
       <div className="relative flex-1">
         <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
@@ -25,7 +25,7 @@ const StudentAwardFilters = ({
             setPage(1);
           }}
           placeholder="Search by name, email, phone, university..."
-          className="w-full rounded-xl border border-slate-200 bg-slate-50 pl-10 pr-4 py-2.5 text-xs text-slate-800 outline-none transition-all focus:border-emerald-500 focus: dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-emerald-500"
+          className="focus: w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-4 text-xs text-slate-800 outline-none transition-all focus:border-emerald-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-emerald-500"
         />
       </div>
 
