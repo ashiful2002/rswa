@@ -1,6 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import { Modal, Button } from "react-bootstrap";
+import { useTheme } from "../../Context/ThemeProvider";
+import { FaExclamationTriangle } from "react-icons/fa";
 import { API_ENDPOINTS } from "../../config/api";
 
 const bgFormData = [
@@ -15,7 +18,10 @@ const bgFormData = [
 ];
 
 const CustomForm = () => {
+  const { isDark } = useTheme();
   const [loading, setLoading] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const [modalErrorMessage, setModalErrorMessage] = useState("");
   const [formData, setFormData] = useState({
     Name: "",
     Blood_Group: "",
@@ -65,12 +71,8 @@ const CustomForm = () => {
         error?.response?.data?.message ||
         error?.response?.data?.errorSources?.[0]?.message ||
         "Failed to submit blood group data. Please check required fields.";
-      Swal.fire({
-        icon: "error",
-        title: "Submission Failed",
-        text: errorMessage,
-        confirmButtonColor: "#dc2626",
-      });
+      setModalErrorMessage(errorMessage);
+      setShowErrorModal(true);
     } finally {
       setLoading(false);
     }
@@ -321,6 +323,48 @@ const CustomForm = () => {
           </button>
         </div>
       </form>
+
+      {/* Error Modal */}
+      <Modal
+        show={showErrorModal}
+        onHide={() => setShowErrorModal(false)}
+        centered
+        contentClassName={`${isDark ? "dark:bg-slate-900 text-white" : " text-slate-900"
+          } border-0 rounded-2xl shadow-2xl`}
+      >
+        <Modal.Header
+          closeButton
+          closeVariant={isDark ? "white" : undefined}
+          className="border-b border-slate-200 dark:border-slate-800"
+        >
+          <Modal.Title className="flex items-center gap-2 text-lg font-bold text-red-600 dark:text-red-400">
+            <FaExclamationTriangle className="text-xl" />
+            <span>Submission Failed</span>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="p-6 text-sm leading-relaxed text-slate-700 dark:text-slate-200">
+          <div className="flex flex-col items-center gap-4 text-center">
+            <div className="rounded-full bg-red-100 p-3 text-red-600 dark:bg-red-950/50 dark:text-red-400">
+              <FaExclamationTriangle size={32} />
+            </div>
+            <p className="font-semibold text-slate-800 dark:text-slate-100">
+              {modalErrorMessage}
+            </p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">
+              Please check your inputs and try again. If the issue persists, contact support.
+            </p>
+          </div>
+        </Modal.Body>
+        <Modal.Footer className="border-t border-slate-200 dark:border-slate-800">
+          <Button
+            variant="danger"
+            onClick={() => setShowErrorModal(false)}
+            className="w-full border-red-600 bg-red-600 text-white hover:bg-red-700 dark:border-red-600 dark:bg-red-600 dark:hover:bg-red-700 font-semibold rounded-xl py-2"
+          >
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

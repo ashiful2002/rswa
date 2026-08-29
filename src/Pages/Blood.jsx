@@ -99,7 +99,7 @@ const PhoneCell = ({ phone, donorName }) => {
         onHide={() => setShowModal(false)}
         centered
         size="sm"
-        contentClassName={`${isDark ? "dark:bg-slate-900" : "bg-white"} border-0 rounded-2xl shadow-xl`}
+        contentClassName={`${isDark ? "dark:bg-slate-900" : ""} border-0 rounded-2xl shadow-xl`}
       >
         <Modal.Header
           closeButton
