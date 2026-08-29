@@ -5,7 +5,12 @@ import useAuth from "../../../hooks/useAuth";
 import useRedirect from "../../../hooks/useRedirect";
 
 const GoogleSignin = () => {
-  const { GoogleSignin } = useAuth();
+  const {
+    GoogleSignin,
+    setUser,
+    setRole,
+    setLoading: setContextLoading,
+  } = useAuth();
   const { redirect } = useRedirect();
   const axiosSecure = useAxiosSecure();
   const [loading, setLoading] = useState(false);
@@ -40,6 +45,11 @@ const GoogleSignin = () => {
         } catch (postErr) {
           console.error("Failed to sync user with backend:", postErr);
         }
+
+        // Set context state synchronously to prevent race conditions during navigation
+        setUser(user);
+        setRole(loggedInRole);
+        setContextLoading(false);
 
         Swal.fire({
           icon: "success",

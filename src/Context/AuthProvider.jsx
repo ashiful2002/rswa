@@ -108,6 +108,8 @@ const AuthProvider = ({ children }) => {
     role,
     loading,
     setUser,
+    setRole,
+    setLoading,
     GoogleSignin,
     signin,
     signUp,

@@ -10,7 +10,7 @@ import axios from "axios";
 import { API_ENDPOINTS } from "../../config/api";
 
 const Signin = () => {
-  const { signin } = useAuth();
+  const { signin, setUser, setRole, setLoading: setContextLoading } = useAuth();
   const { redirect } = useRedirect();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -52,6 +52,11 @@ const Signin = () => {
       } catch (roleErr) {
         console.error("Failed to load user role on login:", roleErr);
       }
+
+      // Sync and update context state immediately to prevent race conditions
+      setUser(user);
+      setRole(loggedInRole);
+      setContextLoading(false);
 
       Swal.fire({
         icon: "success",

@@ -12,6 +12,29 @@ import StudentAwardStatCards from "../../../Components/Dashboard/StudentAward/St
 import StudentAwardFilters from "../../../Components/Dashboard/StudentAward/StudentAwardFilters";
 import StudentAwardTable from "../../../Components/Dashboard/StudentAward/StudentAwardTable";
 import StudentAwardDetailsModal from "../../../Components/Dashboard/StudentAward/StudentAwardDetailsModal";
+import logo from "../../../assets/logo.png";
+
+const loadAndCropLogo = (url) => {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.src = url;
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = 128;
+      canvas.height = 128;
+      const ctx = canvas.getContext("2d");
+
+      // Calculate object-cover centering crop
+      const size = Math.min(img.width, img.height);
+      const x = (img.width - size) / 2;
+      const y = (img.height - size) / 2;
+
+      ctx.drawImage(img, x, y, size, size, 0, 0, 128, 128);
+      resolve(canvas.toDataURL("image/png"));
+    };
+    img.onerror = () => resolve(null);
+  });
+};
 
 const DashboardStudentAward = () => {
   const axiosSecure = useAxiosSecure();
@@ -110,13 +133,24 @@ const DashboardStudentAward = () => {
 
       doc.setFontSize(10);
       doc.setFont("helvetica", "normal");
-      doc.text("Kriti Student Award 2027 Applicants Report", 14, 17);
+      doc.text("Student Award 2027 Applicants Report", 14, 17);
+
+      // Render logo on the top right
+      try {
+        const logoDataUrl = await loadAndCropLogo(logo);
+        if (logoDataUrl) {
+          // image cropped to 1:1 aspect ratio (object-cover) and placed at top right
+          doc.addImage(logoDataUrl, "PNG", 268, 4, 14, 14);
+        }
+      } catch (logoErr) {
+        console.error("Failed to load logo for PDF:", logoErr);
+      }
 
       // Meta info section
       doc.setTextColor(51, 65, 85);
       doc.setFontSize(9);
       doc.text(`Generated: ${new Date().toLocaleString()}`, 14, 28);
-      doc.text(`Total Records: ${exportList.length}`, 120, 28);
+      doc.text(`Total Reports: ${exportList.length}`, 120, 28);
       doc.text(
         `Filter: ${sessionFilter ? `Session ${sessionFilter}` : "All Sessions"}${debouncedSearch ? ` | Search: "${debouncedSearch}"` : ""}`,
         200,
@@ -132,7 +166,8 @@ const DashboardStudentAward = () => {
         "Email",
         "University",
         "Session",
-        "Institution",
+        "SSC School",
+        "HSC College",
       ];
 
       const tableRows = exportList.map((st, i) => [
@@ -143,7 +178,8 @@ const DashboardStudentAward = () => {
         st.email || "",
         st.university || "",
         st.session || "",
-        st.hscCollege || st.sscSchool || "-",
+        st.sscSchool || "-",
+        st.hscCollege || "-",
       ]);
 
       autoTable(doc, {
@@ -315,14 +351,6 @@ const DashboardStudentAward = () => {
           >
             <FileDown className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
             <span>{exportingPDF ? "Generating PDF..." : "Export PDF"}</span>
-          </button>
-
-          <button
-            onClick={handleSeedData}
-            className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 px-4 py-2 text-xs font-bold text-white shadow-md shadow-emerald-600/20 transition-all hover:bg-emerald-700"
-          >
-            <Database className="h-3.5 w-3.5" />
-            <span>Seed Test Data</span>
           </button>
         </div>
       </div>
