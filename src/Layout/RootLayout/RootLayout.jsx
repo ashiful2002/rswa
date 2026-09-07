@@ -3,6 +3,7 @@ import BsNavbar from "../BsNAvbar";
 import { Outlet } from "react-router-dom";
 import Footer from "../Footer";
 import Loading from "../../Components/Loading/Loading";
+import { InstallPWABanner } from "../../Components/PWA/InstallPWA";
 
 const RootLayout = () => {
   return (
@@ -12,6 +13,7 @@ const RootLayout = () => {
         <Outlet />
       </Suspense>
       <Footer />
+      <InstallPWABanner />
     </div>
   );
 };

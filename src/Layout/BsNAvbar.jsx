@@ -8,6 +8,7 @@ import { navigation } from "../constants";
 import useAuth from "../hooks/useAuth";
 import useUserRole from "../hooks/useUserRole/UseUserRole";
 import ThemeToggle from "../Components/shared/ThemeToggle";
+import { InstallPWAButton } from "../Components/PWA/InstallPWA";
 
 function BsNavbar() {
   const { user, SignOutUser } = useAuth();
@@ -52,6 +53,7 @@ function BsNavbar() {
 
         {/* Mobile Toggle Button */}
         <div className="flex items-center gap-2 md:hidden">
+          <InstallPWAButton className="!px-2.5 !py-1 text-[11px]" />
           <ThemeToggle />
           <Navbar.Toggle aria-controls="rswa-navbar-nav" />
         </div>
@@ -95,7 +97,8 @@ function BsNavbar() {
 
           {/* User Auth Buttons / Profile & Theme Toggle */}
           <div className="flex items-center justify-end gap-3 pt-2 md:pt-0">
-            <div className="hidden md:block">
+            <div className="hidden md:flex md:items-center md:gap-2">
+              <InstallPWAButton />
               <ThemeToggle />
             </div>
 
