@@ -43,7 +43,7 @@ export function InstallPWAButton({ className = "" }) {
 export function IOSInstallModal({ onClose }) {
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-900/60 p-4 backdrop-blur-sm animate-fade-in">
-      <div className="relative w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl transition-all dark:bg-slate-900 dark:text-slate-100 dark:border dark:border-slate-800">
+      <div className="relative w-full max-w-sm rounded-2xl bg-slate-900/60 p-6 shadow-2xl transition-all dark:bg-slate-900 dark:text-slate-100 dark:border dark:border-slate-800">
         <button
           onClick={onClose}
           className="absolute right-4 top-4 rounded-full p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-200"
@@ -57,10 +57,10 @@ export function IOSInstallModal({ onClose }) {
             <Smartphone className="h-6 w-6" />
           </div>
           <div>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white">
+            <h3 className="text-base font-bold text-white dark:text-white">
               Install RSWA App on iOS
             </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
+            <p className="text-xs text-slate500 dark: text-slate-300">
               Add to Home Screen for fast access
             </p>
           </div>
