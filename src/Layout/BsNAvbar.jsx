@@ -53,7 +53,7 @@ function BsNavbar() {
 
         {/* Mobile Toggle Button */}
         <div className="flex items-center gap-2 md:hidden">
-          <InstallPWAButton className="!px-2.5 !py-1 text-[11px]" />
+          {/* <InstallPWAButton className="!px-2.5 !py-1 text-[11px]" /> */}
           <ThemeToggle />
           <Navbar.Toggle aria-controls="rswa-navbar-nav" />
         </div>
