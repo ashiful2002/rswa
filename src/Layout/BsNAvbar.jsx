@@ -53,8 +53,6 @@ function BsNavbar() {
 
         {/* Mobile Toggle Button */}
         <div className="flex items-center gap-2 md:hidden">
-          {/* <InstallPWAButton className="!px-2.5 !py-1 text-[11px]" /> */}
-
           <Navbar.Toggle aria-controls="rswa-navbar-nav" />
         </div>
 
@@ -93,14 +91,14 @@ function BsNavbar() {
                 Dashboard
               </NavLink>
             )}
-            <ThemeToggle className="ml-2.5 h-8 w-8 rounded" />
+            {/* <ThemeToggle className="ml-2.5 h-8 w-8 rounded" /> */}
           </Nav>
 
           {/* User Auth Buttons / Profile & Theme Toggle */}
           <div className="flex items-center justify-end gap-3 pt-2 md:pt-0">
             <div className="hidden md:flex md:items-center md:gap-2">
               {/* <InstallPWAButton /> */}
-              <ThemeToggle />
+              {/* <ThemeToggle /> */}
             </div>
 
             {user ? (
@@ -133,6 +131,7 @@ function BsNavbar() {
                 </Link>
               </div>
             )}
+            <ThemeToggle className="ml-2.5 h-8 w-8 rounded" />
           </div>
         </Navbar.Collapse>
       </Container>

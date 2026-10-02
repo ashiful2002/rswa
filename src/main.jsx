@@ -3,7 +3,6 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import App from "./App.jsx";
 import "./index.css";
 import "./styles/animations.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,6 +13,7 @@ import AdminRoute from "./Components/ProtectedRoutes/AdminRoute.jsx";
 import ThemeProvider from "./Context/ThemeProvider.jsx";
 import AuthProvider from "./Context/AuthProvider.jsx";
 import Home from "./Pages/Home/Home.jsx";
+import Loading from "./Components/Loading/Loading.jsx";
 
 // Lazy-loaded pages for optimized performance and bundle splitting
 const About = lazy(() => import("./Pages/About.jsx"));
@@ -65,6 +65,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <RootLayout />,
     errorElement: <ErrorPage />,
+
     children: [
       {
         index: true,
