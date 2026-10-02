@@ -15,4 +15,5 @@ export const API_ENDPOINTS = {
   USERS: `${BASE_URL}/users`,
   PROJECTS: `${BASE_URL}/projects`,
   STUDENT_AWARD: `${BASE_URL}/student-award`,
+  COMMITTEE: `${BASE_URL}/committee`,
 };

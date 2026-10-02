@@ -12,6 +12,7 @@ import {
   Home,
   ChevronLeft,
   ChevronRight,
+  Award,
 } from "lucide-react";
 import logo from "../../../assets/logo.png";
 import useAuth from "../../../hooks/useAuth";
@@ -57,6 +58,15 @@ const DashboardLayout = () => {
           },
         ]
       : []),
+    ...(role === "super_admin"
+      ? [
+          {
+            path: "/dashboard/committee",
+            label: "Committee",
+            icon: Award,
+          },
+        ]
+      : []),
     {
       path: "/dashboard/content",
       label: "Content",
@@ -73,6 +83,8 @@ const DashboardLayout = () => {
     if (location.pathname === "/dashboard/projects")
       return "Manage Projects & Initiatives";
     if (location.pathname === "/dashboard/users") return "User Management";
+    if (location.pathname === "/dashboard/committee")
+      return "Executive Committee Management";
     if (location.pathname === "/dashboard/content") return "Content Management";
     return "Dashboard Overview";
   };

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Section from "../../Components/shared/Section";
 import { Card, CardContent, CardHeader } from "../../components/ui/card";
 import {
@@ -8,60 +9,103 @@ import {
 } from "../../components/ui/avatar";
 import { Mail } from "lucide-react";
 import { FaFacebook, FaPhoneAlt } from "react-icons/fa";
+import { API_ENDPOINTS } from "../../config/api";
+
+const initialTeamMembers = [
+  {
+    name: "Al Farazi Maruf",
+    role: "President",
+    bio: "2026-27 Executive committee",
+    initials: "MARUF",
+    img: "https://i.ibb.co.com/1YxjsrTL/maruf.jpg",
+    email: "alfarazi.me@gmail.com",
+    phone: "+880 18 2412 2969",
+    facebook: "https://www.facebook.com/alfarazi01",
+  },
+  {
+    name: "Mehedi Hasan Pollob",
+    role: "General Secretary",
+    bio: "2026-27 Executive committee",
+    initials: "POLLOB",
+    img: "https://i.ibb.co.com/M5kT9WqL/pollob.jpg",
+    email: "",
+    phone: "+880 1703-369290",
+    facebook: "https://www.facebook.com/mehedihasanpollob11",
+  },
+  {
+    name: "Rokon Ahmed",
+    role: "Senior Vice President",
+    bio: "2026-27 Executive committee",
+    initials: "ROKON",
+    img: "https://i.ibb.co.com/9kpHrjhL/rokon.jpg",
+    email: "",
+    phone: "018 4955 4744",
+    facebook: "https://www.facebook.com/rokonurjaman.rokon.10",
+  },
+  {
+    name: "Nahid Iqbal Likhon",
+    role: "Joint General Secretary",
+    bio: "2026-27 Executive committee",
+    initials: "NIL",
+    img: "https://i.ibb.co.com/Fk4YQvZ8/nahid.jpg",
+    email: "",
+    phone: "+880 15 6828 0698",
+    facebook: "https://www.facebook.com/nahidiqballikhon",
+  },
+  {
+    name: "Ashiful Islam Mukto",
+    role: "Organizing Secretary",
+    bio: "2026-27 Executive committee",
+    initials: "MUKTO",
+    img: "https://i.ibb.co.com/Y71y12yq/ADB58506-F4-DC-4-D18-852-E-3828-ABE49-ABE.png",
+    email: "ashifulislam2002@gmail.com",
+    phone: "01759-907907",
+    facebook: "https://www.facebook.com/ashifulislam.mukto/",
+  },
+];
 
 const TeamSection = () => {
-  const teamMembers = [
-    {
-      name: "Al Farazi Maruf",
-      role: "President",
-      bio: "2026-27 Executive committee",
-      initials: "MARUF",
-      img: "https://i.ibb.co.com/1YxjsrTL/maruf.jpg",
-      email: "alfarazi.me@gmail.com",
-      phone: "+880 18 2412 2969",
-      facebook: "https://www.facebook.com/alfarazi01",
-    },
-    {
-      name: "Mehedi Hasan Pollob",
-      role: "Generel Secreatary",
-      bio: "2026-27 Executive committee",
-      initials: "POLLOB",
-      img: "https://i.ibb.co.com/M5kT9WqL/pollob.jpg",
-      email: "[EMAIL_ADDRESS]",
-      phone: "+880 1703-369290",
-      facebook: "https://www.facebook.com/mehedihasanpollob11",
-    },
-    {
-      name: "Rokon Ahmed",
-      role: "Senior Vice President",
-      bio: "2026-27 Executive committee",
-      initials: "ROKON",
-      img: "https://i.ibb.co.com/9kpHrjhL/rokon.jpg",
-      email: "[EMAIL_ADDRESS]",
-      phone: "018 4955 4744",
-      facebook: "https://www.facebook.com/rokonurjaman.rokon.10",
-    },
-    {
-      name: "Nahid Iqbal Likhon",
-      role: "Joined generel Secreatery",
-      bio: "2026-27 Executive committee",
-      initials: "NIL",
-      img: "https://i.ibb.co.com/Fk4YQvZ8/nahid.jpg",
-      email: "[EMAIL_ADDRESS]",
-      phone: "+880 15 6828 0698",
-      facebook: "https://www.facebook.com/nahidiqballikhon",
-    },
-    {
-      name: "Ashiful Islam Mukto",
-      role: "Organizeing Secreatery",
-      bio: "2026-27 Executive committee",
-      initials: "MUKTO",
-      img: "https://i.ibb.co.com/Y71y12yq/ADB58506-F4-DC-4-D18-852-E-3828-ABE49-ABE.png",
-      email: "ashifulislam2002@gmail.com",
-      phone: "01759-907907",
-      facebook: "https://www.facebook.com/ashifulislam.mukto/",
-    },
-  ];
+  const [teamMembers, setTeamMembers] = useState(initialTeamMembers);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchTeam = async () => {
+      try {
+        const res = await axios.get(`${API_ENDPOINTS.COMMITTEE}?isActive=true`);
+        if (isMounted && res.data?.data && res.data.data.length > 0) {
+          const mapped = res.data.data.map((m) => {
+            const names = (m.name || "Member").trim().split(" ");
+            const initials =
+              names.length > 1
+                ? `${names[0][0]}${names[names.length - 1][0]}`.toUpperCase()
+                : names[0].slice(0, 5).toUpperCase();
+
+            return {
+              id: m._id,
+              name: m.name,
+              role: m.title || "Executive Member",
+              bio: m.says || `${m.session || " "} Executive committee`,
+              initials,
+              img: m.image || m.url,
+              email: m.social?.email || "",
+              phone: m.social?.phone || "",
+              facebook: m.social?.facebook || "",
+            };
+          });
+          setTeamMembers(mapped);
+        }
+      } catch (err) {
+        console.error("Failed to fetch committee for team section:", err);
+      }
+    };
+
+    fetchTeam();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <Section
@@ -72,7 +116,7 @@ const TeamSection = () => {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
         {teamMembers.map((member, index) => (
           <Card
-            key={index}
+            key={member.id || index}
             className="stagger-item flex h-full flex-col justify-between overflow-hidden border-0 shadow-sm transition-all duration-300 hover:-translate-y-1 dark:border-0 dark:bg-slate-900"
           >
             <div className="flex bg-gradient-to-br from-emerald-500/5 to-teal-500/5 p-6">

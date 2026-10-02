@@ -13,6 +13,7 @@ import ErrorPage from "./Pages/ErrorPage.jsx";
 import AdminRoute from "./Components/ProtectedRoutes/AdminRoute.jsx";
 import ThemeProvider from "./Context/ThemeProvider.jsx";
 import AuthProvider from "./Context/AuthProvider.jsx";
+import Home from "./Pages/Home/Home.jsx";
 
 // Lazy-loaded pages for optimized performance and bundle splitting
 const About = lazy(() => import("./Pages/About.jsx"));
@@ -52,6 +53,9 @@ const DashboardProjects = lazy(
 const DashboardUserManagement = lazy(
   () => import("./Pages/Dashboard/DashboardUserManagement.jsx"),
 );
+const DashboardCommittee = lazy(
+  () => import("./Pages/Dashboard/Committee/DashboardCommittee.jsx"),
+);
 const DashboardContent = lazy(
   () => import("./Pages/Dashboard/DashboardContent.jsx"),
 );
@@ -64,7 +68,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <App />,
+        element: <Home />,
       },
       {
         path: "/about",
@@ -156,6 +160,10 @@ const router = createBrowserRouter([
       {
         path: "users",
         element: <DashboardUserManagement />,
+      },
+      {
+        path: "committee",
+        element: <DashboardCommittee />,
       },
       {
         path: "content",
