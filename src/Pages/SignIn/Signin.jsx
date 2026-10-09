@@ -100,15 +100,14 @@ const Signin = () => {
           <GoogleSignInButton />
         </div>
 
-        <div className="relative mb-6 flex items-center justify-center">
+        {/* <div className="relative mb-6 flex items-center justify-center">
           <div className="w-full border-t border-slate-200 dark:border-slate-800" />
           <span className="absolute px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 dark:bg-slate-900 dark:text-slate-500">
             Or Sign In With Email
           </span>
-        </div>
+        </div> */}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Email / Username */}
+        {/* <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label
               className="mb-1.5 block text-xs font-semibold text-slate-700 dark:text-slate-300"
@@ -131,7 +130,6 @@ const Signin = () => {
             </div>
           </div>
 
-          {/* Password */}
           <div>
             <div className="mb-1.5 flex items-center justify-between">
               <label
@@ -156,7 +154,6 @@ const Signin = () => {
             </div>
           </div>
 
-          {/* Submit */}
           <button
             type="submit"
             disabled={loading}
@@ -165,7 +162,6 @@ const Signin = () => {
             {loading ? "Signing In..." : "Sign In"}
           </button>
 
-          {/* Sign up Link */}
           <p className="mt-6 text-center text-xs text-slate-600 dark:text-slate-400">
             Don&apos;t have an account?{" "}
             <Link
@@ -175,7 +171,7 @@ const Signin = () => {
               Sign up now!
             </Link>
           </p>
-        </form>
+        </form> */}
       </div>
     </div>
   );

@@ -15,7 +15,10 @@ const useRedirect = () => {
     const defaultPath = isAdminOrStaff ? "/dashboard" : "/";
 
     let target = location.state?.from?.pathname;
-    if (target === "/dashboard" && !isAdminOrStaff) {
+    if (target === "/birthday-card") {
+      target = "/dashboard/birthday-card";
+    }
+    if (target?.startsWith("/dashboard") && !isAdminOrStaff) {
       target = "/";
     }
     if (!target) {
@@ -35,7 +38,10 @@ const useRedirect = () => {
     hookRole === "moderator";
   const defaultPath = isAdminOrStaff ? "/dashboard" : "/";
   let from = location.state?.from?.pathname;
-  if (from === "/dashboard" && !isAdminOrStaff) {
+  if (from === "/birthday-card") {
+    from = "/dashboard/birthday-card";
+  }
+  if (from?.startsWith("/dashboard") && !isAdminOrStaff) {
     from = "/";
   }
   if (!from) {

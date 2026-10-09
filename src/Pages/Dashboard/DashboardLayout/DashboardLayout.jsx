@@ -18,7 +18,7 @@ import logo from "../../../assets/logo.png";
 import useAuth from "../../../hooks/useAuth";
 import useUserRole from "../../../hooks/useUserRole/UseUserRole";
 import ThemeToggle from "../../../Components/shared/ThemeToggle";
-import Loading from "../../../Components/Loading/Loading";
+import DashboardSkeleton from "../../../Components/Dashboard/DashboardSkeleton";
 
 const DashboardLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -49,11 +49,11 @@ const DashboardLayout = () => {
       label: "Manage Projects",
       icon: FolderKanban,
     },
-    ...(role === "super_admin" || role === "admin"
+    ...(role === "super_admin" || role === "admin" || role === "moderator"
       ? [
           {
             path: "/dashboard/birthday-card",
-            label: "Birthday card",
+            label: "Birthday Card",
             icon: FileText,
           },
         ]
@@ -77,11 +77,6 @@ const DashboardLayout = () => {
       label: "Content",
       icon: FileText,
     },
-    {
-      path: "/dashboard/birthday-card",
-      label: "Birthday card",
-      icon: FileText,
-    },
   ];
 
   // Map route path to human title
@@ -96,6 +91,8 @@ const DashboardLayout = () => {
     if (location.pathname === "/dashboard/committee")
       return "Executive Committee Management";
     if (location.pathname === "/dashboard/content") return "Content Management";
+    if (location.pathname === "/dashboard/birthday-card")
+      return "Birthday Photo Card Generator";
     return "Dashboard Overview";
   };
 
@@ -311,7 +308,7 @@ const DashboardLayout = () => {
 
         {/* Dashboard Route Content Outlet */}
         <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<DashboardSkeleton />}>
             <Outlet />
           </Suspense>
         </main>

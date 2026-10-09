@@ -1,11 +1,12 @@
+import { Suspense } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import useUserRole from "../../hooks/useUserRole/UseUserRole";
 import useAuth from "../../hooks/useAuth";
 import DashboardSkeleton from "../Dashboard/DashboardSkeleton";
 
 /**
- * Route protection wrapper for Super Admin only features.
- * Ensures only authenticated users with the 'super_admin' role can access the wrapped page.
+ * Route protection wrapper for features accessible to Moderators, Admins, and Super Admins.
+ * Allows roles: 'super_admin', 'admin', 'moderator'
  */
 const SuperAdminRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -21,12 +22,15 @@ const SuperAdminRoute = ({ children }) => {
     return <Navigate to="/signin" state={{ from: location }} replace />;
   }
 
-  // Logged in but not super_admin -> redirect to dashboard home
-  if (role !== "super_admin") {
+  // Allowed roles: super_admin, admin, moderator
+  const isAllowed =
+    role === "super_admin" || role === "admin" || role === "moderator";
+
+  if (!isAllowed) {
     return <Navigate to="/dashboard" replace />;
   }
 
-  return children;
+  return <Suspense fallback={<DashboardSkeleton />}>{children}</Suspense>;
 };
 
 export default SuperAdminRoute;

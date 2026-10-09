@@ -56,7 +56,7 @@ const CardTextForm = ({
   return (
     <div className="space-y-5">
       {/* 1. Primary Member Poster Fields */}
-      <div className="shadow-xs space-y-4 rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
+      <div className="shadow-xs space-y-4 rounded-2xl border   p-5 dark:border-slate-800 dark:bg-slate-900">
         <div className="flex items-center justify-between border-b border-slate-100 pb-3 dark:border-slate-800">
           <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
             1. Member Poster Details
@@ -78,7 +78,7 @@ const CardTextForm = ({
             placeholder="e.g. Nasim Iqbal Naim"
             value={name}
             onChange={(e) => onNameChange(e.target.value)}
-            className="w-full rounded-xl border border-slate-200 bg-white p-2.5 text-xs font-medium text-slate-800 outline-none transition-colors focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+            className="w-full rounded-xl border border-slate-200   p-2.5 text-xs font-medium text-slate-800 outline-none transition-colors focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
           />
           <p className="mt-1 text-[10px] text-slate-400">
             Rendered inside the prominent RSWA forest green banner with golden
@@ -99,7 +99,7 @@ const CardTextForm = ({
             placeholder="e.g. General Secretary"
             value={designation}
             onChange={(e) => onDesignationChange(e.target.value)}
-            className="w-full rounded-xl border border-slate-200 bg-white p-2.5 text-xs font-medium text-slate-800 outline-none transition-colors focus:border-amber-500 focus:ring-1 focus:ring-amber-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+            className="w-full rounded-xl border border-slate-200   p-2.5 text-xs font-medium text-slate-800 outline-none transition-colors focus:border-amber-500 focus:ring-1 focus:ring-amber-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
           />
           <datalist id="designations-list">
             {SUGGESTED_DESIGNATIONS.map((d) => (
@@ -170,7 +170,7 @@ const CardTextForm = ({
       )}
 
       {/* 3. Section 2: Template & Organization Texts (Editable, Infrequently Changed) */}
-      <div className="shadow-xs space-y-4 rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
+      <div className="shadow-xs space-y-4 rounded-2xl border border-slate-200   p-5 dark:border-slate-800 dark:bg-slate-900">
         <div className="flex items-center justify-between border-b border-slate-100 pb-3 dark:border-slate-800">
           <div className="flex items-center gap-2">
             <Settings2 className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
@@ -221,7 +221,7 @@ const CardTextForm = ({
                 placeholder="e.g. Wishing you a very Happy Birthday filled with health, joy & success!"
                 value={greeting}
                 onChange={(e) => onGreetingChange(e.target.value)}
-                className="w-full rounded-xl border border-slate-200 bg-white p-2.5 text-xs font-medium text-slate-800 outline-none transition-colors focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+                className="w-full rounded-xl border border-slate-200   p-2.5 text-xs font-medium text-slate-800 outline-none transition-colors focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
               />
               <p className="mt-1 text-[10px] text-slate-400">
                 Rendered directly beneath the prominent name banner divider.
@@ -239,7 +239,7 @@ const CardTextForm = ({
                 placeholder="e.g. Rowmari Students Welfare Association - RSWA"
                 value={organization}
                 onChange={(e) => onOrganizationChange(e.target.value)}
-                className="w-full rounded-xl border border-slate-200 bg-white p-2.5 text-xs font-medium text-slate-800 outline-none transition-colors focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+                className="w-full rounded-xl border border-slate-200  p-2.5 text-xs font-medium text-slate-800 outline-none transition-colors focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
               />
               <p className="mt-1 text-[10px] text-slate-400">
                 Rendered in bold RSWA signature forest green.
@@ -257,7 +257,7 @@ const CardTextForm = ({
                 placeholder="e.g. Executive Committee 2026-27"
                 value={committee}
                 onChange={(e) => onCommitteeChange(e.target.value)}
-                className="w-full rounded-xl border border-slate-200 bg-white p-2.5 text-xs font-medium text-slate-800 outline-none transition-colors focus:border-amber-500 focus:ring-1 focus:ring-amber-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+                className="w-full rounded-xl border border-slate-200  e p-2.5 text-xs font-medium text-slate-800 outline-none transition-colors focus:border-amber-500 focus:ring-1 focus:ring-amber-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
               />
               <p className="mt-1 text-[10px] text-slate-400">
                 Rendered justified at the bottom-left in RSWA crown gold
@@ -276,7 +276,7 @@ const CardTextForm = ({
                 placeholder="e.g. https://rswaa.vercel.app/"
                 value={website}
                 onChange={(e) => onWebsiteChange(e.target.value)}
-                className="w-full rounded-xl border border-slate-200 bg-white p-2.5 text-xs font-medium text-slate-800 outline-none transition-colors focus:border-teal-500 focus:ring-1 focus:ring-teal-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+                className="w-full rounded-xl border border-slate-200  p-2.5 text-xs font-medium text-slate-800 outline-none transition-colors focus:border-teal-500 focus:ring-1 focus:ring-teal-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
               />
               <p className="mt-1 text-[10px] text-slate-400">
                 Rendered justified at the bottom-right in logo teal styling.

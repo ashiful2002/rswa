@@ -1,6 +1,10 @@
-import { StrictMode, lazy } from "react";
+import { StrictMode, Suspense, lazy } from "react";
 import { createRoot } from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import "./index.css";
@@ -11,10 +15,10 @@ import RootLayout from "./Layout/RootLayout/RootLayout.jsx";
 import ErrorPage from "./Pages/ErrorPage.jsx";
 import AdminRoute from "./Components/ProtectedRoutes/AdminRoute.jsx";
 import SuperAdminRoute from "./Components/ProtectedRoutes/SuperAdminRoute.jsx";
+import DashboardSkeleton from "./Components/Dashboard/DashboardSkeleton.jsx";
 import ThemeProvider from "./Context/ThemeProvider.jsx";
 import AuthProvider from "./Context/AuthProvider.jsx";
 import Home from "./Pages/Home/Home.jsx";
-import Loading from "./Components/Loading/Loading.jsx";
 
 // Lazy-loaded pages for optimized performance and bundle splitting
 const About = lazy(() => import("./Pages/About.jsx"));
@@ -135,14 +139,20 @@ const router = createBrowserRouter([
         path: "/signup",
         element: <SignUp />,
       },
+      {
+        path: "/birthday-card",
+        element: <Navigate to="/dashboard/birthday-card" replace />,
+      },
     ],
   },
   {
     path: "/dashboard",
     element: (
-      <AdminRoute>
-        <DashboardLayout />
-      </AdminRoute>
+      <Suspense fallback={<DashboardSkeleton />}>
+        <AdminRoute>
+          <DashboardLayout />
+        </AdminRoute>
+      </Suspense>
     ),
     errorElement: <ErrorPage />,
     children: [

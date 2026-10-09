@@ -103,10 +103,6 @@ const BirthdayCardGenerator = () => {
 
         {/* Security & Access Badges */}
         <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1 rounded-full bg-rose-50 px-3 py-1 text-[11px] font-bold text-rose-700 dark:bg-rose-950/60 dark:text-rose-300">
-            <ShieldCheck className="h-3.5 w-3.5" />
-            Super Admin Only
-          </span>
           <button
             type="button"
             onClick={handleResetDefaults}

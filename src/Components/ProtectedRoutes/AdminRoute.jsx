@@ -1,8 +1,8 @@
-import React from "react";
-import Loading from "../Loading/Loading";
+import { Suspense } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import useUserRole from "../../hooks/useUserRole/UseUserRole";
 import useAuth from "../../hooks/useAuth";
+import DashboardSkeleton from "../Dashboard/DashboardSkeleton";
 
 const AdminRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -10,7 +10,7 @@ const AdminRoute = ({ children }) => {
   const location = useLocation();
 
   if (loading || roleLoading) {
-    return <Loading />;
+    return <DashboardSkeleton />;
   }
 
   const isAllowed =
@@ -21,7 +21,7 @@ const AdminRoute = ({ children }) => {
     return <Navigate to="/signin" state={{ from: location }} replace />;
   }
 
-  return children;
+  return <Suspense fallback={<DashboardSkeleton />}>{children}</Suspense>;
 };
 
 export default AdminRoute;
