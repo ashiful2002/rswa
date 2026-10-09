@@ -10,6 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import RootLayout from "./Layout/RootLayout/RootLayout.jsx";
 import ErrorPage from "./Pages/ErrorPage.jsx";
 import AdminRoute from "./Components/ProtectedRoutes/AdminRoute.jsx";
+import SuperAdminRoute from "./Components/ProtectedRoutes/SuperAdminRoute.jsx";
 import ThemeProvider from "./Context/ThemeProvider.jsx";
 import AuthProvider from "./Context/AuthProvider.jsx";
 import Home from "./Pages/Home/Home.jsx";
@@ -58,6 +59,9 @@ const DashboardCommittee = lazy(
 );
 const DashboardContent = lazy(
   () => import("./Pages/Dashboard/DashboardContent.jsx"),
+);
+const BirthdayCardGenerator = lazy(
+  () => import("./Pages/Dashboard/BirthdayCard/BirthdayCardGenerator.jsx"),
 );
 
 const router = createBrowserRouter([
@@ -165,6 +169,14 @@ const router = createBrowserRouter([
       {
         path: "committee",
         element: <DashboardCommittee />,
+      },
+      {
+        path: "birthday-card",
+        element: (
+          <SuperAdminRoute>
+            <BirthdayCardGenerator />
+          </SuperAdminRoute>
+        ),
       },
       {
         path: "content",

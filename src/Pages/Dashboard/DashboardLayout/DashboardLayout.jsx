@@ -52,9 +52,9 @@ const DashboardLayout = () => {
     ...(role === "super_admin" || role === "admin"
       ? [
           {
-            path: "/dashboard/users",
-            label: "User Management",
-            icon: Users,
+            path: "/dashboard/birthday-card",
+            label: "Birthday card",
+            icon: FileText,
           },
         ]
       : []),
@@ -65,11 +65,21 @@ const DashboardLayout = () => {
             label: "Committee",
             icon: Award,
           },
+          {
+            path: "/dashboard/users",
+            label: "User Management",
+            icon: Users,
+          },
         ]
       : []),
     {
       path: "/dashboard/content",
       label: "Content",
+      icon: FileText,
+    },
+    {
+      path: "/dashboard/birthday-card",
+      label: "Birthday card",
       icon: FileText,
     },
   ];
