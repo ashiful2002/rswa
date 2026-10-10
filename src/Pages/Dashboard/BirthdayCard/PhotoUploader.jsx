@@ -9,9 +9,41 @@ import {
 } from "lucide-react";
 import { removeBackgroundFromImage } from "./removeBackground";
 
-const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/jpg"];
-const MAX_FILE_SIZE_MB = 10;
+const ALLOWED_MIME_TYPES = [
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+  "image/jpg",
+  "image/heic",
+  "image/heif",
+  "image/heic-sequence",
+  "image/heif-sequence",
+];
+const ALLOWED_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".heic", ".heif"];
+const MAX_FILE_SIZE_MB = 25;
 const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
+
+const isHeicFile = (file) => {
+  if (!file) return false;
+  const name = (file.name || "").toLowerCase();
+  const type = (file.type || "").toLowerCase();
+  return (
+    type === "image/heic" ||
+    type === "image/heif" ||
+    type === "image/heic-sequence" ||
+    type === "image/heif-sequence" ||
+    name.endsWith(".heic") ||
+    name.endsWith(".heif")
+  );
+};
+
+const isValidImageType = (file) => {
+  if (!file) return false;
+  const name = (file.name || "").toLowerCase();
+  const type = (file.type || "").toLowerCase();
+  if (ALLOWED_MIME_TYPES.includes(type)) return true;
+  return ALLOWED_EXTENSIONS.some((ext) => name.endsWith(ext));
+};
 
 const PhotoUploader = ({
   originalPhotoUrl,
@@ -34,21 +66,62 @@ const PhotoUploader = ({
     e.target.value = "";
 
     // 1. Validate File Type
-    if (!ALLOWED_TYPES.includes(file.type)) {
-      setError("Please select a valid image file (JPG, PNG, or WebP).");
+    if (!isValidImageType(file)) {
+      setError(
+        "Please select a valid image file (JPG, PNG, WebP, or iPhone HEIC/HEIF).",
+      );
       return;
     }
 
     // 2. Validate File Size
     if (file.size > MAX_FILE_SIZE_BYTES) {
-      setError(`File size exceeds ${MAX_FILE_SIZE_MB}MB limit. Please choose a smaller image.`);
+      setError(
+        `File size exceeds ${MAX_FILE_SIZE_MB}MB limit. Please choose a smaller image.`,
+      );
       return;
     }
 
     setError(null);
 
+    let imageFile = file;
+
+    // 3. Convert iPhone HEIC/HEIF to JPEG in-browser if needed
+    if (isHeicFile(file)) {
+      setIsProcessing(true);
+      setProgressState("Converting iPhone HEIC image to JPEG...");
+
+      try {
+        const heic2anyModule = await import("heic2any");
+        const heic2any = heic2anyModule.default || heic2anyModule;
+        const converted = await heic2any({
+          blob: file,
+          toType: "image/jpeg",
+          quality: 0.95,
+        });
+
+        const convertedBlob = Array.isArray(converted)
+          ? converted[0]
+          : converted;
+        const safeName = (file.name || "iphone-photo.heic").replace(
+          /\.hei[cf]$/i,
+          ".jpg",
+        );
+        imageFile = new File([convertedBlob], safeName, {
+          type: "image/jpeg",
+        });
+      } catch (convErr) {
+        console.error("HEIC conversion failed:", convErr);
+        setError(
+          "Could not convert iPhone HEIC photo. Please try a JPG or PNG format.",
+        );
+        setIsProcessing(false);
+        setProgressState(null);
+        return;
+      }
+    }
+
     // Create local object URL for preview
-    const originalUrl = URL.createObjectURL(file);
+    const originalUrl = URL.createObjectURL(imageFile);
 
     // Start background removal
     setIsProcessing(true);
@@ -56,30 +129,30 @@ const PhotoUploader = ({
 
     try {
       const { objectUrl: transparentUrl } = await removeBackgroundFromImage(
-        file,
+        imageFile,
         (progress) => {
           if (progress.stage) {
             setProgressState(`Processing (${progress.percent || 0}%)...`);
           }
-        }
+        },
       );
 
       // Successfully removed background
       onPhotoSelected({
         originalUrl,
         transparentUrl,
-        file,
+        file: imageFile,
       });
     } catch (err) {
       console.warn("Auto background removal issue:", err);
       // Gracefully fallback to original photo so user is not blocked
       setError(
-        "Could not automatically remove background. Using original photo instead. You can still create and download the card."
+        "Could not automatically remove background. Using original photo instead. You can still create and download the card.",
       );
       onPhotoSelected({
         originalUrl,
         transparentUrl: null,
-        file,
+        file: imageFile,
       });
     } finally {
       setIsProcessing(false);
@@ -99,7 +172,7 @@ const PhotoUploader = ({
         originalPhotoUrl,
         (progress) => {
           setProgressState(`Processing (${progress.percent || 0}%)...`);
-        }
+        },
       );
 
       onPhotoSelected({
@@ -147,26 +220,27 @@ const PhotoUploader = ({
               Click or drag to upload portrait
             </p>
             <p className="mt-1 text-[11px] text-slate-500 dark:text-slate-400">
-              Supports JPG, PNG, WebP up to {MAX_FILE_SIZE_MB}MB
+              Supports JPG, PNG, WebP &amp; iPhone HEIC up to {MAX_FILE_SIZE_MB}
+              MB
             </p>
           </div>
 
           <div className="mt-3 flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1 text-[10px] font-semibold text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300">
             <Sparkles className="h-3 w-3" />
-            <span>Automatic AI Background Removal</span>
+            <span>Automatic AI Cutout • iPhone HEIC Supported</span>
           </div>
 
           <input
             ref={fileInputRef}
             type="file"
-            accept="image/png,image/jpeg,image/webp,image/jpg"
+            accept="image/png,image/jpeg,image/webp,image/jpg,image/heic,image/heif,.heic,.heif,.HEIC,.HEIF"
             className="hidden"
             onChange={handleFileChange}
           />
         </div>
       ) : (
         /* Photo Uploaded Preview Card */
-        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-xs dark:border-slate-800 dark:bg-slate-900">
+        <div className="shadow-xs overflow-hidden rounded-2xl border border-slate-200 p-4 dark:border-slate-800 dark:bg-slate-900">
           <div className="flex items-center gap-4">
             {/* Thumbnail with transparency grid */}
             <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-[linear-gradient(45deg,#f1f5f9_25%,transparent_25%),linear-gradient(-45deg,#f1f5f9_25%,transparent_25%),linear-gradient(45deg,transparent_75%,#f1f5f9_75%),linear-gradient(-45deg,transparent_75%,#f1f5f9_75%)] bg-[size:12px_12px] dark:border-slate-700">
@@ -176,7 +250,7 @@ const PhotoUploader = ({
                 className="h-full w-full object-contain"
               />
               {isProcessing && (
-                <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-xs">
+                <div className="backdrop-blur-xs absolute inset-0 flex items-center justify-center bg-black/40">
                   <Loader2 className="h-6 w-6 animate-spin text-white" />
                 </div>
               )}
@@ -258,7 +332,7 @@ const PhotoUploader = ({
           <input
             ref={fileInputRef}
             type="file"
-            accept="image/png,image/jpeg,image/webp,image/jpg"
+            accept="image/png,image/jpeg,image/webp,image/jpg,image/heic,image/heif,.heic,.heif,.HEIC,.HEIF"
             className="hidden"
             onChange={handleFileChange}
           />
@@ -270,9 +344,12 @@ const PhotoUploader = ({
         <div className="flex items-center gap-2.5 rounded-xl border border-emerald-200 bg-emerald-50/80 p-3 text-xs text-emerald-800 dark:border-emerald-900/60 dark:bg-emerald-950/40 dark:text-emerald-200">
           <Loader2 className="h-4 w-4 shrink-0 animate-spin text-emerald-600" />
           <div className="min-w-0 flex-1">
-            <p className="font-semibold">{progressState || "Processing portrait..."}</p>
+            <p className="font-semibold">
+              {progressState || "Processing portrait..."}
+            </p>
             <p className="text-[10px] text-emerald-600/80 dark:text-emerald-400">
-              Running locally in your browser. No files are uploaded to external servers.
+              Running locally in your browser. No files are uploaded to external
+              servers.
             </p>
           </div>
         </div>

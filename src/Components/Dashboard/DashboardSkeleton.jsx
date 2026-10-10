@@ -37,7 +37,7 @@ const DashboardSkeleton = ({
         {Array.from({ length: statCardsCount }).map((_, index) => (
           <div
             key={index}
-            className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs dark:border-slate-800 dark:bg-slate-900"
+            className="rounded-2xl border border-slate-200/80  p-5 shadow-xs dark:border-slate-800 dark:bg-slate-900"
           >
             <div className="flex items-center gap-3.5">
               {/* Icon box placeholder */}
@@ -57,7 +57,7 @@ const DashboardSkeleton = ({
       {variant === "cards" ? (
         <>
           {/* Search & Filter Toolbar Skeleton */}
-          <div className="flex flex-col gap-3 rounded-2xl border border-slate-200/80 bg-white p-4 shadow-xs dark:border-slate-800 dark:bg-slate-900 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-3 rounded-2xl border border-slate-200/80  p-4 shadow-xs dark:border-slate-800 dark:bg-slate-900 sm:flex-row sm:items-center sm:justify-between">
             <div className="h-9 flex-1 rounded-xl bg-slate-100 dark:bg-slate-800/70" />
             <div className="flex items-center gap-2">
               <div className="h-9 w-28 rounded-xl bg-slate-100 dark:bg-slate-800/70" />
@@ -70,7 +70,7 @@ const DashboardSkeleton = ({
             {Array.from({ length: cardsCount }).map((_, i) => (
               <div
                 key={i}
-                className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs dark:border-slate-800 dark:bg-slate-900 space-y-4"
+                className="overflow-hidden rounded-2xl border border-slate-200/80  p-5 shadow-xs dark:border-slate-800 dark:bg-slate-900 space-y-4"
               >
                 <div className="aspect-video w-full rounded-xl bg-slate-200 dark:bg-slate-800" />
                 <div className="space-y-2">
@@ -89,14 +89,14 @@ const DashboardSkeleton = ({
       ) : variant === "stat" ? (
         /* Analytics / Charts Skeleton */
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-xs dark:border-slate-800 dark:bg-slate-900 space-y-4">
+          <div className="rounded-2xl border border-slate-200/80  p-6 shadow-xs dark:border-slate-800 dark:bg-slate-900 space-y-4">
             <div className="flex items-center justify-between">
               <div className="h-5 w-36 rounded bg-slate-200 dark:bg-slate-800" />
               <div className="h-4 w-20 rounded bg-slate-100 dark:bg-slate-800/70" />
             </div>
             <div className="h-64 w-full rounded-xl bg-slate-100 dark:bg-slate-800/50" />
           </div>
-          <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-xs dark:border-slate-800 dark:bg-slate-900 space-y-4">
+          <div className="rounded-2xl border border-slate-200/80  p-6 shadow-xs dark:border-slate-800 dark:bg-slate-900 space-y-4">
             <div className="flex items-center justify-between">
               <div className="h-5 w-36 rounded bg-slate-200 dark:bg-slate-800" />
               <div className="h-4 w-20 rounded bg-slate-100 dark:bg-slate-800/70" />
@@ -108,7 +108,7 @@ const DashboardSkeleton = ({
         /* Default "table" Variant Skeleton */
         <>
           {/* Search & Filter Toolbar Skeleton */}
-          <div className="flex flex-col gap-3 rounded-2xl border border-slate-200/80 bg-white p-4 shadow-xs dark:border-slate-800 dark:bg-slate-900 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-3 rounded-2xl border border-slate-200/80  p-4 shadow-xs dark:border-slate-800 dark:bg-slate-900 sm:flex-row sm:items-center sm:justify-between">
             <div className="h-9 flex-1 rounded-xl bg-slate-100 dark:bg-slate-800/70" />
             <div className="flex items-center gap-2.5">
               <div className="h-9 w-28 rounded-xl bg-slate-100 dark:bg-slate-800/70" />
@@ -118,7 +118,7 @@ const DashboardSkeleton = ({
           </div>
 
           {/* Table Container Skeleton */}
-          <div className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-xs dark:border-slate-800 dark:bg-slate-900">
+          <div className="overflow-hidden rounded-2xl border border-slate-200/80  shadow-xs dark:border-slate-800 dark:bg-slate-900">
             {/* Table Header Row */}
             <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50/80 px-6 py-4 dark:border-slate-800 dark:bg-slate-950/40">
               <div className="h-4 w-12 rounded bg-slate-200 dark:bg-slate-800" />

@@ -107,9 +107,9 @@ const BirthdayCardPreview = ({
   return (
     <div className="flex flex-col items-center space-y-4">
       {/* Canvas Container with realistic poster drop-shadow & aspect ratio */}
-      <div className="group relative w-full max-w-[420px] overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-2 shadow-2xl transition-all dark:border-slate-800 dark:bg-slate-900">
+      <div className="group relative w-full max-w-[420px] overflow-hidden rounded-3xl border border-slate-200/80  p-2 shadow-2xl transition-all dark:border-slate-800 dark:bg-slate-900">
         {/* Hidden full-res Canvas element with CSS responsive scaling */}
-        <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-white shadow-inner">
+        <div className="relative aspect-square w-full overflow-hidden rounded-2xl  shadow-inner">
           <canvas
             ref={canvasRef}
             className="h-full w-full object-contain"

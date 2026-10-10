@@ -55,8 +55,118 @@ const CardTextForm = ({
 
   return (
     <div className="space-y-5">
+      {/* Photo Framing Controls (Zoom, Horizontal & Vertical Pan) */}
+      {hasPhoto && (
+        <div className="shadow-xs space-y-3 rounded-2xl border border-slate-200  p-4 dark:border-slate-800 dark:bg-slate-900">
+          <div className="flex items-center justify-between border-b border-slate-100 pb-2.5 dark:border-slate-800">
+            <div className="flex items-center gap-1.5">
+              <Sliders className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
+              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                Portrait Framing Adjustments
+              </h3>
+            </div>
+            {(Boolean(options?.scale && options.scale !== 1) ||
+              Boolean(options?.offsetX) ||
+              Boolean(options?.offsetY)) && (
+              <button
+                type="button"
+                onClick={() =>
+                  onOptionsChange({
+                    ...options,
+                    scale: 1,
+                    offsetX: 0,
+                    offsetY: 0,
+                  })
+                }
+                className="text-[10px] font-semibold text-emerald-600 hover:text-emerald-700 dark:text-emerald-400"
+              >
+                Reset Framing
+              </button>
+            )}
+          </div>
+
+          <div className="grid grid-cols-1 gap-1 sm:grid-cols-3">
+            {/* Slider 1: Zoom Scale */}
+            <div>
+              <div className="mb-1 flex items-center justify-between text-[11px] font-semibold text-slate-600 dark:text-slate-300">
+                <span>Zoom Scale</span>
+                <span className="font-mono text-emerald-600 dark:text-emerald-400">
+                  {Math.round((options?.scale || 1) * 100)}%
+                </span>
+              </div>
+              <input
+                type="range"
+                min="0.5"
+                max="2.0"
+                step="0.05"
+                value={options?.scale ?? 1}
+                onChange={(e) =>
+                  onOptionsChange({
+                    ...options,
+                    scale: parseFloat(e.target.value),
+                  })
+                }
+                className="h-1.5 w-full cursor-pointer appearance-none rounded-lg bg-slate-200 accent-emerald-600 dark:bg-slate-800"
+              />
+            </div>
+
+            {/* Slider 2: Horizontal Pan (Left - Right) */}
+            <div>
+              <div className="mb-1 flex items-center justify-between text-[11px] font-semibold text-slate-600 dark:text-slate-300">
+                <span>Horizontal Pan</span>
+                <span className="font-mono text-emerald-600 dark:text-emerald-400">
+                  {options?.offsetX
+                    ? `${options.offsetX > 0 ? "+" : ""}${options.offsetX}px`
+                    : "0px"}
+                </span>
+              </div>
+              <input
+                type="range"
+                min="-150"
+                max="150"
+                step="2"
+                value={options?.offsetX ?? 0}
+                onChange={(e) =>
+                  onOptionsChange({
+                    ...options,
+                    offsetX: parseInt(e.target.value, 10),
+                  })
+                }
+                className="h-1.5 w-full cursor-pointer appearance-none rounded-lg bg-slate-200 accent-emerald-600 dark:bg-slate-800"
+              />
+            </div>
+
+            {/* Slider 3: Vertical Pan (Up - Down) */}
+            <div>
+              <div className="mb-1 flex items-center justify-between text-[11px] font-semibold text-slate-600 dark:text-slate-300">
+                <span>Vertical Pan</span>
+                <span className="font-mono text-emerald-600 dark:text-emerald-400">
+                  {options?.offsetY
+                    ? `${options.offsetY > 0 ? "+" : ""}${options.offsetY}px`
+                    : "0px"}
+                </span>
+              </div>
+              <input
+                type="range"
+                min="-150"
+                max="150"
+                step="2"
+                value={options?.offsetY ?? 0}
+                onChange={(e) =>
+                  onOptionsChange({
+                    ...options,
+                    offsetY: parseInt(e.target.value, 10),
+                  })
+                }
+                className="h-1.5 w-full cursor-pointer appearance-none rounded-lg bg-slate-200 accent-emerald-600 dark:bg-slate-800"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* 1. Primary Member Poster Fields */}
-      <div className="shadow-xs space-y-4 rounded-2xl border   p-5 dark:border-slate-800 dark:bg-slate-900">
+      <div className="shadow-xs space-y-4 rounded-2xl border border-slate-200  p-4 dark:border-slate-800 dark:bg-slate-900">
         <div className="flex items-center justify-between border-b border-slate-100 pb-3 dark:border-slate-800">
           <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
             1. Member Poster Details
@@ -78,7 +188,7 @@ const CardTextForm = ({
             placeholder="e.g. Nasim Iqbal Naim"
             value={name}
             onChange={(e) => onNameChange(e.target.value)}
-            className="w-full rounded-xl border border-slate-200   p-2.5 text-xs font-medium text-slate-800 outline-none transition-colors focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+            className="w-full rounded-xl border border-slate-200 p-2.5 text-xs font-medium text-slate-800 outline-none transition-colors focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
           />
           <p className="mt-1 text-[10px] text-slate-400">
             Rendered inside the prominent RSWA forest green banner with golden
@@ -99,7 +209,7 @@ const CardTextForm = ({
             placeholder="e.g. General Secretary"
             value={designation}
             onChange={(e) => onDesignationChange(e.target.value)}
-            className="w-full rounded-xl border border-slate-200   p-2.5 text-xs font-medium text-slate-800 outline-none transition-colors focus:border-amber-500 focus:ring-1 focus:ring-amber-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+            className="w-full rounded-xl border border-slate-200 p-2.5 text-xs font-medium text-slate-800 outline-none transition-colors focus:border-amber-500 focus:ring-1 focus:ring-amber-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
           />
           <datalist id="designations-list">
             {SUGGESTED_DESIGNATIONS.map((d) => (
@@ -113,64 +223,8 @@ const CardTextForm = ({
         </div>
       </div>
 
-      {/* 2. Photo Framing Controls (Zoom & Vertical Pan) */}
-      {hasPhoto && (
-        <div className="shadow-xs space-y-3 rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
-          <div className="flex items-center gap-1.5 border-b border-slate-100 pb-2.5 dark:border-slate-800">
-            <Sliders className="h-3.5 w-3.5 text-slate-500" />
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
-              Portrait Framing Adjustments
-            </h3>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <div className="mb-1 flex items-center justify-between text-[11px] font-semibold text-slate-600 dark:text-slate-300">
-                <span>Zoom Scale</span>
-                <span>{Math.round((options?.scale || 1) * 100)}%</span>
-              </div>
-              <input
-                type="range"
-                min="0.6"
-                max="1.5"
-                step="0.05"
-                value={options?.scale || 1}
-                onChange={(e) =>
-                  onOptionsChange({
-                    ...options,
-                    scale: parseFloat(e.target.value),
-                  })
-                }
-                className="h-1.5 w-full cursor-pointer appearance-none rounded-lg bg-slate-200 accent-emerald-600 dark:bg-slate-800"
-              />
-            </div>
-
-            <div>
-              <div className="mb-1 flex items-center justify-between text-[11px] font-semibold text-slate-600 dark:text-slate-300">
-                <span>Vertical Position</span>
-                <span>{options?.offsetY || 0}px</span>
-              </div>
-              <input
-                type="range"
-                min="-120"
-                max="120"
-                step="5"
-                value={options?.offsetY || 0}
-                onChange={(e) =>
-                  onOptionsChange({
-                    ...options,
-                    offsetY: parseInt(e.target.value, 10),
-                  })
-                }
-                className="h-1.5 w-full cursor-pointer appearance-none rounded-lg bg-slate-200 accent-emerald-600 dark:bg-slate-800"
-              />
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* 3. Section 2: Template & Organization Texts (Editable, Infrequently Changed) */}
-      <div className="shadow-xs space-y-4 rounded-2xl border border-slate-200   p-5 dark:border-slate-800 dark:bg-slate-900">
+      <div className="shadow-xs space-y-4 rounded-2xl border border-slate-200 p-4 dark:border-slate-800 dark:bg-slate-900">
         <div className="flex items-center justify-between border-b border-slate-100 pb-3 dark:border-slate-800">
           <div className="flex items-center gap-2">
             <Settings2 className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
@@ -221,7 +275,7 @@ const CardTextForm = ({
                 placeholder="e.g. Wishing you a very Happy Birthday filled with health, joy & success!"
                 value={greeting}
                 onChange={(e) => onGreetingChange(e.target.value)}
-                className="w-full rounded-xl border border-slate-200   p-2.5 text-xs font-medium text-slate-800 outline-none transition-colors focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+                className="w-full rounded-xl border border-slate-200 p-2.5 text-xs font-medium text-slate-800 outline-none transition-colors focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
               />
               <p className="mt-1 text-[10px] text-slate-400">
                 Rendered directly beneath the prominent name banner divider.
@@ -239,7 +293,7 @@ const CardTextForm = ({
                 placeholder="e.g. Rowmari Students Welfare Association - RSWA"
                 value={organization}
                 onChange={(e) => onOrganizationChange(e.target.value)}
-                className="w-full rounded-xl border border-slate-200  p-2.5 text-xs font-medium text-slate-800 outline-none transition-colors focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+                className="w-full rounded-xl border border-slate-200 p-2.5 text-xs font-medium text-slate-800 outline-none transition-colors focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
               />
               <p className="mt-1 text-[10px] text-slate-400">
                 Rendered in bold RSWA signature forest green.
@@ -257,7 +311,7 @@ const CardTextForm = ({
                 placeholder="e.g. Executive Committee 2026-27"
                 value={committee}
                 onChange={(e) => onCommitteeChange(e.target.value)}
-                className="w-full rounded-xl border border-slate-200  e p-2.5 text-xs font-medium text-slate-800 outline-none transition-colors focus:border-amber-500 focus:ring-1 focus:ring-amber-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+                className="e w-full rounded-xl border border-slate-200 p-2.5 text-xs font-medium text-slate-800 outline-none transition-colors focus:border-amber-500 focus:ring-1 focus:ring-amber-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
               />
               <p className="mt-1 text-[10px] text-slate-400">
                 Rendered justified at the bottom-left in RSWA crown gold
@@ -276,7 +330,7 @@ const CardTextForm = ({
                 placeholder="e.g. https://rswaa.vercel.app/"
                 value={website}
                 onChange={(e) => onWebsiteChange(e.target.value)}
-                className="w-full rounded-xl border border-slate-200  p-2.5 text-xs font-medium text-slate-800 outline-none transition-colors focus:border-teal-500 focus:ring-1 focus:ring-teal-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+                className="w-full rounded-xl border border-slate-200 p-2.5 text-xs font-medium text-slate-800 outline-none transition-colors focus:border-teal-500 focus:ring-1 focus:ring-teal-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
               />
               <p className="mt-1 text-[10px] text-slate-400">
                 Rendered justified at the bottom-right in logo teal styling.

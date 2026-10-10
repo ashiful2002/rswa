@@ -143,6 +143,10 @@ const router = createBrowserRouter([
         path: "/birthday-card",
         element: <Navigate to="/dashboard/birthday-card" replace />,
       },
+      {
+        path: "/dashboard",
+        element: <Navigate to="/dashboard" replace />,
+      },
     ],
   },
   {

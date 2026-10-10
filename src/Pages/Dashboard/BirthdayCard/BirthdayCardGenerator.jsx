@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Cake, ShieldCheck, Sparkles, RefreshCw } from "lucide-react";
+import { Sparkles, RefreshCw } from "lucide-react";
 import PhotoUploader from "./PhotoUploader";
 import CardTextForm from "./CardTextForm";
 import BirthdayCardPreview from "./BirthdayCardPreview";
@@ -88,9 +88,6 @@ const BirthdayCardGenerator = () => {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <div className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-100 text-purple-700 dark:bg-purple-950/70 dark:text-purple-300">
-              <Cake className="h-5 w-5" />
-            </div>
             <h2 className="text-2xl font-bold tracking-tight text-slate-800 dark:text-white">
               Birthday Card Generator
             </h2>
@@ -116,76 +113,76 @@ const BirthdayCardGenerator = () => {
       </div>
 
       {/* Main Grid: Controls on Left, Live Preview on Right */}
-      <div className="flex flex-col-reverse gap-5 sm:flex-row">
-        {/* Left Column: Photo Uploader & Form Fields (7 cols) */}
-        <div className="space-y-6 lg:col-span-7">
-          {/* Step 1: Portrait Photo Upload & AI Background Removal */}
-          <div>
-            <div className="mb-2 flex items-center justify-between">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
-                1. Member Portrait Photo
-              </h3>
-              <span className="flex items-center gap-1 text-[10px] font-semibold text-emerald-600 dark:text-emerald-400">
-                <Sparkles className="h-3 w-3" />
-                Browser AI Transparent Cutout
-              </span>
-            </div>
-
-            <PhotoUploader
-              originalPhotoUrl={originalPhotoUrl}
-              transparentPhotoUrl={transparentPhotoUrl}
-              useTransparent={useTransparent}
-              onPhotoSelected={handlePhotoSelected}
-              onRemovePhoto={handleRemovePhoto}
-              onToggleTransparent={setUseTransparent}
-            />
-          </div>
-
-          {/* Step 2: Member Details & Template Fields */}
-          <div>
-            <h3 className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
-              2. Poster Content & Framing
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-start">
+        {/* Step 1: Portrait Photo Upload & AI Background Removal */}
+        <div className="order-1 lg:col-span-7 lg:col-start-1 lg:row-start-1">
+          <div className="mb-2 flex items-center justify-between">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+              1. Member Portrait Photo
             </h3>
-
-            <CardTextForm
-              name={name}
-              designation={designation}
-              greeting={greeting}
-              organization={organization}
-              committee={committee}
-              website={website}
-              onNameChange={setName}
-              onDesignationChange={setDesignation}
-              onGreetingChange={setGreeting}
-              onOrganizationChange={setOrganization}
-              onCommitteeChange={setCommittee}
-              onWebsiteChange={setWebsite}
-              options={options}
-              onOptionsChange={setOptions}
-              hasPhoto={Boolean(activePhotoUrl)}
-            />
+            <span className="flex items-center gap-1 text-[10px] font-semibold text-emerald-600 dark:text-emerald-400">
+              <Sparkles className="h-3 w-3" />
+              Browser AI Transparent Cutout
+            </span>
           </div>
+
+          <PhotoUploader
+            originalPhotoUrl={originalPhotoUrl}
+            transparentPhotoUrl={transparentPhotoUrl}
+            useTransparent={useTransparent}
+            onPhotoSelected={handlePhotoSelected}
+            onRemovePhoto={handleRemovePhoto}
+            onToggleTransparent={setUseTransparent}
+          />
         </div>
 
-        {/* Right Column: Live Canvas Preview & High-Res Download (5 cols) */}
-        <div className="lg:col-span-5">
-          <div className="sticky top-20 space-y-3">
+        {/* Live Canvas Preview & High-Res Download (Order 2 on mobile: right after Photo Uploader) */}
+        <div className="order-2 space-y-3 lg:sticky lg:top-20 lg:col-span-5 lg:col-start-8 lg:row-span-2 lg:row-start-1">
+          <div className="flex items-center justify-between">
             <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
               Live Card Preview
             </h3>
-
-            <BirthdayCardPreview
-              photoUrl={activePhotoUrl}
-              name={name}
-              designation={designation}
-              greeting={greeting}
-              organization={organization}
-              committee={committee}
-              website={website}
-              options={options}
-              hasPhoto={Boolean(activePhotoUrl)}
-            />
+            <span className="text-[10px] font-medium text-emerald-600 dark:text-emerald-400">
+              1080 × 1080 Square
+            </span>
           </div>
+
+          <BirthdayCardPreview
+            photoUrl={activePhotoUrl}
+            name={name}
+            designation={designation}
+            greeting={greeting}
+            organization={organization}
+            committee={committee}
+            website={website}
+            options={options}
+            hasPhoto={Boolean(activePhotoUrl)}
+          />
+        </div>
+
+        {/* Step 2: Member Details & Template Fields (Order 3 on mobile: just after the download button!) */}
+        <div className="order-3 lg:col-span-7 lg:col-start-1 lg:row-start-2">
+          <h3 className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+            2. Poster Content & Framing
+          </h3>
+
+          <CardTextForm
+            name={name}
+            designation={designation}
+            greeting={greeting}
+            organization={organization}
+            committee={committee}
+            website={website}
+            onNameChange={setName}
+            onDesignationChange={setDesignation}
+            onGreetingChange={setGreeting}
+            onOrganizationChange={setOrganization}
+            onCommitteeChange={setCommittee}
+            onWebsiteChange={setWebsite}
+            options={options}
+            onOptionsChange={setOptions}
+            hasPhoto={Boolean(activePhotoUrl)}
+          />
         </div>
       </div>
     </div>
