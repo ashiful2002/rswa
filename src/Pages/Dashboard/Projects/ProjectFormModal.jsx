@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { X, Upload, Loader2, Image as ImageIcon } from "lucide-react";
+import { useState } from "react";
+import { X, Upload, Loader2 } from "lucide-react";
 import { uploadToImgBB } from "../../../utils/uploadImage";
+import DatePicker from "../../../Components/shared/DatePicker";
 
 const CATEGORIES = ["Education", "Health", "Environment", "Relief", "Cultural"];
 const STATUSES = ["Active", "Upcoming", "Completed"];
@@ -58,6 +59,65 @@ const ProjectFormModal = ({
         </div>
 
         <form onSubmit={onSubmit} className="mt-4 space-y-4 text-xs">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            {/* Thumbnail Preview */}
+            {formData.thumbnail && (
+              <div className="relative mx-auto my-2 aspect-video w-56 overflow-hidden rounded border border-slate-200">
+                <img
+                  src={formData.thumbnail}
+                  alt="Thumbnail Preview"
+                  className="h-full w-full object-cover"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.style.display = "none";
+                  }}
+                />
+              </div>
+            )}
+            {/* File Upload Button */}
+            <label className="flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-dashed border-emerald-500 bg-emerald-50/50 px-4 py-2.5 font-semibold text-emerald-700 transition-all hover:bg-emerald-100 dark:border-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-300 dark:hover:bg-emerald-950/70">
+              {isUploading ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  <span>Uploading to ImgBB...</span>
+                </>
+              ) : (
+                <>
+                  <Upload className="h-4 w-4" />
+                  <span>Upload Local File</span>
+                </>
+              )}
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileUpload}
+                disabled={isUploading}
+                className="hidden"
+              />
+            </label>
+
+            {/* <span className="text-center text-xs text-slate-400 sm:text-left">
+              or enter direct URL below:
+            </span> */}
+          </div>
+
+          {uploadError && (
+            <p className="text-[11px] font-semibold text-red-500">
+              {uploadError}
+            </p>
+          )}
+
+          {/* <input
+              type="url"
+              required
+              placeholder="https://i.ibb.co/..."
+              value={formData.thumbnail}
+              onChange={(e) =>
+                setFormData({ ...formData, thumbnail: e.target.value })
+              }
+              className="w-full rounded-xl border border-slate-200 p-2.5 text-slate-800 outline-none focus:border-emerald-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+            /> */}
+
           <div>
             <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-300">
               Project Title *
@@ -118,66 +178,6 @@ const ProjectFormModal = ({
             <label className="block font-semibold text-slate-700 dark:text-slate-300">
               Thumbnail Image *
             </label>
-
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-              {/* File Upload Button */}
-              <label className="flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-dashed border-emerald-500 bg-emerald-50/50 px-4 py-2.5 font-semibold text-emerald-700 transition-all hover:bg-emerald-100 dark:border-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-300 dark:hover:bg-emerald-950/70">
-                {isUploading ? (
-                  <>
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                    <span>Uploading to ImgBB...</span>
-                  </>
-                ) : (
-                  <>
-                    <Upload className="h-4 w-4" />
-                    <span>Upload Local File</span>
-                  </>
-                )}
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleFileUpload}
-                  disabled={isUploading}
-                  className="hidden"
-                />
-              </label>
-
-              <span className="text-center text-xs text-slate-400 sm:text-left">
-                or enter direct URL below:
-              </span>
-            </div>
-
-            {uploadError && (
-              <p className="text-[11px] font-semibold text-red-500">
-                {uploadError}
-              </p>
-            )}
-
-            <input
-              type="url"
-              required
-              placeholder="https://i.ibb.co/..."
-              value={formData.thumbnail}
-              onChange={(e) =>
-                setFormData({ ...formData, thumbnail: e.target.value })
-              }
-              className="w-full rounded-xl border border-slate-200 p-2.5 text-slate-800 outline-none focus:border-emerald-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
-            />
-
-            {/* Thumbnail Preview */}
-            {formData.thumbnail && (
-              <div className="relative mt-2 aspect-video w-36 overflow-hidden rounded-xl border border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-900">
-                <img
-                  src={formData.thumbnail}
-                  alt="Thumbnail Preview"
-                  className="h-full w-full object-cover"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.style.display = "none";
-                  }}
-                />
-              </div>
-            )}
           </div>
 
           <div>
@@ -269,32 +269,24 @@ const ProjectFormModal = ({
           </div>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div>
-              <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-300">
-                Start Date
-              </label>
-              <input
-                type="date"
-                value={formData.startDate}
-                onChange={(e) =>
-                  setFormData({ ...formData, startDate: e.target.value })
-                }
-                className="w-full rounded-xl border border-slate-200 p-2.5 text-slate-800 outline-none focus:border-emerald-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
-              />
-            </div>
-            <div>
-              <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-300">
-                End Date
-              </label>
-              <input
-                type="date"
-                value={formData.endDate}
-                onChange={(e) =>
-                  setFormData({ ...formData, endDate: e.target.value })
-                }
-                className="w-full rounded-xl border border-slate-200 p-2.5 text-slate-800 outline-none focus:border-emerald-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
-              />
-            </div>
+            <DatePicker
+              id="project-start-date"
+              label="Start Date"
+              value={formData.startDate}
+              onChange={(val) =>
+                setFormData({ ...formData, startDate: val })
+              }
+              placeholder="Select start date"
+            />
+            <DatePicker
+              id="project-end-date"
+              label="End Date"
+              value={formData.endDate}
+              onChange={(val) =>
+                setFormData({ ...formData, endDate: val })
+              }
+              placeholder="Select end date"
+            />
           </div>
 
           <div className="flex justify-end gap-2 border-t border-slate-100 pt-4 dark:border-slate-800">
