@@ -90,6 +90,7 @@ const AdmissionForm = () => {
       university: selectedUniv.trim(),
       sscSchool: formData.sscSchool ? formData.sscSchool.trim() : "",
       hscCollege: formData.hscCollege ? formData.hscCollege.trim() : "",
+      awardType: "admission",
       submittedAt: new Date().toISOString(),
     };
 

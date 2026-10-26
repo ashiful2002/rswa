@@ -6,6 +6,7 @@ const StudentAwardFilters = ({
   setSearch,
   sessionFilter,
   setSessionFilter,
+  activeTab = "all",
   sortField,
   setSortField,
   sortOrder,
@@ -24,29 +25,58 @@ const StudentAwardFilters = ({
             setSearch(e.target.value);
             setPage(1);
           }}
-          placeholder="Search by name, email, phone, university..."
+          placeholder="Search by name, email, phone, institute..."
           className="focus: w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-4 text-xs text-slate-800 outline-none transition-all focus:border-emerald-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-emerald-500"
         />
       </div>
 
       {/* Filter Dropdowns */}
       <div className="flex flex-wrap items-center gap-3">
-        <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-500">
-          <Filter className="h-3.5 w-3.5" />
-          <span>Session:</span>
-        </div>
-        <select
-          value={sessionFilter}
-          onChange={(e) => {
-            setSessionFilter(e.target.value);
-            setPage(1);
-          }}
-          className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-800 outline-none dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
-        >
-          <option value="">All Sessions</option>
-          <option value="2025-26">2025-26</option>
-          <option value="2026-27">2026-27</option>
-        </select>
+        {/* Session / Year Filter (context-sensitive per tab) */}
+        {activeTab === "admission" && (
+          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-500">
+              <Filter className="h-3.5 w-3.5" />
+              <span>Session:</span>
+            </div>
+            <select
+              value={sessionFilter}
+              onChange={(e) => {
+                setSessionFilter(e.target.value);
+                setPage(1);
+              }}
+              className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-800 outline-none dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+            >
+              <option value="">All Sessions</option>
+              <option value="2025-26">2025-26</option>
+              <option value="2026-27">2026-27</option>
+            </select>
+          </div>
+        )}
+
+        {(activeTab === "hsc" || activeTab === "ssc") && (
+          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-500">
+              <Filter className="h-3.5 w-3.5" />
+              <span>Passing Year:</span>
+            </div>
+            <select
+              value={sessionFilter}
+              onChange={(e) => {
+                setSessionFilter(e.target.value);
+                setPage(1);
+              }}
+              className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-800 outline-none dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+            >
+              <option value="">All Years</option>
+              <option value="2026">2026</option>
+              <option value="2025">2025</option>
+              <option value="2024">2024</option>
+              <option value="2023">2023</option>
+              <option value="2022">2022</option>
+            </select>
+          </div>
+        )}
 
         {/* Sort Field */}
         <select

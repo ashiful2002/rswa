@@ -36,6 +36,12 @@ const StudentAward = lazy(
 const AdmissionForm = lazy(
   () => import("./Pages/StudentAward/AdmissionForm.jsx"),
 );
+const HscAwardForm = lazy(
+  () => import("./Pages/StudentAward/HscAwardForm.jsx"),
+);
+const SscAwardForm = lazy(
+  () => import("./Pages/StudentAward/SscAwardForm.jsx"),
+);
 const Signin = lazy(() => import("./Pages/SignIn/Signin.jsx"));
 const Projects = lazy(() => import("./Pages/Projects/Projects.jsx"));
 
@@ -110,6 +116,14 @@ const router = createBrowserRouter([
       {
         path: "/student-award/forms/admission",
         element: <AdmissionForm />,
+      },
+      {
+        path: "/student-award/forms/hsc",
+        element: <HscAwardForm />,
+      },
+      {
+        path: "/student-award/forms/ssc",
+        element: <SscAwardForm />,
       },
       {
         path: "/blood",

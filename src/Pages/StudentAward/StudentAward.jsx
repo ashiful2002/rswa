@@ -27,18 +27,18 @@ const StudentAward = () => {
       title: "এইচএসসি কৃতি শিক্ষার্থী সংবর্ধনা ফর্ম",
       description:
         "এইচএসসি পরীক্ষায় জিপিএ-৫ (GPA 5.00) অর্জনকারী শিক্ষার্থীদের জন্য বিশেষ সম্মাননা আবেদন ফর্ম।",
-      path: "#",
-      status: "upcoming",
-      badge: "আসন্ন ফর্ম",
+      path: "/student-award/forms/hsc",
+      status: "active",
+      badge: "সক্রিয় ফর্ম",
     },
     {
       id: "ssc-brilliant",
       title: "এসএসসি কৃতি শিক্ষার্থী সংবর্ধনা ফর্ম",
       description:
         "এসএসসি পরীক্ষায় জিপিএ-৫ (GPA 5.00) অর্জনকারী কৃতি শিক্ষার্থীদের জন্য সম্মাননা আবেদন ফর্ম।",
-      path: "#",
-      status: "upcoming",
-      badge: "আসন্ন ফর্ম",
+      path: "/student-award/forms/ssc",
+      status: "active",
+      badge: "সক্রিয় ফর্ম",
     },
   ];
 

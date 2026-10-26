@@ -38,6 +38,7 @@ const loadAndCropLogo = (url) => {
 
 const DashboardStudentAward = () => {
   const axiosSecure = useAxiosSecure();
+  const [activeTab, setActiveTab] = useState("all"); // 'all' | 'admission' | 'hsc' | 'ssc'
   const [search, setSearch] = useState("");
   const [sessionFilter, setSessionFilter] = useState("");
   const [sortField, setSortField] = useState("createdAt");
@@ -49,11 +50,39 @@ const DashboardStudentAward = () => {
 
   const debouncedSearch = useDebounce(search, 400);
 
+  // Tab switch handler
+  const handleTabChange = (tabId) => {
+    setActiveTab(tabId);
+    setSessionFilter("");
+    setPage(1);
+  };
+
+  // Fetch summary counts for all tabs
+  const { data: countsData } = useQuery({
+    queryKey: ["studentAwardCounts"],
+    queryFn: async () => {
+      const [allRes, admissionRes, hscRes, sscRes] = await Promise.all([
+        axiosSecure.get(API_ENDPOINTS.STUDENT_AWARD, { params: { limit: 1 } }),
+        axiosSecure.get(API_ENDPOINTS.STUDENT_AWARD, { params: { awardType: "admission", limit: 1 } }),
+        axiosSecure.get(API_ENDPOINTS.STUDENT_AWARD, { params: { awardType: "hsc", limit: 1 } }),
+        axiosSecure.get(API_ENDPOINTS.STUDENT_AWARD, { params: { awardType: "ssc", limit: 1 } }),
+      ]);
+      return {
+        all: allRes?.data?.meta?.total ?? allRes?.data?.total ?? 0,
+        admission: admissionRes?.data?.meta?.total ?? admissionRes?.data?.total ?? 0,
+        hsc: hscRes?.data?.meta?.total ?? hscRes?.data?.total ?? 0,
+        ssc: sscRes?.data?.meta?.total ?? sscRes?.data?.total ?? 0,
+      };
+    },
+    staleTime: 30 * 1000,
+  });
+
   // Fetch Student Award Submissions
   const { data, isLoading, refetch } = useQuery({
     queryKey: [
       "studentAwardSubmissions",
       {
+        awardType: activeTab === "all" ? "" : activeTab,
         search: debouncedSearch,
         session: sessionFilter,
         sortField,
@@ -68,6 +97,7 @@ const DashboardStudentAward = () => {
         API_ENDPOINTS.STUDENT_AWARD,
         {
           params: {
+            awardType: params.awardType,
             search: params.search,
             session: params.session,
             sortField: params.sortField,
@@ -95,6 +125,7 @@ const DashboardStudentAward = () => {
         API_ENDPOINTS.STUDENT_AWARD,
         {
           params: {
+            awardType: activeTab === "all" ? "" : activeTab,
             search: debouncedSearch,
             session: sessionFilter,
             sortField,
@@ -164,9 +195,9 @@ const DashboardStudentAward = () => {
         "Name (Bangla)",
         "Phone Number",
         "Email",
-        "University",
-        "Session",
-        "College Name",
+        "Institution / University",
+        "Passing Year / Session",
+        "College / School",
       ];
 
       const tableRows = exportList.map((st, i) => [
@@ -175,9 +206,13 @@ const DashboardStudentAward = () => {
         st.nameBangla || "",
         st.phoneNumber || "",
         st.email || "",
-        st.university || "",
-        st.session || "",
-        st.hscCollege || "-",
+        st.university || st.instituteName || "",
+        st.sscPassingYear
+          ? `SSC ${st.sscPassingYear}`
+          : st.hscPassingYear
+            ? `HSC ${st.hscPassingYear}`
+            : st.session || "",
+        st.instituteName || st.presentCollege || st.hscCollege || st.sscSchool || "-",
       ]);
 
       autoTable(doc, {
@@ -353,11 +388,51 @@ const DashboardStudentAward = () => {
         </div>
       </div>
 
-      {/* Reusable Stat Cards */}
+      {/* Category Tabs */}
+      <div className="flex border-b border-slate-200 dark:border-slate-800">
+        <nav className="flex space-x-2 overflow-x-auto pb-1" aria-label="Tabs">
+          {[
+            { id: "all", label: "All Applicants", count: countsData?.all ?? totalStudents },
+            { id: "admission", label: "University Admission", count: countsData?.admission ?? 0 },
+            { id: "hsc", label: "HSC Brilliant", count: countsData?.hsc ?? 0 },
+            { id: "ssc", label: "SSC Brilliant", count: countsData?.ssc ?? 0 },
+          ].map((tab) => {
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => handleTabChange(tab.id)}
+                className={`whitespace-nowrap flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition-all ${
+                  isActive
+                    ? "bg-emerald-600 text-white shadow-sm"
+                    : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800/80 dark:hover:text-slate-200"
+                }`}
+              >
+                <span>{tab.label}</span>
+                <span
+                  className={`rounded-full px-2 py-0.5 text-[10px] font-extrabold ${
+                    isActive
+                      ? "/20 text-white"
+                      : "bg-slate-200/80 text-slate-700 dark:bg-slate-800 dark:text-slate-300"
+                  }`}
+                >
+                  {tab.count}
+                </span>
+              </button>
+            );
+          })}
+        </nav>
+      </div>
+
+      {/* Reusable Stat Cards / Interactive Category Summary */}
       <StudentAwardStatCards
         isLoading={isLoading}
-        totalStudents={totalStudents}
-        students={students}
+        totalStudents={countsData?.all ?? totalStudents}
+        admissionCount={countsData?.admission ?? 0}
+        hscCount={countsData?.hsc ?? 0}
+        sscCount={countsData?.ssc ?? 0}
+        activeTab={activeTab}
+        onTabChange={handleTabChange}
       />
 
       {/* Reusable Filters */}
@@ -366,6 +441,7 @@ const DashboardStudentAward = () => {
         setSearch={setSearch}
         sessionFilter={sessionFilter}
         setSessionFilter={setSessionFilter}
+        activeTab={activeTab}
         sortField={sortField}
         setSortField={setSortField}
         sortOrder={sortOrder}
@@ -377,6 +453,7 @@ const DashboardStudentAward = () => {
       <StudentAwardTable
         isLoading={isLoading}
         students={students}
+        activeTab={activeTab}
         page={page}
         limit={limit}
         totalPages={totalPages}

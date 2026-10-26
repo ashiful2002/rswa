@@ -5,6 +5,7 @@ import Pagination from "../../shared/Pagination";
 const StudentAwardTable = ({
   isLoading,
   students,
+  activeTab = "all",
   page,
   limit,
   totalPages,
@@ -22,10 +23,43 @@ const StudentAwardTable = ({
               <th className="p-3.5">#</th>
               <th className="p-3.5">Student Name</th>
               <th className="p-3.5">Contact Details</th>
-              <th className="p-3.5">University</th>
-              <th className="p-3.5">Session</th>
-              <th className="p-3.5">School Name</th>
-              <th className="p-3.5">College Name</th>
+              {activeTab === "all" && (
+                <th className="p-3.5">Award Type</th>
+              )}
+              <th className="p-3.5">
+                {activeTab === "ssc"
+                  ? "School Name"
+                  : activeTab === "hsc"
+                    ? "College Name"
+                    : activeTab === "admission"
+                      ? "University"
+                      : "Institution / Univ"}
+              </th>
+              <th className="p-3.5">
+                {activeTab === "ssc" || activeTab === "hsc"
+                  ? "Passing Year"
+                  : activeTab === "admission"
+                    ? "Session"
+                    : "Passing / Session"}
+              </th>
+              {activeTab === "admission" && (
+                <>
+                  <th className="p-3.5">School Name</th>
+                  <th className="p-3.5">College Name</th>
+                </>
+              )}
+              {activeTab === "hsc" && (
+                <th className="p-3.5">SSC Batch</th>
+              )}
+              {activeTab === "ssc" && (
+                <>
+                  <th className="p-3.5">SSC Batch</th>
+                  <th className="p-3.5">Present College</th>
+                </>
+              )}
+              {activeTab === "all" && (
+                <th className="p-3.5">Secondary Details</th>
+              )}
               <th className="p-3.5 text-right">Actions</th>
             </tr>
           </thead>
@@ -84,29 +118,95 @@ const StudentAwardTable = ({
                       {student.email}
                     </div>
                   </td>
+                  {/* Award Type Badge for All tab */}
+                  {activeTab === "all" && (
+                    <td className="p-3.5">
+                      <span
+                        className={`inline-flex rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide ${
+                          student.awardType === "hsc"
+                            ? "bg-purple-100 text-purple-700 dark:bg-purple-950/60 dark:text-purple-300"
+                            : student.awardType === "ssc"
+                              ? "bg-amber-100 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300"
+                              : "bg-blue-100 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300"
+                        }`}
+                      >
+                        {student.awardType === "hsc"
+                          ? "HSC"
+                          : student.awardType === "ssc"
+                            ? "SSC"
+                            : "Admission"}
+                      </span>
+                    </td>
+                  )}
+
+                  {/* Main Institution / University */}
                   <td className="p-3.5">
                     <div className="flex items-center gap-1.5 font-semibold text-emerald-700 dark:text-emerald-400">
                       <Building2 className="h-3.5 w-3.5 shrink-0" />
-                      <span>{student.university}</span>
+                      <span>{student.university || student.instituteName || student.sscSchool || "N/A"}</span>
                     </div>
                   </td>
+
+                  {/* Passing Year / Session */}
                   <td className="p-3.5">
                     <span className="inline-flex rounded-full bg-emerald-50 px-2.5 py-0.5 text-[11px] font-bold text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300">
-                      {student.session}
+                      {student.sscPassingYear
+                        ? `SSC ${student.sscPassingYear}`
+                        : student.hscPassingYear
+                          ? `HSC ${student.hscPassingYear}`
+                          : student.session || "N/A"}
                     </span>
                   </td>
-                  <td className="p-3.5 text-slate-600 dark:text-slate-400">
-                    <div className="flex items-center gap-1">
-                      <School className="h-3.5 w-3.5 shrink-0 text-slate-400" />
-                      <span>{student.sscSchool || "N/A"}</span>
-                    </div>
-                  </td>
-                  <td className="p-3.5 text-slate-600 dark:text-slate-400">
-                    <div className="flex items-center gap-1">
-                      <GraduationCap className="h-3.5 w-3.5 shrink-0 text-slate-400" />
-                      <span>{student.hscCollege || "N/A"}</span>
-                    </div>
-                  </td>
+
+                  {/* Tab specific columns */}
+                  {activeTab === "admission" && (
+                    <>
+                      <td className="p-3.5 text-slate-600 dark:text-slate-400">
+                        <div className="flex items-center gap-1">
+                          <School className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+                          <span>{student.sscSchool || "N/A"}</span>
+                        </div>
+                      </td>
+                      <td className="p-3.5 text-slate-600 dark:text-slate-400">
+                        <div className="flex items-center gap-1">
+                          <GraduationCap className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+                          <span>{student.hscCollege || "N/A"}</span>
+                        </div>
+                      </td>
+                    </>
+                  )}
+
+                  {activeTab === "hsc" && (
+                    <td className="p-3.5 text-slate-600 dark:text-slate-400">
+                      <div className="flex items-center gap-1">
+                        <School className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+                        <span>{student.sscBatch ? `SSC ${student.sscBatch}` : "N/A"}</span>
+                      </div>
+                    </td>
+                  )}
+
+                  {activeTab === "ssc" && (
+                    <>
+                      <td className="p-3.5 text-slate-600 dark:text-slate-400">
+                        <div className="flex items-center gap-1">
+                          <School className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+                          <span>{student.sscBatch ? `SSC ${student.sscBatch}` : "N/A"}</span>
+                        </div>
+                      </td>
+                      <td className="p-3.5 text-slate-600 dark:text-slate-400">
+                        <div className="flex items-center gap-1">
+                          <GraduationCap className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+                          <span>{student.presentCollege || "N/A"}</span>
+                        </div>
+                      </td>
+                    </>
+                  )}
+
+                  {activeTab === "all" && (
+                    <td className="p-3.5 text-slate-600 dark:text-slate-400">
+                      <span>{student.hscCollege || student.presentCollege || student.sscSchool || "-"}</span>
+                    </td>
+                  )}
                   <td className="p-3.5 text-right">
                     <div className="flex items-center justify-end gap-1.5">
                       <button

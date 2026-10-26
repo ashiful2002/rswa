@@ -34,10 +34,14 @@ const StudentAwardDetailsModal = ({ student, onClose }) => {
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-xl border border-slate-200 p-3 dark:border-slate-800">
               <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                Session
+                {student.sscPassingYear
+                  ? "SSC Passing Year"
+                  : student.hscPassingYear
+                    ? "HSC Passing Year"
+                    : "Session"}
               </span>
               <span className="font-bold text-slate-800 dark:text-slate-200">
-                {student.session}
+                {student.sscPassingYear || student.hscPassingYear || student.session || "N/A"}
               </span>
             </div>
             <div className="rounded-xl border border-slate-200 p-3 dark:border-slate-800">
@@ -61,28 +65,28 @@ const StudentAwardDetailsModal = ({ student, onClose }) => {
 
           <div className="rounded-xl border border-slate-200 p-3 dark:border-slate-800">
             <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-400">
-              University
+              {student.university ? "University" : "Institute Name"}
             </span>
             <span className="font-bold text-emerald-600 dark:text-emerald-400">
-              {student.university}
+              {student.university || student.instituteName || "N/A"}
             </span>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-xl border border-slate-200 p-3 dark:border-slate-800">
               <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                SSC School
+                {student.sscBatch ? "SSC Batch" : "SSC School"}
               </span>
               <span className="font-medium text-slate-700 dark:text-slate-300">
-                {student.sscSchool || "N/A"}
+                {student.sscBatch ? `SSC ${student.sscBatch}` : student.sscSchool || "N/A"}
               </span>
             </div>
             <div className="rounded-xl border border-slate-200 p-3 dark:border-slate-800">
               <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                HSC College
+                {student.instituteName ? "College / Institute" : "HSC College"}
               </span>
               <span className="font-medium text-slate-700 dark:text-slate-300">
-                {student.hscCollege || "N/A"}
+                {student.instituteName || student.hscCollege || "N/A"}
               </span>
             </div>
           </div>
