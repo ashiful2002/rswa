@@ -1,5 +1,11 @@
-import React from "react";
-import { polyInfo, rifatInfo, siamInfo } from "../../constants";
+import {
+  polyInfo,
+  rifatInfo,
+  siamInfo,
+  rifatLogo,
+  polyLogo,
+  siamLogo,
+} from "../../constants";
 import {
   Card,
   CardHeader,
@@ -16,15 +22,42 @@ import {
 } from "../../components/ui/table";
 import { Phone } from "lucide-react";
 
-const BusTable = ({ title, data }) => {
+const BusTable = ({ title, logo, data }) => {
   return (
-    <Card className="shadow-2xs w-full border-slate-200/80 dark:border-slate-800 md:w-[32%]">
-      <CardHeader className="pb-3">
-        <CardTitle className="text-base font-bold text-slate-900 dark:text-slate-100">
-          {title}
-        </CardTitle>
+    <Card className="group relative overflow-hidden shadow-2xs w-full border-slate-200/80 transition-all hover:shadow-md dark:border-slate-800 md:w-[32%]">
+      {/* Background Watermark in Center */}
+      {logo && (
+        <div
+          className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center p-6 select-none overflow-hidden"
+          aria-hidden="true"
+        >
+          <img
+            src={logo}
+            alt=""
+            className="max-h-48 max-w-48 object-contain opacity-15 transition-transform duration-500 group-hover:scale-105 dark:opacity-20"
+            loading="lazy"
+          />
+        </div>
+      )}
+
+      <CardHeader className="relative z-10 pb-3">
+        <div className="flex items-center justify-between gap-3">
+          <CardTitle className="text-base font-bold text-slate-900 dark:text-slate-100">
+            {title}
+          </CardTitle>
+          {logo && (
+            <div className="shadow-2xs flex h-10 w-14 shrink-0 items-center justify-center rounded-lg bg-slate-50 p-1 ring-1 ring-slate-200/80 dark:bg-slate-800/80 dark:ring-slate-700/60">
+              <img
+                src={logo}
+                alt={`${title} logo`}
+                className="max-h-full max-w-full object-contain"
+                loading="lazy"
+              />
+            </div>
+          )}
+        </div>
       </CardHeader>
-      <CardContent className="p-2 sm:p-4">
+      <CardContent className="relative z-10 p-2 sm:p-4">
         <Table>
           <TableHeader>
             <TableRow>
@@ -71,9 +104,21 @@ const IndivisualBus = () => {
         </CardHeader>
         <CardContent className="p-3 sm:p-6">
           <div className="flex flex-col justify-between gap-4 md:flex-row md:gap-4">
-            <BusTable title="Rifat Paribahan" data={rifatInfo} />
-            <BusTable title="Poly Paribahan" data={polyInfo} />
-            <BusTable title="Siam Enterprise" data={siamInfo} />
+            <BusTable
+              title="Rifat Paribahan"
+              logo={rifatLogo}
+              data={rifatInfo}
+            />
+            <BusTable
+              title="Poly Paribahan"
+              logo={polyLogo}
+              data={polyInfo}
+            />
+            <BusTable
+              title="Siam Enterprise"
+              logo={siamLogo}
+              data={siamInfo}
+            />
           </div>
         </CardContent>
       </Card>

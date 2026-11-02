@@ -19,9 +19,9 @@ const OtherLinks = () => {
       <PageTitle title="Important & Emergency Numbers" />
 
       <div>
-        <EmergencyContacts />
         <IndivisualBus />
         <Businfo />
+        <EmergencyContacts />
 
         <div className="mt-8 text-center">
           <a

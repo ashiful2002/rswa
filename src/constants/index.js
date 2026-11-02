@@ -157,6 +157,16 @@ export const cardtext = [
   },
 ];
 
+export const rifatLogo = "https://i.ibb.co/ZZxRnBh/Rifat.png";
+export const polyLogo = "https://i.ibb.co/Dfy0SG3G/poly.png";
+export const siamLogo = "https://i.ibb.co/RkwrDdfS/Siam.png";
+
+export const busLogos = {
+  rifat: rifatLogo,
+  poly: polyLogo,
+  siam: siamLogo,
+};
+
 export const rifatInfo = [
   {
     id: "1",
@@ -182,28 +192,6 @@ export const rifatInfo = [
     id: "4",
     counter: "kortimari",
     phoneNumber: "01734013901",
-  },
-];
-export const polyInfo = [
-  {
-    id: "1",
-    counter: "mohakhali",
-    phoneNumber: "01958155311",
-  },
-  {
-    id: "2",
-    counter: "uttara",
-    phoneNumber: "01958155312",
-  },
-  {
-    id: "3",
-    counter: "rowmari thana more",
-    phoneNumber: "01741000137",
-  },
-  {
-    id: "4",
-    counter: "rowmari upazila",
-    phoneNumber: "01958155313",
   },
 ];
 export const siamInfo = [
@@ -233,6 +221,29 @@ export const siamInfo = [
     phoneNumber: "01725416939",
   },
 ];
+export const polyInfo = [
+  {
+    id: "1",
+    counter: "mohakhali",
+    phoneNumber: "01958155311",
+  },
+  {
+    id: "2",
+    counter: "uttara",
+    phoneNumber: "01958155312",
+  },
+  {
+    id: "3",
+    counter: "rowmari thana more",
+    phoneNumber: "01741000137",
+  },
+  {
+    id: "4",
+    counter: "rowmari upazila",
+    phoneNumber: "01958155313",
+  },
+];
+
 export const jonySamyInfo = [
   {
     id: "13",
@@ -473,6 +484,18 @@ export const busData = [
     name: "Esha",
     counter: "Konabari",
     phoneNumber: "01616177275",
+  },
+  {
+    id: "37",
+    name: "Sinha",
+    counter: "Supervisor 1",
+    phoneNumber: "01960138732",
+  },
+  {
+    id: "38",
+    name: "Sinha",
+    counter: "Supervisor 2",
+    phoneNumber: "01960138766",
   },
 ];
 
