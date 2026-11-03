@@ -98,7 +98,7 @@ const Pagination = ({
         return (
           <span
             key={`ellipsis-${isMobile ? "m" : "d"}-${idx}`}
-            className={`shrink-0 flex items-center justify-center font-semibold text-slate-400 dark:text-slate-500 select-none ${
+            className={`flex shrink-0 select-none items-center justify-center font-semibold ${
               isMobile ? "h-8 w-5 text-xs" : "h-9 w-7 text-xs"
             }`}
           >
@@ -115,14 +115,14 @@ const Pagination = ({
           type="button"
           onClick={() => onPageChange(num)}
           aria-current={isActive ? "page" : undefined}
-          className={`shrink-0 flex items-center justify-center rounded-xl font-bold transition-all duration-200 ${
+          className={`flex shrink-0 items-center justify-center rounded-xl font-bold transition-all duration-200 ${
             isMobile
               ? "h-8 min-w-[32px] px-1.5 text-xs"
               : "h-9 min-w-[36px] px-2.5 text-xs"
           } ${
             isActive
               ? theme.active
-              : "border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+              : "border border-slate-200 text-slate-700 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
           }`}
         >
           {num}
@@ -134,16 +134,16 @@ const Pagination = ({
   return (
     <nav
       aria-label="Pagination Navigation"
-      className={`mt-8 flex w-full items-center justify-center select-none ${className}`}
+      className={`mt-8 flex w-full select-none items-center justify-center ${className}`}
     >
       {/* Mobile View (< sm): Compact, strictly flex-nowrap with shrink-0 so it never wraps or distorts */}
-      <div className="flex sm:hidden items-center justify-center gap-1 flex-nowrap max-w-full">
+      <div className="flex max-w-full flex-nowrap items-center justify-center gap-1 sm:hidden">
         {/* Prev Button Mobile */}
         <button
           type="button"
           onClick={() => onPageChange(activePage - 1)}
           disabled={activePage <= 1}
-          className="shadow-2xs shrink-0 flex h-8 w-8 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 transition-all hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+          className="shadow-2xs flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-slate-200 text-slate-700 transition-all hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
           title="Previous Page"
           aria-label="Previous Page"
         >
@@ -158,7 +158,7 @@ const Pagination = ({
           type="button"
           onClick={() => onPageChange(activePage + 1)}
           disabled={activePage >= totalPages}
-          className="shadow-2xs shrink-0 flex h-8 w-8 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 transition-all hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+          className="shadow-2xs flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-slate-200 text-slate-700 transition-all hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
           title="Next Page"
           aria-label="Next Page"
         >
@@ -167,13 +167,13 @@ const Pagination = ({
       </div>
 
       {/* Desktop View (>= sm): Full stable 7-item layout with text labels */}
-      <div className="hidden sm:flex items-center justify-center gap-1.5 flex-nowrap">
+      <div className="hidden flex-nowrap items-center justify-center gap-1.5 sm:flex">
         {/* Prev Button Desktop */}
         <button
           type="button"
           onClick={() => onPageChange(activePage - 1)}
           disabled={activePage <= 1}
-          className="shadow-2xs shrink-0 flex h-9 items-center gap-1 rounded-xl border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-700 transition-all hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+          className="shadow-2xs flex h-9 shrink-0 items-center gap-1 rounded-xl border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-700 transition-all hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
           title="Previous Page"
           aria-label="Previous Page"
         >
@@ -189,7 +189,7 @@ const Pagination = ({
           type="button"
           onClick={() => onPageChange(activePage + 1)}
           disabled={activePage >= totalPages}
-          className="shadow-2xs shrink-0 flex h-9 items-center gap-1 rounded-xl border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-700 transition-all hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+          className="shadow-2xs flex h-9 shrink-0 items-center gap-1 rounded-xl border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-700 transition-all hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
           title="Next Page"
           aria-label="Next Page"
         >

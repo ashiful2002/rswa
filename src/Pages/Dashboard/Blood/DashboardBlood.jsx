@@ -15,7 +15,6 @@ import UpdateDonorModal from "../../../Components/shared/modal/UpdateDonorModal"
 import BloodStatsSummary from "./BloodStatsSummary";
 import BloodFilters from "./BloodFilters";
 import BloodTable from "./BloodTable";
-import BloodCardList from "./BloodCardList";
 import BloodPagination from "./BloodPagination";
 
 const DashboardBlood = () => {
@@ -357,20 +356,8 @@ const DashboardBlood = () => {
         onResetFilters={handleResetFilters}
       />
 
-      {/* Desktop / Tablet Table View */}
+      {/* Blood Table (Hybrid Responsive Cards & Table with View Switcher) */}
       <BloodTable
-        donors={bloodData}
-        isLoading={isLoading}
-        page={page}
-        limit={limit}
-        canEdit={canEdit}
-        canDelete={canDelete}
-        onEdit={handleUpdate}
-        onDelete={handleDeleteClick}
-      />
-
-      {/* Mobile Touch-Friendly Card View */}
-      <BloodCardList
         donors={bloodData}
         isLoading={isLoading}
         page={page}
