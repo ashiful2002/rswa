@@ -1,4 +1,4 @@
-import { Search, X, RotateCcw, Droplet, GraduationCap } from "lucide-react";
+import { Search, X, RotateCcw, Droplet, GraduationCap, ArrowUpDown } from "lucide-react";
 
 const BLOOD_GROUPS_LIST = [
   "",
@@ -23,9 +23,18 @@ const BloodFilters = ({
   bloodGroup,
   onBloodGroupChange,
   existingSscBatches = [],
+  sortField = "createdAt",
+  sortOrder = "desc",
+  onSortChange = () => {},
   onResetFilters,
 }) => {
-  const hasActiveFilters = Boolean(search || sscBatch || bloodGroup);
+  const hasActiveFilters = Boolean(
+    search ||
+    sscBatch ||
+    bloodGroup ||
+    sortField !== "createdAt" ||
+    sortOrder !== "desc"
+  );
 
   return (
     <div className="flex flex-col gap-3 rounded-2xl border border-slate-200  p-3.5 shadow-xs sm:flex-row sm:items-center sm:justify-between dark:border-slate-800 dark:bg-slate-900">
@@ -76,7 +85,7 @@ const BloodFilters = ({
             <select
               value={sscBatch}
               onChange={(e) => onSscBatchChange(e.target.value)}
-              className="w-full appearance-none rounded-xl border border-slate-200 bg-slate-50/70 py-2 pl-8 pr-7 text-xs font-semibold text-slate-700 transition-colors focus:border-indigo-500 focus: focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:w-auto dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-200 dark:focus:bg-slate-900"
+              className="w-full appearance-none rounded-xl border border-slate-200 bg-slate-50/70 py-2 pl-8 pr-7 text-xs font-semibold text-slate-700 transition-colors focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:w-auto dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-200 dark:focus:bg-slate-900"
             >
               <option value="">All SSC Batches</option>
               {existingSscBatches.map((batch) => (
@@ -86,6 +95,26 @@ const BloodFilters = ({
               ))}
             </select>
             <GraduationCap className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-indigo-500" />
+          </div>
+
+          {/* Sort By Filter */}
+          <div className="relative col-span-2 sm:col-span-1">
+            <select
+              value={`${sortField}-${sortOrder}`}
+              onChange={(e) => {
+                const [f, o] = e.target.value.split("-");
+                onSortChange(f, o);
+              }}
+              className="w-full appearance-none rounded-xl border border-slate-200 bg-slate-50/70 py-2 pl-8 pr-7 text-xs font-semibold text-slate-700 transition-colors focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 sm:w-auto dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-200 dark:focus:bg-slate-900"
+            >
+              <option value="createdAt-desc">Newest First</option>
+              <option value="createdAt-asc">Oldest First</option>
+              <option value="Name-asc">Name (A-Z)</option>
+              <option value="Name-desc">Name (Z-A)</option>
+              <option value="SSC_Batch-desc">Batch (Newest First)</option>
+              <option value="SSC_Batch-asc">Batch (Oldest First)</option>
+            </select>
+            <ArrowUpDown className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-slate-400" />
           </div>
         </div>
 

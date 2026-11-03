@@ -158,7 +158,7 @@ export const cardtext = [
 ];
 
 export const rifatLogo = "https://i.ibb.co/ZZxRnBh/Rifat.png";
-export const polyLogo = "https://i.ibb.co/Dfy0SG3G/poly.png";
+export const polyLogo = "https://i.ibb.co/Pv9t08tj/poly.png";
 export const siamLogo = "https://i.ibb.co/RkwrDdfS/Siam.png";
 
 export const busLogos = {

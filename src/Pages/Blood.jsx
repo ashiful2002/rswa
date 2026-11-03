@@ -2,7 +2,7 @@
 import { useState, useEffect, lazy, Suspense } from "react";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { MdBloodtype } from "react-icons/md";
 import { FaEye, FaPhoneAlt } from "react-icons/fa";
 import { Modal, Button } from "react-bootstrap";
@@ -12,6 +12,7 @@ const Pagination = lazy(() => import("../Components/shared/Pagination"));
 import { API_ENDPOINTS } from "../config/api";
 import SEO from "../Components/shared/SEO";
 import { useTheme } from "../Context/ThemeProvider";
+import { normalizeBloodGroup } from "../utils/formatDonorDate";
 
 const bloodGroups = [
   "",
@@ -172,13 +173,51 @@ const SkeletonRow = () => (
 );
 
 const Blood = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const urlBloodGroup = normalizeBloodGroup(
+    searchParams.get("bloodGroup") ||
+      searchParams.get("Blood_Group") ||
+      searchParams.get("group") ||
+      "",
+  );
+
   const [search] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
-  const [bloodGroupFilter, setBloodGroupFilter] = useState("");
+  const [bloodGroupFilter, setBloodGroupFilter] = useState(urlBloodGroup);
   const [sortField] = useState("Name");
   const [sortOrder, setSortOrder] = useState("asc");
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(Number(searchParams.get("page")) || 1);
   const [limit] = useState(20);
+
+  // Sync state if URL changes externally (e.g. back/forward navigation or shared link)
+  useEffect(() => {
+    if (urlBloodGroup !== bloodGroupFilter) {
+      setBloodGroupFilter(urlBloodGroup);
+      setPage(1);
+    }
+  }, [urlBloodGroup]);
+
+  // Handle blood group change and update URL search bar
+  const handleBloodGroupChange = (value) => {
+    const normalized = normalizeBloodGroup(value);
+    setBloodGroupFilter(normalized);
+    setPage(1);
+    setSearchParams(
+      (prev) => {
+        const next = new URLSearchParams(prev);
+        if (normalized) {
+          next.set("bloodGroup", normalized);
+        } else {
+          next.delete("bloodGroup");
+          next.delete("Blood_Group");
+          next.delete("group");
+        }
+        next.delete("page");
+        return next;
+      },
+      { replace: true },
+    );
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -209,7 +248,21 @@ const Blood = () => {
   const bloodData = data?.data || [];
 
   const goToPage = (num) => {
-    if (num >= 1 && num <= totalPages) setPage(num);
+    if (num >= 1 && num <= totalPages) {
+      setPage(num);
+      setSearchParams(
+        (prev) => {
+          const next = new URLSearchParams(prev);
+          if (num > 1) {
+            next.set("page", num);
+          } else {
+            next.delete("page");
+          }
+          return next;
+        },
+        { replace: true },
+      );
+    }
   };
 
   return (
@@ -237,10 +290,7 @@ const Blood = () => {
           <select
             className="rounded border border-slate-200 px-4 py-2 text-sm text-slate-900 transition-colors dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100"
             value={bloodGroupFilter}
-            onChange={(e) => {
-              setBloodGroupFilter(e.target.value);
-              setPage(1);
-            }}
+            onChange={(e) => handleBloodGroupChange(e.target.value)}
           >
             {bloodGroups.map((bg, i) => (
               <option key={i} value={bg}>

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Edit2, Trash2, Phone, Copy, Check, GraduationCap } from "lucide-react";
+import { Edit2, Trash2, Phone, Copy, Check, GraduationCap, Calendar, Clock } from "lucide-react";
+import { formatDonorDate } from "../../../utils/formatDonorDate";
 
 /**
  * BloodTable - Desktop and tablet table layout for blood donors
@@ -39,6 +40,7 @@ const BloodTable = ({
               <th className="px-4 py-3.5">Present Address</th>
               <th className="px-4 py-3.5">Permanent Address</th>
               <th className="px-4 py-3.5">SSC Batch</th>
+              <th className="px-4 py-3.5 whitespace-nowrap">Created Time</th>
               {hasActions && <th className="px-4 py-3.5 text-right">Actions</th>}
             </tr>
           </thead>
@@ -67,6 +69,9 @@ const BloodTable = ({
                   <td className="px-4 py-4">
                     <div className="h-5 w-20 rounded-md bg-slate-200 dark:bg-slate-800"></div>
                   </td>
+                  <td className="px-4 py-4">
+                    <div className="h-4 w-24 rounded bg-slate-200 dark:bg-slate-800"></div>
+                  </td>
                   {hasActions && (
                     <td className="px-4 py-4 text-right">
                       <div className="ml-auto h-8 w-16 rounded-lg bg-slate-200 dark:bg-slate-800"></div>
@@ -78,6 +83,7 @@ const BloodTable = ({
               donors.map((donor, index) => {
                 const serialNumber = (page - 1) * limit + index + 1;
                 const isCopied = copiedId === donor._id;
+                const dateInfo = formatDonorDate(donor);
 
                 return (
                   <tr
@@ -155,6 +161,22 @@ const BloodTable = ({
                       )}
                     </td>
 
+                    {/* Created Time (Local) */}
+                    <td className="px-4 py-3.5 whitespace-nowrap" title={dateInfo.full}>
+                      <div className="flex flex-col">
+                        <div className="flex items-center gap-1.5 font-medium text-slate-800 dark:text-slate-200">
+                          <Calendar className="h-3 w-3 text-slate-400" />
+                          <span>{dateInfo.dateStr}</span>
+                        </div>
+                        {dateInfo.timeStr && (
+                          <div className="flex items-center gap-1 text-[11px] text-slate-400 dark:text-slate-500">
+                            <Clock className="h-2.5 w-2.5" />
+                            <span>{dateInfo.timeStr}</span>
+                          </div>
+                        )}
+                      </div>
+                    </td>
+
                     {/* Actions */}
                     {hasActions && (
                       <td className="px-4 py-3.5 text-right whitespace-nowrap">
@@ -190,7 +212,7 @@ const BloodTable = ({
             ) : (
               <tr>
                 <td
-                  colSpan={hasActions ? 8 : 7}
+                  colSpan={hasActions ? 9 : 8}
                   className="py-12 text-center text-slate-500 dark:text-slate-400"
                 >
                   <p className="font-semibold text-slate-700 dark:text-slate-300">

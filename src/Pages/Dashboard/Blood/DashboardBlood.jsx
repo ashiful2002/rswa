@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { ArrowLeft, RefreshCw, Heart } from "lucide-react";
 
@@ -9,6 +9,7 @@ import { API_ENDPOINTS } from "../../../config/api";
 import useAuth from "../../../hooks/useAuth";
 import useUserRole from "../../../hooks/useUserRole/UseUserRole";
 import useDebounce from "../../../hooks/useDebounce";
+import { normalizeBloodGroup } from "../../../utils/formatDonorDate";
 
 import UpdateDonorModal from "../../../Components/shared/modal/UpdateDonorModal";
 import BloodStatsSummary from "./BloodStatsSummary";
@@ -21,11 +22,101 @@ const DashboardBlood = () => {
   const { user } = useAuth();
   const { role } = useUserRole();
 
-  const [search, setSearch] = useState("");
-  const [sscBatch, setSscBatch] = useState("");
-  const [bloodGroup, setBloodGroup] = useState("");
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const urlBloodGroup = normalizeBloodGroup(
+    searchParams.get("bloodGroup") ||
+      searchParams.get("Blood_Group") ||
+      searchParams.get("group") ||
+      "",
+  );
+
+  const [search, setSearch] = useState(searchParams.get("search") || "");
+  const [sscBatch, setSscBatch] = useState(
+    searchParams.get("sscBatch") || searchParams.get("batch") || "",
+  );
+  const [bloodGroup, setBloodGroup] = useState(urlBloodGroup);
+  const [sortField, setSortField] = useState(
+    searchParams.get("sortField") || "createdAt",
+  );
+  const [sortOrder, setSortOrder] = useState(
+    searchParams.get("sortOrder") || "desc",
+  );
+  const [page, setPage] = useState(Number(searchParams.get("page")) || 1);
+  const [limit, setLimit] = useState(Number(searchParams.get("limit")) || 10);
+
+  // Sync state if URL search params change externally (e.g. browser back/forward)
+  useEffect(() => {
+    if (urlBloodGroup !== bloodGroup) {
+      setBloodGroup(urlBloodGroup);
+      setPage(1);
+    }
+  }, [urlBloodGroup]);
+
+  // Helper to synchronize active filters with browser URL search parameters
+  const updateUrlParams = (updates) => {
+    setSearchParams(
+      (prev) => {
+        const next = new URLSearchParams(prev);
+        Object.entries(updates).forEach(([key, value]) => {
+          if (value !== undefined && value !== null && value !== "") {
+            next.set(key, value);
+          } else {
+            next.delete(key);
+            if (key === "bloodGroup") {
+              next.delete("Blood_Group");
+              next.delete("group");
+            }
+          }
+        });
+        return next;
+      },
+      { replace: true },
+    );
+  };
+
+  const handleSearchChange = (val) => {
+    setSearch(val);
+    setPage(1);
+    updateUrlParams({ search: val || undefined, page: undefined });
+  };
+
+  const handleSscBatchChange = (val) => {
+    setSscBatch(val);
+    setPage(1);
+    updateUrlParams({ sscBatch: val || undefined, page: undefined });
+  };
+
+  const handleBloodGroupChange = (val) => {
+    const normalized = normalizeBloodGroup(val);
+    setBloodGroup(normalized);
+    setPage(1);
+    updateUrlParams({ bloodGroup: normalized || undefined, page: undefined });
+  };
+
+  const handleSortChange = (field, order) => {
+    setSortField(field);
+    setSortOrder(order);
+    setPage(1);
+    updateUrlParams({
+      sortField: field === "createdAt" && order === "desc" ? undefined : field,
+      sortOrder: field === "createdAt" && order === "desc" ? undefined : order,
+      page: undefined,
+    });
+  };
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+    updateUrlParams({ page: newPage > 1 ? newPage : undefined });
+  };
+
+  const handleLimitChange = (newLimit) => {
+    setLimit(newLimit);
+    setPage(1);
+    updateUrlParams({
+      limit: newLimit === 10 ? undefined : newLimit,
+      page: undefined,
+    });
+  };
 
   // Role permissions: Edit (super_admin/admin/moderator), Delete (super_admin/admin)
   const canEdit =
@@ -60,8 +151,15 @@ const DashboardBlood = () => {
 
   // 2. Fetch paginated blood data with active filters
   const fetchBloodData = async ({ queryKey }) => {
-    const [, { search, page, limit, bloodGroup, sscBatch }] = queryKey;
-    const params = { search, page, limit };
+    const [, { search, page, limit, bloodGroup, sscBatch, sortField, sortOrder }] =
+      queryKey;
+    const params = {
+      search,
+      page,
+      limit,
+      sortField: sortField || "createdAt",
+      sortOrder: sortOrder || "desc",
+    };
 
     if (bloodGroup) params.Blood_Group = bloodGroup;
     if (sscBatch) params.SSC_Batch = sscBatch;
@@ -79,6 +177,8 @@ const DashboardBlood = () => {
         limit,
         bloodGroup,
         sscBatch,
+        sortField,
+        sortOrder,
       },
     ],
     queryFn: fetchBloodData,
@@ -92,7 +192,10 @@ const DashboardBlood = () => {
 
   // Active filters count calculation
   const activeFiltersCount =
-    (search ? 1 : 0) + (bloodGroup ? 1 : 0) + (sscBatch ? 1 : 0);
+    (search ? 1 : 0) +
+    (bloodGroup ? 1 : 0) +
+    (sscBatch ? 1 : 0) +
+    (sortField !== "createdAt" || sortOrder !== "desc" ? 1 : 0);
 
   // Modal states
   const [selectedDonor, setSelectedDonor] = useState(null);
@@ -180,7 +283,10 @@ const DashboardBlood = () => {
     setSearch("");
     setSscBatch("");
     setBloodGroup("");
+    setSortField("createdAt");
+    setSortOrder("desc");
     setPage(1);
+    setSearchParams({}, { replace: true });
   };
 
   return (
@@ -230,7 +336,7 @@ const DashboardBlood = () => {
 
       {/* Stats Summary Cards */}
       <BloodStatsSummary
-        totalDonors={allDonorsList.length || 0}
+        totalDonors={allDonorsForBatches?.meta?.total || allDonorsList.length || 0}
         filteredCount={totalMatchingDonors}
         batchCount={existingSscBatches.length}
         activeFilterCount={activeFiltersCount}
@@ -239,21 +345,15 @@ const DashboardBlood = () => {
       {/* Search and Filters Toolbar */}
       <BloodFilters
         search={search}
-        onSearchChange={(val) => {
-          setSearch(val);
-          setPage(1);
-        }}
+        onSearchChange={handleSearchChange}
         sscBatch={sscBatch}
-        onSscBatchChange={(val) => {
-          setSscBatch(val);
-          setPage(1);
-        }}
+        onSscBatchChange={handleSscBatchChange}
         bloodGroup={bloodGroup}
-        onBloodGroupChange={(val) => {
-          setBloodGroup(val);
-          setPage(1);
-        }}
+        onBloodGroupChange={handleBloodGroupChange}
         existingSscBatches={existingSscBatches}
+        sortField={sortField}
+        sortOrder={sortOrder}
+        onSortChange={handleSortChange}
         onResetFilters={handleResetFilters}
       />
 
@@ -287,11 +387,8 @@ const DashboardBlood = () => {
         totalPages={totalPages}
         totalItems={totalMatchingDonors}
         limit={limit}
-        onLimitChange={(newLimit) => {
-          setLimit(newLimit);
-          setPage(1);
-        }}
-        onPageChange={(newPage) => setPage(newPage)}
+        onLimitChange={handleLimitChange}
+        onPageChange={handlePageChange}
       />
 
       {/* Update Donor Modal */}

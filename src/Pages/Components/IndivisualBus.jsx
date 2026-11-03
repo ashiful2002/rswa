@@ -24,17 +24,17 @@ import { Phone } from "lucide-react";
 
 const BusTable = ({ title, logo, data }) => {
   return (
-    <Card className="group relative overflow-hidden shadow-2xs w-full border-slate-200/80 transition-all hover:shadow-md dark:border-slate-800 md:w-[32%]">
+    <Card className="shadow-2xs group relative w-full overflow-hidden border-slate-200/80 transition-all hover:shadow-md dark:border-slate-800 md:w-[32%]">
       {/* Background Watermark in Center */}
       {logo && (
         <div
-          className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center p-6 select-none overflow-hidden"
+          className="pointer-events-none absolute inset-0 z-0 flex select-none items-center justify-center overflow-hidden p-6"
           aria-hidden="true"
         >
           <img
             src={logo}
             alt=""
-            className="max-h-48 max-w-48 object-contain opacity-15 transition-transform duration-500 group-hover:scale-105 dark:opacity-20"
+            className="object-cover p-4 opacity-40 transition-transform duration-500 group-hover:scale-105 dark:opacity-60"
             loading="lazy"
           />
         </div>
@@ -78,7 +78,7 @@ const BusTable = ({ title, logo, data }) => {
                 <TableCell className="font-mono">
                   <a
                     href={`tel:${item.phoneNumber}`}
-                    className="inline-flex items-center gap-1.5 text-emerald-600 no-underline hover:text-emerald-700 hover:underline dark:text-emerald-400 dark:hover:text-emerald-300"
+                    className="inline-flex items-center gap-1.5 text-white no-underline hover:text-emerald-700 hover:underline dark:text-emerald-400 dark:hover:text-emerald-300"
                   >
                     <Phone className="h-3.5 w-3.5" />
                     <span>{item.phoneNumber}</span>
@@ -109,16 +109,8 @@ const IndivisualBus = () => {
               logo={rifatLogo}
               data={rifatInfo}
             />
-            <BusTable
-              title="Poly Paribahan"
-              logo={polyLogo}
-              data={polyInfo}
-            />
-            <BusTable
-              title="Siam Enterprise"
-              logo={siamLogo}
-              data={siamInfo}
-            />
+            <BusTable title="Poly Paribahan" logo={polyLogo} data={polyInfo} />
+            <BusTable title="Siam Enterprise" logo={siamLogo} data={siamInfo} />
           </div>
         </CardContent>
       </Card>

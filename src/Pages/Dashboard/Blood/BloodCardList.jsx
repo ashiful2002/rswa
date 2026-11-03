@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Edit2, Trash2, Phone, Copy, Check, MapPin, GraduationCap, Home } from "lucide-react";
+import { Edit2, Trash2, Phone, Copy, Check, MapPin, GraduationCap, Home, Clock } from "lucide-react";
+import { formatDonorDate } from "../../../utils/formatDonorDate";
 
 /**
  * BloodCardList - Mobile card list layout for blood donors (< md screens)
@@ -70,6 +71,7 @@ const BloodCardList = ({
       {donors.map((donor, index) => {
         const serialNumber = (page - 1) * limit + index + 1;
         const isCopied = copiedId === donor._id;
+        const dateInfo = formatDonorDate(donor);
 
         return (
           <div
@@ -91,6 +93,12 @@ const BloodCardList = ({
                   <div className="mt-1 flex items-center gap-1 text-[11px] font-semibold text-indigo-600 dark:text-indigo-400">
                     <GraduationCap className="h-3 w-3 shrink-0" />
                     <span>SSC-{donor.SSC_Batch}</span>
+                  </div>
+                )}
+                {dateInfo.full !== "N/A" && (
+                  <div className="mt-1 flex items-center gap-1 text-[10px] text-slate-400 dark:text-slate-500">
+                    <Clock className="h-2.5 w-2.5 shrink-0" />
+                    <span>{dateInfo.full}</span>
                   </div>
                 )}
               </div>
