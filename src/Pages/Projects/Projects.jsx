@@ -7,9 +7,7 @@ import { Tag } from "lucide-react";
 import ProjectCardSkeleton from "../../Components/Projects/ProjectCardSkeleton";
 
 // Lazy loaded components for optimized bundle performance
-const ProjectFilter = lazy(
-  () => import("../../Components/Projects/ProjectFilter"),
-);
+const TabFilter = lazy(() => import("../../Components/shared/TabFilter"));
 const ProjectCard = lazy(() => import("../../Components/Projects/ProjectCard"));
 const ProjectDetailModal = lazy(
   () => import("../../Components/Projects/ProjectDetailModal"),
@@ -130,11 +128,12 @@ const Projects = () => {
             <div className="mb-8 h-12 w-full animate-pulse rounded-2xl bg-slate-200 dark:bg-slate-800" />
           }
         >
-          <ProjectFilter
+          <TabFilter
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
+            searchPlaceholder="Search projects..."
           />
         </Suspense>
 

@@ -13,6 +13,19 @@ import { API_ENDPOINTS } from "../config/api";
 import SEO from "../Components/shared/SEO";
 import { useTheme } from "../Context/ThemeProvider";
 import { normalizeBloodGroup } from "../utils/formatDonorDate";
+import TabFilter from "../Components/shared/TabFilter";
+
+const BLOOD_GROUP_TABS = [
+  { value: "", label: "All" },
+  { value: "A(+)ve", label: "A(+)ve" },
+  { value: "A(-)ve", label: "A(-)ve" },
+  { value: "B(+)ve", label: "B(+)ve" },
+  { value: "B(-)ve", label: "B(-)ve" },
+  { value: "O(+)ve", label: "O(+)ve" },
+  { value: "O(-)ve", label: "O(-)ve" },
+  { value: "AB(+)ve", label: "AB(+)ve" },
+  { value: "AB(-)ve", label: "AB(-)ve" },
+];
 
 const bloodGroups = [
   "",
@@ -181,8 +194,10 @@ const Blood = () => {
       "",
   );
 
-  const [search] = useState("");
-  const [debouncedSearch, setDebouncedSearch] = useState("");
+  const [search, setSearch] = useState(searchParams.get("search") || "");
+  const [debouncedSearch, setDebouncedSearch] = useState(
+    searchParams.get("search") || "",
+  );
   const [bloodGroupFilter, setBloodGroupFilter] = useState(urlBloodGroup);
   const [sortField] = useState("Name");
   const [sortOrder, setSortOrder] = useState("asc");
@@ -283,39 +298,25 @@ const Blood = () => {
         registered donors.
       </p>
 
-      {/* Filters & Actions */}
-      <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          {/* Blood Group Select */}
-          <select
-            className="rounded border border-slate-200 px-4 py-2 text-sm text-slate-900 transition-colors dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100"
-            value={bloodGroupFilter}
-            onChange={(e) => handleBloodGroupChange(e.target.value)}
-          >
-            {bloodGroups.map((bg, i) => (
-              <option key={i} value={bg}>
-                {bg || "All Blood Groups"}
-              </option>
-            ))}
-          </select>
-
-          {/* Sort Order */}
-          <select
-            className="rounded border border-slate-200 px-3 py-2 text-sm text-slate-900 transition-colors dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100"
-            value={sortOrder}
-            onChange={(e) => setSortOrder(e.target.value)}
-          >
-            <option value="asc">Asc</option>
-            <option value="desc">Desc</option>
-          </select>
-        </div>
-
-        <div>
-          <Link to="/add-bg" className="btn btn-danger flex w-full text-white">
-            Add new Blood Group <MdBloodtype className="inline text-xl" />
-          </Link>
-        </div>
-      </div>
+      {/* Reusable TabFilter with Blood Group Tabs, Live Search & Sort */}
+      <TabFilter
+        categories={BLOOD_GROUP_TABS}
+        selectedCategory={bloodGroupFilter}
+        setSelectedCategory={handleBloodGroupChange}
+        activeColor="emerald-600"
+        className="mb-6"
+        rightContent={
+          <div className="flex flex-wrap items-center gap-2.5">
+            <Link
+              to="/add-bg"
+              className="shadow-2xs inline-flex items-center gap-1.5 rounded bg-rose-600 px-3.5 py-2 text-xs font-bold text-white transition-all hover:bg-rose-700 active:scale-[0.98]"
+            >
+              <MdBloodtype className="text-base" />
+              <span>Add New Blood Group</span>
+            </Link>
+          </div>
+        }
+      />
 
       {/* Table */}
       <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
